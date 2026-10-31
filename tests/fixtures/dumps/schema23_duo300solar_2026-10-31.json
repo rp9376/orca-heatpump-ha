@@ -14,6 +14,8 @@
   "2_NOVO_GESLO_PGDT",
   "2_Novo_Geslo",
   "2_Potrdi_GESLO_Vklop",
+  "2_Pravilna_koda_za_prvi_zagon",
+  "2_Reset_KODE_iz_PGDT",
   "Cas_GESLO",
   "GESLO"
  ],
@@ -3858,7 +3860,7 @@
   },
   "2_Pravilna_koda_za_prvi_zagon": {
    "status": "S_OK",
-   "value": "1"
+   "value": "REDACTED"
   },
   "2_Opravljen_prvi_zagon": {
    "status": "S_OK",
@@ -4482,7 +4484,7 @@
   },
   "2_Reset_KODE_iz_PGDT": {
    "status": "S_OK",
-   "value": "0"
+   "value": "REDACTED"
   },
   "2_HITRI_Rezim_Hlajenje": {
    "status": "S_OK",

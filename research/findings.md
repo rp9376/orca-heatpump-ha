@@ -60,8 +60,10 @@ Before both, the dev HA had no `orca` or `orca_heatpump` config entry.
   timeout from `PLAN.md` §10, also `2_GESLO_PGDT`, `2_Geslo_ZAGON_AAXX`,
   `…_CCXX`, `…_XXBB`, `…_XXDD` (apparently a commissioning password in four
   parts), `2_Novo_Geslo`, `2_Potrdi_GESLO_Vklop`, `GESLO`, `Cas_GESLO` and
-  the service-mode flag `2_GESLO_PGDT_Vklop`. Proposal for CP1: none of them
-  is ever exposed; they are redacted in fixtures
+  the service-mode flag `2_GESLO_PGDT_Vklop`. Two more tags concern codes
+  (`2_Pravilna_koda_za_prvi_zagon`, `2_Reset_KODE_iz_PGDT`); on our pump both
+  are 0/1 flags. Proposal for CP1: no tag whose name contains `GESLO`,
+  `KODA` or `KODE` is ever exposed; they are redacted in fixtures
   (`tests/fixtures/dumps/schema23_duo300solar_2026-10-31.json`).
 
 ### Write safety evidence (from research D, `requirements.md` K8)
