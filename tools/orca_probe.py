@@ -26,7 +26,7 @@ import re
 import signal
 import sys
 import time
-from urllib.parse import urljoin, urlsplit
+from urllib.parse import quote, urljoin, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 CAPTURES = ROOT / "research" / "captures"
@@ -57,6 +57,11 @@ ALLOWED_CGI = frozenset(
         "browsePropertyGroup",
     }
 )
+# cgi/readFile is approved for R14 only (user, 2026-10-30): reachable solely
+# through Display.read_file, for paths listed explicitly per run.
+READ_FILE = "/cgi/readFile"
+# Password and code tags are never read (CLAUDE.md, data hygiene).
+SECRET_TAG_RE = re.compile(r"geslo|kod[ae]", re.IGNORECASE)
 # PLAN.md §2.2 rule 3: 15 minutes in total, never faster, then ask the user.
 BACKOFF_MINUTES = (1, 2, 4, 8)
 REQUEST_PAUSE = 1.0
@@ -95,57 +100,150 @@ class Record:
     value: str | None
 
 
+@dataclass(frozen=True)
+class Response:
+    """A raw HTTP response, plus the size of the header block we sent."""
+
+    status: int
+    headers: dict[str, str]
+    body: bytes
+    header_bytes: int
+    seconds: float
+
+    @property
+    def text(self) -> str:
+        """The body as text."""
+        return self.body.decode("utf-8", "replace")
+
+
 @dataclass
 class Display:
     """Serial, allowlisted HTTP access to the display."""
 
     host: str
+    port: int = 80
     token: str | None = None
+    readfile_paths: frozenset[str] = frozenset()
     _last_request: float = field(default=0.0, repr=False)
 
-    def get(self, path: str, query: str = "") -> tuple[int, bytes]:
-        """GET an allowlisted path; return the status and the raw body."""
+    def get(
+        self, path: str, query: str = "", extra_headers: dict[str, str] | None = None
+    ) -> Response:
+        """GET an allowlisted path."""
         self._check_allowed(path)
+        return self._send("GET", path, query, None, extra_headers or {})
+
+    def post(self, path: str, form: str) -> Response:
+        """POST a form body to an allowlisted path, as the vendor client does."""
+        self._check_allowed(path)
+        return self._send("POST", path, "", form.encode(), {})
+
+    def read_file(self, file_path: str, mode: str = "ASCII") -> Response:
+        """Read one file for R14, if it is on this run's explicit list."""
+        if file_path not in self.readfile_paths:
+            raise ProbeError(f"refused readFile path {file_path!r}: not listed")
+        query = f"MODE={mode}&PATH={quote(file_path, safe='/')}"
+        return self._send("GET", READ_FILE, query, None, {})
+
+    def header_size(
+        self,
+        method: str,
+        path: str,
+        query: str = "",
+        body: bytes | None = None,
+        extra_headers: dict[str, str] | None = None,
+    ) -> int:
+        """Return the bytes of request line and headers that a request sends."""
+        target = f"{path}?{query}" if query else path
+        # putrequest adds exactly Host and Accept-Encoding; the display rejects
+        # header blocks over about 4 KiB, so the research needs the exact size.
+        lines = [
+            f"{method} {target} HTTP/1.1",
+            f"Host: {self.host}" + (f":{self.port}" if self.port != 80 else ""),
+            "Accept-Encoding: identity",
+            *(
+                f"{name}: {value}"
+                for name, value in self._headers(body, extra_headers or {}).items()
+            ),
+        ]
+        return sum(len(line) + 2 for line in lines) + 2
+
+    def _headers(
+        self, body: bytes | None, extra_headers: dict[str, str]
+    ) -> dict[str, str]:
+        headers: dict[str, str] = {}
+        if self.token:
+            headers["Cookie"] = f"IDALToken={self.token}"
+        if body is not None:
+            headers["Content-Type"] = "application/x-www-form-urlencoded"
+            headers["Content-Length"] = str(len(body))
+        return headers | extra_headers
+
+    def _send(
+        self,
+        method: str,
+        path: str,
+        query: str,
+        body: bytes | None,
+        extra_headers: dict[str, str],
+    ) -> Response:
         if (wait := self._last_request + REQUEST_PAUSE - time.monotonic()) > 0:
             time.sleep(wait)
-        url = f"{path}?{query}" if query else path
-        headers = {"Cookie": f"IDALToken={self.token}"} if self.token else {}
+        target = f"{path}?{query}" if query else path
+        headers = self._headers(body, extra_headers)
+        header_bytes = self.header_size(method, path, query, body, extra_headers)
         started = datetime.now().astimezone()
-        conn = http.client.HTTPConnection(self.host, 80, timeout=TIMEOUT)
+        start = time.monotonic()
+        conn = http.client.HTTPConnection(self.host, self.port, timeout=TIMEOUT)
         try:
-            conn.request("GET", url, headers=headers)
-            response = conn.getresponse()
-            body = response.read()
+            conn.putrequest(method, target)
+            for name, value in headers.items():
+                conn.putheader(name, value)
+            conn.endheaders(body)
+            raw = conn.getresponse()
+            data = raw.read()
         except (OSError, http.client.HTTPException) as err:
-            self._log(started, path, query, None, b"", repr(err))
+            self._last_request = time.monotonic()
+            self._log(started, method, path, query, header_bytes, None, repr(err))
             raise
         finally:
             conn.close()
-        self._log(started, path, query, response.status, body, None)
-        return response.status, body
+        self._last_request = time.monotonic()
+        response = Response(
+            raw.status,
+            dict(raw.getheaders()),
+            data,
+            header_bytes,
+            round(self._last_request - start, 3),
+        )
+        self._log(started, method, path, query, header_bytes, response, None)
+        return response
 
+    @staticmethod
     def _log(
-        self,
         started: datetime,
+        method: str,
         path: str,
         query: str,
-        status: int | None,
-        body: bytes,
+        header_bytes: int,
+        response: Response | None,
         error: str | None,
     ) -> None:
-        self._last_request = time.monotonic()
         _log_request(
             {
                 "time": started.isoformat(timespec="milliseconds"),
+                "method": method,
                 "path": path,
                 "query": _mask_password(query)[:300],
                 "tags": query.count("&t"),
-                "status": status,
-                "bytes": len(body),
-                "seconds": round(
-                    (datetime.now().astimezone() - started).total_seconds(), 3
-                ),
-                "head": body[:80].decode("utf-8", "replace"),
+                "header_bytes": header_bytes,
+                "status": response.status if response else None,
+                "bytes": len(response.body) if response else 0,
+                "seconds": response.seconds if response else None,
+                "head": response.body[:80].decode("utf-8", "replace")
+                if response
+                else "",
+                "response_headers": response.headers if response else None,
                 "error": error,
             }
         )
@@ -196,8 +294,9 @@ def session(display: Display, username: str, password: str) -> Iterator[None]:
 def login(display: Display, username: str, password: str) -> None:
     """Log in, backing off on E_TOO_MANY_USERS per PLAN.md §2.2."""
     for wait in (*BACKOFF_MINUTES, None):
-        _, body = display.get("/cgi/login", f"username={username}&password={password}")
-        text = body.decode("utf-8", "replace")
+        text = display.get(
+            "/cgi/login", f"username={username}&password={password}"
+        ).text
         if match := re.search(r"IDALToken=(\w+)", text):
             display.token = match.group(1)
             print(f"{_now()} logged in")
@@ -210,18 +309,19 @@ def login(display: Display, username: str, password: str) -> None:
         time.sleep(wait * 60)
 
 
-def logout(display: Display) -> None:
+def logout(display: Display) -> Response | None:
     """Log out; never raises, so it is safe in a finally."""
     if display.token is None:
-        return
+        return None
+    response: Response | None = None
     try:
-        status, body = display.get("/cgi/logout")
+        response = display.get("/cgi/logout")
     except (OSError, http.client.HTTPException, ProbeError) as err:
         print(f"{_now()} logout failed: {err!r}")
     else:
-        text = body.decode("utf-8", "replace").strip()
-        print(f"{_now()} logged out: HTTP {status} {text[:120]!r}")
+        print(f"{_now()} logged out: HTTP {response.status} {response.text[:120]!r}")
     display.token = None
+    return response
 
 
 def parse_records(text: str) -> dict[str, Record]:
@@ -238,23 +338,35 @@ def parse_records(text: str) -> dict[str, Record]:
     return records
 
 
-def read_tags(display: Display, tags: list[str]) -> tuple[bytes, dict[str, Record]]:
-    """Read one batch of tags."""
+def read_tags_query(tags: list[str], client: str | None = CLIENT_ID) -> str:
+    """Build a readTags query; refuse malformed, password and code tags."""
     if bad := [tag for tag in tags if not TAG_RE.fullmatch(tag)]:
         raise ProbeError(f"refused tag names {bad}")
-    query = f"client={CLIENT_ID}&n={len(tags)}" + "".join(
+    if secret := [tag for tag in tags if SECRET_TAG_RE.search(tag)]:
+        raise ProbeError(f"refused password/code tags {secret}")
+    prefix = f"client={client}&" if client is not None else ""
+    return f"{prefix}n={len(tags)}" + "".join(
         f"&t{index}={tag}" for index, tag in enumerate(tags, 1)
     )
-    _, body = display.get("/cgi/readTags", query)
-    text = body.decode("utf-8", "replace")
-    if "E_NEED_LOGIN" in text:
-        raise NeedLoginError(text.strip()[:200])
-    return body, parse_records(text)
+
+
+def read_tags(
+    display: Display, tags: list[str], client: str | None = CLIENT_ID
+) -> tuple[Response, dict[str, Record]]:
+    """Read one batch of tags."""
+    response = display.get("/cgi/readTags", read_tags_query(tags, client))
+    if "E_NEED_LOGIN" in response.text:
+        raise NeedLoginError(response.text.strip()[:200])
+    return response, parse_records(response.text)
 
 
 def run_dump(display: Display, out_dir: Path) -> None:
     """Read all known tags in passes until two passes agree (at most 4)."""
-    tags = ALL_FIELDS.read_text(encoding="utf-8").split()
+    tags = [
+        tag
+        for tag in ALL_FIELDS.read_text(encoding="utf-8").split()
+        if not SECRET_TAG_RE.search(tag)
+    ]
     out_dir.mkdir(parents=True, exist_ok=True)
     passes: list[dict[str, object]] = []
     merged: dict[str, Record] = {}
@@ -262,15 +374,15 @@ def run_dump(display: Display, out_dir: Path) -> None:
     for number in range(1, MAX_PASSES + 1):
         records: dict[str, Record] = {}
         for index, batch in enumerate(batched(tags, BATCH_SIZE, strict=False), 1):
-            body, parsed = read_tags(display, list(batch))
-            (out_dir / f"pass{number}_batch{index:02}.txt").write_bytes(body)
+            response, parsed = read_tags(display, list(batch))
+            (out_dir / f"pass{number}_batch{index:02}.txt").write_bytes(response.body)
             records |= {tag: parsed[tag] for tag in batch if tag in parsed}
         missing = [tag for tag in tags if tag not in records]
         for index, batch in enumerate(
             batched(missing, RETRY_BATCH_SIZE, strict=False), 1
         ):
-            body, parsed = read_tags(display, list(batch))
-            (out_dir / f"pass{number}_retry{index:02}.txt").write_bytes(body)
+            response, parsed = read_tags(display, list(batch))
+            (out_dir / f"pass{number}_retry{index:02}.txt").write_bytes(response.body)
             records |= {tag: parsed[tag] for tag in batch if tag in parsed}
         still_missing = [tag for tag in tags if tag not in records]
         ok = {tag for tag, record in records.items() if record.status == "S_OK"}
@@ -351,20 +463,20 @@ def run_console(display: Display, out_dir: Path) -> None:
             continue
         seen.add(path.lower())
         try:
-            status, body = display.get(path)
+            response = display.get(path)
         except ProbeError as err:
             print(f"skipped {path}: {err}")
             continue
         target = out_dir / ("root.html" if path == "/" else path.lstrip("/"))
-        print(f"{status} {len(body):>8} {path}")
-        if status != 200:
+        print(f"{response.status} {len(response.body):>8} {path}")
+        if response.status != 200:
             continue
         target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_bytes(body)
+        target.write_bytes(response.body)
         saved += 1
         if path.lower().endswith(".jar"):
             continue
-        text = body.decode("utf-8", "replace")
+        text = response.text
         for ref in (*LINK_RE.findall(text), *STRING_REF_RE.findall(text)):
             resolved = urlsplit(urljoin(path, ref)).path
             normalized = posixpath.normpath(resolved)
