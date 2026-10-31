@@ -1,6 +1,6 @@
 # Orca heat pump integration — rewrite master plan
 
-Status: **approved direction, not started** · Written 2026-10-30 ·
+Status: **P0 done, stopped at CP0 (2026-10-31); see `docs/progress.md`** · Written 2026-10-30 ·
 Owner: @rp9376 (GitHub) · Domain: `orca_heatpump`
 
 This is the brief for the lead agent (Claude Fable) that builds a new Home
