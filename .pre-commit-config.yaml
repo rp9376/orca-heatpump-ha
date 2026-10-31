@@ -11,8 +11,8 @@ repos:
     rev: v2.4.3
     hooks:
       - id: codespell
-        # Slovenian text (research data, translations) is not English.
-        exclude: ^research/|/translations/sl\.json$|\.ambr$
+        # Slovenian text (research data, tag names, translations) is not English.
+        exclude: ^research/|^tests/fixtures/|/translations/sl\.json$|\.ambr$
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
     hooks:

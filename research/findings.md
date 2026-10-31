@@ -52,3 +52,14 @@ Before both, the dev HA had no `orca` or `orca_heatpump` config entry.
   line.
 - Every `S_OK` record has quality `192`.
 - 5 tags read `-9999` (sensor not connected); no empty values.
+
+### Sensitive tags (input for §10)
+- No tag value on our pump holds a MAC, IP address or serial number; the
+  device identity must come from elsewhere (R3).
+- 12 tags contain `GESLO` (password): besides the service password and its
+  timeout from `PLAN.md` §10, also `2_GESLO_PGDT`, `2_Geslo_ZAGON_AAXX`,
+  `…_CCXX`, `…_XXBB`, `…_XXDD` (apparently a commissioning password in four
+  parts), `2_Novo_Geslo`, `2_Potrdi_GESLO_Vklop`, `GESLO`, `Cas_GESLO` and
+  the service-mode flag `2_GESLO_PGDT_Vklop`. Proposal for CP1: none of them
+  is ever exposed; they are redacted in fixtures
+  (`tests/fixtures/dumps/schema23_duo300solar_2026-10-31.json`).
