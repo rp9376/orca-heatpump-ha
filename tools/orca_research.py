@@ -59,7 +59,13 @@ CONFIG_DIRS = (
     "/workspace/Project/config/",
     "\\workspace\\Project\\config\\",
 )
-EXPECTED_FILE_ERRORS = ("#E_FAIL", "#E_INVALIDARG", "#E_READFORBIDDEN")
+# E_FILEOPENFAIL: seen 2026-11-01 for a directory path; the path is not a file.
+EXPECTED_FILE_ERRORS = (
+    "#E_FAIL",
+    "#E_INVALIDARG",
+    "#E_READFORBIDDEN",
+    "#E_FILEOPENFAIL",
+)
 READFILE_OUT = probe.CAPTURES / "readfile"
 # R1 (protocol.md §7.4): probe every 2 min for 20 min, then wait longer and longer.
 KEEPALIVE_PROBES = 10
@@ -611,6 +617,14 @@ def session2a(display: Display, rec: Recorder, username: str, password: str) -> 
     rec.results["files"] = results
 
 
+def session2b(display: Display, rec: Recorder, files: list[str]) -> None:
+    """R14 follow-up: read files named on the command line, one by one."""
+    results: dict[str, bool] = {}
+    rec.results["files"] = results
+    for index, path in enumerate(files, 1):
+        results[path] = read_one_file(display, rec, f"S2b-{index:02}_file", path)
+
+
 def session3(display: Display, rec: Recorder) -> None:
     """R1: do reads keep a session alive, and when does an idle one expire?"""
     start = time.monotonic()
@@ -655,14 +669,26 @@ def main() -> int:
     parser.add_argument("--port", type=int, default=80)
     parser.add_argument("--out", type=Path, help="output folder (dry runs)")
     parser.add_argument("--health-wait", type=int, default=300)
-    parser.add_argument("session", choices=("session1", "session2a", "session3"))
+    parser.add_argument(
+        "--file",
+        action="append",
+        default=[],
+        help="session2b: a file to read (repeat; each must be justified)",
+    )
+    parser.add_argument(
+        "session", choices=("session1", "session2a", "session2b", "session3")
+    )
     args = parser.parse_args()
     signal.signal(signal.SIGTERM, lambda *_: sys.exit(143))
     display = Display(
         args.host,
         port=args.port,
         readfile_paths=frozenset(
-            path for config_dir in CONFIG_DIRS for path in config_files(config_dir)
+            args.file
+            if args.session == "session2b"
+            else [
+                path for config_dir in CONFIG_DIRS for path in config_files(config_dir)
+            ]
         ),
     )
     stamp = datetime.now().astimezone().strftime("%Y-%m-%d")
@@ -682,6 +708,8 @@ def main() -> int:
                 with probe.session(display, args.username, args.password):
                     if args.session == "session1":
                         session1(display, rec)
+                    elif args.session == "session2b":
+                        session2b(display, rec, args.file)
                     else:
                         session3(display, rec)
         except (ProbeError, OSError, http.client.HTTPException) as err:
