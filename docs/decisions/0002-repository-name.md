@@ -1,9 +1,10 @@
 # 0002. Repository name `orca-heatpump-ha`
 
-Status: Proposed (default from `PLAN.md` §3; confirm at CP0)
+Status: Accepted (user, 2026-10-31)
 
 ## Context
 The repository will be public under the user's GitHub account (rp9376).
+For now it is local only, with no remote (user, 2026-10-31).
 HACS installs from a repository; its name is what users see when adding a
 custom repository.
 

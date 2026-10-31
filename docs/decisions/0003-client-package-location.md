@@ -1,6 +1,6 @@
 # 0003. Protocol client inside the integration, independent of HA
 
-Status: Proposed (default from `PLAN.md` §3; confirm at CP0)
+Status: Accepted (user, 2026-10-31)
 
 ## Context
 HA wants integrations to be thin: protocol parsing and device logic belong

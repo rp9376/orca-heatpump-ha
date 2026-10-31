@@ -1,6 +1,6 @@
 # 0007. Polling: one coordinator, 30 seconds
 
-Status: Proposed (default from `PLAN.md` §3; confirm at CP0)
+Status: Accepted (user, 2026-10-31)
 
 ## Context
 The pump only answers polls; there is no push. The old integration polls

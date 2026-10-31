@@ -1,6 +1,6 @@
 # 0011. Test with HA's pytest-home-assistant, taken from the core tag
 
-Status: Proposed (deviates from `PLAN.md` §4.3; confirm at CP0)
+Status: Accepted (user, 2026-10-31); replaces the fallback in `PLAN.md` §4.3
 
 ## Context
 Tests must run in the ha-dev container and in CI. `PLAN.md` §4.3 says CI
@@ -39,6 +39,3 @@ release with its exact version). The `dev` channel installs both from the
   passes mypy and pytest (see `docs/progress.md`).
 - When HA publishes `pytest-home-assistant` on PyPI, switch CI to the
   PyPI pin and drop the clone.
-- If the user prefers the plan's fallback instead: phcc needs a 2026.11
-  build first, and tests would need an import shim between the two
-  plugins.

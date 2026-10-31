@@ -1,6 +1,6 @@
 # 0006. Minimum Home Assistant version: 2026.11.0
 
-Status: Proposed (confirm at CP0)
+Status: Accepted (user, 2026-10-31), with a latest-only policy
 
 ## Context
 `PLAN.md` §3 asks for the oldest HA release that has every API we use, and
@@ -25,15 +25,22 @@ heater are core platforms of this integration.
 ## Decision
 The minimum is **2026.11.0**, set in `hacs.json`.
 
+The user added a policy (2026-10-31): **no backward compatibility.** The
+integration is built, tested and used only with the latest Home Assistant
+and should be as future-proof as possible:
+- Use the newest HA APIs and conventions, including 2026.11 features. Never
+  write compatibility code for older releases.
+- Raise the minimum whenever a newer release brings something we use.
+- The ha-dev container may move to any HA version we need (a newer
+  HAcore commit, tag or the release branch).
+
 ## Consequences
-- This conflicts with "at most the current stable release" until 2026.11.0
-  ships. Today the stable release is 2026.10.4, and 2026.11.0 is due
-  Wednesday 2026-11-04, long before our first beta (P7). The alternative,
-  2026.10 with the old temperature API, would mean writing code that is
-  deprecated from 2026.11 and must be rewritten before 2027.11.
-- Users on 2026.10 or older must update HA first; HACS enforces this.
+- Until 2026.11.0 ships (due Wednesday 2026-11-04), the minimum is newer
+  than the current stable release (2026.10.4). The user accepted that.
+- Users on older releases must update HA first; HACS enforces this.
 - CI's `minimum` channel reads the version from `hacs.json`
   (`tools/ci_ha_version.py`). It fails until 2026.11.0 is on PyPI; nothing
   runs in CI before CP3 anyway.
-- Revisit when we adopt any newer API: raise the minimum deliberately,
-  never by accident (the `minimum` CI job catches that).
+- Raising the minimum is a deliberate change to `hacs.json` (the
+  `minimum` CI job catches accidental use of newer APIs) with a CHANGELOG
+  note.

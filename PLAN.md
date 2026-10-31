@@ -1,6 +1,6 @@
 # Orca heat pump integration — rewrite master plan
 
-Status: **P0 done, stopped at CP0 (2026-10-31); see `docs/progress.md`** · Written 2026-10-30 ·
+Status: **CP0 passed (2026-10-31); P1 next; see `docs/progress.md`** · Written 2026-10-30 ·
 Owner: @rp9376 (GitHub) · Domain: `orca_heatpump`
 
 This is the brief for the lead agent (Claude Fable) that builds a new Home
@@ -146,7 +146,8 @@ break a ground rule.
 ### 2.4 Git and publishing
 - Develop in a local git repository. Local commits are allowed and
   expected: one per finished task, with clear messages. Don't rewrite history
-  once something is pushed.
+  once something is pushed. Local only for now: no remote repositories
+  (user, 2026-10-31).
 - Nothing is pushed or published, and no issues, PRs or comments are made,
   until CP3.
 - The target is a new public repository under the user's GitHub account
@@ -176,9 +177,10 @@ break a ground rule.
 
 ## 3. Decisions
 
-D1, D8 and the owner (@rp9376) were decided by the user on 2026-10-30. The
-rest are defaults: confirm them at CP0. Record all of them in `docs/decisions/` as
-short ADRs (context, decision, consequences).
+D1, D8 and the owner (@rp9376) were decided by the user on 2026-10-30; the
+rest were confirmed at CP0 on 2026-10-31, with the changes to D6 and D9
+below. All of them are ADRs in `docs/decisions/` (context, decision,
+consequences); the ADRs are authoritative.
 
 | # | Decision | Default | Why |
 |---|---|---|---|
@@ -187,10 +189,10 @@ short ADRs (context, decision, consequences).
 | D3 | Protocol code location | HA-independent package inside the integration: `custom_components/orca_heatpump/client/` (no `homeassistant` imports, own tests, `py.typed`) | Satisfies "integration stays thin" in spirit, and can be extracted to PyPI (`pyorca-heatpump` or similar) later without code changes beyond imports. Publishing to PyPI needs the user and is out of scope for v1. |
 | D4 | Tag catalog format | Typed Python (frozen dataclasses), not YAML | Type-checked, no runtime YAML/pydantic/aiofiles dependencies, fast import, and still easy to contribute to. |
 | D5 | Runtime dependencies | **None** beyond HA itself (aiohttp from HA, stdlib) | Simplest install; nothing to break on HA upgrades. |
-| D6 | Minimum HA version | The oldest HA release that has every API we use (`native_*` climate/water-heater temperatures, device translations, etc.). Determine it in Phase 0; it must be ≤ the current stable release. | Users lag behind on updates, but we won't carry deprecated code. |
+| D6 | Minimum HA version | **2026.11.0** (decided 2026-10-31; `native_*` climate/water-heater temperatures are new in 2026.11). **Latest HA only, no backward compatibility:** use the newest APIs, raise the minimum when needed; the container may move to any HA version. | As future-proof as possible; tested and used only with the latest HA. |
 | D7 | Polling | One coordinator, 30 s, all tags batched in as few requests as the pump allows; not user-configurable (HA rule) | The old integration proves 30 s is fine. Revisit only if research shows load issues. |
 | D8 | Users of the old integration | **No migration** (decided). They remove orca-energy-ha and set this one up fresh. Config entries start at `VERSION 1`; migrations exist only for our own future versions (§7.3a). | Simpler and cleaner. The README explains the move step by step. |
-| D9 | Brand icon | Neutral heat-pump icon in `custom_components/orca_heatpump/brand/`; no Orca logo without permission | Avoids trademark issues. |
+| D9 | Brand icon | **The official Orca logo, like the old integration** (decided 2026-10-31): the images from home-assistant/brands `custom_integrations/orca` in `custom_components/orca_heatpump/brand/` | Users recognise it; same as orca-energy-ha. |
 | D10 | Entity model | As proposed in §8, finalised at CP1 | Driven by research. |
 
 ---
@@ -250,9 +252,9 @@ short ADRs (context, decision, consequences).
   - Update `../ha-dev/README.md` and `../README.md`.
 - Test runner: tests must run both inside the ha-dev container (fast inner
   loop) and in CI. CI uses a pinned `homeassistant` +
-  `pytest-home-assistant` pair from PyPI; verify these exist. If
-  `pytest-home-assistant` isn't on PyPI for our HA version, fall back to
-  `pytest-homeassistant-custom-component` and record that in an ADR. Dev-only
+  `pytest-home-assistant` pair; verify these exist. Decided at CP0
+  (ADR 0011): `pytest-home-assistant` isn't on PyPI, so CI takes it from
+  the core tag that matches the `homeassistant` version under test. Dev-only
   extras (`hypothesis`, …) are installed into the container venv
   (`ha-dev.sh exec uv pip install …`). The entrypoint doesn't reinstall
   them after `rm`, so make the entrypoint install them from this repo's

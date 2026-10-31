@@ -58,7 +58,10 @@ It heats a real house. Address and login are in `PLAN.md` §2.2.
 
 ## Code
 
-- Python 3.14, Home Assistant 2026.11+, no runtime dependencies beyond HA.
+- Python 3.14, no runtime dependencies beyond HA.
+- Latest Home Assistant only (ADR 0006): use the newest APIs, never write
+  compatibility code for older releases, raise the minimum in `hacs.json`
+  when needed. The ha-dev container may move to any HA version we need.
 - `custom_components/orca_heatpump/client/` never imports `homeassistant`.
 - Follow `../HAcore/CLAUDE.md` and
   `../HAcore/.claude/skills/ha-integration-knowledge/`. Comments say why,
@@ -74,8 +77,9 @@ It heats a real house. Address and login are in `PLAN.md` §2.2.
 - Work autonomously between checkpoints (CP0–CP3, `PLAN.md` §2.3). At a
   checkpoint, write the report in `docs/progress.md` and stop.
 - Also stop when something contradicts the plan or would break a rule.
-- One local commit per finished task. Nothing is pushed or published, and
-  no issues, PRs or comments are made, before CP3.
+- One local commit per finished task. Local only: no remote repositories
+  for now. Nothing is pushed or published, and no issues, PRs or comments
+  are made, before CP3.
 - Keep state on disk (`docs/progress.md`, `research/`, ADRs, the Status
   line in `PLAN.md`) so a fresh session can resume.
 - Report faithfully: failures, skipped steps and unverified claims go in

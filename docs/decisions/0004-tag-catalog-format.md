@@ -1,6 +1,6 @@
 # 0004. Tag catalog as typed Python
 
-Status: Proposed (default from `PLAN.md` §3; confirm at CP0)
+Status: Accepted (user, 2026-10-31)
 
 ## Context
 The old integration keeps its tags in YAML, loaded with PyYAML, aiofiles and

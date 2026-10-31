@@ -1,41 +1,21 @@
 # Progress
 
-**Phase 0 done. Stopped at checkpoint CP0 (2026-10-31).**
-Next: Phase 1 (research), once you've confirmed the decisions below.
+**Phase 1 (research) in progress.** CP0 passed on 2026-10-31.
 
-## CP0: what I need from you
+## CP0 outcome (user, 2026-10-31)
 
-1. **Confirm the default decisions** D2, D3, D4, D5, D7 and D9 as written
-   in `docs/decisions/` (D1 and D8 are yours already; D10 is settled at
-   CP1).
-2. **D6, the minimum HA version: 2026.11.0** (ADR 0006). The `native_*`
-   temperature API for climate and water heater is new in 2026.11; it is
-   missing from 2026.10.4. That conflicts with the plan's "at most the
-   current stable release" until 2026.11.0 ships (due Wednesday 2026-11-04,
-   well before our first beta). The alternative is 2026.10 with the
-   temperature API that 2026.11 deprecates. I recommend 2026.11.0.
-3. **Test plugin: a deviation from §4.3** (ADR 0011). `pytest-home-assistant`
-   is not on PyPI, and the plan's fallback,
-   `pytest-homeassistant-custom-component`, has no 2026.11 build (its
-   newest pins HA 2026.10.4). So CI installs HA from PyPI and the plugin
-   from the matching core release tag on GitHub. The container uses the
-   same plugin, so tests are identical in both places. I recommend keeping
-   this.
-4. **Git author.** No global git identity is set, so the repo has a local
-   one: `rp9376 <rp9376@student.uni-lj.si>`, as in your orca-energy-ha
-   commits. It becomes public at CP3. Keep it, or use another, e.g. your
-   GitHub noreply address? History can still be rewritten, since nothing is
-   pushed.
-
-FYI, no action needed:
-- In `research/moja_orca_catalog.json` I replaced the observed value of
-  `2_NOVO_GESLO_PGDT` ("Change password", the 4-digit service password
-  input) with `REDACTED` before the first commit; it might be the service
-  code. The raw HARs still have everything.
-- The old `orca` config entry is **deleted** from the dev HA (§2.2), so
-  nothing polls the pump. To test the stop-gap branch again, add the old
-  integration again in the UI, and never alongside an `orca_heatpump` entry
-  for the pump.
+- All decisions confirmed (ADRs 0002–0005, 0007, 0011, and the git author
+  `rp9376 <rp9376@student.uni-lj.si>`), with two changes:
+  - **D6:** minimum 2026.11.0 and **latest HA only, no backward
+    compatibility**. Use 2026.11 features; the container may move to any
+    HA version (ADR 0006).
+  - **D9:** the **official Orca logo**, like the old integration (ADR 0009).
+    Done: the four images from home-assistant/brands
+    `custom_integrations/orca` are in `custom_components/orca_heatpump/brand/`,
+    and ha-dev serves them for `orca_heatpump`.
+- **Local only:** no remote repositories for now.
+- The redaction of `2_NOVO_GESLO_PGDT` in the catalog and the deletion of
+  the old `orca` config entry stand.
 
 ## Done in Phase 0
 
@@ -108,7 +88,6 @@ FYI, no action needed:
   login and details of your house's setup. Decide whether to publish it
   as is.
 - Verify the GitHub handles in `CREDITS.md`.
-- Git author (question 4 above).
 
 ## Next: Phase 1 (§6.2)
 

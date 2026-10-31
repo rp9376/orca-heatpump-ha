@@ -1,6 +1,6 @@
 # 0005. No runtime dependencies
 
-Status: Proposed (default from `PLAN.md` §3; confirm at CP0)
+Status: Accepted (user, 2026-10-31)
 
 ## Context
 Every requirement in `manifest.json` is something HA must install and keep

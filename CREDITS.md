@@ -25,6 +25,13 @@ Thanks also to everyone who reported issues and tested, among them
 [@truzzman](https://github.com/truzzman) and
 [@Speijtuut](https://github.com/Speijtuut).
 
+## Logo
+
+The Orca icon and logo in `custom_components/orca_heatpump/brand/` are the
+images Tom Kern added to
+[home-assistant/brands](https://github.com/home-assistant/brands/tree/master/custom_integrations/orca)
+for orca-energy-ha. The logo is a trademark of Orca Energija d.o.o.
+
 ## Power metering
 
 orca-energy-ha documents measuring the heat pump's power consumption with
