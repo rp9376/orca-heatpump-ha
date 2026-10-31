@@ -63,3 +63,11 @@ Before both, the dev HA had no `orca` or `orca_heatpump` config entry.
   the service-mode flag `2_GESLO_PGDT_Vklop`. Proposal for CP1: none of them
   is ever exposed; they are redacted in fixtures
   (`tests/fixtures/dumps/schema23_duo300solar_2026-10-31.json`).
+
+### Write safety evidence (from research D, `requirements.md` K8)
+- orca-energy-ha issue #20: an automation wrote a power limit below the
+  controller's minimum (the old range is 10–100 %; the manufacturer's
+  metadata says 40–100 % for heating and DHW, 16–100 % for cooling) and the
+  **controller restarted**. Out-of-range writes are not harmless; every
+  write must be range-checked against the manufacturer's limits
+  (`moja_orca_catalog.json`), never against hand-made ranges.
