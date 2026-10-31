@@ -1,0 +1,3457 @@
+{
+ "_source": "Moja Orca web app (mojaorca.orcaenergy.eu), service mode, recorded 2026-10-30 by @rp9376 on the test pump (schema 23, DK1+MK2+SV+SOLAR): once with the SI UI, once with the EN UI. Derived from research/captures/moja_orca_si.har and moja_orca_en.har (gitignored). *_sl texts come from the SI UI, *_en from the EN UI; a few SI-UI labels are English because the app has no Slovenian text for them.",
+ "_encoding": "Values and min/max are raw pump integers: cdegrees and float types are x10 (280 = 28.0). Enum values are indexes into values_sl. observed_value is what this pump had at recording time. observed_value is from the SI recording; info_page_snapshot_en was taken ~3 h later, so its live values differ.",
+ "pages": {
+  "home": [
+   "2_Pogoj_maska_napis_hlajenje",
+   "2_Pogoj_maska_napis_ogrevanje",
+   "2_Odtaljevanje_izhod",
+   "2_PogojPGDT_Shema_in_tipalo_OK1",
+   "2_PogojPGDT_Shema_in_tipalo_OK2",
+   "2_PogojPGDT_Shema_in_tipalo_OK3",
+   "2_PogojPGDT_Shema_in_tipalo_SV",
+   "2_Tipalo_AF",
+   "2_Temp_Prostora",
+   "2_Temp_Zunanja",
+   "2_Poti1",
+   "2_Poti3",
+   "2_Temp_RF2",
+   "2_Temp_RF3",
+   "2_Delovanje_MENI",
+   "MK1_IME",
+   "MK1_IME(2)",
+   "MK1_IME(3)",
+   "2_GESLO_PGDT_Vklop",
+   "2_JE_ALARM",
+   "2_CURRENT_HOUR",
+   "2_CURRENT_MINUTE",
+   "2_CURRENT_DAY",
+   "2_CURRENT_MONTH",
+   "2_CURRENT_YEAR",
+   "2_Vklop_ele_grelca_1",
+   "2_Pogoj_ikona_ele_grelca_1",
+   "2_Pogoj_ikona_ele_grelca_2",
+   "2_Pogoj_ikona_ele_grelca_3",
+   "2_Signal_PV",
+   "2_Signal_EVU",
+   "2_PogojPGDT_N_OSN_ON_OK1",
+   "2_PogojPGDT_N_OSN_OFF_OK1",
+   "2_PogojPGDT_N_OSN_ON_OK2",
+   "2_PogojPGDT_N_OSN_OFF_OK2",
+   "2_PogojPGDT_N_OSN_ON_OK3",
+   "2_PogojPGDT_N_OSN_OFF_OK3",
+   "2_PogojPGDT_N_OSN_ON_SV",
+   "2_PogojPGDT_N_OSN_OFF_SV"
+  ],
+  "settings_basic": [
+   "2_Vklop_Izklop",
+   "2_Shema",
+   "2_Cas_prvega_vklopa_C0",
+   "2_Krivulja_TC",
+   "2_Zakasnitev_izklopa_TC",
+   "2_Limita_moci_pri_OGR",
+   "2_Limita_moci_pri_HLAJ",
+   "2_Max_moc_TC_pri_OGR",
+   "2_Max_moc_TC_pri_HLAJ",
+   "2_Cas_izklopa_TC",
+   "2_Cas_zakasn_izkl_C0",
+   "2_Kontakt_Preklopni_ventil",
+   "2_Kontakt_ID2",
+   "2_Kontakt_ekst_IZKLOP_TC",
+   "2_Kontakt_pret_stik_NC_NO",
+   "2_Tisje_delov",
+   "2_Temp_AF_za_TISJE_DEL",
+   "2_Izbira_TIMERJA_TISJE",
+   "2_Max_moc_TC_TISJA",
+   "2_NOVO_GESLO_PGDT",
+   "2_CAS_GESLO_PGDT",
+   "2_Vklop_ANTI_BLOK_prog",
+   "2_Susenje_estrihov_vklop",
+   "2_Min_VF_susenje_estrihov",
+   "2_Max_VF_susenje_estrihov",
+   "2_Shema_ZALOG",
+   "2_Limita_moci_pri_SV",
+   "2_Max_moc_TC_pri_SV",
+   "2_Kalibracija_AF",
+   "2_CURRENT_HOUR",
+   "2_CURRENT_MINUTE",
+   "2_CURRENT_DAY",
+   "2_CURRENT_MONTH",
+   "2_CURRENT_YEAR"
+  ],
+  "settings_dyn_1": [
+   "2_IME_MK1",
+   "2_MK1_vklop",
+   "2_Talno_Radiatorsko_MK1",
+   "2_Rezim_MK1",
+   "2_Reg_po_RF_AF_KONST_MK1",
+   "2_Max_VF_MK1",
+   "2_Min_VF_MK1",
+   "2_Povec_temp_TC_pri_MK1",
+   "2_Zamik_krivulje_MK1",
+   "2_Nagib_krivulje_MK1",
+   "2_Sobni_DPWT_PGD1",
+   "2_Reg_po_RF_AF_KONST_MK1_HL",
+   "2_Min_VF_MK1_HL",
+   "2_Tocka_1_20st_HL_MK1",
+   "2_Tocka_2_30st_HL_MK1",
+   "2_Cas_zakasn_izkl_C1",
+   "2_Cas_MP1_za_90st",
+   "2_Kontakt_ekst_vklop_NC_NO",
+   "2_Kalibracija_VF",
+   "2_Kalibracija_RF",
+   "2_Aktiv_avtom_preklop_zima_MK1",
+   "2_Temp_za_preklop_zima_MK1",
+   "2_Cas_ur_preklop_zima_MK1",
+   "2_Aktiv_avtom_preklop_poletje_MK1",
+   "2_Temp_preklop_poletje_MK1_HL",
+   "2_Cas_ur_preklop_poletje_MK1_HL",
+   "2_Izbira_TIMERJA_MK1",
+   "2_Ponoci_min_temp_IZKLOP_MK1",
+   "MK1_IME"
+  ],
+  "settings_dyn_2": [
+   "2_IME_MK2",
+   "2_MK2_vklop",
+   "2_Talno_Radiatorsko_MK2",
+   "2_Rezim_MK2",
+   "2_Reg_po_RF_AF_KONST_MK2",
+   "2_Max_VF_MK2",
+   "2_Min_VF_MK2",
+   "2_Povec_temp_TC_pri_MK2",
+   "2_Zamik_krivulje_MK2",
+   "2_Nagib_krivulje_MK2",
+   "2_Sobni_2_DPWT_PGD1",
+   "2_Reg_po_RF_AF_KONST_MK2_HL",
+   "2_Min_VF_MK2_HL",
+   "2_Tocka_1_20st_HL_MK2",
+   "2_Tocka_2_30st_HL_MK2",
+   "2_Cas_zakasn_izkl_C2",
+   "2_Cas_MP2_za_90st",
+   "2_Kontakt_ekst_vklop_2_NC_NO",
+   "2_Kalibracija_VF2",
+   "2_Kalibracija_RF2",
+   "2_Aktiv_avtom_preklop_zima_MK2",
+   "2_Temp_za_preklop_zima_MK2",
+   "2_Cas_ur_preklop_zima_MK2",
+   "2_Aktiv_avtom_preklop_poletje_MK2",
+   "2_Temp_preklop_poletje_MK2_HL",
+   "2_Cas_ur_preklop_poletje_MK2_HL",
+   "2_Izbira_TIMERJA_MK2",
+   "2_Ponoci_min_temp_IZKLOP_MK2",
+   "MK1_IME(2)"
+  ],
+  "settings_dyn_3": [
+   "2_IME_MK3",
+   "2_DK3_vklop",
+   "2_Talno_Radiatorsko_DK3",
+   "2_Rezim_DK3",
+   "2_Reg_po_RF_AF_KONST_DK3",
+   "2_Max_VF_DK3",
+   "2_Min_VF_DK3",
+   "2_Zamik_krivulje_DK3",
+   "2_Nagib_krivulje_DK3",
+   "2_Sobni_3_DPWT_PGD1",
+   "2_Reg_po_RF_AF_KONST_DK3_HL",
+   "2_Min_VF_DK3_HL",
+   "2_Tocka_1_20st_HL_DK3",
+   "2_Tocka_2_30st_HL_DK3",
+   "2_Cas_zakasn_izkl_C3",
+   "2_Kontakt_ekst_vklop_3_NC_NO",
+   "2_Kalibracija_RF3",
+   "2_Aktiv_avtom_preklop_zima_DK3",
+   "2_Temp_za_preklop_zima_DK3",
+   "2_Cas_ur_preklop_zima_DK3",
+   "2_Aktiv_avtom_preklop_poletje_DK3",
+   "2_Temp_preklop_poletje_DK3_HL",
+   "2_Cas_ur_preklop_poletje_DK3_HL",
+   "2_Izbira_TIMERJA_MK3",
+   "2_Ponoci_min_temp_IZKLOP_DK3",
+   "MK1_IME(3)"
+  ],
+  "settings_hot_water": [
+   "2_SV_vklop",
+   "2_Temp_vode_sanitarna",
+   "2_Temp_vode_sanitarna_NIZJA",
+   "2_Diferenca_vklopa_SV",
+   "2_Povec_temp_TC_pri_SV",
+   "2_Kalibracija_BF_1",
+   "2_Kalibracija_BF_2",
+   "2_Legionela_vklop",
+   "2_Temperatura_legionela",
+   "2_On_Dan_Legionella",
+   "2_On_Ura_Legionella",
+   "2_Legionela_Cikel",
+   "2_Izbira_TIMERJA_SV"
+  ],
+  "settings_solar": [
+   "2_SOLAR_Prost_SV",
+   "2_SOLAR_VKLOP",
+   "2_Min_Temp_SOLAR",
+   "2_Dif_vklopa_SOLAR",
+   "2_Dif_izklopa_SOLAR",
+   "2_Max_Temp_BF",
+   "2_Max_Temp_SOLAR",
+   "2_Max_varnostna_Temp_BF",
+   "2_Cas_zakasn_po_solarju"
+  ],
+  "settings_additional_source": [
+   "2_Izbira_DOD_VIRA",
+   "2_Vklop_Elektro_Grelci",
+   "2_Izbira_st_grelcev",
+   "2_Elektro_Grelec_Zakasnitev_1_ST",
+   "2_Zun_temp_za_vklop_Grelec_1",
+   "2_Elektro_Grelec_Zakasnitev_2_ST",
+   "2_Zun_temp_za_vklop_Grelec_2",
+   "2_Elektro_Grelec_Zakasnitev_3_ST",
+   "2_Zun_temp_za_vklop_Grelec_3",
+   "2_Vzporedno_Elektro_Grelci",
+   "2_Dodatni_Vir_Zakasnitev",
+   "2_Temp_Vklop_Dod_Vir",
+   "2_Vzporedno_Dod_vir_izklop"
+  ],
+  "settings_buffer": [
+   "2_VISJA_Temp_ZALOG_OGR",
+   "2_NIZJA_Temp_ZALOG_OGR",
+   "2_VISJA_Temp_ZALOG_HL",
+   "2_NIZJA_Temp_ZALOG_HL",
+   "2_Diferenca_vklopa_ZALOG",
+   "2_Izbira_TIMERJA_ZALOG"
+  ],
+  "settings_pv_function": [
+   "2_PV_Vklop",
+   "2_Kontakt_PF_f_NC_NO"
+  ],
+  "operation_mode": [
+   "2_HITRI_Rezim"
+  ],
+  "dhw_heating": [
+   "2_Temp_vode_sanitarna",
+   "2_Temp_vode_sanitarna_NIZJA"
+  ]
+ },
+ "tags": {
+  "2_Aktiv_avtom_preklop_poletje_DK3": {
+   "pages": [
+    "settings_dyn_3"
+   ],
+   "type": "boolean",
+   "label_sl": "Avtom. vklop-izklop hlajenja ZIMA-POLETJE",
+   "label_en": "Automatic switch cooling winter-summer",
+   "observed_value": "0"
+  },
+  "2_Aktiv_avtom_preklop_poletje_MK1": {
+   "pages": [
+    "settings_dyn_1"
+   ],
+   "type": "boolean",
+   "label_sl": "Avtom. vklop-izklop hlajenja ZIMA-POLETJE",
+   "label_en": "Automatic switch cooling winter-summer",
+   "observed_value": "0"
+  },
+  "2_Aktiv_avtom_preklop_poletje_MK2": {
+   "pages": [
+    "settings_dyn_2"
+   ],
+   "type": "boolean",
+   "label_sl": "Avtom. vklop-izklop hlajenja ZIMA-POLETJE",
+   "label_en": "Automatic switch cooling winter-summer",
+   "observed_value": "0"
+  },
+  "2_Aktiv_avtom_preklop_zima_DK3": {
+   "pages": [
+    "settings_dyn_3"
+   ],
+   "type": "boolean",
+   "label_sl": "Automatic switch heating summer-winter",
+   "label_en": "Automatic switch heating summer-winter",
+   "observed_value": "0"
+  },
+  "2_Aktiv_avtom_preklop_zima_MK1": {
+   "pages": [
+    "settings_dyn_1"
+   ],
+   "type": "boolean",
+   "label_sl": "Automatic switch heating summer-winter",
+   "label_en": "Automatic switch heating summer-winter",
+   "observed_value": "1"
+  },
+  "2_Aktiv_avtom_preklop_zima_MK2": {
+   "pages": [
+    "settings_dyn_2"
+   ],
+   "type": "boolean",
+   "label_sl": "Automatic switch heating summer-winter",
+   "label_en": "Automatic switch heating summer-winter",
+   "observed_value": "0"
+  },
+  "2_CAS_GESLO_PGDT": {
+   "pages": [
+    "settings_basic"
+   ],
+   "type": "integer",
+   "min": 60,
+   "max": 600,
+   "suffix": " s",
+   "label_sl": "Čas aktivnega servisnega gesla",
+   "label_en": "PASSWORD active time",
+   "observed_value": "600"
+  },
+  "2_CURRENT_DAY": {
+   "pages": [
+    "home",
+    "settings_basic"
+   ],
+   "type": "integer",
+   "min": 1,
+   "max": 31,
+   "zero_padded_length": 2,
+   "group": "curr_date",
+   "label_sl": "Nastavitev datuma",
+   "label_en": "Date setting",
+   "observed_value": "30"
+  },
+  "2_CURRENT_HOUR": {
+   "pages": [
+    "home",
+    "settings_basic"
+   ],
+   "type": "integer",
+   "min": 0,
+   "max": 23,
+   "zero_padded_length": 2,
+   "group": "curr_time",
+   "label_sl": "Nastavitev časa",
+   "label_en": "Time setting",
+   "observed_value": "17"
+  },
+  "2_CURRENT_MINUTE": {
+   "pages": [
+    "home",
+    "settings_basic"
+   ],
+   "type": "integer",
+   "min": 0,
+   "max": 59,
+   "zero_padded_length": 2,
+   "group": "curr_time",
+   "label_sl": "Nastavitev časa",
+   "label_en": "Time setting",
+   "observed_value": "16"
+  },
+  "2_CURRENT_MONTH": {
+   "pages": [
+    "home",
+    "settings_basic"
+   ],
+   "type": "integer",
+   "min": 1,
+   "max": 12,
+   "zero_padded_length": 2,
+   "group": "curr_date",
+   "label_sl": "Nastavitev datuma",
+   "label_en": "Date setting",
+   "observed_value": "10"
+  },
+  "2_CURRENT_YEAR": {
+   "pages": [
+    "home",
+    "settings_basic"
+   ],
+   "type": "integer",
+   "min": 0,
+   "max": 99,
+   "zero_padded_length": 2,
+   "group": "curr_date",
+   "label_sl": "Nastavitev datuma",
+   "label_en": "Date setting",
+   "observed_value": "26"
+  },
+  "2_Cas_MP1_za_90st": {
+   "pages": [
+    "settings_dyn_1"
+   ],
+   "type": "integer",
+   "min": 10,
+   "max": 600,
+   "suffix": " s",
+   "label_sl": "Čas rotacije mot. pogona mešalnega ventila, za 90°",
+   "label_en": "Mixing valve 90° rotation time",
+   "observed_value": "120"
+  },
+  "2_Cas_MP2_za_90st": {
+   "pages": [
+    "settings_dyn_2"
+   ],
+   "type": "integer",
+   "min": 10,
+   "max": 600,
+   "suffix": " s",
+   "label_sl": "Čas rotacije mot. pogona mešalnega ventila, za 90°",
+   "label_en": "Mixing valve 90° rotation time",
+   "observed_value": "120"
+  },
+  "2_Cas_izklopa_TC": {
+   "pages": [
+    "settings_basic"
+   ],
+   "type": "integer",
+   "min": 1,
+   "max": 120,
+   "suffix": " min",
+   "label_sl": "Minimalni čas mirovanja zunanje enote",
+   "label_en": "Minimal outdoor unit stop time",
+   "observed_value": "2"
+  },
+  "2_Cas_prvega_vklopa_C0": {
+   "pages": [
+    "settings_basic"
+   ],
+   "type": "integer",
+   "min": 5,
+   "max": 30,
+   "suffix": " s",
+   "label_sl": "Zakasnitev vklopa TČ po prvem vklopu Č0",
+   "label_en": "HP start delay after P0 activation",
+   "observed_value": "20"
+  },
+  "2_Cas_ur_preklop_poletje_DK3_HL": {
+   "pages": [
+    "settings_dyn_3"
+   ],
+   "type": "integer",
+   "min": 1,
+   "max": 90,
+   "suffix": " h",
+   "label_sl": "Zakasnitev za vklop-izklop hlajenja ZIMA-POLETJE",
+   "label_en": "Time delay for switch cooling winter-summer",
+   "observed_value": "24"
+  },
+  "2_Cas_ur_preklop_poletje_MK1_HL": {
+   "pages": [
+    "settings_dyn_1"
+   ],
+   "type": "integer",
+   "min": 1,
+   "max": 90,
+   "suffix": " h",
+   "label_sl": "Zakasnitev za vklop-izklop hlajenja ZIMA-POLETJE",
+   "label_en": "Time delay for switch cooling winter-summer",
+   "observed_value": "24"
+  },
+  "2_Cas_ur_preklop_poletje_MK2_HL": {
+   "pages": [
+    "settings_dyn_2"
+   ],
+   "type": "integer",
+   "min": 1,
+   "max": 90,
+   "suffix": " h",
+   "label_sl": "Zakasnitev za vklop-izklop hlajenja ZIMA-POLETJE",
+   "label_en": "Time delay for switch cooling winter-summer",
+   "observed_value": "24"
+  },
+  "2_Cas_ur_preklop_zima_DK3": {
+   "pages": [
+    "settings_dyn_3"
+   ],
+   "type": "integer",
+   "min": 1,
+   "max": 90,
+   "suffix": " h",
+   "label_sl": "Time delay for switch heating summer-winter",
+   "label_en": "Time delay for switch heating summer-winter",
+   "observed_value": "24"
+  },
+  "2_Cas_ur_preklop_zima_MK1": {
+   "pages": [
+    "settings_dyn_1"
+   ],
+   "type": "integer",
+   "min": 1,
+   "max": 90,
+   "suffix": " h",
+   "label_sl": "Time delay for switch heating summer-winter",
+   "label_en": "Time delay for switch heating summer-winter",
+   "observed_value": "24"
+  },
+  "2_Cas_ur_preklop_zima_MK2": {
+   "pages": [
+    "settings_dyn_2"
+   ],
+   "type": "integer",
+   "min": 1,
+   "max": 90,
+   "suffix": " h",
+   "label_sl": "Time delay for switch heating summer-winter",
+   "label_en": "Time delay for switch heating summer-winter",
+   "observed_value": "10"
+  },
+  "2_Cas_zakasn_izkl_C0": {
+   "pages": [
+    "settings_basic"
+   ],
+   "type": "integer",
+   "min": 1,
+   "max": 600,
+   "suffix": " min",
+   "label_sl": "Zakasnitev izklopa Č0, po izklopu TČ",
+   "label_en": "P0 stop delay after HP turn off",
+   "observed_value": "15"
+  },
+  "2_Cas_zakasn_izkl_C1": {
+   "pages": [
+    "settings_dyn_1"
+   ],
+   "type": "integer",
+   "min": 0,
+   "max": 600,
+   "suffix": " min",
+   "label_sl": "Zakasnitev izklopa obtočne črpalke Č1",
+   "label_en": "P1 stop delay",
+   "observed_value": "30"
+  },
+  "2_Cas_zakasn_izkl_C2": {
+   "pages": [
+    "settings_dyn_2"
+   ],
+   "type": "integer",
+   "min": 0,
+   "max": 600,
+   "suffix": " min",
+   "label_sl": "Zakasnitev izklopa obtočne črpalke Č2",
+   "label_en": "P2 stop delay",
+   "observed_value": "20"
+  },
+  "2_Cas_zakasn_izkl_C3": {
+   "pages": [
+    "settings_dyn_3"
+   ],
+   "type": "integer",
+   "min": 0,
+   "max": 600,
+   "suffix": " min",
+   "label_sl": "Zakasnitev izklopa obtočne črpalke Č3",
+   "label_en": "P3 stop delay",
+   "observed_value": "1"
+  },
+  "2_Cas_zakasn_po_solarju": {
+   "pages": [
+    "settings_solar"
+   ],
+   "type": "integer",
+   "min": 0,
+   "max": 600,
+   "suffix": " min",
+   "label_sl": "Zakasnitev ogrevanja SV po delovanju solarja",
+   "label_en": "DHW heating delay after solar heating",
+   "observed_value": "0"
+  },
+  "2_DK3_vklop": {
+   "pages": [
+    "settings_dyn_3"
+   ],
+   "type": "boolean",
+   "label_sl": "Aktiviranje",
+   "label_en": "Activation",
+   "observed_value": "0"
+  },
+  "2_Delovanje_MENI": {
+   "pages": [
+    "home"
+   ],
+   "type": "enum",
+   "values_sl": [
+    "Normalno delovanje",
+    "POČITNIŠKI REŽIM",
+    "PARTY",
+    "ECO"
+   ],
+   "values_en": [
+    "Normal operation",
+    "HOLIDAY",
+    "PARTY",
+    "ECO"
+   ],
+   "observed_value": "0"
+  },
+  "2_Dif_izklopa_SOLAR": {
+   "pages": [
+    "settings_solar"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": 10,
+   "max": 100,
+   "label_sl": "Diferenca temp. med kolektorji in SV, za izklop",
+   "label_en": "Temp. difference for pump stop",
+   "observed_value": "50"
+  },
+  "2_Dif_vklopa_SOLAR": {
+   "pages": [
+    "settings_solar"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": 10,
+   "max": 200,
+   "label_sl": "Diferenca temp. med kolektorji in SV, za vklop",
+   "label_en": "Temp. difference for pump activation",
+   "observed_value": "100"
+  },
+  "2_Diferenca_vklopa_SV": {
+   "pages": [
+    "settings_hot_water"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": 0,
+   "max": 80,
+   "label_sl": "Diferenca vklopa",
+   "label_en": "Activation difference",
+   "observed_value": "60"
+  },
+  "2_Diferenca_vklopa_ZALOG": {
+   "pages": [
+    "settings_buffer"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": 0,
+   "max": 90,
+   "label_sl": "Diferenca vklopa",
+   "label_en": "Start difference",
+   "observed_value": "40"
+  },
+  "2_Dodatni_Vir_Zakasnitev": {
+   "pages": [
+    "settings_additional_source"
+   ],
+   "type": "integer",
+   "min": 0,
+   "max": 999,
+   "suffix": " min",
+   "label_sl": "Zakasnitev vklopa",
+   "label_en": "Activation delay",
+   "observed_value": "1"
+  },
+  "2_Elektro_Grelec_Zakasnitev_1_ST": {
+   "pages": [
+    "settings_additional_source"
+   ],
+   "type": "integer",
+   "min": 1,
+   "max": 1500,
+   "suffix": " min",
+   "label_sl": "Zakasnitev vklopa 1.stopnje",
+   "label_en": "1. rate electric heater start delay",
+   "observed_value": "1"
+  },
+  "2_Elektro_Grelec_Zakasnitev_2_ST": {
+   "pages": [
+    "settings_additional_source"
+   ],
+   "type": "integer",
+   "min": 1,
+   "max": 1500,
+   "suffix": " min",
+   "label_sl": "Zakasnitev vklopa 2.stopnje",
+   "label_en": "2. rate electric heater start delay",
+   "observed_value": "3"
+  },
+  "2_Elektro_Grelec_Zakasnitev_3_ST": {
+   "pages": [
+    "settings_additional_source"
+   ],
+   "type": "integer",
+   "min": 1,
+   "max": 1500,
+   "suffix": " min",
+   "label_sl": "Zakasnitev vklopa 3.stopnje",
+   "label_en": "3. rate electric heater start delay",
+   "observed_value": "36"
+  },
+  "2_GESLO_PGDT_Vklop": {
+   "pages": [
+    "home"
+   ],
+   "type": "boolean",
+   "observed_value": "1"
+  },
+  "2_HITRI_Rezim": {
+   "pages": [
+    "operation_mode"
+   ],
+   "type": "enum",
+   "label_sl": "Režim delovanja",
+   "label_en": "Mode of operation",
+   "values_sl": [
+    "Neaktivna funkcija",
+    "Izklop",
+    "Ogrevanje",
+    "Hlajenje"
+   ],
+   "values_en": [
+    "Inactive",
+    "OFF",
+    "Heating",
+    "Cooling"
+   ],
+   "observed_value": "0"
+  },
+  "2_IME_MK1": {
+   "pages": [
+    "settings_dyn_1"
+   ],
+   "type": "list",
+   "code_list": "settings_titles",
+   "label_sl": "Ime ogrevalne veje 1",
+   "label_en": "Heating circle 1 name",
+   "observed_value": "16"
+  },
+  "2_IME_MK2": {
+   "pages": [
+    "settings_dyn_2"
+   ],
+   "type": "list",
+   "code_list": "settings_titles",
+   "label_sl": "Ime ogrevalne veje 2",
+   "label_en": "Heating circle 2 name",
+   "observed_value": "15"
+  },
+  "2_IME_MK3": {
+   "pages": [
+    "settings_dyn_3"
+   ],
+   "type": "list",
+   "code_list": "settings_titles",
+   "label_sl": "Ime ogrevalne veje 3",
+   "label_en": "Heating circle 3 name",
+   "observed_value": "3"
+  },
+  "2_Izbira_DOD_VIRA": {
+   "pages": [
+    "settings_additional_source"
+   ],
+   "type": "enum",
+   "label_sl": "Choose additional source",
+   "label_en": "Choose additional source",
+   "values_sl": [
+    "",
+    "ELEKTRIČNI GRELEC",
+    "Eksterni dodatni vir",
+    "El. Heater and additional source"
+   ],
+   "values_en": [
+    "",
+    "ELECTRIC HEATER",
+    "Additional source",
+    "El. Heater and additional source"
+   ],
+   "observed_value": "1"
+  },
+  "2_Izbira_TIMERJA_MK1": {
+   "pages": [
+    "settings_dyn_1"
+   ],
+   "type": "enum",
+   "label_sl": "Izbira časovnega programa",
+   "label_en": "Time program selection",
+   "values_sl": [
+    "24-urni režim",
+    "Po časovnem programu 1",
+    "Po časovnem programu 2",
+    "Po časovnem programu 3",
+    "Po časovnem programu 4",
+    "Po časovnem programu 5"
+   ],
+   "values_en": [
+    "24 hour",
+    "According to timer 1",
+    "According to timer 2",
+    "According to timer 3",
+    "According to timer 4",
+    "According to timer 5"
+   ],
+   "observed_value": "2"
+  },
+  "2_Izbira_TIMERJA_MK2": {
+   "pages": [
+    "settings_dyn_2"
+   ],
+   "type": "enum",
+   "label_sl": "Izbira časovnega programa",
+   "label_en": "Time program selection",
+   "values_sl": [
+    "24-urni režim",
+    "Po časovnem programu 1",
+    "Po časovnem programu 2",
+    "Po časovnem programu 3",
+    "Po časovnem programu 4",
+    "Po časovnem programu 5"
+   ],
+   "values_en": [
+    "24 hour",
+    "According to timer 1",
+    "According to timer 2",
+    "According to timer 3",
+    "According to timer 4",
+    "According to timer 5"
+   ],
+   "observed_value": "5"
+  },
+  "2_Izbira_TIMERJA_MK3": {
+   "pages": [
+    "settings_dyn_3"
+   ],
+   "type": "enum",
+   "label_sl": "Izbira časovnega programa",
+   "label_en": "Time program selection",
+   "values_sl": [
+    "24-urni režim",
+    "Po časovnem programu 1",
+    "Po časovnem programu 2",
+    "Po časovnem programu 3",
+    "Po časovnem programu 4",
+    "Po časovnem programu 5"
+   ],
+   "values_en": [
+    "24 hour",
+    "According to timer 1",
+    "According to timer 2",
+    "According to timer 3",
+    "According to timer 4",
+    "According to timer 5"
+   ],
+   "observed_value": "0"
+  },
+  "2_Izbira_TIMERJA_SV": {
+   "pages": [
+    "settings_hot_water"
+   ],
+   "type": "enum",
+   "label_sl": "Izbira časovnega programa",
+   "label_en": "Time program selection",
+   "values_sl": [
+    "24-urni režim",
+    "Po časovnem programu 1",
+    "Po časovnem programu 2",
+    "Po časovnem programu 3",
+    "Po časovnem programu 4",
+    "Po časovnem programu 5"
+   ],
+   "values_en": [
+    "24 hour",
+    "According to timer 1",
+    "According to timer 2",
+    "According to timer 3",
+    "According to timer 4",
+    "According to timer 5"
+   ],
+   "observed_value": "4"
+  },
+  "2_Izbira_TIMERJA_TISJE": {
+   "pages": [
+    "settings_basic"
+   ],
+   "type": "enum",
+   "label_sl": "Izbira časovnega programa tišjega delovanja",
+   "label_en": "Quieter operation time program selection",
+   "values_sl": [
+    "24-urni režim",
+    "Po časovnem programu 1",
+    "Po časovnem programu 2",
+    "Po časovnem programu 3",
+    "Po časovnem programu 4",
+    "Po časovnem programu 5"
+   ],
+   "values_en": [
+    "24 hour",
+    "According to timer 1",
+    "According to timer 2",
+    "According to timer 3",
+    "According to timer 4",
+    "According to timer 5"
+   ],
+   "observed_value": "0"
+  },
+  "2_Izbira_TIMERJA_ZALOG": {
+   "pages": [
+    "settings_buffer"
+   ],
+   "type": "enum",
+   "label_sl": "Izbira časovnega programa",
+   "label_en": "Time program selection",
+   "values_sl": [
+    "24-urni režim",
+    "Po časovnem programu 1",
+    "Po časovnem programu 2",
+    "Po časovnem programu 3",
+    "Po časovnem programu 4",
+    "Po časovnem programu 5"
+   ],
+   "values_en": [
+    "24 hour",
+    "According to timer 1",
+    "According to timer 2",
+    "According to timer 3",
+    "According to timer 4",
+    "According to timer 5"
+   ],
+   "observed_value": "0"
+  },
+  "2_Izbira_st_grelcev": {
+   "pages": [
+    "settings_additional_source"
+   ],
+   "type": "enum",
+   "label_sl": "Število aktivnih stopenj",
+   "label_en": "No. of el. heater rates",
+   "values_sl": [
+    "",
+    "1 stopnja (3kW)",
+    "2 stopnji (6kW)",
+    "3 stopnje (9kW)"
+   ],
+   "values_en": [
+    "",
+    "1 rate (3kW)",
+    "2 rates (6kW)",
+    "3 rates (9kW)"
+   ],
+   "observed_value": "2"
+  },
+  "2_JE_ALARM": {
+   "pages": [
+    "home"
+   ],
+   "type": "boolean",
+   "observed_value": "0"
+  },
+  "2_Kalibracija_AF": {
+   "pages": [
+    "settings_basic"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": -99,
+   "max": 99,
+   "label_sl": "Kalibracija zunanjega tipala",
+   "label_en": "Sensor calibration- OUTDOOR",
+   "observed_value": "-11"
+  },
+  "2_Kalibracija_BF_1": {
+   "pages": [
+    "settings_hot_water"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": -99,
+   "max": 99,
+   "label_sl": "Kalibracija tipala sanitarne vode - ZGORAJ",
+   "label_en": "Sensor calibration- DHW TOP",
+   "observed_value": "0"
+  },
+  "2_Kalibracija_BF_2": {
+   "pages": [
+    "settings_hot_water"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": -99,
+   "max": 99,
+   "label_sl": "Kalibracija tipala sanitarne vode - SPODAJ",
+   "label_en": "Sensor calibration- DHW BOTTOM",
+   "observed_value": "0"
+  },
+  "2_Kalibracija_RF": {
+   "pages": [
+    "settings_dyn_1"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": -99,
+   "max": 99,
+   "label_sl": "Kalibracija tipala prostorske temperature",
+   "label_en": "Room temperature sensor calibration",
+   "observed_value": "0"
+  },
+  "2_Kalibracija_RF2": {
+   "pages": [
+    "settings_dyn_2"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": -99,
+   "max": 99,
+   "label_sl": "Kalibracija tipala prostorske temperature",
+   "label_en": "Room temperature sensor calibration",
+   "observed_value": "0"
+  },
+  "2_Kalibracija_RF3": {
+   "pages": [
+    "settings_dyn_3"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": -99,
+   "max": 99,
+   "label_sl": "Kalibracija tipala prostorske temperature",
+   "label_en": "Room temperature sensor calibration",
+   "observed_value": "0"
+  },
+  "2_Kalibracija_VF": {
+   "pages": [
+    "settings_dyn_1"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": -99,
+   "max": 99,
+   "label_sl": "Kalibracija tipala vtoka",
+   "label_en": "MC temperature sensor calibration",
+   "observed_value": "0"
+  },
+  "2_Kalibracija_VF2": {
+   "pages": [
+    "settings_dyn_2"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": -99,
+   "max": 99,
+   "label_sl": "Kalibracija tipala vtoka",
+   "label_en": "MC temperature sensor calibration",
+   "observed_value": "0"
+  },
+  "2_Kontakt_ID2": {
+   "pages": [
+    "settings_basic"
+   ],
+   "type": "enum",
+   "label_sl": "Vrsta kontakta vhoda ID2",
+   "label_en": "Contact type of input ID2",
+   "values_sl": [
+    "",
+    "NO",
+    "NC",
+    "Ni aktiviran"
+   ],
+   "values_en": [
+    "",
+    "NO",
+    "NC",
+    "Not activated"
+   ],
+   "observed_value": "1"
+  },
+  "2_Kontakt_PF_f_NC_NO": {
+   "pages": [
+    "settings_pv_function"
+   ],
+   "type": "enum",
+   "label_sl": "Vrsta kontakta PV funkcije",
+   "label_en": "Contact type of PV function",
+   "values_sl": [
+    "NO",
+    "NC"
+   ],
+   "values_en": [
+    "NO",
+    "NC"
+   ],
+   "observed_value": "0"
+  },
+  "2_Kontakt_Preklopni_ventil": {
+   "pages": [
+    "settings_basic"
+   ],
+   "type": "enum",
+   "label_sl": "Vrsta kontakta preklopnega ventila",
+   "label_en": "Contact type of 3-way valve",
+   "values_sl": [
+    "NO",
+    "NC"
+   ],
+   "values_en": [
+    "NO",
+    "NC"
+   ],
+   "observed_value": "0"
+  },
+  "2_Kontakt_ekst_IZKLOP_TC": {
+   "pages": [
+    "settings_basic"
+   ],
+   "type": "enum",
+   "label_sl": "Vrsta kontakta eksterne blokade TČ",
+   "label_en": "Contact type of HP external blockage",
+   "values_sl": [
+    "NO",
+    "NC"
+   ],
+   "values_en": [
+    "NO",
+    "NC"
+   ],
+   "observed_value": "0"
+  },
+  "2_Kontakt_ekst_vklop_2_NC_NO": {
+   "pages": [
+    "settings_dyn_2"
+   ],
+   "type": "enum",
+   "label_sl": "Vrsta kontakta eksternega vklopa",
+   "label_en": "Type of contact for external input",
+   "values_sl": [
+    "NO",
+    "NC"
+   ],
+   "values_en": [
+    "NO",
+    "NC"
+   ],
+   "observed_value": "1"
+  },
+  "2_Kontakt_ekst_vklop_3_NC_NO": {
+   "pages": [
+    "settings_dyn_3"
+   ],
+   "type": "enum",
+   "label_sl": "Vrsta kontakta eksternega vklopa",
+   "label_en": "Type of contact for external input",
+   "values_sl": [
+    "NO",
+    "NC"
+   ],
+   "values_en": [
+    "NO",
+    "NC"
+   ],
+   "observed_value": "0"
+  },
+  "2_Kontakt_ekst_vklop_NC_NO": {
+   "pages": [
+    "settings_dyn_1"
+   ],
+   "type": "enum",
+   "label_sl": "Vrsta kontakta eksternega vklopa",
+   "label_en": "Type of contact for external input",
+   "values_sl": [
+    "NO",
+    "NC"
+   ],
+   "values_en": [
+    "NO",
+    "NC"
+   ],
+   "observed_value": "1"
+  },
+  "2_Kontakt_pret_stik_NC_NO": {
+   "pages": [
+    "settings_basic"
+   ],
+   "type": "enum",
+   "label_sl": "Vrsta kontakta pretočnega stikala",
+   "label_en": "Contact type of flow switch",
+   "values_sl": [
+    "NO",
+    "NC"
+   ],
+   "values_en": [
+    "NO",
+    "NC"
+   ],
+   "observed_value": "0"
+  },
+  "2_Krivulja_TC": {
+   "pages": [
+    "settings_basic"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": 10,
+   "max": 30,
+   "label_sl": "Diferenca toplotne črpalke 0-100%",
+   "label_en": "HP difference 0-100%",
+   "observed_value": "20"
+  },
+  "2_Legionela_Cikel": {
+   "pages": [
+    "settings_hot_water"
+   ],
+   "type": "enum",
+   "label_sl": "Cikel delovanja protilegionelnega programa",
+   "label_en": "Antilegionella interval",
+   "values_sl": [
+    "",
+    "Tedenski",
+    "Dvotedenski",
+    "Mesečni",
+    "Dvomesečni"
+   ],
+   "values_en": [
+    "",
+    "Every week",
+    "Every two weeks",
+    "Every month",
+    "Every two months"
+   ],
+   "observed_value": "1"
+  },
+  "2_Legionela_vklop": {
+   "pages": [
+    "settings_hot_water"
+   ],
+   "type": "boolean",
+   "label_sl": "Aktiviranje protilegionelnega programa",
+   "label_en": "Antilegionella activation",
+   "observed_value": "0"
+  },
+  "2_Limita_moci_pri_HLAJ": {
+   "pages": [
+    "settings_basic"
+   ],
+   "type": "float",
+   "min": 151,
+   "max": 300,
+   "suffix": "%",
+   "label_sl": "Limita diference TČ pri hlajenju",
+   "label_en": "HP diference limit in space cooling",
+   "observed_value": "152"
+  },
+  "2_Limita_moci_pri_OGR": {
+   "pages": [
+    "settings_basic"
+   ],
+   "type": "float",
+   "min": 151,
+   "max": 300,
+   "suffix": "%",
+   "label_sl": "Limita diference TČ pri ogrevanju prostorov",
+   "label_en": "HP diference limit in space heating",
+   "observed_value": "300"
+  },
+  "2_Limita_moci_pri_SV": {
+   "pages": [
+    "settings_basic"
+   ],
+   "type": "float",
+   "min": 151,
+   "max": 300,
+   "suffix": "%",
+   "label_sl": "Limita diference TČ pri sanitarne vode",
+   "label_en": "HP diference limit at DHW heating",
+   "observed_value": "300"
+  },
+  "2_MK1_vklop": {
+   "pages": [
+    "settings_dyn_1"
+   ],
+   "type": "boolean",
+   "label_sl": "Aktiviranje",
+   "label_en": "Activation",
+   "observed_value": "1"
+  },
+  "2_MK2_vklop": {
+   "pages": [
+    "settings_dyn_2"
+   ],
+   "type": "boolean",
+   "label_sl": "Aktiviranje",
+   "label_en": "Activation",
+   "observed_value": "0"
+  },
+  "2_Max_Temp_BF": {
+   "pages": [
+    "settings_solar"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": 200,
+   "max": 850,
+   "label_sl": "Max. temperatura SV, pri ogrevanju s kolektorji",
+   "label_en": "Max. water temperature in solar heating",
+   "observed_value": "800"
+  },
+  "2_Max_Temp_SOLAR": {
+   "pages": [
+    "settings_solar"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": 200,
+   "max": 2200,
+   "label_sl": "Max. temperatura kolektorjev",
+   "label_en": "Max. collector temperature",
+   "observed_value": "1000"
+  },
+  "2_Max_VF_DK3": {
+   "pages": [
+    "settings_dyn_3"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": 80,
+   "max": 600,
+   "label_sl": "Max. temperatura vtoka pri ogrevanju",
+   "label_en": "Max. outlet temperature at heating",
+   "observed_value": "400"
+  },
+  "2_Max_VF_MK1": {
+   "pages": [
+    "settings_dyn_1"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": 80,
+   "max": 600,
+   "label_sl": "Max. temperatura vtoka pri ogrevanju",
+   "label_en": "Max. outlet temperature at heating",
+   "observed_value": "280"
+  },
+  "2_Max_VF_MK2": {
+   "pages": [
+    "settings_dyn_2"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": 80,
+   "max": 600,
+   "label_sl": "Max. temperatura vtoka pri ogrevanju",
+   "label_en": "Max. outlet temperature at heating",
+   "observed_value": "370"
+  },
+  "2_Max_VF_susenje_estrihov": {
+   "pages": [
+    "settings_basic"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": 90,
+   "max": 550,
+   "label_sl": "Max. temp. vtoka pri sušenju estrihov",
+   "label_en": "Max. outlet temperature at screed drying",
+   "observed_value": "550"
+  },
+  "2_Max_moc_TC_TISJA": {
+   "pages": [
+    "settings_basic"
+   ],
+   "type": "float",
+   "min": 310,
+   "max": 1000,
+   "suffix": "%",
+   "label_sl": "Omejitev moči TČ pri tišjem delovanju",
+   "label_en": "HP power limitation in Quieter operation",
+   "observed_value": "650"
+  },
+  "2_Max_moc_TC_pri_HLAJ": {
+   "pages": [
+    "settings_basic"
+   ],
+   "type": "float",
+   "min": 160,
+   "max": 1000,
+   "suffix": "%",
+   "label_sl": "Omejitev moči TČ pri hlajenju prostorov",
+   "label_en": "HP power limitation in space cooling",
+   "observed_value": "300"
+  },
+  "2_Max_moc_TC_pri_OGR": {
+   "pages": [
+    "settings_basic"
+   ],
+   "type": "float",
+   "min": 400,
+   "max": 1000,
+   "suffix": "%",
+   "label_sl": "Omejitev moči TČ pri ogrevanju prostorov",
+   "label_en": "HP power limitation in space heating",
+   "observed_value": "700"
+  },
+  "2_Max_moc_TC_pri_SV": {
+   "pages": [
+    "settings_basic"
+   ],
+   "type": "float",
+   "min": 400,
+   "max": 1000,
+   "suffix": "%",
+   "label_sl": "Omejitev moči TČ pri ogrevanju SV",
+   "label_en": "HP power limitation in DHW heating",
+   "observed_value": "650"
+  },
+  "2_Max_varnostna_Temp_BF": {
+   "pages": [
+    "settings_solar"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": 700,
+   "max": 900,
+   "label_sl": "Najvišja temp. SV, pri ogrevanju s kolektorji",
+   "label_en": "Max. water temp. to stop solar pump",
+   "observed_value": "800"
+  },
+  "2_Min_Temp_SOLAR": {
+   "pages": [
+    "settings_solar"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": 200,
+   "max": 700,
+   "label_sl": "Min. temp. kolektorjev za vklop ogrevanja SV",
+   "label_en": "Min. temp. of solar collector for pump activation",
+   "observed_value": "500"
+  },
+  "2_Min_VF_DK3": {
+   "pages": [
+    "settings_dyn_3"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": 80,
+   "max": 500,
+   "label_sl": "Min. temperatura vtoka pri ogrevanju",
+   "label_en": "Min. outlet temperature at heating",
+   "observed_value": "120"
+  },
+  "2_Min_VF_DK3_HL": {
+   "pages": [
+    "settings_dyn_3"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": 90,
+   "max": 400,
+   "label_sl": "Min. temperatura vtoka pri hlajenju",
+   "label_en": "Min. outlet temperature at cooling",
+   "observed_value": "180"
+  },
+  "2_Min_VF_MK1": {
+   "pages": [
+    "settings_dyn_1"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": 80,
+   "max": 500,
+   "label_sl": "Min. temperatura vtoka pri ogrevanju",
+   "label_en": "Min. outlet temperature at heating",
+   "observed_value": "240"
+  },
+  "2_Min_VF_MK1_HL": {
+   "pages": [
+    "settings_dyn_1"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": 90,
+   "max": 400,
+   "label_sl": "Min. temperatura vtoka pri hlajenju",
+   "label_en": "Min. outlet temperature at cooling",
+   "observed_value": "180"
+  },
+  "2_Min_VF_MK2": {
+   "pages": [
+    "settings_dyn_2"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": 80,
+   "max": 500,
+   "label_sl": "Min. temperatura vtoka pri ogrevanju",
+   "label_en": "Min. outlet temperature at heating",
+   "observed_value": "300"
+  },
+  "2_Min_VF_MK2_HL": {
+   "pages": [
+    "settings_dyn_2"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": 90,
+   "max": 400,
+   "label_sl": "Min. temperatura vtoka pri hlajenju",
+   "label_en": "Min. outlet temperature at cooling",
+   "observed_value": "175"
+  },
+  "2_Min_VF_susenje_estrihov": {
+   "pages": [
+    "settings_basic"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": 90,
+   "max": 500,
+   "label_sl": "Min. temp. vtoka pri sušenju estrihov",
+   "label_en": "Min. outlet temperature at screed drying",
+   "observed_value": "250"
+  },
+  "2_NIZJA_Temp_ZALOG_HL": {
+   "pages": [
+    "settings_buffer"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": 90,
+   "max": 400,
+   "label_sl": "Želena nižja temperatura pri režimu hlajenja",
+   "label_en": "Desired lower temperature in cooling",
+   "observed_value": "180"
+  },
+  "2_NIZJA_Temp_ZALOG_OGR": {
+   "pages": [
+    "settings_buffer"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": 120,
+   "max": 550,
+   "label_sl": "Želena nižja temperatura pri režimu ogrevanja",
+   "label_en": "Desired lower temperature in heating",
+   "observed_value": "300"
+  },
+  "2_NOVO_GESLO_PGDT": {
+   "pages": [
+    "settings_basic"
+   ],
+   "type": "input",
+   "zero_padded_length": 4,
+   "label_sl": "Sprememba gesla",
+   "label_en": "Change password",
+   "observed_value": "REDACTED"
+  },
+  "2_Nagib_krivulje_DK3": {
+   "pages": [
+    "settings_dyn_3"
+   ],
+   "type": "float",
+   "min": -150,
+   "max": 150,
+   "label_sl": "Korekcija nagiba ogrevalne krivulje",
+   "label_en": "Slope heating curve correction",
+   "observed_value": "0"
+  },
+  "2_Nagib_krivulje_MK1": {
+   "pages": [
+    "settings_dyn_1"
+   ],
+   "type": "float",
+   "min": -150,
+   "max": 150,
+   "label_sl": "Korekcija nagiba ogrevalne krivulje",
+   "label_en": "Slope heating curve correction",
+   "observed_value": "0"
+  },
+  "2_Nagib_krivulje_MK2": {
+   "pages": [
+    "settings_dyn_2"
+   ],
+   "type": "float",
+   "min": -150,
+   "max": 150,
+   "label_sl": "Korekcija nagiba ogrevalne krivulje",
+   "label_en": "Slope heating curve correction",
+   "observed_value": "0"
+  },
+  "2_Odtaljevanje_izhod": {
+   "pages": [
+    "home"
+   ],
+   "type": "boolean",
+   "observed_value": "0"
+  },
+  "2_On_Dan_Legionella": {
+   "pages": [
+    "settings_hot_water"
+   ],
+   "type": "enum",
+   "label_sl": "Dan pričetka delovanja protilegionelnega programa",
+   "label_en": "Day to activate Antilegionella",
+   "values_sl": [
+    "",
+    "Ponedeljek",
+    "Torek",
+    "Sreda",
+    "Četrtek",
+    "Petek",
+    "Sobota",
+    "Nedelja"
+   ],
+   "values_en": [
+    "",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday"
+   ],
+   "observed_value": "7"
+  },
+  "2_On_Ura_Legionella": {
+   "pages": [
+    "settings_hot_water"
+   ],
+   "type": "integer",
+   "min": 0,
+   "max": 23,
+   "suffix": ":00",
+   "label_sl": "Ura pričetka delovanja protilegionelnega programa",
+   "label_en": "Time to activate Antilegionella",
+   "observed_value": "14"
+  },
+  "2_PV_Vklop": {
+   "pages": [
+    "settings_pv_function"
+   ],
+   "type": "boolean",
+   "label_sl": "PV FUNKCIJA",
+   "label_en": "PV FUNCTION",
+   "observed_value": "0"
+  },
+  "2_PogojPGDT_N_OSN_OFF_OK1": {
+   "pages": [
+    "home"
+   ],
+   "type": "boolean",
+   "observed_value": null
+  },
+  "2_PogojPGDT_N_OSN_OFF_OK2": {
+   "pages": [
+    "home"
+   ],
+   "type": "boolean",
+   "observed_value": null
+  },
+  "2_PogojPGDT_N_OSN_OFF_OK3": {
+   "pages": [
+    "home"
+   ],
+   "type": "boolean",
+   "observed_value": null
+  },
+  "2_PogojPGDT_N_OSN_OFF_SV": {
+   "pages": [
+    "home"
+   ],
+   "type": "boolean",
+   "observed_value": null
+  },
+  "2_PogojPGDT_N_OSN_ON_OK1": {
+   "pages": [
+    "home"
+   ],
+   "type": "boolean",
+   "observed_value": null
+  },
+  "2_PogojPGDT_N_OSN_ON_OK2": {
+   "pages": [
+    "home"
+   ],
+   "type": "boolean",
+   "observed_value": null
+  },
+  "2_PogojPGDT_N_OSN_ON_OK3": {
+   "pages": [
+    "home"
+   ],
+   "type": "boolean",
+   "observed_value": null
+  },
+  "2_PogojPGDT_N_OSN_ON_SV": {
+   "pages": [
+    "home"
+   ],
+   "type": "boolean",
+   "observed_value": null
+  },
+  "2_PogojPGDT_Shema_in_tipalo_OK1": {
+   "pages": [
+    "home"
+   ],
+   "type": "boolean",
+   "observed_value": "0"
+  },
+  "2_PogojPGDT_Shema_in_tipalo_OK2": {
+   "pages": [
+    "home"
+   ],
+   "type": "boolean",
+   "observed_value": "0"
+  },
+  "2_PogojPGDT_Shema_in_tipalo_OK3": {
+   "pages": [
+    "home"
+   ],
+   "type": "boolean",
+   "observed_value": "0"
+  },
+  "2_PogojPGDT_Shema_in_tipalo_SV": {
+   "pages": [
+    "home"
+   ],
+   "type": "boolean",
+   "observed_value": "1"
+  },
+  "2_Pogoj_ikona_ele_grelca_1": {
+   "pages": [
+    "home"
+   ],
+   "type": "boolean",
+   "observed_value": null
+  },
+  "2_Pogoj_ikona_ele_grelca_2": {
+   "pages": [
+    "home"
+   ],
+   "type": "boolean",
+   "observed_value": null
+  },
+  "2_Pogoj_ikona_ele_grelca_3": {
+   "pages": [
+    "home"
+   ],
+   "type": "boolean",
+   "observed_value": null
+  },
+  "2_Pogoj_maska_napis_hlajenje": {
+   "pages": [
+    "home"
+   ],
+   "type": "boolean",
+   "observed_value": "0"
+  },
+  "2_Pogoj_maska_napis_ogrevanje": {
+   "pages": [
+    "home"
+   ],
+   "type": "boolean",
+   "observed_value": "0"
+  },
+  "2_Ponoci_min_temp_IZKLOP_DK3": {
+   "pages": [
+    "settings_dyn_3"
+   ],
+   "type": "enum",
+   "label_sl": "Delovanje ob preklopu na nižji režim",
+   "label_en": "Operation in low regime",
+   "values_sl": [
+    "Izklop",
+    "NIŽJA TEMPERATURA"
+   ],
+   "values_en": [
+    "OFF",
+    "LOWER TEMPERATURE"
+   ],
+   "observed_value": "0"
+  },
+  "2_Ponoci_min_temp_IZKLOP_MK1": {
+   "pages": [
+    "settings_dyn_1"
+   ],
+   "type": "enum",
+   "label_sl": "Delovanje ob preklopu na nižji režim",
+   "label_en": "Operation in low regime",
+   "values_sl": [
+    "Izklop",
+    "NIŽJA TEMPERATURA"
+   ],
+   "values_en": [
+    "OFF",
+    "LOWER TEMPERATURE"
+   ],
+   "observed_value": "0"
+  },
+  "2_Ponoci_min_temp_IZKLOP_MK2": {
+   "pages": [
+    "settings_dyn_2"
+   ],
+   "type": "enum",
+   "label_sl": "Delovanje ob preklopu na nižji režim",
+   "label_en": "Operation in low regime",
+   "values_sl": [
+    "Izklop",
+    "NIŽJA TEMPERATURA"
+   ],
+   "values_en": [
+    "OFF",
+    "LOWER TEMPERATURE"
+   ],
+   "observed_value": "0"
+  },
+  "2_Poti1": {
+   "pages": [
+    "home"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "observed_value": "248"
+  },
+  "2_Poti3": {
+   "pages": [
+    "home"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "observed_value": "400"
+  },
+  "2_Povec_temp_TC_pri_MK1": {
+   "pages": [
+    "settings_dyn_1"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": 10,
+   "max": 150,
+   "label_sl": "Povišanje temp. TČ za potrebe mešalne veje",
+   "label_en": "HP Temp. increase for mixing valve",
+   "observed_value": "10"
+  },
+  "2_Povec_temp_TC_pri_MK2": {
+   "pages": [
+    "settings_dyn_2"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": 10,
+   "max": 150,
+   "label_sl": "Povišanje temp. TČ za potrebe mešalne veje",
+   "label_en": "HP Temp. increase for mixing valve",
+   "observed_value": "50"
+  },
+  "2_Povec_temp_TC_pri_SV": {
+   "pages": [
+    "settings_hot_water"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": 10,
+   "max": 150,
+   "label_sl": "Povišanje temp. TČ za potrebe ogrevanja SV",
+   "label_en": "HP Temp. increase for DHW heating",
+   "observed_value": "85"
+  },
+  "2_Reg_po_RF_AF_KONST_DK3": {
+   "pages": [
+    "settings_dyn_3"
+   ],
+   "type": "enum",
+   "label_sl": "Reguliranje ogrevanja po",
+   "label_en": "Heating regulation according",
+   "values_sl": [
+    "",
+    "Prostorski temperaturi",
+    "Zunanja temperatura",
+    "Prostorski in zunanji temp.",
+    "Konstantni temperaturi"
+   ],
+   "values_en": [
+    "",
+    "Indoor temperature",
+    "Outdoor temperature",
+    "Indoor+outdoor temp.",
+    "Constant temperature"
+   ],
+   "observed_value": "3"
+  },
+  "2_Reg_po_RF_AF_KONST_DK3_HL": {
+   "pages": [
+    "settings_dyn_3"
+   ],
+   "type": "enum",
+   "label_sl": "Reguliranje hlajenja po",
+   "label_en": "Cooling regulation acc.",
+   "values_sl": [
+    "",
+    "Prostorski temperaturi",
+    "Zunanja temperatura",
+    "Prostorski in zunanji temp.",
+    "Konstantni temperaturi"
+   ],
+   "values_en": [
+    "",
+    "Indoor temperature",
+    "Outdoor temperature",
+    "Indoor+outdoor temp.",
+    "Constant temperature"
+   ],
+   "observed_value": "3"
+  },
+  "2_Reg_po_RF_AF_KONST_MK1": {
+   "pages": [
+    "settings_dyn_1"
+   ],
+   "type": "enum",
+   "label_sl": "Reguliranje ogrevanja po",
+   "label_en": "Heating regulation according",
+   "values_sl": [
+    "",
+    "Prostorski temperaturi",
+    "Zunanja temperatura",
+    "Prostorski in zunanji temp.",
+    "Konstantni temperaturi"
+   ],
+   "values_en": [
+    "",
+    "Indoor temperature",
+    "Outdoor temperature",
+    "Indoor+outdoor temp.",
+    "Constant temperature"
+   ],
+   "observed_value": "4"
+  },
+  "2_Reg_po_RF_AF_KONST_MK1_HL": {
+   "pages": [
+    "settings_dyn_1"
+   ],
+   "type": "enum",
+   "label_sl": "Reguliranje hlajenja po",
+   "label_en": "Cooling regulation acc.",
+   "values_sl": [
+    "",
+    "Prostorski temperaturi",
+    "Zunanja temperatura",
+    "Prostorski in zunanji temp.",
+    "Konstantni temperaturi"
+   ],
+   "values_en": [
+    "",
+    "Indoor temperature",
+    "Outdoor temperature",
+    "Indoor+outdoor temp.",
+    "Constant temperature"
+   ],
+   "observed_value": "4"
+  },
+  "2_Reg_po_RF_AF_KONST_MK2": {
+   "pages": [
+    "settings_dyn_2"
+   ],
+   "type": "enum",
+   "label_sl": "Reguliranje ogrevanja po",
+   "label_en": "Heating regulation according",
+   "values_sl": [
+    "",
+    "Prostorski temperaturi",
+    "Zunanja temperatura",
+    "Prostorski in zunanji temp.",
+    "Konstantni temperaturi"
+   ],
+   "values_en": [
+    "",
+    "Indoor temperature",
+    "Outdoor temperature",
+    "Indoor+outdoor temp.",
+    "Constant temperature"
+   ],
+   "observed_value": "4"
+  },
+  "2_Reg_po_RF_AF_KONST_MK2_HL": {
+   "pages": [
+    "settings_dyn_2"
+   ],
+   "type": "enum",
+   "label_sl": "Reguliranje hlajenja po",
+   "label_en": "Cooling regulation acc.",
+   "values_sl": [
+    "",
+    "Prostorski temperaturi",
+    "Zunanja temperatura",
+    "Prostorski in zunanji temp.",
+    "Konstantni temperaturi"
+   ],
+   "values_en": [
+    "",
+    "Indoor temperature",
+    "Outdoor temperature",
+    "Indoor+outdoor temp.",
+    "Constant temperature"
+   ],
+   "observed_value": "3"
+  },
+  "2_Rezim_DK3": {
+   "pages": [
+    "settings_dyn_3"
+   ],
+   "type": "enum",
+   "label_sl": "Režim delovanja",
+   "label_en": "Mode of operation",
+   "values_sl": [
+    "",
+    "Ogrevanje",
+    "Hlajenje",
+    "Avtomatski preklop ogr.-hl.",
+    "Preklop preko vhoda ID2"
+   ],
+   "values_en": [
+    "",
+    "Heating",
+    "Cooling",
+    "Automatic sw.HEAT-COOL",
+    "Switch with ID2 input"
+   ],
+   "observed_value": "1"
+  },
+  "2_Rezim_MK1": {
+   "pages": [
+    "settings_dyn_1"
+   ],
+   "type": "enum",
+   "label_sl": "Režim delovanja",
+   "label_en": "Mode of operation",
+   "values_sl": [
+    "",
+    "Ogrevanje",
+    "Hlajenje",
+    "Avtomatski preklop ogr.-hl.",
+    "Preklop preko vhoda ID2",
+    "Ročni preklop"
+   ],
+   "values_en": [
+    "",
+    "Heating",
+    "Cooling",
+    "Automatic sw.HEAT-COOL",
+    "Switch with ID2 input",
+    "Manual switching"
+   ],
+   "observed_value": "1"
+  },
+  "2_Rezim_MK2": {
+   "pages": [
+    "settings_dyn_2"
+   ],
+   "type": "enum",
+   "label_sl": "Režim delovanja",
+   "label_en": "Mode of operation",
+   "values_sl": [
+    "",
+    "Ogrevanje",
+    "Hlajenje",
+    "Avtomatski preklop ogr.-hl.",
+    "Preklop preko vhoda ID2",
+    "Ročni preklop"
+   ],
+   "values_en": [
+    "",
+    "Heating",
+    "Cooling",
+    "Automatic sw.HEAT-COOL",
+    "Switch with ID2 input",
+    "Manual switching"
+   ],
+   "observed_value": "1"
+  },
+  "2_SOLAR_Prost_SV": {
+   "pages": [
+    "settings_solar"
+   ],
+   "type": "enum",
+   "label_sl": "Solarni sistem za ogrevanje",
+   "label_en": "Solar system is used for",
+   "values_sl": [
+    "Sanitarna voda",
+    "Prostorov"
+   ],
+   "values_en": [
+    "DHW heating",
+    "Room heating"
+   ],
+   "observed_value": "0"
+  },
+  "2_SOLAR_VKLOP": {
+   "pages": [
+    "settings_solar"
+   ],
+   "type": "boolean",
+   "label_sl": "Aktiviranje solarnega sistema",
+   "label_en": "Solar activation",
+   "observed_value": "1"
+  },
+  "2_SV_vklop": {
+   "pages": [
+    "settings_hot_water"
+   ],
+   "type": "boolean",
+   "label_sl": "Aktiviranje ogrevanja sanitarne vode",
+   "label_en": "DHW heating activation",
+   "observed_value": "1"
+  },
+  "2_Shema": {
+   "pages": [
+    "settings_basic"
+   ],
+   "type": "list",
+   "code_list": "wiring_diagrams",
+   "label_sl": "Vezalna shema",
+   "label_en": "Wiring diagram",
+   "observed_value": "23"
+  },
+  "2_Shema_ZALOG": {
+   "pages": [
+    "settings_basic"
+   ],
+   "type": "boolean",
+   "label_sl": "Shema z zalogovnikom",
+   "label_en": "Scheme with buffer",
+   "observed_value": "0"
+  },
+  "2_Signal_EVU": {
+   "pages": [
+    "home"
+   ],
+   "type": "boolean",
+   "observed_value": null
+  },
+  "2_Signal_PV": {
+   "pages": [
+    "home"
+   ],
+   "type": "boolean",
+   "observed_value": null
+  },
+  "2_Sobni_2_DPWT_PGD1": {
+   "pages": [
+    "settings_dyn_2"
+   ],
+   "type": "enum",
+   "label_sl": "Vrsta tipala prostorske temperature",
+   "label_en": "Room temperature sensor type",
+   "values_sl": [
+    "",
+    "DPWT Carel",
+    "NTC",
+    "ON/OFF thermostat",
+    "Brezžično ORCA",
+    "ThTune"
+   ],
+   "values_en": [
+    "",
+    "DPWT Carel",
+    "NTC",
+    "ON/OFF thermostat",
+    "Wireless ORCA",
+    "ThTune"
+   ],
+   "observed_value": "2"
+  },
+  "2_Sobni_3_DPWT_PGD1": {
+   "pages": [
+    "settings_dyn_3"
+   ],
+   "type": "enum",
+   "label_sl": "Vrsta tipala prostorske temperature",
+   "label_en": "Room temperature sensor type",
+   "values_sl": [
+    "",
+    "DPWT Carel",
+    "NTC",
+    "ON/OFF thermostat",
+    "Brezžično ORCA",
+    "ThTune"
+   ],
+   "values_en": [
+    "",
+    "DPWT Carel",
+    "NTC",
+    "ON/OFF thermostat",
+    "Wireless ORCA",
+    "ThTune"
+   ],
+   "observed_value": "2"
+  },
+  "2_Sobni_DPWT_PGD1": {
+   "pages": [
+    "settings_dyn_1"
+   ],
+   "type": "enum",
+   "label_sl": "Vrsta tipala prostorske temperature",
+   "label_en": "Room temperature sensor type",
+   "values_sl": [
+    "",
+    "DPWT Carel",
+    "NTC",
+    "ON/OFF thermostat",
+    "Brezžično ORCA",
+    "ThTune"
+   ],
+   "values_en": [
+    "",
+    "DPWT Carel",
+    "NTC",
+    "ON/OFF thermostat",
+    "Wireless ORCA",
+    "ThTune"
+   ],
+   "observed_value": "2"
+  },
+  "2_Susenje_estrihov_vklop": {
+   "pages": [
+    "settings_basic"
+   ],
+   "type": "boolean",
+   "label_sl": "Program sušenja estrihov",
+   "label_en": "Screed drying program",
+   "observed_value": "0"
+  },
+  "2_Talno_Radiatorsko_DK3": {
+   "pages": [
+    "settings_dyn_3"
+   ],
+   "type": "enum",
+   "label_sl": "Vrsta strojne inštalacije",
+   "label_en": "Type of installation",
+   "values_sl": [
+    "RADIATORJI",
+    "TALNO"
+   ],
+   "values_en": [
+    "RADIATOR",
+    "FLOOR"
+   ],
+   "observed_value": "1"
+  },
+  "2_Talno_Radiatorsko_MK1": {
+   "pages": [
+    "settings_dyn_1"
+   ],
+   "type": "enum",
+   "label_sl": "Vrsta strojne inštalacije",
+   "label_en": "Type of installation",
+   "values_sl": [
+    "RADIATORJI",
+    "TALNO"
+   ],
+   "values_en": [
+    "RADIATOR",
+    "FLOOR"
+   ],
+   "observed_value": "1"
+  },
+  "2_Talno_Radiatorsko_MK2": {
+   "pages": [
+    "settings_dyn_2"
+   ],
+   "type": "enum",
+   "label_sl": "Vrsta strojne inštalacije",
+   "label_en": "Type of installation",
+   "values_sl": [
+    "RADIATORJI",
+    "TALNO"
+   ],
+   "values_en": [
+    "RADIATOR",
+    "FLOOR"
+   ],
+   "observed_value": "0"
+  },
+  "2_Temp_AF_za_TISJE_DEL": {
+   "pages": [
+    "settings_basic"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": -300,
+   "max": 300,
+   "label_sl": "Zunanje temp. za vklop tišjega delovanja",
+   "label_en": "Outdoor temp. to activate quieter operation",
+   "observed_value": "150"
+  },
+  "2_Temp_Prostora": {
+   "pages": [
+    "home"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "observed_value": "-9999"
+  },
+  "2_Temp_RF2": {
+   "pages": [
+    "home"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "observed_value": "-9999"
+  },
+  "2_Temp_RF3": {
+   "pages": [
+    "home"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "observed_value": "-9999"
+  },
+  "2_Temp_Vklop_Dod_Vir": {
+   "pages": [
+    "settings_additional_source"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": -350,
+   "max": 350,
+   "label_sl": "Zunanja temperatura za vklop",
+   "label_en": "Outdoor temperature for activation",
+   "observed_value": "200"
+  },
+  "2_Temp_Zunanja": {
+   "pages": [
+    "home"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "observed_value": "106"
+  },
+  "2_Temp_preklop_poletje_DK3_HL": {
+   "pages": [
+    "settings_dyn_3"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": 50,
+   "max": 300,
+   "label_sl": "Outdoor temp.for aut.sw. cooling winter-summer",
+   "label_en": "Outdoor temp.for aut.sw. cooling winter-summer",
+   "observed_value": "210"
+  },
+  "2_Temp_preklop_poletje_MK1_HL": {
+   "pages": [
+    "settings_dyn_1"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": 50,
+   "max": 300,
+   "label_sl": "Outdoor temp.for aut.sw. cooling winter-summer",
+   "label_en": "Outdoor temp.for aut.sw. cooling winter-summer",
+   "observed_value": "210"
+  },
+  "2_Temp_preklop_poletje_MK2_HL": {
+   "pages": [
+    "settings_dyn_2"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": 50,
+   "max": 300,
+   "label_sl": "Outdoor temp.for aut.sw. cooling winter-summer",
+   "label_en": "Outdoor temp.for aut.sw. cooling winter-summer",
+   "observed_value": "210"
+  },
+  "2_Temp_vode_sanitarna": {
+   "pages": [
+    "settings_hot_water",
+    "dhw_heating"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": 80,
+   "max": 550,
+   "label_sl": "VIŠJA TEMPERATURA",
+   "label_en": "HIGHER TEMPERATURE",
+   "observed_value": "420"
+  },
+  "2_Temp_vode_sanitarna_NIZJA": {
+   "pages": [
+    "settings_hot_water",
+    "dhw_heating"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": 80,
+   "max": 550,
+   "label_sl": "NIŽJA TEMPERATURA",
+   "label_en": "LOWER TEMPERATURE",
+   "observed_value": "360"
+  },
+  "2_Temp_za_preklop_zima_DK3": {
+   "pages": [
+    "settings_dyn_3"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": 50,
+   "max": 300,
+   "label_sl": "Zun. temp. za vklop-izklop ogrevanja ZIMA-POLETJE",
+   "label_en": "Outdoor temp.for aut.sw. heating summer-winter",
+   "observed_value": "160"
+  },
+  "2_Temp_za_preklop_zima_MK1": {
+   "pages": [
+    "settings_dyn_1"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": 50,
+   "max": 300,
+   "label_sl": "Zun. temp. za vklop-izklop ogrevanja ZIMA-POLETJE",
+   "label_en": "Outdoor temp.for aut.sw. heating summer-winter",
+   "observed_value": "180"
+  },
+  "2_Temp_za_preklop_zima_MK2": {
+   "pages": [
+    "settings_dyn_2"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": 50,
+   "max": 300,
+   "label_sl": "Zun. temp. za vklop-izklop ogrevanja ZIMA-POLETJE",
+   "label_en": "Outdoor temp.for aut.sw. heating summer-winter",
+   "observed_value": "220"
+  },
+  "2_Temperatura_legionela": {
+   "pages": [
+    "settings_hot_water"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": 650,
+   "max": 700,
+   "label_sl": "Želena temperatura protilegionelnega programa",
+   "label_en": "Desired temperature for Antilegionella",
+   "observed_value": "700"
+  },
+  "2_Tipalo_AF": {
+   "pages": [
+    "home"
+   ],
+   "type": "boolean",
+   "observed_value": "1"
+  },
+  "2_Tisje_delov": {
+   "pages": [
+    "settings_basic"
+   ],
+   "type": "enum",
+   "label_sl": "Tišje delovanje zunanje enote",
+   "label_en": "Outdoor unit quieter operation",
+   "values_sl": [
+    "Izklop",
+    "Ročni vklop",
+    "Po časovnem programu",
+    "Po zunanji temperaturi",
+    "Po zun.temp. in čas.prog."
+   ],
+   "values_en": [
+    "OFF",
+    "Manual activation",
+    "According to time plan",
+    "According to outdoor temp.",
+    "Acc. to OT and time plan"
+   ],
+   "observed_value": "3"
+  },
+  "2_Tocka_1_20st_HL_DK3": {
+   "pages": [
+    "settings_dyn_3"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": 90,
+   "max": 400,
+   "label_sl": "Želena temp.vtoka pri zunanji temp. +20°C",
+   "label_en": "Desired flow temp.by outside temp. +20°C",
+   "observed_value": "250"
+  },
+  "2_Tocka_1_20st_HL_MK1": {
+   "pages": [
+    "settings_dyn_1"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": 90,
+   "max": 400,
+   "label_sl": "Želena temp.vtoka pri zunanji temp. +20°C",
+   "label_en": "Desired flow temp.by outside temp. +20°C",
+   "observed_value": "185"
+  },
+  "2_Tocka_1_20st_HL_MK2": {
+   "pages": [
+    "settings_dyn_2"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": 90,
+   "max": 400,
+   "label_sl": "Želena temp.vtoka pri zunanji temp. +20°C",
+   "label_en": "Desired flow temp.by outside temp. +20°C",
+   "observed_value": "250"
+  },
+  "2_Tocka_2_30st_HL_DK3": {
+   "pages": [
+    "settings_dyn_3"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": 90,
+   "max": 400,
+   "label_sl": "Želena temp.vtoka pri zunanji temp. +30°C",
+   "label_en": "Desired flow temp.by outside temp. +30°C",
+   "observed_value": "150"
+  },
+  "2_Tocka_2_30st_HL_MK1": {
+   "pages": [
+    "settings_dyn_1"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": 90,
+   "max": 400,
+   "label_sl": "Želena temp.vtoka pri zunanji temp. +30°C",
+   "label_en": "Desired flow temp.by outside temp. +30°C",
+   "observed_value": "185"
+  },
+  "2_Tocka_2_30st_HL_MK2": {
+   "pages": [
+    "settings_dyn_2"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": 90,
+   "max": 400,
+   "label_sl": "Želena temp.vtoka pri zunanji temp. +30°C",
+   "label_en": "Desired flow temp.by outside temp. +30°C",
+   "observed_value": "150"
+  },
+  "2_VISJA_Temp_ZALOG_HL": {
+   "pages": [
+    "settings_buffer"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": 90,
+   "max": 400,
+   "label_sl": "Želena višja temperatura pri režimu hlajenja",
+   "label_en": "Desired higher temperature in cooling",
+   "observed_value": "300"
+  },
+  "2_VISJA_Temp_ZALOG_OGR": {
+   "pages": [
+    "settings_buffer"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": 120,
+   "max": 550,
+   "label_sl": "Želena višja temperatura pri režimu ogrevanja",
+   "label_en": "Desired higher temperature in heating",
+   "observed_value": "500"
+  },
+  "2_Vklop_ANTI_BLOK_prog": {
+   "pages": [
+    "settings_basic"
+   ],
+   "type": "boolean",
+   "label_sl": "Protiblokirni program",
+   "label_en": "Antiblock program",
+   "observed_value": "1"
+  },
+  "2_Vklop_Elektro_Grelci": {
+   "pages": [
+    "settings_additional_source"
+   ],
+   "type": "enum",
+   "label_sl": "Način vklopa električnih grelcev",
+   "label_en": "Electric heater activation type",
+   "values_sl": [
+    "Izklop",
+    "Avtomatsko",
+    "Ročno"
+   ],
+   "values_en": [
+    "OFF",
+    "Automatic",
+    "Manual"
+   ],
+   "observed_value": "0"
+  },
+  "2_Vklop_Izklop": {
+   "pages": [
+    "settings_basic"
+   ],
+   "type": "boolean",
+   "label_sl": "Aktiviranje sistema",
+   "label_en": "System activation",
+   "observed_value": "1"
+  },
+  "2_Vklop_ele_grelca_1": {
+   "pages": [
+    "home"
+   ],
+   "type": "boolean",
+   "observed_value": "0"
+  },
+  "2_Vzporedno_Dod_vir_izklop": {
+   "pages": [
+    "settings_additional_source"
+   ],
+   "type": "boolean",
+   "label_sl": "Vzporedno delovanje s toplotno črpalko",
+   "label_en": "Parallel operation with HP",
+   "observed_value": "0"
+  },
+  "2_Vzporedno_Elektro_Grelci": {
+   "pages": [
+    "settings_additional_source"
+   ],
+   "type": "enum",
+   "label_sl": "Vzporedno delovanje el. grelca in toplotne črpalke",
+   "label_en": "Parallel operation of el. heater and HP",
+   "values_sl": [
+    "Izklop",
+    "1 stopnja",
+    "2 stopnji",
+    "3 stopnje"
+   ],
+   "values_en": [
+    "OFF",
+    "1. rates",
+    "2. rates",
+    "3 rates"
+   ],
+   "observed_value": "0"
+  },
+  "2_Zakasnitev_izklopa_TC": {
+   "pages": [
+    "settings_basic"
+   ],
+   "type": "integer",
+   "min": 1,
+   "max": 120,
+   "suffix": " min",
+   "label_sl": "Zakasnitev izklopa TČ po doseženi limiti",
+   "label_en": "HP stop delay after reached limite",
+   "observed_value": "5"
+  },
+  "2_Zamik_krivulje_DK3": {
+   "pages": [
+    "settings_dyn_3"
+   ],
+   "type": "float",
+   "min": -150,
+   "max": 150,
+   "label_sl": "Korekcija vzporednega premika ogrevalne krivulje",
+   "label_en": "Parallel heating curve correction",
+   "observed_value": "0"
+  },
+  "2_Zamik_krivulje_MK1": {
+   "pages": [
+    "settings_dyn_1"
+   ],
+   "type": "float",
+   "min": -150,
+   "max": 150,
+   "label_sl": "Korekcija vzporednega premika ogrevalne krivulje",
+   "label_en": "Parallel heating curve correction",
+   "observed_value": "-1"
+  },
+  "2_Zamik_krivulje_MK2": {
+   "pages": [
+    "settings_dyn_2"
+   ],
+   "type": "float",
+   "min": -150,
+   "max": 150,
+   "label_sl": "Korekcija vzporednega premika ogrevalne krivulje",
+   "label_en": "Parallel heating curve correction",
+   "observed_value": "50"
+  },
+  "2_Zun_temp_za_vklop_Grelec_1": {
+   "pages": [
+    "settings_additional_source"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": -300,
+   "max": 300,
+   "label_sl": "Zunanja temperatura za vklop 1. stopnje",
+   "label_en": "Outdoor temp. to activate 1. rate of el. heater",
+   "observed_value": "220"
+  },
+  "2_Zun_temp_za_vklop_Grelec_2": {
+   "pages": [
+    "settings_additional_source"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": -300,
+   "max": 300,
+   "label_sl": "Zunanja temperatura za vklop 2. stopnje",
+   "label_en": "Outdoor temp. to activate 2. rate of el. heater",
+   "observed_value": "229"
+  },
+  "2_Zun_temp_za_vklop_Grelec_3": {
+   "pages": [
+    "settings_additional_source"
+   ],
+   "type": "float",
+   "cdegrees": true,
+   "min": -300,
+   "max": 300,
+   "label_sl": "Zunanja temperatura za vklop 3. stopnje",
+   "label_en": "Outdoor temp. to activate 3. rate of el. heater",
+   "observed_value": "-299"
+  },
+  "MK1_IME": {
+   "pages": [
+    "home",
+    "settings_dyn_1"
+   ],
+   "type": "list",
+   "code_list": "widget_titles",
+   "observed_value": "16"
+  },
+  "MK1_IME(2)": {
+   "pages": [
+    "home",
+    "settings_dyn_2"
+   ],
+   "type": "list",
+   "code_list": "widget_titles",
+   "observed_value": "15"
+  },
+  "MK1_IME(3)": {
+   "pages": [
+    "home",
+    "settings_dyn_3"
+   ],
+   "type": "list",
+   "code_list": "widget_titles2",
+   "observed_value": "3"
+  }
+ },
+ "lists": {
+  "widget_titles": {
+   "1": "OGREVALNI KROG 1",
+   "2": "OGREVALNI KROG 2",
+   "3": "OGREVALNI KROG 3",
+   "4": "DIREKTNA VEJA 1",
+   "5": "DIREKTNA VEJA 2",
+   "6": "DIREKTNA VEJA 3",
+   "7": "MEŠALNA VEJA 1",
+   "8": "MEŠALNA VEJA 2",
+   "9": "KLET",
+   "10": "PRITLIČJE",
+   "11": "ETAŽA",
+   "12": "1. NADSTROPJE",
+   "13": "2. NADSTROPJE",
+   "14": "MANSARDA",
+   "15": "RADIATORJI",
+   "16": "TALNO",
+   "17": "KONVEKTORJI",
+   "18": "Ogrevanje",
+   "19": "Hlajenje",
+   "20": "STENSKO"
+  },
+  "widget_titles2": {
+   "1": "OGREVALNI KROG 1",
+   "2": "OGREVALNI KROG 2",
+   "3": "OGREVALNI KROG 3",
+   "4": "DIREKTNA VEJA 1",
+   "5": "DIREKTNA VEJA 2",
+   "6": "DIREKTNA VEJA 3",
+   "7": "KLET",
+   "8": "PRITLIČJE",
+   "9": "ETAŽA",
+   "10": "1. NADSTROPJE",
+   "11": "2. NADSTROPJE",
+   "12": "MANSARDA",
+   "13": "RADIATORJI",
+   "14": "TALNO",
+   "15": "KONVEKTORJI",
+   "16": "Ogrevanje",
+   "17": "Hlajenje",
+   "18": "STENSKO"
+  },
+  "wiring_diagrams": {
+   "1": "MK1+SV",
+   "2": "MK1+SV+SOLAR",
+   "3": "DK1+SV",
+   "4": "DK1+SV+SOLAR",
+   "5": "MK1+DK2+SV",
+   "6": "MK1+DK2+SV+SOLAR",
+   "7": "DK1+DK2+SV",
+   "8": "DK1+DK2+SV+SOLAR",
+   "9": "MK1+DK2",
+   "10": "DK1+DK2",
+   "11": "MK1",
+   "12": "DK1",
+   "13": "DK2",
+   "14": "San.voda",
+   "15": "SV+SOLAR",
+   "16": "DK2+SV",
+   "17": "DK2+SV+SOLAR",
+   "18": "MK2",
+   "19": "MK2+SV",
+   "20": "MK2+SV+SOLAR",
+   "21": "DK1+MK2",
+   "22": "DK1+MK2+SV",
+   "23": "DK1+MK2+SV+SOLAR",
+   "24": "MK1+MK2",
+   "25": "MK1+MK2+SV",
+   "26": "MK1+MK2+SV+SOLAR",
+   "27": "SOLAR",
+   "28": "DK3",
+   "29": "DK3+SV",
+   "30": "DK1+DK3",
+   "31": "DK1+DK3+SV",
+   "32": "MK1+DK3",
+   "33": "MK1+DK3+SV",
+   "34": "DK2+DK3",
+   "35": "DK2+DK3+SV",
+   "36": "MK2+DK3",
+   "37": "MK2+DK3+SV",
+   "38": "DK1+DK2+DK3",
+   "39": "DK1+DK2+DK3+SV",
+   "40": "MK1+DK2+DK3",
+   "41": "MK1+DK2+DK3+SV",
+   "42": "MK1+MK2+DK3",
+   "43": "MK1+MK2+DK3+SV",
+   "44": "DK1+MK2+DK3",
+   "45": "DK1+MK2+DK3+SV"
+  },
+  "settings_titles": {
+   "1": "OGREVALNI KROG 1",
+   "2": "OGREVALNI KROG 2",
+   "3": "OGREVALNI KROG 3",
+   "4": "DIREKTNA VEJA 1",
+   "5": "DIREKTNA VEJA 2",
+   "6": "DIREKTNA VEJA 3",
+   "7": "MEŠALNA VEJA 1",
+   "8": "MEŠALNA VEJA 2",
+   "9": "KLET",
+   "10": "PRITLIČJE",
+   "11": "ETAŽA",
+   "12": "1. NADSTROPJE",
+   "13": "2. NADSTROPJE",
+   "14": "MANSARDA",
+   "15": "RADIATORJI",
+   "16": "TALNO",
+   "17": "KONVEKTORJI",
+   "18": "Ogrevanje",
+   "19": "Hlajenje",
+   "20": "STENSKO"
+  },
+  "settings_titles2": {
+   "1": "OGREVALNI KROG 1",
+   "2": "OGREVALNI KROG 2",
+   "3": "OGREVALNI KROG 3",
+   "4": "DIREKTNA VEJA 1",
+   "5": "DIREKTNA VEJA 2",
+   "6": "DIREKTNA VEJA 3",
+   "7": "KLET",
+   "8": "PRITLIČJE",
+   "9": "ETAŽA",
+   "10": "1. NADSTROPJE",
+   "11": "2. NADSTROPJE",
+   "12": "MANSARDA",
+   "13": "RADIATORJI",
+   "14": "TALNO",
+   "15": "KONVEKTORJI",
+   "16": "Ogrevanje",
+   "17": "Hlajenje",
+   "28": "STENSKO"
+  }
+ },
+ "lists_en": {
+  "widget_titles": {
+   "1": "HEATING CIRCLE 1",
+   "2": "HEATING CIRCLE 2",
+   "3": "HEATING CIRCLE 3",
+   "4": "DIRECT CIRCLE 1",
+   "5": "DIRECT CIRCLE 2",
+   "6": "DIRECT CIRCLE 3",
+   "7": "MIXING CIRCLE 1",
+   "8": "MIXING CIRCLE 2",
+   "9": "CELLAR",
+   "10": "GROUND FLOOR",
+   "11": "FLOOR",
+   "12": "1. FLOOR",
+   "13": "2. FLOOR",
+   "14": "ATTIC",
+   "15": "RADIATOR",
+   "16": "FLOOR",
+   "17": "CONVECTOR",
+   "18": "Heating",
+   "19": "Cooling",
+   "20": "WALL"
+  },
+  "widget_titles2": {
+   "1": "HEATING CIRCLE 1",
+   "2": "HEATING CIRCLE 2",
+   "3": "HEATING CIRCLE 3",
+   "4": "DIRECT CIRCLE 1",
+   "5": "DIRECT CIRCLE 2",
+   "6": "DIRECT CIRCLE 3",
+   "7": "CELLAR",
+   "8": "GROUND FLOOR",
+   "9": "FLOOR",
+   "10": "1. FLOOR",
+   "11": "2. FLOOR",
+   "12": "ATTIC",
+   "13": "RADIATOR",
+   "14": "FLOOR",
+   "15": "CONVECTOR",
+   "16": "Heating",
+   "17": "Cooling",
+   "18": "WALL"
+  },
+  "wiring_diagrams": {
+   "1": "MC1+DHW",
+   "2": "MC1+DHW+SOLAR",
+   "3": "DC1+DHW",
+   "4": "DC1+DHW+SOLAR",
+   "5": "MC1+DC2+DHW",
+   "6": "MC1+DC2+DHW+SOLAR",
+   "7": "DC1+DC2+DHW",
+   "8": "DC1+DC2+DHW+SOLAR",
+   "9": "MC1+DC2",
+   "10": "DC1+DC2",
+   "11": "MC1",
+   "12": "DC1",
+   "13": "DC2",
+   "14": "DHW",
+   "15": "DHW+SOLAR",
+   "16": "DC2+DHW",
+   "17": "DC2+DHW+SOLAR",
+   "18": "MC2",
+   "19": "MC2+DHW",
+   "20": "MC2+DHW+SOLAR",
+   "21": "DC1+MC2",
+   "22": "DC1+MC2+DHW",
+   "23": "DC1+MC2+DHW+SOLAR",
+   "24": "MC1+MC2",
+   "25": "MC1+MC2+DHW",
+   "26": "MC1+MC2+DHW+SOLAR",
+   "27": "SOLAR",
+   "28": "DC3",
+   "29": "DC3+DHW",
+   "30": "DC1+DC3",
+   "31": "DC1+DC3+DHW",
+   "32": "MC1+DC3",
+   "33": "MC1+DC3+DHW",
+   "34": "DC2+DC3",
+   "35": "DC2+DC3+DHW",
+   "36": "MC2+DC3",
+   "37": "MC2+DC3+DHW",
+   "38": "DC1+DC2+DC3",
+   "39": "DC1+DC2+DC3+DHW",
+   "40": "MC1+DC2+DC3",
+   "41": "MC1+DC2+DC3+DHW",
+   "42": "MC1+MC2+DC3",
+   "43": "MC1+MC2+DC3+DHW",
+   "44": "DC1+MC2+DC3",
+   "45": "DC1+MC2+DC3+DHW"
+  },
+  "settings_titles": {
+   "1": "HEATING CIRCLE 1",
+   "2": "HEATING CIRCLE 2",
+   "3": "HEATING CIRCLE 3",
+   "4": "DIRECT CIRCLE 1",
+   "5": "DIRECT CIRCLE 2",
+   "6": "DIRECT CIRCLE 3",
+   "7": "MIXING CIRCLE 1",
+   "8": "MIXING CIRCLE 2",
+   "9": "CELLAR",
+   "10": "GROUND FLOOR",
+   "11": "FLOOR",
+   "12": "1. FLOOR",
+   "13": "2. FLOOR",
+   "14": "ATTIC",
+   "15": "RADIATOR",
+   "16": "FLOOR",
+   "17": "CONVECTOR",
+   "18": "Heating",
+   "19": "Cooling",
+   "20": "WALL"
+  },
+  "settings_titles2": {
+   "1": "HEATING CIRCLE 1",
+   "2": "HEATING CIRCLE 2",
+   "3": "HEATING CIRCLE 3",
+   "4": "DIRECT CIRCLE 1",
+   "5": "DIRECT CIRCLE 2",
+   "6": "DIRECT CIRCLE 3",
+   "7": "CELLAR",
+   "8": "GROUND FLOOR",
+   "9": "FLOOR",
+   "10": "1. FLOOR",
+   "11": "2. FLOOR",
+   "12": "ATTIC",
+   "13": "RADIATOR",
+   "14": "FLOOR",
+   "15": "CONVECTOR",
+   "16": "Heating",
+   "17": "Cooling",
+   "28": "WALL"
+  }
+ },
+ "time_programs": {
+  "1": [
+   {
+    "range": 1,
+    "start": "00:00",
+    "end": "06:00",
+    "days_sl": [
+     "PON",
+     "TOR",
+     "SRE",
+     "ČET",
+     "PET"
+    ],
+    "days_en": [
+     "MON",
+     "TUE",
+     "WED",
+     "THU",
+     "FRI"
+    ]
+   },
+   {
+    "range": 2,
+    "start": "20:02",
+    "end": "23:00",
+    "days_sl": [
+     "PON",
+     "TOR",
+     "SRE",
+     "ČET",
+     "PET"
+    ],
+    "days_en": [
+     "MON",
+     "TUE",
+     "WED",
+     "THU",
+     "FRI"
+    ]
+   },
+   {
+    "range": 3,
+    "start": "07:00",
+    "end": "23:00",
+    "days_sl": [
+     "SOB",
+     "NED"
+    ],
+    "days_en": [
+     "SAT",
+     "SUN"
+    ]
+   }
+  ],
+  "2": [
+   {
+    "range": 1,
+    "start": "23:00",
+    "end": "06:00",
+    "days_sl": [],
+    "days_en": []
+   },
+   {
+    "range": 2,
+    "start": "08:00",
+    "end": "18:00",
+    "days_sl": [
+     "PON",
+     "TOR",
+     "SRE",
+     "ČET",
+     "PET",
+     "SOB",
+     "NED"
+    ],
+    "days_en": [
+     "MON",
+     "TUE",
+     "WED",
+     "THU",
+     "FRI",
+     "SAT",
+     "SUN"
+    ]
+   },
+   {
+    "range": 3,
+    "start": "00:00",
+    "end": "00:00",
+    "days_sl": [],
+    "days_en": []
+   }
+  ],
+  "3": [
+   {
+    "range": 1,
+    "start": "22:05",
+    "end": "05:55",
+    "days_sl": [],
+    "days_en": []
+   },
+   {
+    "range": 2,
+    "start": "20:00",
+    "end": "23:00",
+    "days_sl": [
+     "PON",
+     "TOR",
+     "SRE",
+     "ČET",
+     "PET",
+     "SOB",
+     "NED"
+    ],
+    "days_en": [
+     "MON",
+     "TUE",
+     "WED",
+     "THU",
+     "FRI",
+     "SAT",
+     "SUN"
+    ]
+   },
+   {
+    "range": 3,
+    "start": "00:00",
+    "end": "00:00",
+    "days_sl": [],
+    "days_en": []
+   }
+  ],
+  "4": [
+   {
+    "range": 1,
+    "start": "11:00",
+    "end": "23:00",
+    "days_sl": [
+     "PON",
+     "TOR",
+     "SRE",
+     "ČET",
+     "PET",
+     "SOB",
+     "NED"
+    ],
+    "days_en": [
+     "MON",
+     "TUE",
+     "WED",
+     "THU",
+     "FRI",
+     "SAT",
+     "SUN"
+    ]
+   },
+   {
+    "range": 2,
+    "start": "16:00",
+    "end": "06:00",
+    "days_sl": [],
+    "days_en": []
+   },
+   {
+    "range": 3,
+    "start": "00:00",
+    "end": "00:00",
+    "days_sl": [],
+    "days_en": []
+   }
+  ],
+  "5": [
+   {
+    "range": 1,
+    "start": "18:05",
+    "end": "21:30",
+    "days_sl": [],
+    "days_en": []
+   },
+   {
+    "range": 2,
+    "start": "16:00",
+    "end": "18:00",
+    "days_sl": [
+     "PON",
+     "TOR",
+     "SRE",
+     "ČET",
+     "PET",
+     "SOB",
+     "NED"
+    ],
+    "days_en": [
+     "MON",
+     "TUE",
+     "WED",
+     "THU",
+     "FRI",
+     "SAT",
+     "SUN"
+    ]
+   },
+   {
+    "range": 3,
+    "start": "00:00",
+    "end": "00:00",
+    "days_sl": [],
+    "days_en": []
+   }
+  ]
+ },
+ "info_page_snapshot": [
+  {
+   "label_sl": "Zunanja temperatura",
+   "value": "10.6°C"
+  },
+  {
+   "label_sl": "Temp.sanit.vode zgoraj",
+   "value": "40.0°C"
+  },
+  {
+   "label_sl": "Temp.sanit.vode spodaj",
+   "value": "37.2°C"
+  },
+  {
+   "label_sl": "Temperatura zalogovnika",
+   "value": "-999.9°C"
+  },
+  {
+   "label_sl": "Temp.sončnih kolektorjev",
+   "value": "13.7°C"
+  },
+  {
+   "label_sl": "Stanje obt.črp.kolektorjev",
+   "value": "Izklop"
+  },
+  {
+   "label_sl": "Eksterni dodatni vir",
+   "value": "Izklop"
+  },
+  {
+   "label_sl": "Temperatura toplotne črpalke",
+   "value": "24.5°C"
+  },
+  {
+   "label_sl": "Želena temp.toplotne črpalke",
+   "value": "28.0°C"
+  },
+  {
+   "label_sl": "Stanje obt.črpalke C0",
+   "value": "Vklop"
+  },
+  {
+   "label_sl": "Stanje pretočnega stikala",
+   "value": "Pretok O.K."
+  },
+  {
+   "label_sl": "Stanje zunanje enote",
+   "value": "Izklop"
+  },
+  {
+   "label_sl": "Delovna moč zunanje enote",
+   "value": "0%"
+  },
+  {
+   "label_sl": "Smer prekl.ventila",
+   "value": "Prostori"
+  },
+  {
+   "label_sl": "Prostorska temperatura",
+   "value": "-999.9°C"
+  },
+  {
+   "label_sl": "Želena prostorska temp",
+   "value": "22.5°C"
+  },
+  {
+   "label_sl": "Temperatura vtoka",
+   "value": "25.0°C"
+  },
+  {
+   "label_sl": "Želena temperatura vtoka",
+   "value": "0°C"
+  },
+  {
+   "label_sl": "Stanje mešalnega ventila",
+   "value": "Izklop"
+  },
+  {
+   "label_sl": "Odprtost mešalnega ventila",
+   "value": "0%"
+  },
+  {
+   "label_sl": "Stanje obtočne črpalke C1",
+   "value": "Vklop"
+  },
+  {
+   "label_sl": "Prostorska temperatura",
+   "value": "-999.9°C"
+  },
+  {
+   "label_sl": "Želena prostorska temp",
+   "value": "30.0°C"
+  },
+  {
+   "label_sl": "Temperatura vtoka",
+   "value": "-999.9°C"
+  },
+  {
+   "label_sl": "Želena temperatura vtoka",
+   "value": "12.0°C"
+  },
+  {
+   "label_sl": "Stanje mešalnega ventila",
+   "value": "Izklop"
+  },
+  {
+   "label_sl": "Odprtost mešalnega ventila",
+   "value": "9.0%"
+  },
+  {
+   "label_sl": "Stanje obtočne črpalke C2",
+   "value": "Izklop"
+  },
+  {
+   "label_sl": "Prostorska temperatura",
+   "value": "-999.9°C"
+  },
+  {
+   "label_sl": "Želena prostorska temp",
+   "value": "22.0°C"
+  },
+  {
+   "label_sl": "Stanje obtočne črpalke C3",
+   "value": "Izklop"
+  }
+ ],
+ "info_page_snapshot_en": [
+  {
+   "label_sl": "Outdoor temperature",
+   "value": "8.7°C"
+  },
+  {
+   "label_sl": "Temp. DHW top",
+   "value": "42.4°C"
+  },
+  {
+   "label_sl": "Temp. DHW bottom",
+   "value": "39.9°C"
+  },
+  {
+   "label_sl": "Buffer temperature",
+   "value": "-999.9°C"
+  },
+  {
+   "label_sl": "Solar temperature",
+   "value": "7.8°C"
+  },
+  {
+   "label_sl": "Solar pump",
+   "value": "OFF"
+  },
+  {
+   "label_sl": "Additional source",
+   "value": "OFF"
+  },
+  {
+   "label_sl": "HP temperature",
+   "value": "24.4°C"
+  },
+  {
+   "label_sl": "Desired HP temperature",
+   "value": "9.0°C"
+  },
+  {
+   "label_sl": "Pump P0",
+   "value": "OFF"
+  },
+  {
+   "label_sl": "Flow switch",
+   "value": "No flow"
+  },
+  {
+   "label_sl": "Outdoor unit status",
+   "value": "OFF"
+  },
+  {
+   "label_sl": "Outdoor operation power",
+   "value": "0%"
+  },
+  {
+   "label_sl": "Position of 3-way valve",
+   "value": "DHW heating"
+  },
+  {
+   "label_sl": "Room temperature",
+   "value": "-999.9°C"
+  },
+  {
+   "label_sl": "Desired room temperature",
+   "value": "22.0°C"
+  },
+  {
+   "label_sl": "Outlet temperature",
+   "value": "23.0°C"
+  },
+  {
+   "label_sl": "Desired outlet temperature",
+   "value": "0°C"
+  },
+  {
+   "label_sl": "Mixing valve status",
+   "value": "OFF"
+  },
+  {
+   "label_sl": "Mixing valve position",
+   "value": "0%"
+  },
+  {
+   "label_sl": "Pump P1",
+   "value": "OFF"
+  },
+  {
+   "label_sl": "Room temperature",
+   "value": "-999.9°C"
+  },
+  {
+   "label_sl": "Desired room temperature",
+   "value": "26.1°C"
+  },
+  {
+   "label_sl": "Outlet temperature",
+   "value": "-999.9°C"
+  },
+  {
+   "label_sl": "Desired outlet temperature",
+   "value": "12.0°C"
+  },
+  {
+   "label_sl": "Mixing valve status",
+   "value": "OFF"
+  },
+  {
+   "label_sl": "Mixing valve position",
+   "value": "9.0%"
+  },
+  {
+   "label_sl": "Pump P2",
+   "value": "OFF"
+  },
+  {
+   "label_sl": "Room temperature",
+   "value": "-999.9°C"
+  },
+  {
+   "label_sl": "Desired room temperature",
+   "value": "22.0°C"
+  },
+  {
+   "label_sl": "Pump P3",
+   "value": "OFF"
+  }
+ ]
+}

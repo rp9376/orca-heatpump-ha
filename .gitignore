@@ -1,0 +1,5 @@
+.scratch/
+research/captures/
+*.har
+__pycache__/
+*.py[cod]
