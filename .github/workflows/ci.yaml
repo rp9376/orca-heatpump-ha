@@ -1,0 +1,104 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  schedule:
+    # Weekly, to catch breaking changes in Home Assistant beta and dev early.
+    - cron: "17 4 * * 1"
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
+        with:
+          enable-cache: false
+      - name: Run pre-commit hooks
+        env:
+          # mypy needs Home Assistant installed; the test job runs it.
+          SKIP: mypy
+        run: uvx prek@0.5.7 run --all-files --show-diff-on-failure
+
+  hassfest:
+    name: hassfest
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: home-assistant/actions/hassfest@26d56ed1a1cbfeabf59feb7b26e368e13f47ef52 # master
+
+  hacs:
+    name: HACS validation
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: hacs/action@1ebf01c408f29afcb6406bd431bc98fd8cbb15aa # main
+        with:
+          category: integration
+          # Brand images ship inside the integration instead (ADR 0009).
+          ignore: brands
+
+  test:
+    name: Test (Home Assistant ${{ matrix.channel }})
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        channel: ${{ fromJSON(github.event_name == 'schedule' && '["beta", "dev"]' || '["minimum", "stable", "beta"]') }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
+        with:
+          python-version: "3.14"
+          activate-environment: true
+          enable-cache: false
+      - name: Resolve the Home Assistant version
+        id: ha
+        env:
+          CHANNEL: ${{ matrix.channel }}
+        run: python tools/ci_ha_version.py "$CHANNEL" >> "$GITHUB_OUTPUT"
+      - name: Install Home Assistant and pytest-home-assistant
+        env:
+          HA_VERSION: ${{ steps.ha.outputs.version }}
+        run: |
+          # pytest-home-assistant is not on PyPI (ADR 0011), so take it from
+          # the core tag that matches the Home Assistant under test.
+          core="$RUNNER_TEMP/core"
+          git clone --quiet --depth 1 --branch "$HA_VERSION" https://github.com/home-assistant/core.git "$core"
+          if [ "$HA_VERSION" = dev ]; then
+            uv pip install -e "$core" "$core/packages/pytest-home-assistant" --group ci
+            # A source checkout has no built translations; the tests need them.
+            (cd "$core" && python -m script.translations develop --all)
+          else
+            uv pip install "homeassistant==$HA_VERSION" "$core/packages/pytest-home-assistant" --group ci
+          fi
+      - name: mypy
+        run: mypy
+      - name: pytest
+        run: pytest --cov --cov-report=term
+      - name: Client coverage is 100 %
+        run: coverage report --include='custom_components/orca_heatpump/client/*' --fail-under=100

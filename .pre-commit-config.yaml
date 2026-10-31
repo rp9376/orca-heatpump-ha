@@ -1,0 +1,38 @@
+# Runs with prek or pre-commit. Hook versions follow Home Assistant core.
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.17.3
+    hooks:
+      - id: ruff-check
+        args:
+          - --fix
+      - id: ruff-format
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.4.3
+    hooks:
+      - id: codespell
+        # Slovenian text (research data, translations) is not English.
+        exclude: ^research/|/translations/sl\.json$|\.ambr$
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-json
+      - id: check-yaml
+  - repo: https://github.com/zizmorcore/zizmor-pre-commit
+    rev: v1.31.1
+    hooks:
+      - id: zizmor
+        args:
+          - --pedantic
+          - --no-online-audits
+  - repo: local
+    hooks:
+      # Type-checks against the Home Assistant installed in the active
+      # environment, so it runs there instead of in an isolated hook env.
+      - id: mypy
+        name: mypy
+        entry: mypy
+        language: system
+        types_or: [python, pyi]
+        pass_filenames: false
+        require_serial: true
