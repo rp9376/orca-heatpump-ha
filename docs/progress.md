@@ -89,12 +89,25 @@
   as is.
 - Verify the GitHub handles in `CREDITS.md`.
 
-## Next: Phase 1 (§6.2)
+## Phase 1 (research), §6.2
 
-1. Pre-flight: no HA instance polls the pump (no `orca` or `orca_heatpump`
-   entry exists now).
-2. Lead's first live session: read all 1,767 known tags in passes until two
-   agree (at most 4), log out in a `finally`, save the raw passes and a
-   merged dump. Then save the display's static console files.
-3. Research subagents A–D in parallel (offline).
-4. Lead's live experiments from C's script, then CP1.
+1. **Done, 2026-10-31 20:23–20:25.** Lead's first live work with
+   `tools/orca_probe.py` (allowlist in code, lock, backoff, logout in a
+   `finally`). Before it, no HA instance polled the pump.
+   - Static console files, no login: 20 files in `research/captures/console/`.
+   - Full dump, one session: login at the first attempt, 2 passes agreed,
+     logout `#S_OK`. 708 tags `S_OK`, 1,059 `E_UNKNOWNTAG`. One batch of
+     150 tags got HTTP 408 in both passes (request line 4,374 chars; the
+     longest that worked was 3,946); re-read in batches of 50, it worked.
+     Raw passes and the merged dump: `research/captures/2026-10-31_full_dump/`.
+   - First findings: `research/findings.md`.
+2. **Running:** research subagents A (catalog), B (manuals), C (protocol and
+   live-test script), D (history and parity list), offline, writing
+   `research/catalog_draft.md`, `manual_facts.md`, `protocol.md`,
+   `requirements.md`.
+3. Next: review C's live-test script against the allowlist, run it (R1–R4,
+   R11, R13, R14), write `research/findings.md` (R1–R15), finalise the
+   catalog, propose the entity and topology model, then CP1.
+
+The sanitised JSON test fixture of our dump is still to do: the raw dump
+stays in `captures/` until its values are checked for MAC/IP/serial data.
