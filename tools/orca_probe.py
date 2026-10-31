@@ -138,12 +138,16 @@ class Display:
         self._check_allowed(path)
         return self._send("POST", path, "", form.encode(), {})
 
-    def read_file(self, file_path: str, mode: str = "ASCII") -> Response:
+    def read_file(
+        self, file_path: str, mode: str = "ASCII", method: str = "GET"
+    ) -> Response:
         """Read one file for R14, if it is on this run's explicit list."""
         if file_path not in self.readfile_paths:
             raise ProbeError(f"refused readFile path {file_path!r}: not listed")
-        query = f"MODE={mode}&PATH={quote(file_path, safe='/')}"
-        return self._send("GET", READ_FILE, query, None, {})
+        form = f"MODE={mode}&PATH={quote(file_path, safe='/')}"
+        if method == "POST":
+            return self._send("POST", READ_FILE, "", form.encode(), {})
+        return self._send("GET", READ_FILE, form, None, {})
 
     def header_size(
         self,

@@ -17,6 +17,7 @@ from datetime import datetime
 import http.client
 import json
 from pathlib import Path
+import re
 import signal
 import sys
 import time
@@ -51,6 +52,19 @@ INSTANT_SECONDS = 2.0
 RELIABILITY_PASSES = 10
 TIMING_SIZES = (25, 50, 100)
 TIMING_REPEATS = 3
+# R14 (protocol.md §7.3): the project folder found over FTP by orca-energy-ha's
+# author, in the three path forms the server might expect.
+CONFIG_DIRS = (
+    "workspace/Project/config/",
+    "/workspace/Project/config/",
+    "\\workspace\\Project\\config\\",
+)
+EXPECTED_FILE_ERRORS = ("#E_FAIL", "#E_INVALIDARG", "#E_READFORBIDDEN")
+READFILE_OUT = probe.CAPTURES / "readfile"
+# R1 (protocol.md §7.4): probe every 2 min for 20 min, then wait longer and longer.
+KEEPALIVE_PROBES = 10
+KEEPALIVE_INTERVAL = 120
+IDLE_GAPS_MINUTES = (3, 5, 8, 12, 17, 23, 30)
 
 
 class StepError(ProbeError):
@@ -501,6 +515,133 @@ def session1(display: Display, rec: Recorder) -> None:
     )
 
 
+def config_files(config_dir: str) -> list[str]:
+    """R14 files for one path form: the folder itself, then named files."""
+    sep = "\\" if config_dir.startswith("\\") else "/"
+    project = config_dir.removesuffix(f"config{sep}")
+    return [
+        f"{config_dir}alarms.xml",
+        config_dir,
+        f"{project}Page109.jmx",
+        f"{config_dir}eventconfig.xml",
+        f"{config_dir}propertymap.xml",
+        # trends.xml is skipped: session 1 found no trends on the display.
+        f"{config_dir}groups.xml",
+    ]
+
+
+def read_one_file(display: Display, rec: Recorder, step: str, path: str) -> bool:
+    """Read one R14 file; return True if it came back, False on an expected error.
+
+    Anything unexpected stops the session (PLAN.md §2.2: stop at the first
+    unexpected error).
+    """
+    response = display.read_file(path)
+    if response.text.startswith("#E_INVALIDARG"):
+        rec.save(f"{step}_get", response, path)
+        response = display.read_file(path, method="POST")
+    lines = response.text.replace("\r", "").split("\n")
+    first = lines[0].strip()
+    note = path
+    sized = len(lines) > 1 and lines[1].strip().isdigit()
+    if response.status in (200, 500) and first == "#S_OK" and sized:
+        content = "\n".join(lines[2:])
+        note += f" size={lines[1]} received={len(content.encode())}"
+        target = READFILE_OUT / path.replace("\\", "/").lstrip("/")
+        if path.endswith(("/", "\\")):
+            target = target / "_directory.txt"
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_bytes(response.body)
+        rec.save(step, response, note)
+        return True
+    rec.save(step, response, note)
+    if (
+        response.status in (200, 500)
+        and first in EXPECTED_FILE_ERRORS
+        and len([line for line in lines if line.strip()]) == 1
+    ):
+        return False
+    raise StepError(f"{step}: unexpected readFile answer {first[:60]!r}")
+
+
+def last_token() -> str | None:
+    """The token of the previous session's login, from the request log."""
+    token = None
+    with probe.REQUEST_LOG.open(encoding="utf-8") as log:
+        for line in log:
+            entry = json.loads(line)
+            if entry["path"] == "/cgi/login" and (
+                found := re.search(r"IDALToken=(\w+)", entry["head"])
+            ):
+                token = found.group(1)
+    return token
+
+
+def session2a(display: Display, rec: Recorder, username: str, password: str) -> None:
+    """R1 re-login with a stale cookie, then the fixed R14 readFile list."""
+    display.token = last_token()
+    response = display.get("/cgi/login", f"username={username}&password={password}")
+    rec.save("S2-01_login_stale_cookie", response)
+    if found := re.search(r"IDALToken=(\w+)", response.text):
+        display.token = found.group(1)
+    else:
+        check = display.get("/cgi/readTags", "n=1&t1=2_CURRENT_SECOND")
+        rec.save("S2-01b_stale_cookie_read", check)
+        display.token = None
+        probe.login(display, username, password)
+    response, records = probe.read_tags(display, ["2_CURRENT_SECOND"])
+    rec.save("S2-02_sanity", response)
+    if records.get("2_CURRENT_SECOND", Record("", None, None)).status != "S_OK":
+        raise StepError("S2-02: session not usable")
+
+    found_dir = None
+    for index, config_dir in enumerate(CONFIG_DIRS, 3):
+        if read_one_file(
+            display, rec, f"S2-{index:02}_alarms", f"{config_dir}alarms.xml"
+        ):
+            found_dir = config_dir
+            break
+    rec.results["config_dir"] = found_dir
+    if found_dir is None:
+        rec.results["r14"] = "alarms.xml not found in any path form; ask the user"
+        return
+    results: dict[str, bool] = {}
+    for index, path in enumerate(config_files(found_dir)[1:], 6):
+        results[path] = read_one_file(display, rec, f"S2-{index:02}_file", path)
+    rec.results["files"] = results
+
+
+def session3(display: Display, rec: Recorder) -> None:
+    """R1: do reads keep a session alive, and when does an idle one expire?"""
+    start = time.monotonic()
+    timeline: list[dict[str, Any]] = []
+    rec.results["timeline"] = timeline
+
+    def alive(step: str) -> bool:
+        response = display.get("/cgi/readTags", "n=1&t1=2_CURRENT_SECOND")
+        ok = "S_OK" in response.text and "E_NEED_LOGIN" not in response.text
+        rec.save(step, response, f"t={round((time.monotonic() - start) / 60, 1)} min")
+        timeline.append({"step": step, "time": _now(), "alive": ok})
+        return ok
+
+    if not alive("S3-02_t0"):
+        raise StepError("S3: session dead right after login")
+    for index in range(1, KEEPALIVE_PROBES + 1):
+        time.sleep(KEEPALIVE_INTERVAL)
+        if not alive(f"S3-keepalive_{index:02}"):
+            rec.results["keepalive"] = f"expired after {index * 2} min of 2-min reads"
+            return
+    rec.results["keepalive"] = "alive after 20 min of reads every 2 min"
+    previous = None
+    for gap in IDLE_GAPS_MINUTES:
+        time.sleep(gap * 60)
+        if not alive(f"S3-idle_{gap:02}min"):
+            rec.results["idle_timeout"] = f"between {previous} and {gap} min"
+            return
+        previous = gap
+    rec.results["idle_timeout"] = f"over {previous} min"
+
+
 def _now() -> str:
     return datetime.now().astimezone().isoformat(timespec="seconds")
 
@@ -514,10 +655,16 @@ def main() -> int:
     parser.add_argument("--port", type=int, default=80)
     parser.add_argument("--out", type=Path, help="output folder (dry runs)")
     parser.add_argument("--health-wait", type=int, default=300)
-    parser.add_argument("session", choices=("session1",))
+    parser.add_argument("session", choices=("session1", "session2a", "session3"))
     args = parser.parse_args()
     signal.signal(signal.SIGTERM, lambda *_: sys.exit(143))
-    display = Display(args.host, port=args.port)
+    display = Display(
+        args.host,
+        port=args.port,
+        readfile_paths=frozenset(
+            path for config_dir in CONFIG_DIRS for path in config_files(config_dir)
+        ),
+    )
     stamp = datetime.now().astimezone().strftime("%Y-%m-%d")
     out = args.out or probe.CAPTURES / f"{stamp}_research"
     if args.out:
@@ -526,8 +673,17 @@ def main() -> int:
     failed = False
     with probe.exclusive():
         try:
-            with probe.session(display, args.username, args.password):
-                session1(display, rec)
+            if args.session == "session2a":
+                try:
+                    session2a(display, rec, args.username, args.password)
+                finally:
+                    probe.logout(display)
+            else:
+                with probe.session(display, args.username, args.password):
+                    if args.session == "session1":
+                        session1(display, rec)
+                    else:
+                        session3(display, rec)
         except (ProbeError, OSError, http.client.HTTPException) as err:
             failed = True
             rec.results["stopped"] = repr(err)
