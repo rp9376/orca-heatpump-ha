@@ -215,8 +215,15 @@ class OrcaEntity(CoordinatorEntity[OrcaCoordinator]):
     @property
     @override
     def available(self) -> bool:
-        """Return whether the tag has a value; a stale value still counts."""
-        return super().available and self.reading.value is not None
+        """Return whether the tag was read; a stale value still counts.
+
+        A value nobody has seen yet keeps the entity available with an
+        unknown state, so a select can still set it back.
+        """
+        reading = self.reading
+        return super().available and (
+            reading.value is not None or reading.reason is Reason.UNKNOWN_OPTION
+        )
 
     async def async_write(self, value: Value) -> None:
         """Write the entity's own tag."""

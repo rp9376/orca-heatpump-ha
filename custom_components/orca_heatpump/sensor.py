@@ -187,15 +187,6 @@ class OrcaAlarmSensor(OrcaSensor):
 
     @property
     @override
-    def available(self) -> bool:
-        """Return whether an alarm code was read, known or not."""
-        reading = self.reading
-        return self.coordinator.last_update_success and (
-            reading.value is not None or reading.reason is Reason.UNKNOWN_OPTION
-        )
-
-    @property
-    @override
     def native_value(self) -> Value | None:
         """Return the alarm, or 'unknown_code' for codes nobody has seen yet."""
         if self.reading.reason is Reason.UNKNOWN_OPTION:

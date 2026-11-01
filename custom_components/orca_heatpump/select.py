@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
 from .client import catalog
-from .client.models import Reason, TagDef
+from .client.models import TagDef
 from .coordinator import OrcaConfigEntry, OrcaCoordinator
 from .entity import EntityContext, OrcaEntity, OrcaEntityDescription, entity_targets
 
@@ -96,15 +96,6 @@ class OrcaSelect(OrcaEntity, SelectEntity):
         """Initialize the entity with the slot's options."""
         super().__init__(coordinator, description, slot)
         self._attr_options = list(description.definition.options_for(slot).values())
-
-    @property
-    @override
-    def available(self) -> bool:
-        """Stay available with an unknown value, so it can be set back."""
-        return self.coordinator.last_update_success and (
-            self.reading.value is not None
-            or self.reading.reason is Reason.UNKNOWN_OPTION
-        )
 
     @property
     @override
