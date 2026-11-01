@@ -1,31 +1,58 @@
 # Progress
 
-**Phase 4 (platforms) in progress.** Phases 2 and 3 done on 2026-11-01;
-CP1 passed the same day.
+**Phase 5 (hardening and review) next.** Phase 4 done on 2026-11-01;
+Phases 2 and 3 and CP1 the same day.
 
-## Phase 4 (platforms): in progress
+## Phase 4 (platforms): done 2026-11-01
 
-One commit per platform, each with en + sl names, snapshot tests for the
-three real pumps (ours, Duo, Mono) and 100 % coverage.
+One commit per platform, each with en + sl names, icons, snapshot tests for
+the three real pumps (ours, Duo, Mono) and 100 % coverage. Written by the
+lead in sequence rather than by parallel subagents in worktrees (PLAN §9
+P4): with the contracts in `entity.py` frozen, each platform was small, and
+one author kept names and translations consistent.
 
-- Done: binary_sensor, sensor, event (alarm raised/cleared), climate
-  (thermostat with a room sensor and room-based regulation, else
-  mode-only; CP1), water_heater, number (manufacturer ranges, box mode;
-  power limits opt-in with the other form removed from the registry,
-  ADR 0012).
-- Next: select, switch, button (alarm reset, disabled until the Phase 6
-  write test).
-- Writes go through `async_write_values`: several values in order, one
-  refresh. A climate mode is written before the circuit's enable.
-- Names and defaults that depend on regulation (flow setpoint vs maximum
-  flow temperature, curve settings enabled) are decided at setup; a
-  regulation change shows after a reload. The climate's target follows
-  regulation on every poll.
+- **Platforms:** binary_sensor, sensor, event (alarm raised/cleared),
+  climate (a thermostat when a room sensor regulates the circuit, else
+  mode-only; CP1), water_heater, number (manufacturer ranges, box mode),
+  select, switch, button (alarm reset, disabled until the Phase 6 write
+  test). Our pump gets 123 entities, 44 enabled by default (19 sensors,
+  8 binary sensors, 8 selects, 3 numbers, 2 climates, 2 switches, the event
+  and the water heater); the snapshots hold the exact sets per pump.
+- **Power limits (ADR 0012):** sensors by default; numbers (whole percent,
+  manufacturer range) with the option; changing the option removes the other
+  form from the entity registry. The hot water limit exists only with hot
+  water.
+- **Writes** go through `async_write_values`: several values in order, one
+  refresh. A climate mode is written before the circuit's enable; off keeps
+  the mode, so turning on resumes it.
+- **Regulation-dependent names and defaults** (flow setpoint vs maximum flow
+  temperature, curve settings enabled) are decided at setup; a regulation
+  change shows after a reload. The climate's target follows regulation on
+  every poll.
+- **Timer programmes:** a second coordinator reads the 165 timer tags once
+  an hour through the same client and lock; the timer selects show the
+  selected programme as a `schedule` attribute (unrecorded), diagnostics
+  show all five. Incomplete reads keep the last good programme.
+- **Synthetic schemas:** besides the three real pumps, schema 43 (two mixing
+  circuits, direct circuit 3, buffer, a room-regulated circuit) and schema
+  11 (one mixing circuit, nothing else), built from our dump; each is
+  detected as built and its whole entity set is a snapshot.
+- Tests: 973. Coverage 100 % for the whole integration. ruff, mypy
+  (strict), hassfest clean. A test keeps `en.json` equal to `strings.json`
+  and `sl.json` complete.
+- **Live (read-only), 2026-11-01 19:44:** the dev HA restarted with all
+  platforms against the real pump: 123 entities registered, timers read in
+  0.19 s, polls 50–90 ms, no warnings or errors from the integration, no
+  unknown values. Entity values not yet compared with the touch display
+  (user spot check in P5). Nothing was written.
 - **Real data below the manufacturer's minimum:** the Mono fixture holds a
   heating power limit of 39.0 % (minimum 40.0 %). Home Assistant shows it;
   writing it back would be refused. Ask the user at CP2 whether installers
   can set lower values (then the catalog minimum is wrong) or this is a
   leftover from older firmware.
+- **For CP2 / Phase 6:** the alarm reset button's behaviour (does the
+  controller clear the flag itself? The client's read-back would then report
+  a failed write); the climate's mode-then-enable order on the real pump.
 
 ## Phase 3 (integration core): done 2026-11-01
 

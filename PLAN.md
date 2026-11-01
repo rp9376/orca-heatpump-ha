@@ -1,6 +1,6 @@
 # Orca heat pump integration — rewrite master plan
 
-Status: **P2 and P3 done (2026-11-01); P4 next; see `docs/progress.md`** · Written 2026-10-30 ·
+Status: **P2–P4 done (2026-11-01); P5 next; see `docs/progress.md`** · Written 2026-10-30 ·
 Owner: @rp9376 (GitHub) · Domain: `orca_heatpump`
 
 This is the brief for the lead agent (Claude Fable) that builds a new Home
