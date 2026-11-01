@@ -8,9 +8,14 @@ research/captures/ (gitignored).
 Usage (from the repository root):
   python -m tools.orca_probe --host HOST console   save the static console files
   python -m tools.orca_probe --host HOST dump      read all known tags, then log out
+  python -m tools.orca_probe --host HOST read      read the catalog with OrcaClient
+
+``read`` uses the integration's own client over a session that refuses every
+path except login, readTags and logout, so it can never write.
 """
 
 import argparse
+import asyncio
 from collections import Counter
 from collections.abc import Iterator
 from contextlib import contextmanager
@@ -26,7 +31,14 @@ import re
 import signal
 import sys
 import time
+from types import SimpleNamespace
 from urllib.parse import quote, urljoin, urlsplit
+
+import aiohttp
+
+from custom_components.orca_heatpump.client.catalog import CATALOG
+from custom_components.orca_heatpump.client.client import OrcaClient
+from custom_components.orca_heatpump.client.models import Reason
 
 ROOT = Path(__file__).resolve().parents[1]
 CAPTURES = ROOT / "research" / "captures"
@@ -493,6 +505,80 @@ def run_console(display: Display, out_dir: Path) -> None:
     print(f"saved {saved} files to {out_dir}")
 
 
+# The client-based read may only log in, read and log out.
+READ_ONLY_PATHS = frozenset({"/cgi/login", "/cgi/logout", "/cgi/readTags"})
+# Reasons that need no explanation: sensor unplugged, tag absent on this firmware.
+EXPLAINED = frozenset({Reason.NOT_CONNECTED, Reason.UNKNOWN_TAG, Reason.NOT_IN_SLOT})
+
+
+async def _read_only(
+    session: aiohttp.ClientSession,
+    context: SimpleNamespace,
+    params: aiohttp.TraceRequestStartParams,
+) -> None:
+    del session, context
+    if params.url.path not in READ_ONLY_PATHS:
+        raise ProbeError(f"refused {params.url.path}: the read command is read-only")
+
+
+async def run_read(
+    host: str, port: int, username: str, password: str, out: Path
+) -> int:
+    """Read identity, topology and the whole catalog through OrcaClient."""
+    trace = aiohttp.TraceConfig()
+    trace.on_request_start.append(_read_only)
+    async with aiohttp.ClientSession(trace_configs=[trace]) as http:
+        client = OrcaClient(http, host, username, password, port=port)
+        try:
+            identity = await client.async_read_identity()
+            topology = await client.async_detect_topology()
+            snapshot = await client.async_read_definitions(CATALOG)
+        finally:
+            await client.async_logout()
+            print(f"{_now()} logged out")
+    readings = dict(sorted(snapshot.readings.items()))
+    problems = {
+        tag: reading
+        for tag, reading in readings.items()
+        if reading.reason is not None and reading.reason not in EXPLAINED
+    }
+    out.write_text(
+        json.dumps(
+            {
+                "captured": _now(),
+                "identity": {
+                    "firmware": identity.firmware,
+                    "outdoor_unit": identity.outdoor_unit,
+                },
+                "topology": {
+                    "schema": topology.schema,
+                    "circuits": [
+                        [c.slot, c.kind, c.room_sensor] for c in topology.circuits
+                    ],
+                    "dhw": topology.dhw,
+                    "solar": topology.solar,
+                    "buffer": topology.buffer,
+                },
+                "readings": {
+                    tag: [r.value, r.raw, r.reason, r.stale]
+                    for tag, r in readings.items()
+                },
+            },
+            indent=1,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    reasons = Counter(str(r.reason) for r in readings.values() if r.reason)
+    print(f"firmware {identity.firmware}, outdoor unit {identity.outdoor_unit}")
+    print(f"topology {topology}")
+    print(f"{len(readings)} tags read; without value: {dict(reasons)}")
+    for tag, reading in problems.items():
+        print(f"UNEXPLAINED {tag}: {reading}")
+    print(f"saved to {out}")
+    return 1 if problems else 0
+
+
 def _now() -> str:
     return datetime.now().astimezone().isoformat(timespec="seconds")
 
@@ -503,16 +589,22 @@ def main() -> int:
     parser.add_argument("--host", required=True)
     parser.add_argument("--username", default="admin")
     parser.add_argument("--password", default="admin")
-    parser.add_argument("command", choices=("console", "dump"))
+    parser.add_argument("--port", type=int, default=80)
+    parser.add_argument("command", choices=("console", "dump", "read"))
     args = parser.parse_args()
     # Turn SIGTERM (e.g. from `timeout`) into SystemExit so the logout still runs.
     signal.signal(signal.SIGTERM, lambda *_: sys.exit(143))
-    display = Display(args.host)
+    display = Display(args.host, port=args.port)
     stamp = datetime.now().astimezone().strftime("%Y-%m-%d")
     with exclusive():
         if args.command == "console":
             run_console(display, CAPTURES / "console")
             return 0
+        if args.command == "read":
+            out = CAPTURES / f"{stamp}_client_read.json"
+            return asyncio.run(
+                run_read(args.host, args.port, args.username, args.password, out)
+            )
         with session(display, args.username, args.password):
             run_dump(display, CAPTURES / f"{stamp}_full_dump")
     return 0
