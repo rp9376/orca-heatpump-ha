@@ -17,6 +17,12 @@ asyncio_default_fixture_loop_scope = "function"
 pythonpath = ["."]
 testpaths = ["tests"]
 xfail_strict = true
+# Known warnings from Home Assistant and its dependencies, as in core's config.
+filterwarnings = [
+  "ignore:Inheritance class HomeAssistantApplication from web.Application is discouraged:DeprecationWarning",
+  "ignore:Setting custom ClientSession.close attribute is discouraged:DeprecationWarning:homeassistant.helpers.aiohttp_client",
+  "ignore:'asyncio.iscoroutinefunction' is deprecated:DeprecationWarning:backoff._async",
+]
 
 [tool.coverage.run]
 source = ["custom_components.orca_heatpump"]
@@ -40,6 +46,17 @@ enable_error_code = [
   "redundant-self",
   "truthy-iterable",
 ]
+
+# HA's pytest plugin has no py.typed marker yet; analyse it anyway.
+[[tool.mypy.overrides]]
+module = ["pytest_homeassistant", "pytest_homeassistant.*"]
+follow_untyped_imports = true
+
+# Tests change state through Home Assistant calls that mypy can't follow.
+[[tool.mypy.overrides]]
+module = ["tests.*"]
+warn_unreachable = false
+disable_error_code = ["comparison-overlap"]
 
 # Ruff settings follow Home Assistant core (pyproject.toml and tests/ruff.toml
 # at 2026.11), minus rules that only concern core's own tree.

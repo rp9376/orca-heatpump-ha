@@ -1,0 +1,206 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Povezava s toplotno črpalko Orca",
+        "description": "Vnesite naslov in prijavne podatke zaslona na dotik toplotne črpalke. Zaslonu v omrežju dodelite stalen naslov IP.",
+        "data": {
+          "host": "Gostitelj",
+          "username": "Uporabniško ime",
+          "password": "Geslo",
+          "allow_power_limits": "Dovoli spreminjanje omejitev moči"
+        },
+        "data_description": {
+          "host": "Naslov IP ali ime gostitelja zaslona na dotik.",
+          "username": "Uporabniško ime spletnega vmesnika zaslona (običajno admin).",
+          "password": "Geslo spletnega vmesnika zaslona.",
+          "allow_power_limits": "Tvegano: omogoči spreminjanje omejitev moči toplotne črpalke pri ogrevanju, sanitarni vodi, hlajenju in tišjem delovanju. Napačne vrednosti lahko ustavijo toplotno črpalko; vrednosti zunaj proizvajalčevega območja so vedno zavrnjene."
+        }
+      },
+      "old_integration": {
+        "title": "Najdena je integracija Orca Energy",
+        "description": "Za {host} je nastavljena starejša integracija Orca Energy (orca-energy-ha). Zaslon dovoljuje le nekaj prijav, zato se dve integraciji, ki ga obe sprašujeta, med seboj zaklenete, prav tako pa tudi aplikacijo Moja Orca. Integracijo Orca Energy najprej odstranite ali onemogočite; lahko pa vseeno nadaljujete."
+      },
+      "reauth_confirm": {
+        "title": "Ponovna prijava",
+        "description": "Zaslon na {host} je zavrnil prijavo. Vnesite trenutno uporabniško ime in geslo.",
+        "data": {
+          "username": "Uporabniško ime",
+          "password": "Geslo"
+        },
+        "data_description": {
+          "username": "Uporabniško ime spletnega vmesnika zaslona (običajno admin).",
+          "password": "Geslo spletnega vmesnika zaslona."
+        }
+      },
+      "reconfigure": {
+        "title": "Sprememba povezave",
+        "description": "Spremenite naslov ali prijavne podatke zaslona na dotik.",
+        "data": {
+          "host": "Gostitelj",
+          "username": "Uporabniško ime",
+          "password": "Geslo"
+        },
+        "data_description": {
+          "host": "Naslov IP ali ime gostitelja zaslona na dotik.",
+          "username": "Uporabniško ime spletnega vmesnika zaslona (običajno admin).",
+          "password": "Geslo spletnega vmesnika zaslona."
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Povezava z zaslonom ni uspela.",
+      "invalid_auth": "Zaslon je zavrnil uporabniško ime ali geslo.",
+      "too_many_users": "Vse prijave zaslona so zasedene. Zaprite aplikacijo Moja Orca ali druge integracije in poskusite znova čez nekaj minut.",
+      "not_orca": "Naprava se je odzvala, vendar ne kot zaslon toplotne črpalke Orca.",
+      "unknown": "Nepričakovana napaka."
+    },
+    "abort": {
+      "already_configured": "Ta toplotna črpalka je že nastavljena.",
+      "reauth_successful": "Ponovna prijava je uspela.",
+      "reconfigure_successful": "Sprememba nastavitev je uspela."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Možnosti toplotne črpalke Orca",
+        "description": "Popravki so potrebni le, če je zaznavanje napačno prepoznalo vaš sistem, na primer, ko je vhod tipala uporabljen za kaj drugega.",
+        "data": {
+          "allow_power_limits": "Dovoli spreminjanje omejitev moči",
+          "room_sensor_1": "Sobno tipalo kroga 1",
+          "room_sensor_2": "Sobno tipalo kroga 2",
+          "room_sensor_3": "Sobno tipalo kroga 3",
+          "solar": "Solar",
+          "buffer": "Zalogovnik"
+        },
+        "data_description": {
+          "allow_power_limits": "Tvegano: omogoči spreminjanje omejitev moči toplotne črpalke pri ogrevanju, sanitarni vodi, hlajenju in tišjem delovanju. Napačne vrednosti lahko ustavijo toplotno črpalko; vrednosti zunaj proizvajalčevega območja so vedno zavrnjene.",
+          "room_sensor_1": "Samodejno uporabi to, kar sporoča toplotna črpalka.",
+          "room_sensor_2": "Samodejno uporabi to, kar sporoča toplotna črpalka.",
+          "room_sensor_3": "Samodejno uporabi to, kar sporoča toplotna črpalka.",
+          "solar": "Samodejno uporabi to, kar sporoča toplotna črpalka.",
+          "buffer": "Samodejno uporabi to, kar sporoča toplotna črpalka."
+        }
+      }
+    }
+  },
+  "selector": {
+    "override": {
+      "options": {
+        "auto": "Samodejno",
+        "present": "Prisotno",
+        "absent": "Ni prisotno"
+      }
+    }
+  },
+  "device": {
+    "heat_pump": {
+      "name": "Toplotna črpalka"
+    },
+    "circuit": {
+      "name": "Krog {slot}"
+    },
+    "circuit_heating_circuit_1": {
+      "name": "Ogrevalni krog 1"
+    },
+    "circuit_heating_circuit_2": {
+      "name": "Ogrevalni krog 2"
+    },
+    "circuit_heating_circuit_3": {
+      "name": "Ogrevalni krog 3"
+    },
+    "circuit_direct_circuit_1": {
+      "name": "Direktna veja 1"
+    },
+    "circuit_direct_circuit_2": {
+      "name": "Direktna veja 2"
+    },
+    "circuit_direct_circuit_3": {
+      "name": "Direktna veja 3"
+    },
+    "circuit_mixing_circuit_1": {
+      "name": "Mešalna veja 1"
+    },
+    "circuit_mixing_circuit_2": {
+      "name": "Mešalna veja 2"
+    },
+    "circuit_cellar": {
+      "name": "Klet"
+    },
+    "circuit_ground_floor": {
+      "name": "Pritličje"
+    },
+    "circuit_storey": {
+      "name": "Etaža"
+    },
+    "circuit_first_floor": {
+      "name": "1. nadstropje"
+    },
+    "circuit_second_floor": {
+      "name": "2. nadstropje"
+    },
+    "circuit_attic": {
+      "name": "Mansarda"
+    },
+    "circuit_radiators": {
+      "name": "Radiatorji"
+    },
+    "circuit_underfloor": {
+      "name": "Talno ogrevanje"
+    },
+    "circuit_convectors": {
+      "name": "Konvektorji"
+    },
+    "circuit_heating": {
+      "name": "Ogrevanje"
+    },
+    "circuit_cooling": {
+      "name": "Hlajenje"
+    },
+    "circuit_wall": {
+      "name": "Stensko ogrevanje"
+    },
+    "dhw": {
+      "name": "Sanitarna voda"
+    },
+    "solar": {
+      "name": "Sončni kolektorji"
+    },
+    "buffer": {
+      "name": "Zalogovnik"
+    }
+  },
+  "exceptions": {
+    "cannot_connect": {
+      "message": "Komunikacija s toplotno črpalko ni uspela: {error}"
+    },
+    "invalid_auth": {
+      "message": "Toplotna črpalka je zavrnila uporabniško ime ali geslo."
+    },
+    "too_many_users": {
+      "message": "Vse prijave zaslona toplotne črpalke so zasedene."
+    }
+  },
+  "issues": {
+    "topology_changed": {
+      "title": "Sistem toplotne črpalke se je spremenil",
+      "fix_flow": {
+        "step": {
+          "confirm": {
+            "title": "Sistem toplotne črpalke se je spremenil",
+            "description": "Toplotna črpalka zdaj sporoča drugačen sistem (ogrevalni krogi, sanitarna voda, solar ali zalogovnik) kot ob dodajanju. Dokler ne potrdite, integracija uporablja prejšnji sistem. Potrdite, da uporabi novega in se ponovno naloži."
+          }
+        }
+      }
+    },
+    "old_integration": {
+      "title": "Dve integraciji sprašujeta isto toplotno črpalko",
+      "description": "Za {host} je nastavljena tudi integracija Orca Energy (orca-energy-ha). Zaslon dovoljuje le nekaj prijav, zato se lahko obe integraciji in aplikacija Moja Orca zaklenejo. Integracijo Orca Energy odstranite ali onemogočite."
+    },
+    "sessions_exhausted": {
+      "title": "Toplotna črpalka zavrača prijave",
+      "description": "Zaslon toplotne črpalke vztrajno sporoča, da so vse prijave zasedene. Zaprite aplikacijo Moja Orca in preverite, da z zaslonom ni povezana nobena druga integracija ali program."
+    }
+  }
+}

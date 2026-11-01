@@ -1,0 +1,206 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect to the Orca heat pump",
+        "description": "Enter the address and login of the heat pump's touch display. Give the display a fixed IP address on your network.",
+        "data": {
+          "host": "Host",
+          "username": "Username",
+          "password": "Password",
+          "allow_power_limits": "Allow changing power limits"
+        },
+        "data_description": {
+          "host": "IP address or host name of the touch display.",
+          "username": "Username of the display's web interface (usually admin).",
+          "password": "Password of the display's web interface.",
+          "allow_power_limits": "Risky: makes the heat pump's power limits for heating, hot water, cooling and quiet mode adjustable. Wrong values can stop the heat pump; values outside the manufacturer's range are always refused."
+        }
+      },
+      "old_integration": {
+        "title": "Orca Energy integration found",
+        "description": "The older Orca Energy integration (orca-energy-ha) is set up for {host}. The display allows only a few logins, so two integrations polling it lock each other and the Moja Orca app out. Remove or disable the Orca Energy integration first; you can continue anyway."
+      },
+      "reauth_confirm": {
+        "title": "Log in again",
+        "description": "The display at {host} refused the login. Enter the current username and password.",
+        "data": {
+          "username": "Username",
+          "password": "Password"
+        },
+        "data_description": {
+          "username": "Username of the display's web interface (usually admin).",
+          "password": "Password of the display's web interface."
+        }
+      },
+      "reconfigure": {
+        "title": "Change the connection",
+        "description": "Change the address or login of the touch display.",
+        "data": {
+          "host": "Host",
+          "username": "Username",
+          "password": "Password"
+        },
+        "data_description": {
+          "host": "IP address or host name of the touch display.",
+          "username": "Username of the display's web interface (usually admin).",
+          "password": "Password of the display's web interface."
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Failed to connect to the display.",
+      "invalid_auth": "The display rejected the username or password.",
+      "too_many_users": "All of the display's logins are in use. Close the Moja Orca app or other integrations and try again in a few minutes.",
+      "not_orca": "The device answered, but not like an Orca heat pump display.",
+      "unknown": "Unexpected error."
+    },
+    "abort": {
+      "already_configured": "This heat pump is already configured.",
+      "reauth_successful": "Re-authentication was successful.",
+      "reconfigure_successful": "Reconfiguration was successful."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Orca heat pump options",
+        "description": "Corrections are only needed if detection got your setup wrong, for example when a sensor input is used for something else.",
+        "data": {
+          "allow_power_limits": "Allow changing power limits",
+          "room_sensor_1": "Room sensor of circuit 1",
+          "room_sensor_2": "Room sensor of circuit 2",
+          "room_sensor_3": "Room sensor of circuit 3",
+          "solar": "Solar",
+          "buffer": "Buffer tank"
+        },
+        "data_description": {
+          "allow_power_limits": "Risky: makes the heat pump's power limits for heating, hot water, cooling and quiet mode adjustable. Wrong values can stop the heat pump; values outside the manufacturer's range are always refused.",
+          "room_sensor_1": "Automatic uses what the heat pump reports.",
+          "room_sensor_2": "Automatic uses what the heat pump reports.",
+          "room_sensor_3": "Automatic uses what the heat pump reports.",
+          "solar": "Automatic uses what the heat pump reports.",
+          "buffer": "Automatic uses what the heat pump reports."
+        }
+      }
+    }
+  },
+  "selector": {
+    "override": {
+      "options": {
+        "auto": "Automatic",
+        "present": "Present",
+        "absent": "Absent"
+      }
+    }
+  },
+  "device": {
+    "heat_pump": {
+      "name": "Heat pump"
+    },
+    "circuit": {
+      "name": "Circuit {slot}"
+    },
+    "circuit_heating_circuit_1": {
+      "name": "Heating circuit 1"
+    },
+    "circuit_heating_circuit_2": {
+      "name": "Heating circuit 2"
+    },
+    "circuit_heating_circuit_3": {
+      "name": "Heating circuit 3"
+    },
+    "circuit_direct_circuit_1": {
+      "name": "Direct circuit 1"
+    },
+    "circuit_direct_circuit_2": {
+      "name": "Direct circuit 2"
+    },
+    "circuit_direct_circuit_3": {
+      "name": "Direct circuit 3"
+    },
+    "circuit_mixing_circuit_1": {
+      "name": "Mixing circuit 1"
+    },
+    "circuit_mixing_circuit_2": {
+      "name": "Mixing circuit 2"
+    },
+    "circuit_cellar": {
+      "name": "Cellar"
+    },
+    "circuit_ground_floor": {
+      "name": "Ground floor"
+    },
+    "circuit_storey": {
+      "name": "Storey"
+    },
+    "circuit_first_floor": {
+      "name": "First floor"
+    },
+    "circuit_second_floor": {
+      "name": "Second floor"
+    },
+    "circuit_attic": {
+      "name": "Attic"
+    },
+    "circuit_radiators": {
+      "name": "Radiators"
+    },
+    "circuit_underfloor": {
+      "name": "Underfloor heating"
+    },
+    "circuit_convectors": {
+      "name": "Convectors"
+    },
+    "circuit_heating": {
+      "name": "Heating"
+    },
+    "circuit_cooling": {
+      "name": "Cooling"
+    },
+    "circuit_wall": {
+      "name": "Wall heating"
+    },
+    "dhw": {
+      "name": "Hot water"
+    },
+    "solar": {
+      "name": "Solar collectors"
+    },
+    "buffer": {
+      "name": "Buffer tank"
+    }
+  },
+  "exceptions": {
+    "cannot_connect": {
+      "message": "Failed to communicate with the heat pump: {error}"
+    },
+    "invalid_auth": {
+      "message": "The heat pump rejected the username or password."
+    },
+    "too_many_users": {
+      "message": "All of the heat pump display's logins are in use."
+    }
+  },
+  "issues": {
+    "topology_changed": {
+      "title": "Heat pump setup changed",
+      "fix_flow": {
+        "step": {
+          "confirm": {
+            "title": "Heat pump setup changed",
+            "description": "The heat pump now reports a different setup (heating circuits, hot water, solar or buffer tank) than when it was added. Until you confirm, the integration keeps the old setup. Confirm to use the new setup and reload the integration."
+          }
+        }
+      }
+    },
+    "old_integration": {
+      "title": "Two integrations poll the same heat pump",
+      "description": "The Orca Energy integration (orca-energy-ha) is also set up for {host}. The display allows only a few logins, so both integrations and the Moja Orca app can be locked out. Remove or disable the Orca Energy integration."
+    },
+    "sessions_exhausted": {
+      "title": "Heat pump refuses logins",
+      "description": "The heat pump display keeps answering that all of its logins are in use. Close the Moja Orca app and check that no other integration or program is connected to the display."
+    }
+  }
+}

@@ -1,8 +1,10 @@
 {
   "domain": "orca_heatpump",
   "name": "Orca Heat Pump",
-  "codeowners": ["@rp9376"],
-  "config_flow": false,
+  "codeowners": [
+    "@rp9376"
+  ],
+  "config_flow": true,
   "documentation": "https://github.com/rp9376/orca-heatpump-ha",
   "integration_type": "device",
   "iot_class": "local_polling",

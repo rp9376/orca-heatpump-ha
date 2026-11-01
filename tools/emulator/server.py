@@ -38,6 +38,7 @@ class Faults:
     http_status: int | None = None
     whole_error: str | None = None
     disconnect: bool = False
+    fail_after_requests: int | None = None
 
 
 @dataclass
@@ -103,8 +104,11 @@ class Emulator:
         if self.faults.disconnect and request.transport is not None:
             request.transport.close()
             return web.Response()
-        if self.faults.http_status is not None:
-            return web.Response(status=self.faults.http_status, text="error")
+        failing = self.faults.fail_after_requests
+        if self.faults.http_status is not None or (
+            failing is not None and len(self.requests) > failing
+        ):
+            return web.Response(status=self.faults.http_status or 503, text="error")
         if self.faults.malformed_body:
             return web.Response(text="#broken\n\x00garbage")
         response: web.StreamResponse = await handler(request)
