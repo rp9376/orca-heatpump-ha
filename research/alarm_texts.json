@@ -1,0 +1,78 @@
+{
+ "source": "Touch display project, workspace/Project/Page109 - Kopija.jmx (the ALARM page), read with cgi/readFile on 2026-11-01 (R14). Texts are the manufacturer's display texts, all 7 project languages.",
+ "code_tag": "2_Vrsta_alarma",
+ "active_tag": "2_JE_ALARM",
+ "reset_tag": "2_Reset_ALARMA_iz_PGDT",
+ "note": "Code 0 = no alarm (our pump, no alarm active). The page shows the RESET button only while 2_JE_ALARM is set.",
+ "title": {
+  "en": "ERROR",
+  "sl": "ALARM",
+  "de": "ALARM",
+  "fr": "ERREUR",
+  "hr": "GREŠKA",
+  "lt": "KLAIDA",
+  "sk": "ERROR"
+ },
+ "codes": {
+  "1": {
+   "text_id": 7,
+   "en": "Error outdoor unit",
+   "sl": "Napaka zunanje enote",
+   "de": "WP fehler",
+   "fr": "Erreur de PC",
+   "hr": "Greška vanjske jedinice",
+   "lt": "Išorinio bloko klaida",
+   "sk": "Error vonkajšej jednotky"
+  },
+  "2": {
+   "text_id": 2,
+   "en": "Too high flow temp.HC1",
+   "sl": "Previsoka temp.vtoka OK1",
+   "de": "Ubertemperatur vorlauf HK1",
+   "fr": "Surchauffe leader CC1",
+   "hr": "Previsoka temp. protoka GK1",
+   "lt": "Per aukšta 1 ŠK temp.",
+   "sk": "Privysoká tepl. prietoku HC1"
+  },
+  "3": {
+   "text_id": 3,
+   "en": "Too high flow temp.HC2",
+   "sl": "Previsoka temp.vtoka OK2",
+   "de": "Ubertemperatur vorlauf HK2",
+   "fr": "Surchauffe leader CC2",
+   "hr": "Previsoka temp. protoka GK2",
+   "lt": "Per aukšta 2 ŠK temp.",
+   "sk": "Privysoká tepl. prietoku HC2"
+  },
+  "4": {
+   "text_id": 4,
+   "en": "No flow",
+   "sl": "Ni pretoka",
+   "de": "Kein fluss",
+   "fr": "Pas de debit",
+   "hr": "Nema protoka",
+   "lt": "Nėra srauto",
+   "sk": "Žiadny prietok"
+  },
+  "5": {
+   "text_id": 5,
+   "en": "Flow switch failure",
+   "sl": "Okvara pretočnega stikala",
+   "de": "Stromungwachter fehler",
+   "fr": "Panne interr.de debit",
+   "hr": "Kvar protočne sklopke",
+   "lt": "Srauto jutiklio gedimas",
+   "sk": "Chyba prietokového senzoru"
+  },
+  "6": {
+   "text_id": 6,
+   "en": "Too low temp.HP",
+   "sl": "Prenizka temp.topl.črpalke",
+   "de": "Tieftemperatur WP",
+   "fr": "Faibla temperature PC",
+   "hr": "Preniska temp. topl. pumpe",
+   "lt": "Per žema ŠS temp.",
+   "sk": "Veľmi nízka tepl.HP"
+  }
+ }
+}
