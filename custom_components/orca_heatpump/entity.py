@@ -21,7 +21,7 @@ from .client.models import (
     TagDef,
     Value,
 )
-from .const import DOMAIN
+from .const import CONF_ALLOW_POWER_LIMITS, DOMAIN
 from .coordinator import OrcaConfigEntry, OrcaCoordinator
 from .helpers import element_present
 
@@ -76,6 +76,24 @@ def room_sensor(context: EntityContext, slot: int | None) -> bool:
     return slot is not None and bool(
         (circuit := context.topology.circuit(slot)) and circuit.room_sensor
     )
+
+
+def power_limit(
+    definition: TagDef, *, writable: bool
+) -> Callable[[EntityContext, int | None], bool]:
+    """Return whether a power limit exists in this form (ADR 0012).
+
+    The option decides between sensor and number; the hot water limit also
+    needs hot water.
+    """
+
+    def exists(context: EntityContext, slot: int | None) -> bool:
+        allowed = bool(context.options.get(CONF_ALLOW_POWER_LIMITS))
+        return allowed is writable and (
+            context.topology.dhw or definition is not catalog.HP_POWER_LIMIT_DHW
+        )
+
+    return exists
 
 
 def entity_targets[D: OrcaEntityDescription](

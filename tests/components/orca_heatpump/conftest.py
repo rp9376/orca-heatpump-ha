@@ -53,11 +53,46 @@ MONO_TOPOLOGY = PumpTopology(
     solar=False,
     buffer=True,
 )
-# The three real pumps: our Duo 300 Solar (heating), a Duo and a Mono.
+THREE_CIRCUITS_TOPOLOGY = PumpTopology(
+    43,
+    (
+        CircuitTopology(1, CircuitKind.MIXING, room_sensor=True),
+        CircuitTopology(2, CircuitKind.MIXING, room_sensor=False),
+        CircuitTopology(3, CircuitKind.DIRECT, room_sensor=False),
+    ),
+    dhw=True,
+    solar=False,
+    buffer=True,
+)
+HEATING_ONLY_TOPOLOGY = PumpTopology(
+    11,
+    (CircuitTopology(1, CircuitKind.MIXING, room_sensor=False),),
+    dhw=False,
+    solar=False,
+    buffer=False,
+)
+# The three real pumps: our Duo 300 Solar (heating), a Duo and a Mono. The
+# synthetic ones change our pump's values into schemas nobody recorded yet.
 PUMPS = {
     "ours": (OURS_HEATING, OUR_TOPOLOGY),
     "duo": (DUO, DUO_TOPOLOGY),
     "mono": (MONO, MONO_TOPOLOGY),
+    "three_circuits": (OURS_HEATING, THREE_CIRCUITS_TOPOLOGY),
+    "heating_only": (OURS_HEATING, HEATING_ONLY_TOPOLOGY),
+}
+SYNTHETIC_VALUES = {
+    # MK1 (room-regulated, with a room sensor) + MK2 + DK3 + hot water, buffer.
+    "three_circuits": {
+        "2_Shema": "43",
+        "2_PogojPGDT_Shema_in_tipalo_OK1": "1",
+        "2_Temp_Prostora": "214",
+        "2_Reg_po_RF_AF_KONST_MK1": "1",
+        "2_Shema_ZALOG": "1",
+        "2_Temp_Zalog": "352",
+        "2_Izrac_temp_ZALOG": "350",
+    },
+    # MK1 only: no hot water, no solar.
+    "heating_only": {"2_Shema": "11"},
 }
 
 
@@ -91,6 +126,7 @@ def values() -> dict[str, str]:
 def emulator(pump: str, values: dict[str, str]) -> Emulator:
     """Return an emulator serving the pump's dump, with the values changed."""
     emulator = Emulator.from_dump(DUMPS / PUMPS[pump][0])
+    emulator.values.update(SYNTHETIC_VALUES.get(pump, {}))
     emulator.values.update(values)
     return emulator
 

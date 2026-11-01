@@ -20,13 +20,13 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
 from .client import catalog
 from .client.models import Reason, TagDef, Value
-from .const import CONF_ALLOW_POWER_LIMITS
 from .coordinator import OrcaConfigEntry
 from .entity import (
     OrcaEntity,
     OrcaEntityDescription,
     entity_targets,
     mixing_circuit,
+    power_limit,
     room_sensor,
 )
 
@@ -81,7 +81,7 @@ def _power_limit(definition: TagDef) -> OrcaSensorEntityDescription:
         definition=definition,
         native_unit_of_measurement=PERCENTAGE,
         entity_category=EntityCategory.DIAGNOSTIC,
-        exists_fn=lambda context, _: not context.options.get(CONF_ALLOW_POWER_LIMITS),
+        exists_fn=power_limit(definition, writable=False),
     )
 
 
