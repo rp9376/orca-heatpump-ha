@@ -1,7 +1,36 @@
 # Progress
 
-**Phase 3 (integration core) in progress.** Phase 2 done on 2026-11-01;
-CP1 passed the same day.
+**Phase 4 (platforms) next.** Phases 2 and 3 done on 2026-11-01; CP1
+passed the same day.
+
+## Phase 3 (integration core): done 2026-11-01
+
+- `__init__.py` (setup/unload, logout on every failure, on unload and on HA
+  stop), `coordinator.py` (polls only present elements; "sessions
+  exhausted" issue after 3 refused polls), `entity.py` (base entity, device
+  per element), `config_flow.py` (user, orca-energy-ha warning, reauth,
+  reconfigure, options with opt-in power limits and topology overrides),
+  `diagnostics.py`, `repairs.py` (accept a changed topology), `helpers.py`,
+  translations en + sl (device names from each circuit's own name).
+- Repair issues: topology changed (fixable; the stored topology wins until
+  confirmed), orca-energy-ha on the same pump, sessions exhausted.
+- Tests: 881 in total; the integration tests run Home Assistant against the
+  emulator over real HTTP. Coverage 100 % for every module except
+  `entity.py` (used from P4 on). Config flow 100 %, each error with a
+  successful retry.
+- **Live test bed:** an `orca_heatpump` entry for the real pump is now in
+  the dev HA (added through the config flow, 2026-11-01 ~10:45). Devices:
+  Heat pump (Mitsubishi, firmware 61 (2016-12-12)), Underfloor heating,
+  Radiators, Hot water, Solar collectors. No warnings or errors in the log.
+  Without entity platforms the coordinator does not poll yet; from P4 on
+  it polls every 30 s with one session. Before any research session, this
+  entry must be disabled (PLAN.md §2.2).
+- Learned on the way (HA 2026.11): `async_setup_entry` returns None,
+  unload uses `async_unload_platforms_or_raise`, config flows use
+  `probatio`, repair flows return `RepairsFlowResult`, issue data holds
+  only scalars, and a coordinator without listeners does not poll.
+
+
 
 ## CP1 outcome (user, 2026-11-01)
 
