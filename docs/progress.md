@@ -38,10 +38,10 @@ coverage, tests in `tests/client/`. Steps (tick when committed):
 - [x] `catalog.py`: the keys of `docs/entity-model.md`; tests against
       `moja_orca_catalog.json` (types, ranges, enums) and
       `tag_registers.json` (×10 ⇔ 5xxxxx, never writable on IREG/INP)
-- [ ] `client.py`: OrcaClient (lock, login single-flight, re-login on
+- [x] `client.py`: OrcaClient (lock, login single-flight, re-login on
       E_NEED_LOGIN, batching, stale carry, guarded write with read-back,
       idempotent logout, identity, topology)
-- [ ] `tools/emulator/`: fake IDAL server with fault injection; client
+- [x] `tools/emulator/`: fake IDAL server with fault injection; client
       tests against it
 - [ ] `tools/orca_probe.py` on top of the client
 - [ ] exit: 100 % `client/` coverage, mypy strict, one live read-only read

@@ -84,11 +84,20 @@ class TagDef:
             return () if self.tag is None else (self.tag,)
         return tuple(tag for tag in self.slot_tags if tag is not None)
 
+    def refs(self) -> tuple[TagRef, ...]:
+        """Return (definition, slot) for every tag of this entry."""
+        if self.slot_tags is None:
+            return () if self.tag is None else ((self, None),)
+        return tuple((self, slot) for slot in SLOTS if self.slot_tags[slot - 1])
+
     def options_for(self, slot: int | None = None) -> Mapping[int, str]:
         """Return the enum options, which may differ for one slot."""
         if slot is not None and slot in self.slot_options:
             return self.slot_options[slot]
         return self.options
+
+
+type TagRef = tuple[TagDef, int | None]
 
 
 @dataclass(frozen=True, slots=True)

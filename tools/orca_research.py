@@ -6,8 +6,8 @@ research/captures/, and the logout runs in a ``finally``. Any unexpected answer
 stops the session. protocol.md §7.5 (several sessions at once) is deliberately
 missing: it breaks the one-session rule of PLAN.md §2.2.
 
-Usage:
-  orca_research.py --host HOST session1
+Usage (from the repository root):
+  python -m tools.orca_research --host HOST session1
 """
 
 import argparse
@@ -24,8 +24,8 @@ import time
 from typing import Any
 from urllib.parse import quote
 
-import orca_probe as probe
-from orca_probe import Display, ProbeError, Record, Response
+from tools import orca_probe as probe
+from tools.orca_probe import Display, ProbeError, Record, Response
 
 FIXTURE = (
     probe.ROOT / "tests" / "fixtures" / "dumps" / "schema23_duo300solar_2026-10-31.json"

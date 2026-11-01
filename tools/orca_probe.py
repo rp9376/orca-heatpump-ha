@@ -5,9 +5,9 @@ PLAN.md §2.2. A lock file keeps two sessions from overlapping, and every
 session logs out in a ``finally``. Raw responses and a per-request log land in
 research/captures/ (gitignored).
 
-Usage:
-  orca_probe.py --host HOST console   save the display's static console files
-  orca_probe.py --host HOST dump      read all known tags in passes, then log out
+Usage (from the repository root):
+  python -m tools.orca_probe --host HOST console   save the static console files
+  python -m tools.orca_probe --host HOST dump      read all known tags, then log out
 """
 
 import argparse
