@@ -263,6 +263,11 @@
         "name": "Controller error"
       }
     },
+    "button": {
+      "alarm_reset": {
+        "name": "Reset alarms"
+      }
+    },
     "event": {
       "alarm_event": {
         "name": "Alarm",
@@ -700,6 +705,32 @@
       },
       "buffer_target": {
         "name": "Target temperature"
+      }
+    },
+    "switch": {
+      "system_enable": {
+        "name": "System"
+      },
+      "pv_function": {
+        "name": "PV function"
+      },
+      "screed_drying": {
+        "name": "Screed drying"
+      },
+      "anti_block_programme": {
+        "name": "Anti-blocking programme"
+      },
+      "additional_source_parallel": {
+        "name": "Additional source alongside heat pump"
+      },
+      "auto_heating_switch": {
+        "name": "Automatic heating switch"
+      },
+      "auto_cooling_switch": {
+        "name": "Automatic cooling switch"
+      },
+      "legionella_enable": {
+        "name": "Legionella protection"
       }
     }
   }

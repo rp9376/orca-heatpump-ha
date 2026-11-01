@@ -23,6 +23,11 @@
         "default": "mdi:heating-coil"
       }
     },
+    "button": {
+      "alarm_reset": {
+        "default": "mdi:alarm-light-off-outline"
+      }
+    },
     "event": {
       "alarm_event": {
         "default": "mdi:alarm-light-outline"
@@ -164,6 +169,32 @@
       },
       "solar_target": {
         "default": "mdi:solar-power"
+      }
+    },
+    "switch": {
+      "system_enable": {
+        "default": "mdi:power"
+      },
+      "pv_function": {
+        "default": "mdi:solar-power-variant"
+      },
+      "screed_drying": {
+        "default": "mdi:floor-plan"
+      },
+      "anti_block_programme": {
+        "default": "mdi:pump"
+      },
+      "additional_source_parallel": {
+        "default": "mdi:fire"
+      },
+      "auto_heating_switch": {
+        "default": "mdi:sun-snowflake-variant"
+      },
+      "auto_cooling_switch": {
+        "default": "mdi:sun-snowflake-variant"
+      },
+      "legionella_enable": {
+        "default": "mdi:bacteria-outline"
       }
     }
   }

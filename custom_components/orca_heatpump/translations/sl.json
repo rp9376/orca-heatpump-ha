@@ -263,6 +263,11 @@
         "name": "Napaka regulatorja"
       }
     },
+    "button": {
+      "alarm_reset": {
+        "name": "Ponastavi alarme"
+      }
+    },
     "event": {
       "alarm_event": {
         "name": "Alarm",
@@ -700,6 +705,32 @@
       },
       "buffer_target": {
         "name": "Želena temperatura"
+      }
+    },
+    "switch": {
+      "system_enable": {
+        "name": "Sistem"
+      },
+      "pv_function": {
+        "name": "Funkcija PV"
+      },
+      "screed_drying": {
+        "name": "Sušenje estrihov"
+      },
+      "anti_block_programme": {
+        "name": "Protiblokirni program"
+      },
+      "additional_source_parallel": {
+        "name": "Dodatni vir vzporedno s toplotno črpalko"
+      },
+      "auto_heating_switch": {
+        "name": "Samodejni vklop ogrevanja"
+      },
+      "auto_cooling_switch": {
+        "name": "Samodejni vklop hlajenja"
+      },
+      "legionella_enable": {
+        "name": "Zaščita pred legionelo"
       }
     }
   }
