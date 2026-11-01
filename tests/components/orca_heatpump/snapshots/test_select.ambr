@@ -1,0 +1,3396 @@
+# serializer version: 1
+# name: test_entities[duo][select.heat_pump_electric_heater-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'off',
+        'auto',
+        'manual',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.heat_pump_electric_heater',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Electric heater',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Electric heater',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'heater_mode',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_heater_mode',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[duo][select.heat_pump_electric_heater-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Electric heater',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'off',
+        'auto',
+        'manual',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.heat_pump_electric_heater',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'auto',
+  })
+# ---
+# name: test_entities[duo][select.heat_pump_electric_heater_alongside_heat_pump-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'off',
+        'one_stage',
+        'two_stages',
+        'three_stages',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.heat_pump_electric_heater_alongside_heat_pump',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Electric heater alongside heat pump',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Electric heater alongside heat pump',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'heater_parallel',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_heater_parallel',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[duo][select.heat_pump_electric_heater_alongside_heat_pump-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Electric heater alongside heat pump',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'off',
+        'one_stage',
+        'two_stages',
+        'three_stages',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.heat_pump_electric_heater_alongside_heat_pump',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_entities[duo][select.heat_pump_operating_programme-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'normal',
+        'holiday',
+        'party',
+        'eco',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': None,
+    'entity_id': 'select.heat_pump_operating_programme',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Operating programme',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Operating programme',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'operating_programme',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_operating_programme',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[duo][select.heat_pump_operating_programme-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Operating programme',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'normal',
+        'holiday',
+        'party',
+        'eco',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.heat_pump_operating_programme',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'normal',
+  })
+# ---
+# name: test_entities[duo][select.heat_pump_quick_room_mode-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'inactive',
+        'off',
+        'heating',
+        'cooling',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': None,
+    'entity_id': 'select.heat_pump_quick_room_mode',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Quick room mode',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Quick room mode',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'quick_room_mode',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_quick_room_mode',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[duo][select.heat_pump_quick_room_mode-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Quick room mode',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'inactive',
+        'off',
+        'heating',
+        'cooling',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.heat_pump_quick_room_mode',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'heating',
+  })
+# ---
+# name: test_entities[duo][select.heat_pump_quiet_operation-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'off',
+        'manual',
+        'timer',
+        'outdoor_temperature',
+        'outdoor_temperature_and_timer',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.heat_pump_quiet_operation',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Quiet operation',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Quiet operation',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'quiet_mode',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_quiet_mode',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[duo][select.heat_pump_quiet_operation-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Quiet operation',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'off',
+        'manual',
+        'timer',
+        'outdoor_temperature',
+        'outdoor_temperature_and_timer',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.heat_pump_quiet_operation',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_entities[duo][select.heat_pump_quiet_operation_timer_programme-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'all_day',
+        'programme_1',
+        'programme_2',
+        'programme_3',
+        'programme_4',
+        'programme_5',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.heat_pump_quiet_operation_timer_programme',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Quiet operation timer programme',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Quiet operation timer programme',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'quiet_timer_programme',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_quiet_timer_programme',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[duo][select.heat_pump_quiet_operation_timer_programme-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Quiet operation timer programme',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'all_day',
+        'programme_1',
+        'programme_2',
+        'programme_3',
+        'programme_4',
+        'programme_5',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.heat_pump_quiet_operation_timer_programme',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'all_day',
+  })
+# ---
+# name: test_entities[duo][select.hot_water_legionella_protection_cycle-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'weekly',
+        'every_two_weeks',
+        'monthly',
+        'every_two_months',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000_dhw')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.hot_water_legionella_protection_cycle',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Legionella protection cycle',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Legionella protection cycle',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'legionella_cycle',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_legionella_cycle',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[duo][select.hot_water_legionella_protection_cycle-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Hot water Legionella protection cycle',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'weekly',
+        'every_two_weeks',
+        'monthly',
+        'every_two_months',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.hot_water_legionella_protection_cycle',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'weekly',
+  })
+# ---
+# name: test_entities[duo][select.hot_water_legionella_protection_day-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'monday',
+        'tuesday',
+        'wednesday',
+        'thursday',
+        'friday',
+        'saturday',
+        'sunday',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000_dhw')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.hot_water_legionella_protection_day',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Legionella protection day',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Legionella protection day',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'legionella_day',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_legionella_day',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[duo][select.hot_water_legionella_protection_day-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Hot water Legionella protection day',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'monday',
+        'tuesday',
+        'wednesday',
+        'thursday',
+        'friday',
+        'saturday',
+        'sunday',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.hot_water_legionella_protection_day',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'sunday',
+  })
+# ---
+# name: test_entities[duo][select.hot_water_timer_programme-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'all_day',
+        'programme_1',
+        'programme_2',
+        'programme_3',
+        'programme_4',
+        'programme_5',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000_dhw')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.hot_water_timer_programme',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Timer programme',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Timer programme',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'dhw_timer_programme',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_dhw_timer_programme',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[duo][select.hot_water_timer_programme-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Hot water Timer programme',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'all_day',
+        'programme_1',
+        'programme_2',
+        'programme_3',
+        'programme_4',
+        'programme_5',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.hot_water_timer_programme',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'all_day',
+  })
+# ---
+# name: test_entities[duo][select.underfloor_heating_cooling_regulation-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'room',
+        'outdoor',
+        'room_and_outdoor',
+        'constant',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000_circuit1')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.underfloor_heating_cooling_regulation',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Cooling regulation',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Cooling regulation',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'cooling_regulation',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_circuit1_cooling_regulation',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[duo][select.underfloor_heating_cooling_regulation-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Underfloor heating Cooling regulation',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'room',
+        'outdoor',
+        'room_and_outdoor',
+        'constant',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.underfloor_heating_cooling_regulation',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'room_and_outdoor',
+  })
+# ---
+# name: test_entities[duo][select.underfloor_heating_heating_regulation-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'room',
+        'outdoor',
+        'room_and_outdoor',
+        'constant',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000_circuit1')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.underfloor_heating_heating_regulation',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Heating regulation',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Heating regulation',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'heating_regulation',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_circuit1_heating_regulation',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[duo][select.underfloor_heating_heating_regulation-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Underfloor heating Heating regulation',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'room',
+        'outdoor',
+        'room_and_outdoor',
+        'constant',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.underfloor_heating_heating_regulation',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'room_and_outdoor',
+  })
+# ---
+# name: test_entities[duo][select.underfloor_heating_night_setback-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'off',
+        'lower_temperature',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000_circuit1')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.underfloor_heating_night_setback',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Night setback',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Night setback',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'low_regime_action',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_circuit1_low_regime_action',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[duo][select.underfloor_heating_night_setback-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Underfloor heating Night setback',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'off',
+        'lower_temperature',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.underfloor_heating_night_setback',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'lower_temperature',
+  })
+# ---
+# name: test_entities[duo][select.underfloor_heating_operating_mode-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'heating',
+        'cooling',
+        'auto_heat_cool',
+        'input_id2',
+        'manual',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000_circuit1')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.underfloor_heating_operating_mode',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Operating mode',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Operating mode',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'circuit_mode',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_circuit1_circuit_mode',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[duo][select.underfloor_heating_operating_mode-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Underfloor heating Operating mode',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'heating',
+        'cooling',
+        'auto_heat_cool',
+        'input_id2',
+        'manual',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.underfloor_heating_operating_mode',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'heating',
+  })
+# ---
+# name: test_entities[duo][select.underfloor_heating_timer_programme-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'all_day',
+        'programme_1',
+        'programme_2',
+        'programme_3',
+        'programme_4',
+        'programme_5',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000_circuit1')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.underfloor_heating_timer_programme',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Timer programme',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Timer programme',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'timer_programme',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_circuit1_timer_programme',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[duo][select.underfloor_heating_timer_programme-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Underfloor heating Timer programme',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'all_day',
+        'programme_1',
+        'programme_2',
+        'programme_3',
+        'programme_4',
+        'programme_5',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.underfloor_heating_timer_programme',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'all_day',
+  })
+# ---
+# name: test_entities[mono][select.buffer_tank_timer_programme-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'all_day',
+        'programme_1',
+        'programme_2',
+        'programme_3',
+        'programme_4',
+        'programme_5',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000_buffer')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.buffer_tank_timer_programme',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Timer programme',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Timer programme',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'buffer_timer_programme',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_buffer_timer_programme',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[mono][select.buffer_tank_timer_programme-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Buffer tank Timer programme',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'all_day',
+        'programme_1',
+        'programme_2',
+        'programme_3',
+        'programme_4',
+        'programme_5',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.buffer_tank_timer_programme',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'all_day',
+  })
+# ---
+# name: test_entities[mono][select.heat_pump_electric_heater-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'off',
+        'auto',
+        'manual',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.heat_pump_electric_heater',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Electric heater',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Electric heater',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'heater_mode',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_heater_mode',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[mono][select.heat_pump_electric_heater-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Electric heater',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'off',
+        'auto',
+        'manual',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.heat_pump_electric_heater',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_entities[mono][select.heat_pump_electric_heater_alongside_heat_pump-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'off',
+        'one_stage',
+        'two_stages',
+        'three_stages',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.heat_pump_electric_heater_alongside_heat_pump',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Electric heater alongside heat pump',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Electric heater alongside heat pump',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'heater_parallel',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_heater_parallel',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[mono][select.heat_pump_electric_heater_alongside_heat_pump-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Electric heater alongside heat pump',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'off',
+        'one_stage',
+        'two_stages',
+        'three_stages',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.heat_pump_electric_heater_alongside_heat_pump',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_entities[mono][select.heat_pump_operating_programme-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'normal',
+        'holiday',
+        'party',
+        'eco',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': None,
+    'entity_id': 'select.heat_pump_operating_programme',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Operating programme',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Operating programme',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'operating_programme',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_operating_programme',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[mono][select.heat_pump_operating_programme-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Operating programme',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'normal',
+        'holiday',
+        'party',
+        'eco',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.heat_pump_operating_programme',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'normal',
+  })
+# ---
+# name: test_entities[mono][select.heat_pump_quick_room_mode-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'inactive',
+        'off',
+        'heating',
+        'cooling',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': None,
+    'entity_id': 'select.heat_pump_quick_room_mode',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Quick room mode',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Quick room mode',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'quick_room_mode',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_quick_room_mode',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[mono][select.heat_pump_quick_room_mode-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Quick room mode',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'inactive',
+        'off',
+        'heating',
+        'cooling',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.heat_pump_quick_room_mode',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'inactive',
+  })
+# ---
+# name: test_entities[mono][select.heat_pump_quiet_operation-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'off',
+        'manual',
+        'timer',
+        'outdoor_temperature',
+        'outdoor_temperature_and_timer',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.heat_pump_quiet_operation',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Quiet operation',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Quiet operation',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'quiet_mode',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_quiet_mode',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[mono][select.heat_pump_quiet_operation-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Quiet operation',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'off',
+        'manual',
+        'timer',
+        'outdoor_temperature',
+        'outdoor_temperature_and_timer',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.heat_pump_quiet_operation',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'timer',
+  })
+# ---
+# name: test_entities[mono][select.heat_pump_quiet_operation_timer_programme-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'all_day',
+        'programme_1',
+        'programme_2',
+        'programme_3',
+        'programme_4',
+        'programme_5',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.heat_pump_quiet_operation_timer_programme',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Quiet operation timer programme',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Quiet operation timer programme',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'quiet_timer_programme',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_quiet_timer_programme',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[mono][select.heat_pump_quiet_operation_timer_programme-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Quiet operation timer programme',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'all_day',
+        'programme_1',
+        'programme_2',
+        'programme_3',
+        'programme_4',
+        'programme_5',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.heat_pump_quiet_operation_timer_programme',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'programme_2',
+  })
+# ---
+# name: test_entities[mono][select.hot_water_legionella_protection_cycle-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'weekly',
+        'every_two_weeks',
+        'monthly',
+        'every_two_months',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000_dhw')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.hot_water_legionella_protection_cycle',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Legionella protection cycle',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Legionella protection cycle',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'legionella_cycle',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_legionella_cycle',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[mono][select.hot_water_legionella_protection_cycle-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Hot water Legionella protection cycle',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'weekly',
+        'every_two_weeks',
+        'monthly',
+        'every_two_months',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.hot_water_legionella_protection_cycle',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'every_two_months',
+  })
+# ---
+# name: test_entities[mono][select.hot_water_legionella_protection_day-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'monday',
+        'tuesday',
+        'wednesday',
+        'thursday',
+        'friday',
+        'saturday',
+        'sunday',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000_dhw')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.hot_water_legionella_protection_day',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Legionella protection day',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Legionella protection day',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'legionella_day',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_legionella_day',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[mono][select.hot_water_legionella_protection_day-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Hot water Legionella protection day',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'monday',
+        'tuesday',
+        'wednesday',
+        'thursday',
+        'friday',
+        'saturday',
+        'sunday',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.hot_water_legionella_protection_day',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'sunday',
+  })
+# ---
+# name: test_entities[mono][select.hot_water_timer_programme-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'all_day',
+        'programme_1',
+        'programme_2',
+        'programme_3',
+        'programme_4',
+        'programme_5',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000_dhw')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.hot_water_timer_programme',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Timer programme',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Timer programme',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'dhw_timer_programme',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_dhw_timer_programme',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[mono][select.hot_water_timer_programme-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Hot water Timer programme',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'all_day',
+        'programme_1',
+        'programme_2',
+        'programme_3',
+        'programme_4',
+        'programme_5',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.hot_water_timer_programme',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'all_day',
+  })
+# ---
+# name: test_entities[mono][select.radiators_cooling_regulation-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'room',
+        'outdoor',
+        'room_and_outdoor',
+        'constant',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000_circuit1')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.radiators_cooling_regulation',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Cooling regulation',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Cooling regulation',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'cooling_regulation',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_circuit1_cooling_regulation',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[mono][select.radiators_cooling_regulation-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Radiators Cooling regulation',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'room',
+        'outdoor',
+        'room_and_outdoor',
+        'constant',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.radiators_cooling_regulation',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'room',
+  })
+# ---
+# name: test_entities[mono][select.radiators_heating_regulation-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'room',
+        'outdoor',
+        'room_and_outdoor',
+        'constant',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000_circuit1')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.radiators_heating_regulation',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Heating regulation',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Heating regulation',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'heating_regulation',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_circuit1_heating_regulation',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[mono][select.radiators_heating_regulation-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Radiators Heating regulation',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'room',
+        'outdoor',
+        'room_and_outdoor',
+        'constant',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.radiators_heating_regulation',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'room',
+  })
+# ---
+# name: test_entities[mono][select.radiators_night_setback-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'off',
+        'lower_temperature',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000_circuit1')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.radiators_night_setback',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Night setback',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Night setback',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'low_regime_action',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_circuit1_low_regime_action',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[mono][select.radiators_night_setback-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Radiators Night setback',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'off',
+        'lower_temperature',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.radiators_night_setback',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_entities[mono][select.radiators_operating_mode-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'heating',
+        'cooling',
+        'auto_heat_cool',
+        'input_id2',
+        'manual',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000_circuit1')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.radiators_operating_mode',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Operating mode',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Operating mode',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'circuit_mode',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_circuit1_circuit_mode',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[mono][select.radiators_operating_mode-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Radiators Operating mode',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'heating',
+        'cooling',
+        'auto_heat_cool',
+        'input_id2',
+        'manual',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.radiators_operating_mode',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'heating',
+  })
+# ---
+# name: test_entities[mono][select.radiators_timer_programme-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'all_day',
+        'programme_1',
+        'programme_2',
+        'programme_3',
+        'programme_4',
+        'programme_5',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000_circuit1')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.radiators_timer_programme',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Timer programme',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Timer programme',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'timer_programme',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_circuit1_timer_programme',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[mono][select.radiators_timer_programme-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Radiators Timer programme',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'all_day',
+        'programme_1',
+        'programme_2',
+        'programme_3',
+        'programme_4',
+        'programme_5',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.radiators_timer_programme',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'all_day',
+  })
+# ---
+# name: test_entities[mono][select.underfloor_heating_cooling_regulation-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'room',
+        'outdoor',
+        'room_and_outdoor',
+        'constant',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000_circuit2')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.underfloor_heating_cooling_regulation',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Cooling regulation',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Cooling regulation',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'cooling_regulation',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_circuit2_cooling_regulation',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[mono][select.underfloor_heating_cooling_regulation-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Underfloor heating Cooling regulation',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'room',
+        'outdoor',
+        'room_and_outdoor',
+        'constant',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.underfloor_heating_cooling_regulation',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'room',
+  })
+# ---
+# name: test_entities[mono][select.underfloor_heating_heating_regulation-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'room',
+        'outdoor',
+        'room_and_outdoor',
+        'constant',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000_circuit2')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.underfloor_heating_heating_regulation',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Heating regulation',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Heating regulation',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'heating_regulation',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_circuit2_heating_regulation',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[mono][select.underfloor_heating_heating_regulation-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Underfloor heating Heating regulation',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'room',
+        'outdoor',
+        'room_and_outdoor',
+        'constant',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.underfloor_heating_heating_regulation',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'room',
+  })
+# ---
+# name: test_entities[mono][select.underfloor_heating_night_setback-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'off',
+        'lower_temperature',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000_circuit2')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.underfloor_heating_night_setback',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Night setback',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Night setback',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'low_regime_action',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_circuit2_low_regime_action',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[mono][select.underfloor_heating_night_setback-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Underfloor heating Night setback',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'off',
+        'lower_temperature',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.underfloor_heating_night_setback',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_entities[mono][select.underfloor_heating_operating_mode-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'heating',
+        'cooling',
+        'auto_heat_cool',
+        'input_id2',
+        'manual',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000_circuit2')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.underfloor_heating_operating_mode',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Operating mode',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Operating mode',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'circuit_mode',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_circuit2_circuit_mode',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[mono][select.underfloor_heating_operating_mode-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Underfloor heating Operating mode',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'heating',
+        'cooling',
+        'auto_heat_cool',
+        'input_id2',
+        'manual',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.underfloor_heating_operating_mode',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'heating',
+  })
+# ---
+# name: test_entities[mono][select.underfloor_heating_timer_programme-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'all_day',
+        'programme_1',
+        'programme_2',
+        'programme_3',
+        'programme_4',
+        'programme_5',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000_circuit2')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.underfloor_heating_timer_programme',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Timer programme',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Timer programme',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'timer_programme',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_circuit2_timer_programme',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[mono][select.underfloor_heating_timer_programme-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Underfloor heating Timer programme',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'all_day',
+        'programme_1',
+        'programme_2',
+        'programme_3',
+        'programme_4',
+        'programme_5',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.underfloor_heating_timer_programme',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'all_day',
+  })
+# ---
+# name: test_entities[ours][select.heat_pump_electric_heater-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'off',
+        'auto',
+        'manual',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.heat_pump_electric_heater',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Electric heater',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Electric heater',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'heater_mode',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_heater_mode',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[ours][select.heat_pump_electric_heater-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Electric heater',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'off',
+        'auto',
+        'manual',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.heat_pump_electric_heater',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_entities[ours][select.heat_pump_electric_heater_alongside_heat_pump-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'off',
+        'one_stage',
+        'two_stages',
+        'three_stages',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.heat_pump_electric_heater_alongside_heat_pump',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Electric heater alongside heat pump',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Electric heater alongside heat pump',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'heater_parallel',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_heater_parallel',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[ours][select.heat_pump_electric_heater_alongside_heat_pump-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Electric heater alongside heat pump',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'off',
+        'one_stage',
+        'two_stages',
+        'three_stages',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.heat_pump_electric_heater_alongside_heat_pump',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_entities[ours][select.heat_pump_operating_programme-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'normal',
+        'holiday',
+        'party',
+        'eco',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': None,
+    'entity_id': 'select.heat_pump_operating_programme',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Operating programme',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Operating programme',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'operating_programme',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_operating_programme',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[ours][select.heat_pump_operating_programme-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Operating programme',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'normal',
+        'holiday',
+        'party',
+        'eco',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.heat_pump_operating_programme',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'normal',
+  })
+# ---
+# name: test_entities[ours][select.heat_pump_quick_room_mode-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'inactive',
+        'off',
+        'heating',
+        'cooling',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': None,
+    'entity_id': 'select.heat_pump_quick_room_mode',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Quick room mode',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Quick room mode',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'quick_room_mode',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_quick_room_mode',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[ours][select.heat_pump_quick_room_mode-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Quick room mode',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'inactive',
+        'off',
+        'heating',
+        'cooling',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.heat_pump_quick_room_mode',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'inactive',
+  })
+# ---
+# name: test_entities[ours][select.heat_pump_quiet_operation-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'off',
+        'manual',
+        'timer',
+        'outdoor_temperature',
+        'outdoor_temperature_and_timer',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.heat_pump_quiet_operation',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Quiet operation',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Quiet operation',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'quiet_mode',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_quiet_mode',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[ours][select.heat_pump_quiet_operation-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Quiet operation',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'off',
+        'manual',
+        'timer',
+        'outdoor_temperature',
+        'outdoor_temperature_and_timer',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.heat_pump_quiet_operation',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'outdoor_temperature',
+  })
+# ---
+# name: test_entities[ours][select.heat_pump_quiet_operation_timer_programme-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'all_day',
+        'programme_1',
+        'programme_2',
+        'programme_3',
+        'programme_4',
+        'programme_5',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.heat_pump_quiet_operation_timer_programme',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Quiet operation timer programme',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Quiet operation timer programme',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'quiet_timer_programme',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_quiet_timer_programme',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[ours][select.heat_pump_quiet_operation_timer_programme-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Quiet operation timer programme',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'all_day',
+        'programme_1',
+        'programme_2',
+        'programme_3',
+        'programme_4',
+        'programme_5',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.heat_pump_quiet_operation_timer_programme',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'all_day',
+  })
+# ---
+# name: test_entities[ours][select.hot_water_legionella_protection_cycle-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'weekly',
+        'every_two_weeks',
+        'monthly',
+        'every_two_months',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000_dhw')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.hot_water_legionella_protection_cycle',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Legionella protection cycle',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Legionella protection cycle',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'legionella_cycle',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_legionella_cycle',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[ours][select.hot_water_legionella_protection_cycle-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Hot water Legionella protection cycle',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'weekly',
+        'every_two_weeks',
+        'monthly',
+        'every_two_months',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.hot_water_legionella_protection_cycle',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'weekly',
+  })
+# ---
+# name: test_entities[ours][select.hot_water_legionella_protection_day-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'monday',
+        'tuesday',
+        'wednesday',
+        'thursday',
+        'friday',
+        'saturday',
+        'sunday',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000_dhw')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.hot_water_legionella_protection_day',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Legionella protection day',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Legionella protection day',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'legionella_day',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_legionella_day',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[ours][select.hot_water_legionella_protection_day-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Hot water Legionella protection day',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'monday',
+        'tuesday',
+        'wednesday',
+        'thursday',
+        'friday',
+        'saturday',
+        'sunday',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.hot_water_legionella_protection_day',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'sunday',
+  })
+# ---
+# name: test_entities[ours][select.hot_water_timer_programme-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'all_day',
+        'programme_1',
+        'programme_2',
+        'programme_3',
+        'programme_4',
+        'programme_5',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000_dhw')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.hot_water_timer_programme',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Timer programme',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Timer programme',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'dhw_timer_programme',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_dhw_timer_programme',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[ours][select.hot_water_timer_programme-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Hot water Timer programme',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'all_day',
+        'programme_1',
+        'programme_2',
+        'programme_3',
+        'programme_4',
+        'programme_5',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.hot_water_timer_programme',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'programme_4',
+  })
+# ---
+# name: test_entities[ours][select.radiators_cooling_regulation-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'room',
+        'outdoor',
+        'room_and_outdoor',
+        'constant',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000_circuit2')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.radiators_cooling_regulation',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Cooling regulation',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Cooling regulation',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'cooling_regulation',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_circuit2_cooling_regulation',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[ours][select.radiators_cooling_regulation-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Radiators Cooling regulation',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'room',
+        'outdoor',
+        'room_and_outdoor',
+        'constant',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.radiators_cooling_regulation',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'room_and_outdoor',
+  })
+# ---
+# name: test_entities[ours][select.radiators_heating_regulation-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'room',
+        'outdoor',
+        'room_and_outdoor',
+        'constant',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000_circuit2')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.radiators_heating_regulation',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Heating regulation',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Heating regulation',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'heating_regulation',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_circuit2_heating_regulation',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[ours][select.radiators_heating_regulation-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Radiators Heating regulation',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'room',
+        'outdoor',
+        'room_and_outdoor',
+        'constant',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.radiators_heating_regulation',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'constant',
+  })
+# ---
+# name: test_entities[ours][select.radiators_night_setback-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'off',
+        'lower_temperature',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000_circuit2')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.radiators_night_setback',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Night setback',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Night setback',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'low_regime_action',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_circuit2_low_regime_action',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[ours][select.radiators_night_setback-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Radiators Night setback',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'off',
+        'lower_temperature',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.radiators_night_setback',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_entities[ours][select.radiators_operating_mode-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'heating',
+        'cooling',
+        'auto_heat_cool',
+        'input_id2',
+        'manual',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000_circuit2')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.radiators_operating_mode',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Operating mode',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Operating mode',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'circuit_mode',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_circuit2_circuit_mode',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[ours][select.radiators_operating_mode-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Radiators Operating mode',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'heating',
+        'cooling',
+        'auto_heat_cool',
+        'input_id2',
+        'manual',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.radiators_operating_mode',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'heating',
+  })
+# ---
+# name: test_entities[ours][select.radiators_timer_programme-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'all_day',
+        'programme_1',
+        'programme_2',
+        'programme_3',
+        'programme_4',
+        'programme_5',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000_circuit2')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.radiators_timer_programme',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Timer programme',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Timer programme',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'timer_programme',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_circuit2_timer_programme',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[ours][select.radiators_timer_programme-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Radiators Timer programme',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'all_day',
+        'programme_1',
+        'programme_2',
+        'programme_3',
+        'programme_4',
+        'programme_5',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.radiators_timer_programme',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'programme_5',
+  })
+# ---
+# name: test_entities[ours][select.underfloor_heating_cooling_regulation-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'room',
+        'outdoor',
+        'room_and_outdoor',
+        'constant',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000_circuit1')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.underfloor_heating_cooling_regulation',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Cooling regulation',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Cooling regulation',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'cooling_regulation',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_circuit1_cooling_regulation',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[ours][select.underfloor_heating_cooling_regulation-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Underfloor heating Cooling regulation',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'room',
+        'outdoor',
+        'room_and_outdoor',
+        'constant',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.underfloor_heating_cooling_regulation',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'constant',
+  })
+# ---
+# name: test_entities[ours][select.underfloor_heating_heating_regulation-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'room',
+        'outdoor',
+        'room_and_outdoor',
+        'constant',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000_circuit1')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.underfloor_heating_heating_regulation',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Heating regulation',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Heating regulation',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'heating_regulation',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_circuit1_heating_regulation',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[ours][select.underfloor_heating_heating_regulation-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Underfloor heating Heating regulation',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'room',
+        'outdoor',
+        'room_and_outdoor',
+        'constant',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.underfloor_heating_heating_regulation',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'constant',
+  })
+# ---
+# name: test_entities[ours][select.underfloor_heating_night_setback-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'off',
+        'lower_temperature',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000_circuit1')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.underfloor_heating_night_setback',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Night setback',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Night setback',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'low_regime_action',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_circuit1_low_regime_action',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[ours][select.underfloor_heating_night_setback-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Underfloor heating Night setback',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'off',
+        'lower_temperature',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.underfloor_heating_night_setback',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_entities[ours][select.underfloor_heating_operating_mode-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'heating',
+        'cooling',
+        'auto_heat_cool',
+        'input_id2',
+        'manual',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000_circuit1')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.underfloor_heating_operating_mode',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Operating mode',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Operating mode',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'circuit_mode',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_circuit1_circuit_mode',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[ours][select.underfloor_heating_operating_mode-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Underfloor heating Operating mode',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'heating',
+        'cooling',
+        'auto_heat_cool',
+        'input_id2',
+        'manual',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.underfloor_heating_operating_mode',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'heating',
+  })
+# ---
+# name: test_entities[ours][select.underfloor_heating_timer_programme-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'all_day',
+        'programme_1',
+        'programme_2',
+        'programme_3',
+        'programme_4',
+        'programme_5',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000_circuit1')]>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.underfloor_heating_timer_programme',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Timer programme',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Timer programme',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'timer_programme',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_circuit1_timer_programme',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[ours][select.underfloor_heating_timer_programme-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Underfloor heating Timer programme',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'all_day',
+        'programme_1',
+        'programme_2',
+        'programme_3',
+        'programme_4',
+        'programme_5',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.underfloor_heating_timer_programme',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'programme_2',
+  })
+# ---

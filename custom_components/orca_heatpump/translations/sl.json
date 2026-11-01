@@ -407,6 +407,153 @@
         "name": "Diferenca vklopa"
       }
     },
+    "select": {
+      "operating_programme": {
+        "name": "Program delovanja",
+        "state": {
+          "normal": "Normalno",
+          "holiday": "Počitnice",
+          "party": "Zabava",
+          "eco": "Varčno"
+        }
+      },
+      "quick_room_mode": {
+        "name": "Hitri režim",
+        "state": {
+          "inactive": "Neaktivno",
+          "off": "Izklop",
+          "heating": "Ogrevanje",
+          "cooling": "Hlajenje"
+        }
+      },
+      "quiet_mode": {
+        "name": "Tišje delovanje",
+        "state": {
+          "off": "Izklop",
+          "manual": "Ročno",
+          "timer": "Časovni program",
+          "outdoor_temperature": "Zunanja temperatura",
+          "outdoor_temperature_and_timer": "Zunanja temperatura in časovni program"
+        }
+      },
+      "quiet_timer_programme": {
+        "name": "Časovni program tišjega delovanja",
+        "state": {
+          "all_day": "Ves dan",
+          "programme_1": "Program 1",
+          "programme_2": "Program 2",
+          "programme_3": "Program 3",
+          "programme_4": "Program 4",
+          "programme_5": "Program 5"
+        }
+      },
+      "heater_mode": {
+        "name": "Električni grelec",
+        "state": {
+          "off": "Izklop",
+          "auto": "Samodejno",
+          "manual": "Ročno"
+        }
+      },
+      "heater_parallel": {
+        "name": "Električni grelec vzporedno s toplotno črpalko",
+        "state": {
+          "off": "Izklop",
+          "one_stage": "1 stopnja",
+          "two_stages": "2 stopnji",
+          "three_stages": "3 stopnje"
+        }
+      },
+      "circuit_mode": {
+        "name": "Način delovanja",
+        "state": {
+          "heating": "Ogrevanje",
+          "cooling": "Hlajenje",
+          "auto_heat_cool": "Samodejno ogrevanje/hlajenje",
+          "input_id2": "Vhod ID2",
+          "manual": "Ročno"
+        }
+      },
+      "heating_regulation": {
+        "name": "Regulacija ogrevanja",
+        "state": {
+          "room": "Sobna temperatura",
+          "outdoor": "Zunanja temperatura",
+          "room_and_outdoor": "Sobna in zunanja temperatura",
+          "constant": "Konstantna temperatura"
+        }
+      },
+      "cooling_regulation": {
+        "name": "Regulacija hlajenja",
+        "state": {
+          "room": "Sobna temperatura",
+          "outdoor": "Zunanja temperatura",
+          "room_and_outdoor": "Sobna in zunanja temperatura",
+          "constant": "Konstantna temperatura"
+        }
+      },
+      "timer_programme": {
+        "name": "Časovni program",
+        "state": {
+          "all_day": "Ves dan",
+          "programme_1": "Program 1",
+          "programme_2": "Program 2",
+          "programme_3": "Program 3",
+          "programme_4": "Program 4",
+          "programme_5": "Program 5"
+        }
+      },
+      "low_regime_action": {
+        "name": "Nočni režim",
+        "state": {
+          "off": "Izklop",
+          "lower_temperature": "Nižja temperatura"
+        }
+      },
+      "dhw_timer_programme": {
+        "name": "Časovni program",
+        "state": {
+          "all_day": "Ves dan",
+          "programme_1": "Program 1",
+          "programme_2": "Program 2",
+          "programme_3": "Program 3",
+          "programme_4": "Program 4",
+          "programme_5": "Program 5"
+        }
+      },
+      "legionella_day": {
+        "name": "Dan zaščite pred legionelo",
+        "state": {
+          "monday": "Ponedeljek",
+          "tuesday": "Torek",
+          "wednesday": "Sreda",
+          "thursday": "Četrtek",
+          "friday": "Petek",
+          "saturday": "Sobota",
+          "sunday": "Nedelja"
+        }
+      },
+      "legionella_cycle": {
+        "name": "Cikel zaščite pred legionelo",
+        "state": {
+          "weekly": "Tedensko",
+          "every_two_weeks": "Vsaka dva tedna",
+          "monthly": "Mesečno",
+          "every_two_months": "Vsaka dva meseca"
+        }
+      },
+      "buffer_timer_programme": {
+        "name": "Časovni program",
+        "state": {
+          "all_day": "Ves dan",
+          "programme_1": "Program 1",
+          "programme_2": "Program 2",
+          "programme_3": "Program 3",
+          "programme_4": "Program 4",
+          "programme_5": "Program 5"
+        }
+      }
+    },
     "sensor": {
       "outdoor_temperature": {
         "name": "Zunanja temperatura"

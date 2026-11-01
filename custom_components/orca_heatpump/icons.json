@@ -60,6 +60,53 @@
         "default": "mdi:clock-outline"
       }
     },
+    "select": {
+      "operating_programme": {
+        "default": "mdi:calendar-star"
+      },
+      "quick_room_mode": {
+        "default": "mdi:home-thermometer"
+      },
+      "quiet_mode": {
+        "default": "mdi:volume-low"
+      },
+      "quiet_timer_programme": {
+        "default": "mdi:timer-cog-outline"
+      },
+      "heater_mode": {
+        "default": "mdi:heating-coil"
+      },
+      "heater_parallel": {
+        "default": "mdi:heating-coil"
+      },
+      "circuit_mode": {
+        "default": "mdi:sun-snowflake-variant"
+      },
+      "heating_regulation": {
+        "default": "mdi:tune-variant"
+      },
+      "cooling_regulation": {
+        "default": "mdi:tune-variant"
+      },
+      "timer_programme": {
+        "default": "mdi:timer-cog-outline"
+      },
+      "low_regime_action": {
+        "default": "mdi:weather-night"
+      },
+      "dhw_timer_programme": {
+        "default": "mdi:timer-cog-outline"
+      },
+      "legionella_day": {
+        "default": "mdi:calendar-week"
+      },
+      "legionella_cycle": {
+        "default": "mdi:calendar-sync"
+      },
+      "buffer_timer_programme": {
+        "default": "mdi:timer-cog-outline"
+      }
+    },
     "sensor": {
       "outdoor_unit_power": {
         "default": "mdi:gauge"

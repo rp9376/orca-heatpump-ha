@@ -407,6 +407,153 @@
         "name": "Switch-on difference"
       }
     },
+    "select": {
+      "operating_programme": {
+        "name": "Operating programme",
+        "state": {
+          "normal": "Normal",
+          "holiday": "Holiday",
+          "party": "Party",
+          "eco": "Eco"
+        }
+      },
+      "quick_room_mode": {
+        "name": "Quick room mode",
+        "state": {
+          "inactive": "Inactive",
+          "off": "Off",
+          "heating": "Heating",
+          "cooling": "Cooling"
+        }
+      },
+      "quiet_mode": {
+        "name": "Quiet operation",
+        "state": {
+          "off": "Off",
+          "manual": "Manual",
+          "timer": "Timer",
+          "outdoor_temperature": "Outdoor temperature",
+          "outdoor_temperature_and_timer": "Outdoor temperature and timer"
+        }
+      },
+      "quiet_timer_programme": {
+        "name": "Quiet operation timer programme",
+        "state": {
+          "all_day": "All day",
+          "programme_1": "Programme 1",
+          "programme_2": "Programme 2",
+          "programme_3": "Programme 3",
+          "programme_4": "Programme 4",
+          "programme_5": "Programme 5"
+        }
+      },
+      "heater_mode": {
+        "name": "Electric heater",
+        "state": {
+          "off": "Off",
+          "auto": "Auto",
+          "manual": "Manual"
+        }
+      },
+      "heater_parallel": {
+        "name": "Electric heater alongside heat pump",
+        "state": {
+          "off": "Off",
+          "one_stage": "1 stage",
+          "two_stages": "2 stages",
+          "three_stages": "3 stages"
+        }
+      },
+      "circuit_mode": {
+        "name": "Operating mode",
+        "state": {
+          "heating": "Heating",
+          "cooling": "Cooling",
+          "auto_heat_cool": "Automatic heating/cooling",
+          "input_id2": "Input ID2",
+          "manual": "Manual"
+        }
+      },
+      "heating_regulation": {
+        "name": "Heating regulation",
+        "state": {
+          "room": "Room temperature",
+          "outdoor": "Outdoor temperature",
+          "room_and_outdoor": "Room and outdoor temperature",
+          "constant": "Constant temperature"
+        }
+      },
+      "cooling_regulation": {
+        "name": "Cooling regulation",
+        "state": {
+          "room": "Room temperature",
+          "outdoor": "Outdoor temperature",
+          "room_and_outdoor": "Room and outdoor temperature",
+          "constant": "Constant temperature"
+        }
+      },
+      "timer_programme": {
+        "name": "Timer programme",
+        "state": {
+          "all_day": "All day",
+          "programme_1": "Programme 1",
+          "programme_2": "Programme 2",
+          "programme_3": "Programme 3",
+          "programme_4": "Programme 4",
+          "programme_5": "Programme 5"
+        }
+      },
+      "low_regime_action": {
+        "name": "Night setback",
+        "state": {
+          "off": "Off",
+          "lower_temperature": "Lower temperature"
+        }
+      },
+      "dhw_timer_programme": {
+        "name": "Timer programme",
+        "state": {
+          "all_day": "All day",
+          "programme_1": "Programme 1",
+          "programme_2": "Programme 2",
+          "programme_3": "Programme 3",
+          "programme_4": "Programme 4",
+          "programme_5": "Programme 5"
+        }
+      },
+      "legionella_day": {
+        "name": "Legionella protection day",
+        "state": {
+          "monday": "Monday",
+          "tuesday": "Tuesday",
+          "wednesday": "Wednesday",
+          "thursday": "Thursday",
+          "friday": "Friday",
+          "saturday": "Saturday",
+          "sunday": "Sunday"
+        }
+      },
+      "legionella_cycle": {
+        "name": "Legionella protection cycle",
+        "state": {
+          "weekly": "Weekly",
+          "every_two_weeks": "Every two weeks",
+          "monthly": "Monthly",
+          "every_two_months": "Every two months"
+        }
+      },
+      "buffer_timer_programme": {
+        "name": "Timer programme",
+        "state": {
+          "all_day": "All day",
+          "programme_1": "Programme 1",
+          "programme_2": "Programme 2",
+          "programme_3": "Programme 3",
+          "programme_4": "Programme 4",
+          "programme_5": "Programme 5"
+        }
+      }
+    },
     "sensor": {
       "outdoor_temperature": {
         "name": "Outdoor temperature"
