@@ -36,6 +36,7 @@ pump. `E_TOO_MANY_USERS` was never returned.
 | 11-01 00:13–00:36 | S3: session lifetime | 1 | 14 | idle timeout 2–3 min |
 | 11-01 09:35 | Tag definitions (`orca_research.py meta`) | 1 | 5 | 1,189 definitions |
 | 11-01 09:36 | Snapshot of all readable tags | 1 | 7 | heat pump heating, circuit 1 timer on |
+| 11-01 10:28 | Phase 2 exit: catalog read through `OrcaClient` (`orca_probe.py read`, read-only session) | 1 | 6 | identity, topology #23, 189 tags; only explained gaps (4 newer-firmware alarm tags, 5 unplugged sensors) |
 
 The R14 stops followed the rule "stop at the first unexpected error". Both
 new codes plainly mean "not a file" / "no such file", the display stayed

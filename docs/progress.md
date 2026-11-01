@@ -1,7 +1,7 @@
 # Progress
 
-**Phase 2 (client package and emulator) in progress.** CP1 passed on
-2026-11-01.
+**Phase 3 (integration core) in progress.** Phase 2 done on 2026-11-01;
+CP1 passed the same day.
 
 ## CP1 outcome (user, 2026-11-01)
 
@@ -43,8 +43,8 @@ coverage, tests in `tests/client/`. Steps (tick when committed):
       idempotent logout, identity, topology)
 - [x] `tools/emulator/`: fake IDAL server with fault injection; client
       tests against it
-- [ ] `tools/orca_probe.py` on top of the client
-- [ ] exit: 100 % `client/` coverage, mypy strict, one live read-only read
+- [x] `tools/orca_probe.py` on top of the client
+- [x] exit: 100 % `client/` coverage, mypy strict, one live read-only read
       of our pump through the client
 
 Done so far: 125 catalog entries (generated once from `catalog_draft.md` and
@@ -53,6 +53,13 @@ fixtures for the duo (#3) and mono (#7) pumps, 814 tests, 100 % coverage.
 Found while testing: `2_Shema` is used as a number (the app models it as a
 list), and the mixing valve position sits in an integer register but is
 shown ×10 by the app; both are named exceptions in `test_catalog.py`.
+
+**Phase 2 exit (2026-11-01):** 841 tests, `client/` coverage 100 %, mypy
+strict clean. Live read of our pump through `OrcaClient` (one read-only
+session, logged out): identity "61 (2016-12-12)", Mitsubishi, topology #23
+as built, all 189 catalog tags; the only readings without a value are the 4
+newer-firmware alarm tags and 5 unplugged sensors. No conversion failures,
+no unknown enum values, nothing stale.
 
 Design notes: the token is sent as an explicit `Cookie` header (HA's shared
 session has a cookie jar); errors arrive with HTTP 500 and a `#E_…` body;
