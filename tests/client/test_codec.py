@@ -4,7 +4,12 @@ from hypothesis import given, strategies as st
 import pytest
 
 from custom_components.orca_heatpump.client import catalog
-from custom_components.orca_heatpump.client.codec import decode, encode
+from custom_components.orca_heatpump.client.codec import (
+    DAYS,
+    decode,
+    decode_timers,
+    encode,
+)
 from custom_components.orca_heatpump.client.errors import OrcaValueError
 from custom_components.orca_heatpump.client.models import (
     Element,
@@ -12,9 +17,13 @@ from custom_components.orca_heatpump.client.models import (
     Reading,
     Reason,
     TagDef,
+    TimerProgramme,
+    TimerRange,
     Value,
 )
 from custom_components.orca_heatpump.client.protocol import Record
+
+from .helpers import OURS_HEATING, dump_record, load_dump
 
 UNRANGED = TagDef(
     key="unranged", element=Element.SYSTEM, kind=Kind.NUMBER, tag="x", writable=True
@@ -195,3 +204,66 @@ def test_number_roundtrip(raw: int) -> None:
 
     assert reading.value is not None
     assert encode(catalog.MAX_FLOW_HEATING, 1, reading.value) == raw
+
+
+def timer_records(**changes: str | None) -> dict[str, Record]:
+    """Return our pump's timer records, with values changed or removed."""
+    tags = load_dump(OURS_HEATING)
+    records = {
+        tag: dump_record(tags, tag)
+        for programme in catalog.TIMER_PROGRAMMES
+        for time_range in catalog.TIMER_RANGES
+        for tag in catalog.timer_tags(programme, time_range)
+    }
+    for tag, value in changes.items():
+        if value is None:
+            del records[tag]
+        else:
+            records[tag] = ok(value)
+    return records
+
+
+def test_decode_timers() -> None:
+    """Every programme of our pump decodes; ranges without a day are dropped."""
+    programmes = decode_timers(timer_records())
+
+    assert set(programmes) == set(catalog.TIMER_PROGRAMMES)
+    assert programmes[2] == (TimerRange("08:00", "18:00", DAYS),)
+
+
+@pytest.mark.parametrize(
+    ("changes", "programme_2"),
+    [
+        pytest.param(
+            {"2_TIMER_2_Ura_OFF_2": "24", "2_TIMER_2_Sobota_2": "0"},
+            (TimerRange("08:00", "24:00", DAYS[:5] + DAYS[6:]),),
+            id="ends_at_midnight",
+        ),
+        pytest.param(
+            {"2_TIMER_2_Ponedeljek_1": "1"},
+            (
+                TimerRange("23:00", "06:00", ("monday",)),
+                TimerRange("08:00", "18:00", DAYS),
+            ),
+            id="crosses_midnight",
+        ),
+        pytest.param({"2_TIMER_2_Ura_ON_3": None}, None, id="missing"),
+        pytest.param({"2_TIMER_2_Ura_ON_1": "25"}, None, id="bad_hour"),
+        pytest.param({"2_TIMER_2_Minute_OFF_2": "60"}, None, id="bad_minute"),
+        pytest.param(
+            {"2_TIMER_2_Ura_OFF_2": "24", "2_TIMER_2_Minute_OFF_2": "30"},
+            None,
+            id="after_midnight",
+        ),
+        pytest.param({"2_TIMER_2_Petek_3": "2"}, None, id="bad_flag"),
+        pytest.param({"2_TIMER_2_Petek_3": "x"}, None, id="not_a_number"),
+    ],
+)
+def test_decode_timers_odd(
+    changes: dict[str, str | None], programme_2: TimerProgramme | None
+) -> None:
+    """A programme with a missing or odd record is left out, the others stay."""
+    programmes = decode_timers(timer_records(**changes))
+
+    assert programmes.get(2) == programme_2
+    assert set(programmes) - {2} == {1, 3, 4, 5}

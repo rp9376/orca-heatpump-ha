@@ -1,10 +1,23 @@
 """Conversion between raw tag values and typed values."""
 
+from collections.abc import Mapping
 import math
 
+from .catalog import TIMER_PROGRAMMES, TIMER_RANGES, timer_tags
 from .errors import OrcaValueError
-from .models import NO_RESPONSE, Kind, Reading, Reason, TagDef, Value
+from .models import (
+    NO_RESPONSE,
+    Kind,
+    Reading,
+    Reason,
+    TagDef,
+    TimerProgramme,
+    TimerRange,
+    Value,
+)
 from .protocol import NOT_CONNECTED, STATUS_OK, STATUS_UNKNOWN_TAG, Record
+
+DAYS = ("monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday")
 
 
 def decode(definition: TagDef, slot: int | None, record: Record | None) -> Reading:
@@ -80,3 +93,53 @@ def _encode_number(definition: TagDef, value: Value) -> int:
             f"{key} accepts steps of {1 / definition.scale}, got {value}"
         )
     return raw
+
+
+def decode_timers(records: Mapping[str, Record]) -> dict[int, TimerProgramme]:
+    """Decode the weekly timer programmes.
+
+    A programme with a missing or odd record is left out rather than shown
+    wrong; ranges without a day are unused and dropped.
+    """
+    programmes: dict[int, TimerProgramme] = {}
+    for programme in TIMER_PROGRAMMES:
+        ranges: list[TimerRange] = []
+        for time_range in TIMER_RANGES:
+            values = [
+                _timer_value(records.get(tag))
+                for tag in timer_tags(programme, time_range)
+            ]
+            if None in values:
+                break
+            start_h, start_m, end_h, end_m, *flags = (
+                v for v in values if v is not None
+            )
+            if not (_valid_time(start_h, start_m) and _valid_time(end_h, end_m)):
+                break
+            if any(flag not in (0, 1) for flag in flags):
+                break
+            if days := tuple(
+                day for day, flag in zip(DAYS, flags, strict=True) if flag
+            ):
+                ranges.append(
+                    TimerRange(
+                        f"{start_h:02}:{start_m:02}", f"{end_h:02}:{end_m:02}", days
+                    )
+                )
+        else:
+            programmes[programme] = tuple(ranges)
+    return programmes
+
+
+def _timer_value(record: Record | None) -> int | None:
+    if record is None or record.status != STATUS_OK:
+        return None
+    try:
+        return int((record.value or "").strip())
+    except ValueError:
+        return None
+
+
+def _valid_time(hour: int, minute: int) -> bool:
+    # 24:00 ends a range at midnight.
+    return 0 <= minute < 60 and (0 <= hour < 24 or (hour == 24 and minute == 0))

@@ -182,3 +182,15 @@ class DeviceIdentity:
         if self.firmware_date is None:
             return str(self.firmware_build)
         return f"{self.firmware_build} ({self.firmware_date.isoformat()})"
+
+
+@dataclass(frozen=True, slots=True)
+class TimerRange:
+    """One range of a weekly timer programme; it may cross midnight."""
+
+    start: str
+    end: str
+    days: tuple[str, ...]
+
+
+type TimerProgramme = tuple[TimerRange, ...]

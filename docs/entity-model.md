@@ -138,9 +138,12 @@ higher/lower setpoints and the timer).
 
 ### 3.5 Weekly timers
 
-Read-only in v1: the five programmes are exposed as diagnostic attributes of
-the timer-programme selects and in diagnostics; editing them is in the
-backlog.
+Read-only in v1. A second coordinator reads the 165 timer tags once an
+hour through the same client (they only change on the display). Each
+timer-programme select has a `schedule` attribute with the selected
+programme's ranges (start, end, days; not recorded), and diagnostics hold
+all five. A programme with a missing or odd record keeps its last good
+value. Editing them is in the backlog.
 
 ## 4. Climate and water heater mapping
 

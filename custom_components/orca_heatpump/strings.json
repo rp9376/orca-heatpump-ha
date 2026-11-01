@@ -450,6 +450,11 @@
           "programme_3": "Programme 3",
           "programme_4": "Programme 4",
           "programme_5": "Programme 5"
+        },
+        "state_attributes": {
+          "schedule": {
+            "name": "Schedule"
+          }
         }
       },
       "heater_mode": {
@@ -506,6 +511,11 @@
           "programme_3": "Programme 3",
           "programme_4": "Programme 4",
           "programme_5": "Programme 5"
+        },
+        "state_attributes": {
+          "schedule": {
+            "name": "Schedule"
+          }
         }
       },
       "low_regime_action": {
@@ -524,6 +534,11 @@
           "programme_3": "Programme 3",
           "programme_4": "Programme 4",
           "programme_5": "Programme 5"
+        },
+        "state_attributes": {
+          "schedule": {
+            "name": "Schedule"
+          }
         }
       },
       "legionella_day": {
@@ -556,6 +571,11 @@
           "programme_3": "Programme 3",
           "programme_4": "Programme 4",
           "programme_5": "Programme 5"
+        },
+        "state_attributes": {
+          "schedule": {
+            "name": "Schedule"
+          }
         }
       }
     },

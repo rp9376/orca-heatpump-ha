@@ -8,6 +8,8 @@ DOMAIN: Final = "orca_heatpump"
 LOGGER = logging.getLogger(__package__)
 
 SCAN_INTERVAL: Final = timedelta(seconds=30)
+# Timer programmes only change on the display; 165 tags aren't worth 30 s.
+TIMER_SCAN_INTERVAL: Final = timedelta(hours=1)
 DEFAULT_USERNAME: Final = "admin"
 DEFAULT_TITLE: Final = "Orca heat pump"
 

@@ -12,7 +12,7 @@ import aiohttp
 from yarl import URL
 
 from . import catalog
-from .codec import decode, encode
+from .codec import decode, decode_timers, encode
 from .errors import (
     OrcaConnectionError,
     OrcaError,
@@ -30,6 +30,7 @@ from .models import (
     Snapshot,
     TagDef,
     TagRef,
+    TimerProgramme,
     Value,
 )
 from .protocol import (
@@ -183,6 +184,18 @@ class OrcaClient:
             firmware_date,
             brand if isinstance(brand, str) else None,
         )
+
+    async def async_read_timers(self) -> dict[int, TimerProgramme]:
+        """Read the weekly timer programmes that came back complete."""
+        tags = [
+            tag
+            for programme in catalog.TIMER_PROGRAMMES
+            for time_range in catalog.TIMER_RANGES
+            for tag in catalog.timer_tags(programme, time_range)
+        ]
+        async with self._lock:
+            records = await self._read_records(tags)
+        return decode_timers(records)
 
     async def async_detect_topology(self) -> PumpTopology:
         """Return the pump's topology (raises if a signal is not received)."""

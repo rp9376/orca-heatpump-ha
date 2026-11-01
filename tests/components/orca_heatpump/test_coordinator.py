@@ -65,3 +65,29 @@ async def test_auth_failure_starts_reauth(
 
     flows = hass.config_entries.flow.async_progress()
     assert [flow["context"]["source"] for flow in flows] == ["reauth"]
+
+
+async def test_timers_keep_last_good(
+    hass: HomeAssistant,
+    init_integration: MockConfigEntry,
+    emulator: Emulator,
+) -> None:
+    """A failed or incomplete timer read keeps the programmes read before."""
+    timers = init_integration.runtime_data.timers
+    before = timers.data
+    assert set(before) == {1, 2, 3, 4, 5}
+
+    emulator.faults = Faults(http_status=503)
+    await timers.async_refresh()
+    assert not timers.last_update_success
+    assert timers.data == before
+
+    emulator.faults = Faults()
+    emulator.values["2_TIMER_2_Ura_ON_1"] = "x"
+    for time_range in (1, 2, 3):
+        emulator.values[f"2_TIMER_3_Ura_ON_{time_range}"] = "19"
+    await timers.async_refresh()
+
+    assert timers.last_update_success
+    assert timers.data[2] == before[2]
+    assert timers.data[3] != before[3]

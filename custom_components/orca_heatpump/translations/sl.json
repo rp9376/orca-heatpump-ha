@@ -450,6 +450,11 @@
           "programme_3": "Program 3",
           "programme_4": "Program 4",
           "programme_5": "Program 5"
+        },
+        "state_attributes": {
+          "schedule": {
+            "name": "Urnik"
+          }
         }
       },
       "heater_mode": {
@@ -506,6 +511,11 @@
           "programme_3": "Program 3",
           "programme_4": "Program 4",
           "programme_5": "Program 5"
+        },
+        "state_attributes": {
+          "schedule": {
+            "name": "Urnik"
+          }
         }
       },
       "low_regime_action": {
@@ -524,6 +534,11 @@
           "programme_3": "Program 3",
           "programme_4": "Program 4",
           "programme_5": "Program 5"
+        },
+        "state_attributes": {
+          "schedule": {
+            "name": "Urnik"
+          }
         }
       },
       "legionella_day": {
@@ -556,6 +571,11 @@
           "programme_3": "Program 3",
           "programme_4": "Program 4",
           "programme_5": "Program 5"
+        },
+        "state_attributes": {
+          "schedule": {
+            "name": "Urnik"
+          }
         }
       }
     },

@@ -11,8 +11,14 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, Upda
 
 from .client.client import OrcaClient
 from .client.errors import OrcaAuthError, OrcaError, OrcaTooManyUsersError
-from .client.models import DeviceIdentity, PumpTopology, Snapshot
-from .const import DOMAIN, LOGGER, SCAN_INTERVAL, SESSIONS_EXHAUSTED_AFTER
+from .client.models import DeviceIdentity, PumpTopology, Snapshot, TimerProgramme
+from .const import (
+    DOMAIN,
+    LOGGER,
+    SCAN_INTERVAL,
+    SESSIONS_EXHAUSTED_AFTER,
+    TIMER_SCAN_INTERVAL,
+)
 from .helpers import refs_for
 
 type OrcaConfigEntry = ConfigEntry[OrcaRuntimeData]
@@ -24,6 +30,7 @@ class OrcaRuntimeData:
 
     client: OrcaClient
     coordinator: OrcaCoordinator
+    timers: OrcaTimerCoordinator
     topology: PumpTopology
     identity: DeviceIdentity
 
@@ -91,3 +98,36 @@ class OrcaCoordinator(DataUpdateCoordinator[Snapshot]):
             self._refused = 0
             ir.async_delete_issue(self.hass, DOMAIN, self.sessions_issue_id)
         return snapshot
+
+
+class OrcaTimerCoordinator(DataUpdateCoordinator[dict[int, TimerProgramme]]):
+    """Reads the weekly timer programmes, through the same client."""
+
+    config_entry: OrcaConfigEntry
+
+    def __init__(
+        self, hass: HomeAssistant, config_entry: OrcaConfigEntry, client: OrcaClient
+    ) -> None:
+        """Initialize the coordinator."""
+        super().__init__(
+            hass,
+            LOGGER,
+            config_entry=config_entry,
+            name=f"{DOMAIN} timers",
+            update_interval=TIMER_SCAN_INTERVAL,
+            always_update=False,
+        )
+        self.client = client
+
+    @override
+    async def _async_update_data(self) -> dict[int, TimerProgramme]:
+        try:
+            programmes = await self.client.async_read_timers()
+        except OrcaError as err:
+            raise UpdateFailed(
+                translation_domain=DOMAIN,
+                translation_key="cannot_connect",
+                translation_placeholders={"error": str(err)},
+            ) from err
+        # Keep a programme that didn't come back complete this time.
+        return {**(self.data or {}), **programmes}

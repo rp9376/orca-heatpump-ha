@@ -1,5 +1,6 @@
 """Diagnostics for the Orca Heat Pump integration."""
 
+from dataclasses import asdict
 from typing import Any
 
 from homeassistant.components.diagnostics import async_redact_data
@@ -35,5 +36,9 @@ async def async_get_config_entry_diagnostics(
                 "stale": reading.stale,
             }
             for tag, reading in sorted(data.coordinator.data.readings.items())
+        },
+        "timers": {
+            programme: [asdict(time_range) for time_range in ranges]
+            for programme, ranges in sorted((data.timers.data or {}).items())
         },
     }

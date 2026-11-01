@@ -34,7 +34,12 @@ from .const import (
     OLD_CONF_HOST,
     OLD_DOMAIN,
 )
-from .coordinator import OrcaConfigEntry, OrcaCoordinator, OrcaRuntimeData
+from .coordinator import (
+    OrcaConfigEntry,
+    OrcaCoordinator,
+    OrcaRuntimeData,
+    OrcaTimerCoordinator,
+)
 from .helpers import apply_overrides, split_host, topology_from_data, topology_to_data
 
 PLATFORMS: list[Platform] = [
@@ -80,7 +85,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: OrcaConfigEntry) -> None
     except IntegrationError:
         await client.async_logout()
         raise
-    entry.runtime_data = OrcaRuntimeData(client, coordinator, topology, identity)
+    timers = OrcaTimerCoordinator(hass, entry, client)
+    await timers.async_refresh()
+    entry.runtime_data = OrcaRuntimeData(
+        client, coordinator, timers, topology, identity
+    )
     _register_devices(hass, entry, topology, identity, coordinator.data)
     _remove_unused_power_limits(hass, entry)
     _check_old_integration(hass, entry, host)

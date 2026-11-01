@@ -947,6 +947,100 @@
         'value': -29.9,
       }),
     }),
+    'timers': dict({
+      '1': list([
+        dict({
+          'days': list([
+            'monday',
+            'tuesday',
+            'wednesday',
+            'thursday',
+            'friday',
+          ]),
+          'end': '06:00',
+          'start': '00:00',
+        }),
+        dict({
+          'days': list([
+            'monday',
+            'tuesday',
+            'wednesday',
+            'thursday',
+            'friday',
+          ]),
+          'end': '23:00',
+          'start': '20:02',
+        }),
+        dict({
+          'days': list([
+            'saturday',
+            'sunday',
+          ]),
+          'end': '23:00',
+          'start': '07:00',
+        }),
+      ]),
+      '2': list([
+        dict({
+          'days': list([
+            'monday',
+            'tuesday',
+            'wednesday',
+            'thursday',
+            'friday',
+            'saturday',
+            'sunday',
+          ]),
+          'end': '18:00',
+          'start': '08:00',
+        }),
+      ]),
+      '3': list([
+        dict({
+          'days': list([
+            'monday',
+            'tuesday',
+            'wednesday',
+            'thursday',
+            'friday',
+            'saturday',
+            'sunday',
+          ]),
+          'end': '23:00',
+          'start': '20:00',
+        }),
+      ]),
+      '4': list([
+        dict({
+          'days': list([
+            'monday',
+            'tuesday',
+            'wednesday',
+            'thursday',
+            'friday',
+            'saturday',
+            'sunday',
+          ]),
+          'end': '23:00',
+          'start': '11:00',
+        }),
+      ]),
+      '5': list([
+        dict({
+          'days': list([
+            'monday',
+            'tuesday',
+            'wednesday',
+            'thursday',
+            'friday',
+            'saturday',
+            'sunday',
+          ]),
+          'end': '18:00',
+          'start': '16:00',
+        }),
+      ]),
+    }),
     'topology': dict({
       'buffer': False,
       'circuits': list([

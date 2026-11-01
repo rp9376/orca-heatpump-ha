@@ -81,6 +81,16 @@ async def test_read_everything(client: OrcaClient, emulator: Emulator) -> None:
     assert client.logged_in
 
 
+async def test_read_timers(client: OrcaClient, emulator: Emulator) -> None:
+    """The five timer programmes come in two requests."""
+    before = len(emulator.requests)
+
+    programmes = await client.async_read_timers()
+
+    assert set(programmes) == {1, 2, 3, 4, 5}
+    assert [r for r in emulator.requests[before:] if "readTags" in r][2:] == []
+
+
 async def test_identity_and_topology(client: OrcaClient) -> None:
     """Firmware, outdoor unit and topology of our pump."""
     identity = await client.async_read_identity()
