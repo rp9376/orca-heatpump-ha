@@ -29,6 +29,7 @@ from .helpers import apply_overrides, split_host, topology_from_data, topology_t
 
 PLATFORMS: list[Platform] = [
     Platform.BINARY_SENSOR,
+    Platform.CLIMATE,
     Platform.EVENT,
     Platform.SENSOR,
 ]

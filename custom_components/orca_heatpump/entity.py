@@ -24,6 +24,8 @@ from .const import DOMAIN
 from .coordinator import OrcaConfigEntry, OrcaCoordinator
 from .helpers import element_present
 
+type TagWrite = tuple[TagDef, int | None, Value]
+
 
 @dataclass(frozen=True, slots=True)
 class EntityContext:
@@ -87,25 +89,35 @@ def device_identifier(entry_id: str, element: Element, slot: int | None) -> str:
 async def async_write_value(
     coordinator: OrcaCoordinator, definition: TagDef, slot: int | None, value: Value
 ) -> None:
-    """Write one value through the client, then refresh.
+    """Write one value through the client, then refresh."""
+    await async_write_values(coordinator, ((definition, slot, value),))
+
+
+async def async_write_values(
+    coordinator: OrcaCoordinator,
+    writes: Iterable[TagWrite],
+) -> None:
+    """Write values in order through the client, then refresh once.
 
     The client validates against the catalog before anything is sent, skips
-    unchanged values and reads the value back (PLAN.md §10).
+    unchanged values and reads each value back (PLAN.md §10). One refresh
+    at the end keeps the debouncer from delaying the last write's state.
     """
-    try:
-        await coordinator.client.async_write(definition, slot, value)
-    except OrcaValueError as err:
-        raise ServiceValidationError(
-            translation_domain=DOMAIN,
-            translation_key="invalid_value",
-            translation_placeholders={"error": str(err)},
-        ) from err
-    except OrcaError as err:
-        raise HomeAssistantError(
-            translation_domain=DOMAIN,
-            translation_key="write_failed",
-            translation_placeholders={"error": str(err)},
-        ) from err
+    for definition, slot, value in writes:
+        try:
+            await coordinator.client.async_write(definition, slot, value)
+        except OrcaValueError as err:
+            raise ServiceValidationError(
+                translation_domain=DOMAIN,
+                translation_key="invalid_value",
+                translation_placeholders={"error": str(err)},
+            ) from err
+        except OrcaError as err:
+            raise HomeAssistantError(
+                translation_domain=DOMAIN,
+                translation_key="write_failed",
+                translation_placeholders={"error": str(err)},
+            ) from err
     await coordinator.async_request_refresh()
 
 

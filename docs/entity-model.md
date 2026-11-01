@@ -156,15 +156,16 @@ backlog.
   in mode 4 or 5.
 - **With a room sensor** and room or room + outdoor regulation (R8): a normal
   climate entity with current room temperature and the comfort (high) room
-  setpoint as target, 5–30 °C until the real range is known.
+  setpoint as target, in the catalog's range (10–35 °C). Regulation is read
+  every poll, so the target appears and disappears with it.
 - **Without a room sensor** (the user's pump): a stripped-down, **mode-only**
   climate: on/off and heat/cool modes, no temperatures (user, CP1). On a
   constant-temperature circuit the flow setpoint is the separate number
   entity, because a climate target means a room temperature in HA.
 - **Current temperature:** room temperature with a sensor, else none.
-- **HVAC action:** `defrosting` while defrost is active; `heating`/`cooling`
-  while the circuit pump runs and the HP state is heating/cooling; `idle`
-  when enabled otherwise; `off` when disabled.
+- **HVAC action:** `off` when the circuit or the whole system is disabled;
+  `defrosting` while defrost is active; `heating`/`cooling` while the circuit
+  pump runs and the HP state is heating/cooling; `idle` otherwise.
 - **Presets:** none. The operating programme is global; it is the main
   device's select (a per-circuit preset would change all circuits).
 - `native_*` temperature API; turn on/off supported.
