@@ -634,6 +634,21 @@ def session_meta(display: Display, rec: Recorder) -> None:
     rec.results["object_lines"] = len(items)
 
 
+def session_snapshot(display: Display, rec: Recorder) -> None:
+    """One read of every readable tag, e.g. to compare timer-on and timer-off (R8)."""
+    values: dict[str, str | None] = {}
+    for index, batch in enumerate(
+        budget_batches(display, readable_tags(), SAFE_HEADER_BUDGET), 1
+    ):
+        response, records = probe.read_tags(display, batch)
+        rec.save(f"S5-{index:02}_snapshot", response)
+        if response.status != 200 or list(records) != batch:
+            raise StepError(f"snapshot batch {index}: incomplete answer")
+        values |= {tag: record.value for tag, record in records.items()}
+    rec.results["time"] = _now()
+    rec.results["values"] = values
+
+
 def session3(display: Display, rec: Recorder) -> None:
     """R1: do reads keep a session alive, and when does an idle one expire?"""
     start = time.monotonic()
@@ -686,7 +701,7 @@ def main() -> int:
     )
     parser.add_argument(
         "session",
-        choices=("session1", "session2a", "session2b", "session3", "meta"),
+        choices=("session1", "session2a", "session2b", "session3", "meta", "snapshot"),
     )
     args = parser.parse_args()
     signal.signal(signal.SIGTERM, lambda *_: sys.exit(143))
@@ -722,6 +737,8 @@ def main() -> int:
                         session2b(display, rec, args.file)
                     elif args.session == "meta":
                         session_meta(display, rec)
+                    elif args.session == "snapshot":
+                        session_snapshot(display, rec)
                     else:
                         session3(display, rec)
         except (ProbeError, OSError, http.client.HTTPException) as err:
