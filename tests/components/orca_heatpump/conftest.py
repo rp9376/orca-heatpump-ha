@@ -81,9 +81,17 @@ def platforms() -> list[Platform]:
 
 
 @pytest.fixture
-def emulator(pump: str) -> Emulator:
-    """Return an emulator serving the pump's dump."""
-    return Emulator.from_dump(DUMPS / PUMPS[pump][0])
+def values() -> dict[str, str]:
+    """Return pump values to change before setup; tests parametrize this."""
+    return {}
+
+
+@pytest.fixture
+def emulator(pump: str, values: dict[str, str]) -> Emulator:
+    """Return an emulator serving the pump's dump, with the values changed."""
+    emulator = Emulator.from_dump(DUMPS / PUMPS[pump][0])
+    emulator.values.update(values)
+    return emulator
 
 
 @pytest.fixture

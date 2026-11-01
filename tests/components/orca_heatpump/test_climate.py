@@ -51,16 +51,9 @@ def platforms() -> list[Platform]:
     return [Platform.CLIMATE]
 
 
-@pytest.fixture
-def values() -> dict[str, str]:
-    """Return pump values to change before setup; tests parametrize this."""
-    return {}
-
-
 @pytest.fixture(autouse=True)
-def prepare(emulator: Emulator, values: dict[str, str]) -> None:
-    """Change the pump's values and accept writes to the climate tags."""
-    emulator.values.update(values)
+def writable(emulator: Emulator) -> None:
+    """Accept writes to the climate tags."""
     for definition in (
         catalog.CIRCUIT_ENABLE,
         catalog.CIRCUIT_MODE,

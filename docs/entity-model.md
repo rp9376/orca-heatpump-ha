@@ -177,7 +177,8 @@ backlog.
 - Operation modes: `off` (`2_SV_vklop` = 0) and `heat_pump` (on). No away
   mode (holiday is global).
 - The currently active DHW setpoint is not readable on old firmware; the
-  timer decides between higher and lower temperature (attributes show both).
+  timer decides between higher and lower temperature. The lower one is the
+  `dhw_setpoint_low` number, so the water heater has no extra attributes.
 
 ## 5. Alarms
 
