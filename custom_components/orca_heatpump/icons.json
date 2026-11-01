@@ -1,0 +1,27 @@
+{
+  "entity": {
+    "binary_sensor": {
+      "flow_switch": {
+        "default": "mdi:water-off",
+        "state": {
+          "on": "mdi:water"
+        }
+      },
+      "defrost_active": {
+        "default": "mdi:snowflake-melt"
+      },
+      "quiet_active": {
+        "default": "mdi:volume-low"
+      },
+      "heater_stage1_on": {
+        "default": "mdi:heating-coil"
+      },
+      "heater_stage2_on": {
+        "default": "mdi:heating-coil"
+      },
+      "heater_stage3_on": {
+        "default": "mdi:heating-coil"
+      }
+    }
+  }
+}

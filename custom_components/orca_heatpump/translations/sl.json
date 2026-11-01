@@ -180,6 +180,12 @@
     },
     "too_many_users": {
       "message": "Vse prijave zaslona toplotne črpalke so zasedene."
+    },
+    "invalid_value": {
+      "message": "Neveljavna vrednost: {error}"
+    },
+    "write_failed": {
+      "message": "Spreminjanje nastavitve na toplotni črpalki ni uspelo: {error}"
     }
   },
   "issues": {
@@ -201,6 +207,61 @@
     "sessions_exhausted": {
       "title": "Toplotna črpalka zavrača prijave",
       "description": "Zaslon toplotne črpalke vztrajno sporoča, da so vse prijave zasedene. Zaprite aplikacijo Moja Orca in preverite, da z zaslonom ni povezana nobena druga integracija ali program."
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "pump_p0": {
+        "name": "Obtočna črpalka"
+      },
+      "flow_switch": {
+        "name": "Pretok"
+      },
+      "defrost_active": {
+        "name": "Odtaljevanje"
+      },
+      "quiet_active": {
+        "name": "Tišje delovanje"
+      },
+      "heater_stage1_on": {
+        "name": "Električni grelec, stopnja 1"
+      },
+      "heater_stage2_on": {
+        "name": "Električni grelec, stopnja 2"
+      },
+      "heater_stage3_on": {
+        "name": "Električni grelec, stopnja 3"
+      },
+      "circuit_pump": {
+        "name": "Črpalka kroga"
+      },
+      "solar_pump": {
+        "name": "Solarna črpalka"
+      },
+      "alarm_active": {
+        "name": "Alarm"
+      },
+      "alarm_outdoor_unit": {
+        "name": "Napaka zunanje enote"
+      },
+      "alarm_flow_switch": {
+        "name": "Okvara pretočnega stikala"
+      },
+      "alarm_no_flow": {
+        "name": "Ni pretoka"
+      },
+      "alarm_hp_temperature_low": {
+        "name": "Prenizka temperatura vode"
+      },
+      "alarm_flow_temperature": {
+        "name": "Previsoka temperatura vtoka"
+      },
+      "alarm_room_sensor": {
+        "name": "Napaka sobnega tipala"
+      },
+      "alarm_error": {
+        "name": "Napaka regulatorja"
+      }
     }
   }
 }

@@ -19,11 +19,11 @@ from custom_components.orca_heatpump.const import (
     DOMAIN,
 )
 from custom_components.orca_heatpump.helpers import topology_to_data
-from homeassistant.const import CONF_HOST, CONF_PASSWORD, CONF_USERNAME
+from homeassistant.const import CONF_HOST, CONF_PASSWORD, CONF_USERNAME, Platform
 from homeassistant.core import HomeAssistant
 from tools.emulator import Emulator
 
-from tests.client.helpers import DUMPS, OURS_HEATING
+from tests.client.helpers import DUMPS, DUO, MONO, OURS_HEATING
 
 OUR_TOPOLOGY = PumpTopology(
     23,
@@ -35,6 +35,29 @@ OUR_TOPOLOGY = PumpTopology(
     solar=True,
     buffer=False,
 )
+DUO_TOPOLOGY = PumpTopology(
+    3,
+    (CircuitTopology(1, CircuitKind.DIRECT, room_sensor=True),),
+    dhw=True,
+    solar=False,
+    buffer=False,
+)
+MONO_TOPOLOGY = PumpTopology(
+    7,
+    (
+        CircuitTopology(1, CircuitKind.DIRECT, room_sensor=True),
+        CircuitTopology(2, CircuitKind.DIRECT, room_sensor=True),
+    ),
+    dhw=True,
+    solar=False,
+    buffer=True,
+)
+# The three real pumps: our Duo 300 Solar (heating), a Duo and a Mono.
+PUMPS = {
+    "ours": (OURS_HEATING, OUR_TOPOLOGY),
+    "duo": (DUO, DUO_TOPOLOGY),
+    "mono": (MONO, MONO_TOPOLOGY),
+}
 
 
 async def serve(emulator: Emulator) -> tuple[web.AppRunner, str]:
@@ -46,9 +69,21 @@ async def serve(emulator: Emulator) -> tuple[web.AppRunner, str]:
 
 
 @pytest.fixture
-def emulator() -> Emulator:
-    """Return an emulator serving our pump while it heats."""
-    return Emulator.from_dump(DUMPS / OURS_HEATING)
+def pump(request: pytest.FixtureRequest) -> str:
+    """Return which real pump to emulate; parametrize indirectly for others."""
+    return getattr(request, "param", "ours")
+
+
+@pytest.fixture
+def platforms() -> list[Platform]:
+    """Return the platforms to set up; platform tests override this."""
+    return []
+
+
+@pytest.fixture
+def emulator(pump: str) -> Emulator:
+    """Return an emulator serving the pump's dump."""
+    return Emulator.from_dump(DUMPS / PUMPS[pump][0])
 
 
 @pytest.fixture
@@ -61,17 +96,18 @@ async def host(socket_enabled: None, emulator: Emulator) -> AsyncIterator[str]:
 
 
 @pytest.fixture
-def mock_config_entry(host: str) -> MockConfigEntry:
-    """Return a config entry of our pump on the emulator."""
+def mock_config_entry(host: str, pump: str) -> MockConfigEntry:
+    """Return a config entry of the pump on the emulator."""
     return MockConfigEntry(
         domain=DOMAIN,
         title=DEFAULT_TITLE,
+        entry_id="01ORCAHEATPUMPTESTENTRY000",
         unique_id=host,
         data={
             CONF_HOST: host,
             CONF_USERNAME: "admin",
             CONF_PASSWORD: "admin",
-            CONF_TOPOLOGY: topology_to_data(OUR_TOPOLOGY),
+            CONF_TOPOLOGY: topology_to_data(PUMPS[pump][1]),
         },
         options={CONF_ALLOW_POWER_LIMITS: False},
     )
@@ -88,10 +124,11 @@ def mock_setup_entry() -> Iterator[AsyncMock]:
 
 @pytest.fixture
 async def init_integration(
-    hass: HomeAssistant, mock_config_entry: MockConfigEntry
-) -> MockConfigEntry:
-    """Set up the integration against the emulator."""
-    mock_config_entry.add_to_hass(hass)
-    await hass.config_entries.async_setup(mock_config_entry.entry_id)
-    await hass.async_block_till_done()
-    return mock_config_entry
+    hass: HomeAssistant, mock_config_entry: MockConfigEntry, platforms: list[Platform]
+) -> AsyncIterator[MockConfigEntry]:
+    """Set up the integration with only the given platforms."""
+    with patch("custom_components.orca_heatpump.PLATFORMS", platforms):
+        mock_config_entry.add_to_hass(hass)
+        await hass.config_entries.async_setup(mock_config_entry.entry_id)
+        await hass.async_block_till_done()
+        yield mock_config_entry

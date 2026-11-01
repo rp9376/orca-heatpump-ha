@@ -77,22 +77,23 @@ def apply_overrides(topology: PumpTopology, options: Mapping[str, Any]) -> PumpT
     )
 
 
-def refs_for(topology: PumpTopology) -> tuple[TagRef, ...]:
-    """Return the catalog tags to poll for the elements the pump has."""
-    present = {
+def element_present(topology: PumpTopology, element: Element, slot: int | None) -> bool:
+    """Return whether the pump has an element (or, for circuits, the slot)."""
+    if element is Element.CIRCUIT:
+        return topology.circuit(slot) is not None if slot is not None else False
+    return {
         Element.SYSTEM: True,
         Element.DHW: topology.dhw,
         Element.SOLAR: topology.solar,
         Element.BUFFER: topology.buffer,
-    }
-    slots = {c.slot for c in topology.circuits}
+    }[element]
+
+
+def refs_for(topology: PumpTopology) -> tuple[TagRef, ...]:
+    """Return the catalog tags to poll for the elements the pump has."""
     return tuple(
         (definition, slot)
         for definition in CATALOG
         for _, slot in definition.refs()
-        if (
-            slot in slots
-            if definition.element is Element.CIRCUIT
-            else present[definition.element]
-        )
+        if element_present(topology, definition.element, slot)
     )

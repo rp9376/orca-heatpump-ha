@@ -180,6 +180,12 @@
     },
     "too_many_users": {
       "message": "All of the heat pump display's logins are in use."
+    },
+    "invalid_value": {
+      "message": "Invalid value: {error}"
+    },
+    "write_failed": {
+      "message": "Failed to change the setting on the heat pump: {error}"
     }
   },
   "issues": {
@@ -201,6 +207,61 @@
     "sessions_exhausted": {
       "title": "Heat pump refuses logins",
       "description": "The heat pump display keeps answering that all of its logins are in use. Close the Moja Orca app and check that no other integration or program is connected to the display."
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "pump_p0": {
+        "name": "Circulation pump"
+      },
+      "flow_switch": {
+        "name": "Flow"
+      },
+      "defrost_active": {
+        "name": "Defrost"
+      },
+      "quiet_active": {
+        "name": "Quiet operation"
+      },
+      "heater_stage1_on": {
+        "name": "Electric heater stage 1"
+      },
+      "heater_stage2_on": {
+        "name": "Electric heater stage 2"
+      },
+      "heater_stage3_on": {
+        "name": "Electric heater stage 3"
+      },
+      "circuit_pump": {
+        "name": "Circuit pump"
+      },
+      "solar_pump": {
+        "name": "Solar pump"
+      },
+      "alarm_active": {
+        "name": "Alarm"
+      },
+      "alarm_outdoor_unit": {
+        "name": "Outdoor unit error"
+      },
+      "alarm_flow_switch": {
+        "name": "Flow switch failure"
+      },
+      "alarm_no_flow": {
+        "name": "No flow"
+      },
+      "alarm_hp_temperature_low": {
+        "name": "Water temperature too low"
+      },
+      "alarm_flow_temperature": {
+        "name": "Flow temperature too high"
+      },
+      "alarm_room_sensor": {
+        "name": "Room sensor error"
+      },
+      "alarm_error": {
+        "name": "Controller error"
+      }
     }
   }
 }

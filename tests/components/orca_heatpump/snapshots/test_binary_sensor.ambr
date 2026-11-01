@@ -1,0 +1,2135 @@
+# serializer version: 1
+# name: test_entities[duo][binary_sensor.heat_pump_alarm-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.heat_pump_alarm',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Alarm',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.PROBLEM: 'problem'>,
+    'original_icon': None,
+    'original_name': 'Alarm',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'alarm_active',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_alarm_active',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[duo][binary_sensor.heat_pump_alarm-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'problem',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Alarm',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.heat_pump_alarm',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_entities[duo][binary_sensor.heat_pump_circulation_pump-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.heat_pump_circulation_pump',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Circulation pump',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.RUNNING: 'running'>,
+    'original_icon': None,
+    'original_name': 'Circulation pump',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'pump_p0',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_pump_p0',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[duo][binary_sensor.heat_pump_circulation_pump-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'running',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Circulation pump',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.heat_pump_circulation_pump',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_entities[duo][binary_sensor.heat_pump_controller_error-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.heat_pump_controller_error',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Controller error',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.PROBLEM: 'problem'>,
+    'original_icon': None,
+    'original_name': 'Controller error',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'alarm_error',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_alarm_error',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[duo][binary_sensor.heat_pump_controller_error-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'problem',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Controller error',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.heat_pump_controller_error',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_entities[duo][binary_sensor.heat_pump_defrost-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.heat_pump_defrost',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Defrost',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Defrost',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'defrost_active',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_defrost_active',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[duo][binary_sensor.heat_pump_defrost-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Defrost',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.heat_pump_defrost',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_entities[duo][binary_sensor.heat_pump_electric_heater_stage_1-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.heat_pump_electric_heater_stage_1',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Electric heater stage 1',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.RUNNING: 'running'>,
+    'original_icon': None,
+    'original_name': 'Electric heater stage 1',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'heater_stage1_on',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_heater_stage1_on',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[duo][binary_sensor.heat_pump_electric_heater_stage_1-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'running',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Electric heater stage 1',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.heat_pump_electric_heater_stage_1',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_entities[duo][binary_sensor.heat_pump_electric_heater_stage_2-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.heat_pump_electric_heater_stage_2',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Electric heater stage 2',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.RUNNING: 'running'>,
+    'original_icon': None,
+    'original_name': 'Electric heater stage 2',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'heater_stage2_on',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_heater_stage2_on',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[duo][binary_sensor.heat_pump_electric_heater_stage_2-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'running',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Electric heater stage 2',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.heat_pump_electric_heater_stage_2',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_entities[duo][binary_sensor.heat_pump_electric_heater_stage_3-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.heat_pump_electric_heater_stage_3',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Electric heater stage 3',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.RUNNING: 'running'>,
+    'original_icon': None,
+    'original_name': 'Electric heater stage 3',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'heater_stage3_on',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_heater_stage3_on',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[duo][binary_sensor.heat_pump_electric_heater_stage_3-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'running',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Electric heater stage 3',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.heat_pump_electric_heater_stage_3',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_entities[duo][binary_sensor.heat_pump_flow-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': <EntityCategory.DIAGNOSTIC: 'diagnostic'>,
+    'entity_id': 'binary_sensor.heat_pump_flow',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Flow',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Flow',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'flow_switch',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_flow_switch',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[duo][binary_sensor.heat_pump_flow-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Flow',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.heat_pump_flow',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_entities[duo][binary_sensor.heat_pump_flow_switch_failure-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.heat_pump_flow_switch_failure',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Flow switch failure',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.PROBLEM: 'problem'>,
+    'original_icon': None,
+    'original_name': 'Flow switch failure',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'alarm_flow_switch',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_alarm_flow_switch',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[duo][binary_sensor.heat_pump_flow_switch_failure-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'problem',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Flow switch failure',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.heat_pump_flow_switch_failure',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_entities[duo][binary_sensor.heat_pump_no_flow-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.heat_pump_no_flow',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'No flow',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.PROBLEM: 'problem'>,
+    'original_icon': None,
+    'original_name': 'No flow',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'alarm_no_flow',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_alarm_no_flow',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[duo][binary_sensor.heat_pump_no_flow-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'problem',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump No flow',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.heat_pump_no_flow',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_entities[duo][binary_sensor.heat_pump_outdoor_unit_error-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.heat_pump_outdoor_unit_error',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Outdoor unit error',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.PROBLEM: 'problem'>,
+    'original_icon': None,
+    'original_name': 'Outdoor unit error',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'alarm_outdoor_unit',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_alarm_outdoor_unit',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[duo][binary_sensor.heat_pump_outdoor_unit_error-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'problem',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Outdoor unit error',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.heat_pump_outdoor_unit_error',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_entities[duo][binary_sensor.heat_pump_quiet_operation-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.heat_pump_quiet_operation',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Quiet operation',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Quiet operation',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'quiet_active',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_quiet_active',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[duo][binary_sensor.heat_pump_quiet_operation-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Quiet operation',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.heat_pump_quiet_operation',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_entities[duo][binary_sensor.heat_pump_water_temperature_too_low-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.heat_pump_water_temperature_too_low',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Water temperature too low',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.PROBLEM: 'problem'>,
+    'original_icon': None,
+    'original_name': 'Water temperature too low',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'alarm_hp_temperature_low',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_alarm_hp_temperature_low',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[duo][binary_sensor.heat_pump_water_temperature_too_low-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'problem',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Water temperature too low',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.heat_pump_water_temperature_too_low',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_entities[duo][binary_sensor.underfloor_heating_circuit_pump-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000_circuit1')]>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.underfloor_heating_circuit_pump',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Circuit pump',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.RUNNING: 'running'>,
+    'original_icon': None,
+    'original_name': 'Circuit pump',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'circuit_pump',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_circuit1_circuit_pump',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[duo][binary_sensor.underfloor_heating_circuit_pump-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'running',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Underfloor heating Circuit pump',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.underfloor_heating_circuit_pump',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_entities[duo][binary_sensor.underfloor_heating_flow_temperature_too_high-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000_circuit1')]>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.underfloor_heating_flow_temperature_too_high',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Flow temperature too high',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.PROBLEM: 'problem'>,
+    'original_icon': None,
+    'original_name': 'Flow temperature too high',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'alarm_flow_temperature',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_circuit1_alarm_flow_temperature',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[duo][binary_sensor.underfloor_heating_flow_temperature_too_high-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'problem',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Underfloor heating Flow temperature too high',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.underfloor_heating_flow_temperature_too_high',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_entities[duo][binary_sensor.underfloor_heating_room_sensor_error-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000_circuit1')]>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.underfloor_heating_room_sensor_error',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Room sensor error',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.PROBLEM: 'problem'>,
+    'original_icon': None,
+    'original_name': 'Room sensor error',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'alarm_room_sensor',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_circuit1_alarm_room_sensor',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[duo][binary_sensor.underfloor_heating_room_sensor_error-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'problem',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Underfloor heating Room sensor error',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.underfloor_heating_room_sensor_error',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_entities[mono][binary_sensor.heat_pump_alarm-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.heat_pump_alarm',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Alarm',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.PROBLEM: 'problem'>,
+    'original_icon': None,
+    'original_name': 'Alarm',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'alarm_active',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_alarm_active',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[mono][binary_sensor.heat_pump_alarm-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'problem',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Alarm',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.heat_pump_alarm',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_entities[mono][binary_sensor.heat_pump_circulation_pump-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.heat_pump_circulation_pump',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Circulation pump',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.RUNNING: 'running'>,
+    'original_icon': None,
+    'original_name': 'Circulation pump',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'pump_p0',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_pump_p0',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[mono][binary_sensor.heat_pump_circulation_pump-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'running',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Circulation pump',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.heat_pump_circulation_pump',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'on',
+  })
+# ---
+# name: test_entities[mono][binary_sensor.heat_pump_controller_error-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.heat_pump_controller_error',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Controller error',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.PROBLEM: 'problem'>,
+    'original_icon': None,
+    'original_name': 'Controller error',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'alarm_error',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_alarm_error',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[mono][binary_sensor.heat_pump_controller_error-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'problem',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Controller error',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.heat_pump_controller_error',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_entities[mono][binary_sensor.heat_pump_defrost-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.heat_pump_defrost',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Defrost',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Defrost',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'defrost_active',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_defrost_active',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[mono][binary_sensor.heat_pump_defrost-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Defrost',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.heat_pump_defrost',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_entities[mono][binary_sensor.heat_pump_electric_heater_stage_1-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.heat_pump_electric_heater_stage_1',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Electric heater stage 1',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.RUNNING: 'running'>,
+    'original_icon': None,
+    'original_name': 'Electric heater stage 1',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'heater_stage1_on',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_heater_stage1_on',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[mono][binary_sensor.heat_pump_electric_heater_stage_1-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'running',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Electric heater stage 1',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.heat_pump_electric_heater_stage_1',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_entities[mono][binary_sensor.heat_pump_electric_heater_stage_2-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.heat_pump_electric_heater_stage_2',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Electric heater stage 2',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.RUNNING: 'running'>,
+    'original_icon': None,
+    'original_name': 'Electric heater stage 2',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'heater_stage2_on',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_heater_stage2_on',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[mono][binary_sensor.heat_pump_electric_heater_stage_2-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'running',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Electric heater stage 2',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.heat_pump_electric_heater_stage_2',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_entities[mono][binary_sensor.heat_pump_electric_heater_stage_3-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.heat_pump_electric_heater_stage_3',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Electric heater stage 3',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.RUNNING: 'running'>,
+    'original_icon': None,
+    'original_name': 'Electric heater stage 3',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'heater_stage3_on',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_heater_stage3_on',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[mono][binary_sensor.heat_pump_electric_heater_stage_3-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'running',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Electric heater stage 3',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.heat_pump_electric_heater_stage_3',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_entities[mono][binary_sensor.heat_pump_flow-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': <EntityCategory.DIAGNOSTIC: 'diagnostic'>,
+    'entity_id': 'binary_sensor.heat_pump_flow',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Flow',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Flow',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'flow_switch',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_flow_switch',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[mono][binary_sensor.heat_pump_flow-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Flow',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.heat_pump_flow',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'on',
+  })
+# ---
+# name: test_entities[mono][binary_sensor.radiators_circuit_pump-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000_circuit1')]>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.radiators_circuit_pump',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Circuit pump',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.RUNNING: 'running'>,
+    'original_icon': None,
+    'original_name': 'Circuit pump',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'circuit_pump',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_circuit1_circuit_pump',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[mono][binary_sensor.radiators_circuit_pump-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'running',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Radiators Circuit pump',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.radiators_circuit_pump',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'on',
+  })
+# ---
+# name: test_entities[mono][binary_sensor.underfloor_heating_circuit_pump-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000_circuit2')]>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.underfloor_heating_circuit_pump',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Circuit pump',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.RUNNING: 'running'>,
+    'original_icon': None,
+    'original_name': 'Circuit pump',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'circuit_pump',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_circuit2_circuit_pump',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[mono][binary_sensor.underfloor_heating_circuit_pump-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'running',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Underfloor heating Circuit pump',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.underfloor_heating_circuit_pump',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_entities[ours][binary_sensor.heat_pump_alarm-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.heat_pump_alarm',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Alarm',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.PROBLEM: 'problem'>,
+    'original_icon': None,
+    'original_name': 'Alarm',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'alarm_active',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_alarm_active',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[ours][binary_sensor.heat_pump_alarm-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'problem',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Alarm',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.heat_pump_alarm',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_entities[ours][binary_sensor.heat_pump_circulation_pump-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.heat_pump_circulation_pump',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Circulation pump',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.RUNNING: 'running'>,
+    'original_icon': None,
+    'original_name': 'Circulation pump',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'pump_p0',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_pump_p0',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[ours][binary_sensor.heat_pump_circulation_pump-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'running',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Circulation pump',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.heat_pump_circulation_pump',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'on',
+  })
+# ---
+# name: test_entities[ours][binary_sensor.heat_pump_defrost-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.heat_pump_defrost',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Defrost',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Defrost',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'defrost_active',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_defrost_active',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[ours][binary_sensor.heat_pump_defrost-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Defrost',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.heat_pump_defrost',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_entities[ours][binary_sensor.heat_pump_electric_heater_stage_1-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.heat_pump_electric_heater_stage_1',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Electric heater stage 1',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.RUNNING: 'running'>,
+    'original_icon': None,
+    'original_name': 'Electric heater stage 1',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'heater_stage1_on',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_heater_stage1_on',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[ours][binary_sensor.heat_pump_electric_heater_stage_1-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'running',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Electric heater stage 1',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.heat_pump_electric_heater_stage_1',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_entities[ours][binary_sensor.heat_pump_electric_heater_stage_2-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.heat_pump_electric_heater_stage_2',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Electric heater stage 2',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.RUNNING: 'running'>,
+    'original_icon': None,
+    'original_name': 'Electric heater stage 2',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'heater_stage2_on',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_heater_stage2_on',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[ours][binary_sensor.heat_pump_electric_heater_stage_2-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'running',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Electric heater stage 2',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.heat_pump_electric_heater_stage_2',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_entities[ours][binary_sensor.heat_pump_flow-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': <EntityCategory.DIAGNOSTIC: 'diagnostic'>,
+    'entity_id': 'binary_sensor.heat_pump_flow',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Flow',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Flow',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'flow_switch',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_flow_switch',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[ours][binary_sensor.heat_pump_flow-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Flow',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.heat_pump_flow',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'on',
+  })
+# ---
+# name: test_entities[ours][binary_sensor.heat_pump_flow_switch_failure-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.heat_pump_flow_switch_failure',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Flow switch failure',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.PROBLEM: 'problem'>,
+    'original_icon': None,
+    'original_name': 'Flow switch failure',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'alarm_flow_switch',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_alarm_flow_switch',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[ours][binary_sensor.heat_pump_flow_switch_failure-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'problem',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Flow switch failure',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.heat_pump_flow_switch_failure',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_entities[ours][binary_sensor.heat_pump_no_flow-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.heat_pump_no_flow',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'No flow',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.PROBLEM: 'problem'>,
+    'original_icon': None,
+    'original_name': 'No flow',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'alarm_no_flow',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_alarm_no_flow',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[ours][binary_sensor.heat_pump_no_flow-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'problem',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump No flow',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.heat_pump_no_flow',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_entities[ours][binary_sensor.heat_pump_outdoor_unit_error-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.heat_pump_outdoor_unit_error',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Outdoor unit error',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.PROBLEM: 'problem'>,
+    'original_icon': None,
+    'original_name': 'Outdoor unit error',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'alarm_outdoor_unit',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_alarm_outdoor_unit',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[ours][binary_sensor.heat_pump_outdoor_unit_error-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'problem',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Outdoor unit error',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.heat_pump_outdoor_unit_error',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_entities[ours][binary_sensor.heat_pump_quiet_operation-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.heat_pump_quiet_operation',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Quiet operation',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Quiet operation',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'quiet_active',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_quiet_active',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[ours][binary_sensor.heat_pump_quiet_operation-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Quiet operation',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.heat_pump_quiet_operation',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_entities[ours][binary_sensor.heat_pump_water_temperature_too_low-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000')]>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.heat_pump_water_temperature_too_low',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Water temperature too low',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.PROBLEM: 'problem'>,
+    'original_icon': None,
+    'original_name': 'Water temperature too low',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'alarm_hp_temperature_low',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_alarm_hp_temperature_low',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[ours][binary_sensor.heat_pump_water_temperature_too_low-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'problem',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Water temperature too low',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.heat_pump_water_temperature_too_low',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_entities[ours][binary_sensor.radiators_circuit_pump-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000_circuit2')]>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.radiators_circuit_pump',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Circuit pump',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.RUNNING: 'running'>,
+    'original_icon': None,
+    'original_name': 'Circuit pump',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'circuit_pump',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_circuit2_circuit_pump',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[ours][binary_sensor.radiators_circuit_pump-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'running',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Radiators Circuit pump',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.radiators_circuit_pump',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_entities[ours][binary_sensor.radiators_flow_temperature_too_high-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000_circuit2')]>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.radiators_flow_temperature_too_high',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Flow temperature too high',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.PROBLEM: 'problem'>,
+    'original_icon': None,
+    'original_name': 'Flow temperature too high',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'alarm_flow_temperature',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_circuit2_alarm_flow_temperature',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[ours][binary_sensor.radiators_flow_temperature_too_high-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'problem',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Radiators Flow temperature too high',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.radiators_flow_temperature_too_high',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_entities[ours][binary_sensor.solar_collectors_solar_pump-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000_solar')]>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.solar_collectors_solar_pump',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Solar pump',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.RUNNING: 'running'>,
+    'original_icon': None,
+    'original_name': 'Solar pump',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'solar_pump',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_solar_pump',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[ours][binary_sensor.solar_collectors_solar_pump-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'running',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Solar collectors Solar pump',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.solar_collectors_solar_pump',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_entities[ours][binary_sensor.underfloor_heating_circuit_pump-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000_circuit1')]>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.underfloor_heating_circuit_pump',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Circuit pump',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.RUNNING: 'running'>,
+    'original_icon': None,
+    'original_name': 'Circuit pump',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'circuit_pump',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_circuit1_circuit_pump',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[ours][binary_sensor.underfloor_heating_circuit_pump-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'running',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Underfloor heating Circuit pump',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.underfloor_heating_circuit_pump',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'on',
+  })
+# ---
+# name: test_entities[ours][binary_sensor.underfloor_heating_flow_temperature_too_high-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': None,
+    'device_class': None,
+    'device_id': <DeviceEntry identifiers=[('orca_heatpump', '01ORCAHEATPUMPTESTENTRY000_circuit1')]>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': None,
+    'entity_id': 'binary_sensor.underfloor_heating_flow_temperature_too_high',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Flow temperature too high',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.PROBLEM: 'problem'>,
+    'original_icon': None,
+    'original_name': 'Flow temperature too high',
+    'platform': 'orca_heatpump',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'alarm_flow_temperature',
+    'unique_id': '01ORCAHEATPUMPTESTENTRY000_circuit1_alarm_flow_temperature',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_entities[ours][binary_sensor.underfloor_heating_flow_temperature_too_high-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'problem',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Underfloor heating Flow temperature too high',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.underfloor_heating_flow_temperature_too_high',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---

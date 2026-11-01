@@ -27,7 +27,7 @@ from .const import CONF_TOPOLOGY, DOMAIN, OLD_CONF_HOST, OLD_DOMAIN
 from .coordinator import OrcaConfigEntry, OrcaCoordinator, OrcaRuntimeData
 from .helpers import apply_overrides, split_host, topology_from_data, topology_to_data
 
-PLATFORMS: list[Platform] = []
+PLATFORMS: list[Platform] = [Platform.BINARY_SENSOR]
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: OrcaConfigEntry) -> None:
