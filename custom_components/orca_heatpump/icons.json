@@ -22,6 +22,70 @@
       "heater_stage3_on": {
         "default": "mdi:heating-coil"
       }
+    },
+    "sensor": {
+      "outdoor_unit_power": {
+        "default": "mdi:gauge"
+      },
+      "outdoor_unit_state": {
+        "default": "mdi:heat-pump-outline"
+      },
+      "valve_3way": {
+        "default": "mdi:valve"
+      },
+      "alarm_code": {
+        "default": "mdi:alert-circle-outline",
+        "state": {
+          "none": "mdi:check-circle-outline"
+        }
+      },
+      "hp_power_limit_heating": {
+        "default": "mdi:speedometer"
+      },
+      "hp_power_limit_dhw": {
+        "default": "mdi:speedometer"
+      },
+      "hp_power_limit_cooling": {
+        "default": "mdi:speedometer"
+      },
+      "quiet_power_limit": {
+        "default": "mdi:speedometer"
+      },
+      "screed_drying_days": {
+        "default": "mdi:calendar-range"
+      },
+      "screed_drying_current_day": {
+        "default": "mdi:calendar-today"
+      },
+      "additional_source": {
+        "default": "mdi:fire"
+      },
+      "heater_stages": {
+        "default": "mdi:heating-coil"
+      },
+      "schema": {
+        "default": "mdi:sitemap-outline"
+      },
+      "mixing_valve_state": {
+        "default": "mdi:valve"
+      },
+      "mixing_valve_position": {
+        "default": "mdi:valve"
+      },
+      "installation_type": {
+        "default": "mdi:radiator"
+      },
+      "room_sensor_type": {
+        "default": "mdi:thermometer"
+      },
+      "solar_target": {
+        "default": "mdi:solar-power"
+      }
+    },
+    "event": {
+      "alarm_event": {
+        "default": "mdi:alarm-light-outline"
+      }
     }
   }
 }

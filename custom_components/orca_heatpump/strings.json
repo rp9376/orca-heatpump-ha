@@ -262,6 +262,167 @@
       "alarm_error": {
         "name": "Controller error"
       }
+    },
+    "sensor": {
+      "outdoor_temperature": {
+        "name": "Outdoor temperature"
+      },
+      "hp_temperature": {
+        "name": "Water temperature"
+      },
+      "hp_target_temperature": {
+        "name": "Target water temperature"
+      },
+      "outdoor_unit_power": {
+        "name": "Outdoor unit power"
+      },
+      "outdoor_unit_state": {
+        "name": "Outdoor unit state",
+        "state": {
+          "off": "Off",
+          "heating": "Heating",
+          "cooling": "Cooling",
+          "defrost": "Defrosting"
+        }
+      },
+      "valve_3way": {
+        "name": "3-way valve",
+        "state": {
+          "space_heating": "Space heating",
+          "hot_water": "Hot water"
+        }
+      },
+      "alarm_code": {
+        "name": "Active alarm",
+        "state": {
+          "none": "No alarm",
+          "outdoor_unit": "Outdoor unit error",
+          "flow_temperature_circuit_1": "Flow temperature too high (circuit 1)",
+          "flow_temperature_circuit_2": "Flow temperature too high (circuit 2)",
+          "no_flow": "No flow",
+          "flow_switch": "Flow switch failure",
+          "hp_temperature_low": "Heat pump temperature too low",
+          "unknown_code": "Unknown alarm"
+        }
+      },
+      "hp_power_limit_heating": {
+        "name": "Power limit heating"
+      },
+      "hp_power_limit_dhw": {
+        "name": "Power limit hot water"
+      },
+      "hp_power_limit_cooling": {
+        "name": "Power limit cooling"
+      },
+      "quiet_power_limit": {
+        "name": "Power limit quiet operation"
+      },
+      "screed_drying_days": {
+        "name": "Screed drying days"
+      },
+      "screed_drying_current_day": {
+        "name": "Screed drying day"
+      },
+      "additional_source": {
+        "name": "Additional heat source",
+        "state": {
+          "electric_heater": "Electric heater",
+          "additional_source": "Additional source",
+          "electric_heater_and_additional_source": "Electric heater and additional source"
+        }
+      },
+      "heater_stages": {
+        "name": "Electric heater stages",
+        "state": {
+          "one_stage": "1 stage (3 kW)",
+          "two_stages": "2 stages (6 kW)",
+          "three_stages": "3 stages (9 kW)"
+        }
+      },
+      "schema": {
+        "name": "Wiring schema"
+      },
+      "flow_temperature": {
+        "name": "Flow temperature"
+      },
+      "flow_target": {
+        "name": "Target flow temperature"
+      },
+      "room_temperature": {
+        "name": "Room temperature"
+      },
+      "room_setpoint_active": {
+        "name": "Active room setpoint"
+      },
+      "mixing_valve_state": {
+        "name": "Mixing valve",
+        "state": {
+          "off": "Off",
+          "opening": "Opening",
+          "closing": "Closing"
+        }
+      },
+      "mixing_valve_position": {
+        "name": "Mixing valve opening"
+      },
+      "installation_type": {
+        "name": "Heating type",
+        "state": {
+          "radiators": "Radiators",
+          "underfloor": "Underfloor heating"
+        }
+      },
+      "room_sensor_type": {
+        "name": "Room sensor type",
+        "state": {
+          "carel_dpwt": "Carel DPWT",
+          "ntc": "NTC",
+          "on_off_thermostat": "On/off thermostat",
+          "wireless_orca": "Wireless ORCA",
+          "thtune": "th-Tune"
+        }
+      },
+      "dhw_temp_top": {
+        "name": "Top temperature"
+      },
+      "dhw_temp_bottom": {
+        "name": "Bottom temperature"
+      },
+      "solar_collector_temperature": {
+        "name": "Collector temperature"
+      },
+      "solar_target": {
+        "name": "Solar heating target",
+        "state": {
+          "hot_water": "Hot water",
+          "space_heating": "Space heating"
+        }
+      },
+      "solar_max_dhw_temp": {
+        "name": "Maximum hot water temperature"
+      },
+      "solar_max_collector_temp": {
+        "name": "Maximum collector temperature"
+      },
+      "buffer_temperature": {
+        "name": "Temperature"
+      },
+      "buffer_target": {
+        "name": "Target temperature"
+      }
+    },
+    "event": {
+      "alarm_event": {
+        "name": "Alarm",
+        "state_attributes": {
+          "event_type": {
+            "state": {
+              "alarm_raised": "Alarm raised",
+              "alarm_cleared": "Alarm cleared"
+            }
+          }
+        }
+      }
     }
   }
 }

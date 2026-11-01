@@ -262,6 +262,167 @@
       "alarm_error": {
         "name": "Napaka regulatorja"
       }
+    },
+    "sensor": {
+      "outdoor_temperature": {
+        "name": "Zunanja temperatura"
+      },
+      "hp_temperature": {
+        "name": "Temperatura vode"
+      },
+      "hp_target_temperature": {
+        "name": "Želena temperatura vode"
+      },
+      "outdoor_unit_power": {
+        "name": "Moč zunanje enote"
+      },
+      "outdoor_unit_state": {
+        "name": "Stanje zunanje enote",
+        "state": {
+          "off": "Izklop",
+          "heating": "Ogrevanje",
+          "cooling": "Hlajenje",
+          "defrost": "Odtaljevanje"
+        }
+      },
+      "valve_3way": {
+        "name": "Preklopni ventil",
+        "state": {
+          "space_heating": "Ogrevanje prostorov",
+          "hot_water": "Sanitarna voda"
+        }
+      },
+      "alarm_code": {
+        "name": "Aktivni alarm",
+        "state": {
+          "none": "Ni alarma",
+          "outdoor_unit": "Napaka zunanje enote",
+          "flow_temperature_circuit_1": "Previsoka temperatura vtoka (krog 1)",
+          "flow_temperature_circuit_2": "Previsoka temperatura vtoka (krog 2)",
+          "no_flow": "Ni pretoka",
+          "flow_switch": "Okvara pretočnega stikala",
+          "hp_temperature_low": "Prenizka temperatura toplotne črpalke",
+          "unknown_code": "Neznan alarm"
+        }
+      },
+      "hp_power_limit_heating": {
+        "name": "Omejitev moči pri ogrevanju"
+      },
+      "hp_power_limit_dhw": {
+        "name": "Omejitev moči pri sanitarni vodi"
+      },
+      "hp_power_limit_cooling": {
+        "name": "Omejitev moči pri hlajenju"
+      },
+      "quiet_power_limit": {
+        "name": "Omejitev moči pri tišjem delovanju"
+      },
+      "screed_drying_days": {
+        "name": "Število dni sušenja estrihov"
+      },
+      "screed_drying_current_day": {
+        "name": "Trenutni dan sušenja estrihov"
+      },
+      "additional_source": {
+        "name": "Dodatni vir",
+        "state": {
+          "electric_heater": "Električni grelec",
+          "additional_source": "Dodatni vir",
+          "electric_heater_and_additional_source": "Električni grelec in dodatni vir"
+        }
+      },
+      "heater_stages": {
+        "name": "Stopnje električnega grelca",
+        "state": {
+          "one_stage": "1 stopnja (3 kW)",
+          "two_stages": "2 stopnji (6 kW)",
+          "three_stages": "3 stopnje (9 kW)"
+        }
+      },
+      "schema": {
+        "name": "Shema"
+      },
+      "flow_temperature": {
+        "name": "Temperatura vtoka"
+      },
+      "flow_target": {
+        "name": "Želena temperatura vtoka"
+      },
+      "room_temperature": {
+        "name": "Sobna temperatura"
+      },
+      "room_setpoint_active": {
+        "name": "Zahtevana sobna temperatura"
+      },
+      "mixing_valve_state": {
+        "name": "Mešalni ventil",
+        "state": {
+          "off": "Izklop",
+          "opening": "Odpiranje",
+          "closing": "Zapiranje"
+        }
+      },
+      "mixing_valve_position": {
+        "name": "Odprtost mešalnega ventila"
+      },
+      "installation_type": {
+        "name": "Vrsta ogrevanja",
+        "state": {
+          "radiators": "Radiatorji",
+          "underfloor": "Talno ogrevanje"
+        }
+      },
+      "room_sensor_type": {
+        "name": "Vrsta sobnega tipala",
+        "state": {
+          "carel_dpwt": "Carel DPWT",
+          "ntc": "NTC",
+          "on_off_thermostat": "Termostat vklop/izklop",
+          "wireless_orca": "Brezžično ORCA",
+          "thtune": "th-Tune"
+        }
+      },
+      "dhw_temp_top": {
+        "name": "Temperatura zgoraj"
+      },
+      "dhw_temp_bottom": {
+        "name": "Temperatura spodaj"
+      },
+      "solar_collector_temperature": {
+        "name": "Temperatura kolektorja"
+      },
+      "solar_target": {
+        "name": "Namen solarnega ogrevanja",
+        "state": {
+          "hot_water": "Sanitarna voda",
+          "space_heating": "Ogrevanje prostorov"
+        }
+      },
+      "solar_max_dhw_temp": {
+        "name": "Najvišja temperatura sanitarne vode"
+      },
+      "solar_max_collector_temp": {
+        "name": "Najvišja temperatura kolektorja"
+      },
+      "buffer_temperature": {
+        "name": "Temperatura"
+      },
+      "buffer_target": {
+        "name": "Želena temperatura"
+      }
+    },
+    "event": {
+      "alarm_event": {
+        "name": "Alarm",
+        "state_attributes": {
+          "event_type": {
+            "state": {
+              "alarm_raised": "Alarm sprožen",
+              "alarm_cleared": "Alarm odpravljen"
+            }
+          }
+        }
+      }
     }
   }
 }
