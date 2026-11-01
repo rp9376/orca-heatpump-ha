@@ -29,13 +29,13 @@ FYI items (MK2 flow sensor, firmware 2016) were noted without action.
 
 Package `custom_components/orca_heatpump/client/`, no HA imports, 100 %
 coverage, tests in `tests/client/`. Steps (tick when committed):
-- [ ] `errors.py`, `models.py` (TagDef, Reading, Snapshot, topology, identity)
-- [ ] `protocol.py`: request targets (budget 3,500 bytes per target, R11),
+- [x] `errors.py`, `models.py` (TagDef, Reading, Snapshot, topology, identity)
+- [x] `protocol.py`: request targets (budget 3,500 bytes per target, R11),
       record and login parsing, error-code mapping
-- [ ] `codec.py`: raw ↔ value per tag kind; -9999, empty, unknown option
-- [ ] `topology.py`: the 45 schemas (checked against the manufacturer's
+- [x] `codec.py`: raw ↔ value per tag kind; -9999, empty, unknown option
+- [x] `topology.py`: the 45 schemas (checked against the manufacturer's
       list) and detection; tests for all schemas and the real dumps
-- [ ] `catalog.py`: the keys of `docs/entity-model.md`; tests against
+- [x] `catalog.py`: the keys of `docs/entity-model.md`; tests against
       `moja_orca_catalog.json` (types, ranges, enums) and
       `tag_registers.json` (×10 ⇔ 5xxxxx, never writable on IREG/INP)
 - [ ] `client.py`: OrcaClient (lock, login single-flight, re-login on
@@ -46,6 +46,13 @@ coverage, tests in `tests/client/`. Steps (tick when committed):
 - [ ] `tools/orca_probe.py` on top of the client
 - [ ] exit: 100 % `client/` coverage, mypy strict, one live read-only read
       of our pump through the client
+
+Done so far: 125 catalog entries (generated once from `catalog_draft.md` and
+the manufacturer's metadata, then reviewed; generator kept out of the repo),
+fixtures for the duo (#3) and mono (#7) pumps, 814 tests, 100 % coverage.
+Found while testing: `2_Shema` is used as a number (the app models it as a
+list), and the mixing valve position sits in an integer register but is
+shown ×10 by the app; both are named exceptions in `test_catalog.py`.
 
 Design notes: the token is sent as an explicit `Cookie` header (HA's shared
 session has a cookie jar); errors arrive with HTTP 500 and a `#E_…` body;

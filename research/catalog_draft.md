@@ -924,6 +924,6 @@ Evidence in `research/findings.md` (R-numbers below).
 | `outdoor_unit_state` (`2_Rezim_delov_TC`), open question 2 | 1 = heating observed live (heat pump running for circuit 1); 2 cooling and 3 defrost still unconfirmed. |
 | R8 constant mode | Confirmed live: timer on → `2_Izrac_temp_TC` = `2_Max_VF_MK1` (28.0), pumps C0 and C1 on, valve on space heating. |
 | Writability | `accessMode` is READ-WRITE for every tag and says nothing. Tags in IREG/INP registers are physically read-only; the 22 IREG and 13 INP tags must never be `yes` (`research/tag_registers.json`). |
-| Scale | Register address `5xxxxx` ⇔ ×10, `7xxxxx` ⇔ ×1, for all 177 tags with app metadata (R2). Use it to check rows whose scale came from names or dumps. |
+| Scale | Register address `5xxxxx` ⇔ ×10, `7xxxxx` ⇔ ×1, for all 177 tags with app metadata (R2). Outside them it is a hint only: `2_Odstotki_odprtosti_MPn` is at `7xxxxx` but shown ×10 by the app (90 → "9.0%"). |
 | Tag existence | `browse` lists exactly the 640 controller and 549 display-local tags on our pump; the 1,059 `E_UNKNOWNTAG` names are not listed (R2). |
 | Password and code tags | Extend the "never" rows to every name containing `GESLO`, `KODA` or `KODE`; never read them (findings, "Sensitive tags"). |

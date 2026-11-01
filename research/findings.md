@@ -120,9 +120,12 @@ plan's 1/2/4/8-min backoff is ample. The client re-logs in once on
   `LIMITS` option (the bits are decoded from the quality integer, always
   192 = good). `getProperties` reads display properties, not tag metadata
   (its `propertymap.xml` does not exist on ours).
-- **The register address reveals the scale:** across all 177 controller tags
-  that have manufacturer metadata, every ×10 value is at `5xxxxx` and every
-  ×1 integer or enum at `7xxxxx`, with no exception.
+- **The register address usually reveals the scale:** across all 177
+  controller tags that have manufacturer metadata, every ×10 value is at
+  `5xxxxx` and every ×1 integer or enum at `7xxxxx`, with no exception.
+  Outside that set it is only a hint: the mixing valve position
+  (`2_Odstotki_odprtosti_MPn`) sits at `7xxxxx`, yet the app shows its raw
+  90 as "9.0%".
 
 **Design consequences.** Types, units, ranges and enum maps come from
 `research/moja_orca_catalog.json` (the manufacturer's metadata) and the
