@@ -625,6 +625,15 @@ def session2b(display: Display, rec: Recorder, files: list[str]) -> None:
         results[path] = read_one_file(display, rec, f"S2b-{index:02}_file", path)
 
 
+def session_meta(display: Display, rec: Recorder) -> None:
+    """R2: every tag definition (register kind and data type) via browse."""
+    status, items = browse(
+        display, rec, "S4-01_tag_objects", "tagName", "*", True, 500, 4, 10.0
+    )
+    rec.results["status"] = status
+    rec.results["object_lines"] = len(items)
+
+
 def session3(display: Display, rec: Recorder) -> None:
     """R1: do reads keep a session alive, and when does an idle one expire?"""
     start = time.monotonic()
@@ -676,7 +685,8 @@ def main() -> int:
         help="session2b: a file to read (repeat; each must be justified)",
     )
     parser.add_argument(
-        "session", choices=("session1", "session2a", "session2b", "session3")
+        "session",
+        choices=("session1", "session2a", "session2b", "session3", "meta"),
     )
     args = parser.parse_args()
     signal.signal(signal.SIGTERM, lambda *_: sys.exit(143))
@@ -710,6 +720,8 @@ def main() -> int:
                         session1(display, rec)
                     elif args.session == "session2b":
                         session2b(display, rec, args.file)
+                    elif args.session == "meta":
+                        session_meta(display, rec)
                     else:
                         session3(display, rec)
         except (ProbeError, OSError, http.client.HTTPException) as err:
