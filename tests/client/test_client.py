@@ -110,6 +110,7 @@ async def test_identity_and_topology(client: OrcaClient) -> None:
     [
         pytest.param({"2_Verzija_programa_MESEC": "13"}, id="month_13"),
         pytest.param({"2_Verzija_programa_LETO": ""}, id="year_empty"),
+        pytest.param({"2_Verzija_programa_LETO": "2147483647"}, id="year_huge"),
     ],
 )
 async def test_identity_partial(

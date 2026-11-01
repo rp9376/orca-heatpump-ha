@@ -1,0 +1,905 @@
+# serializer version: 1
+# name: test_schema[10]
+  dict({
+    'devices': list([
+      '_circuit1',
+      '_circuit2',
+      'heat_pump',
+    ]),
+    'entities': dict({
+      'binary_sensor': 15,
+      'button': 1,
+      'climate': 2,
+      'event': 1,
+      'number': 31,
+      'select': 16,
+      'sensor': 23,
+      'switch': 9,
+    }),
+  })
+# ---
+# name: test_schema[11]
+  dict({
+    'devices': list([
+      '_circuit1',
+      'heat_pump',
+    ]),
+    'entities': dict({
+      'binary_sensor': 13,
+      'button': 1,
+      'climate': 1,
+      'event': 1,
+      'number': 21,
+      'select': 11,
+      'sensor': 22,
+      'switch': 7,
+    }),
+  })
+# ---
+# name: test_schema[12]
+  dict({
+    'devices': list([
+      '_circuit1',
+      'heat_pump',
+    ]),
+    'entities': dict({
+      'binary_sensor': 13,
+      'button': 1,
+      'climate': 1,
+      'event': 1,
+      'number': 20,
+      'select': 11,
+      'sensor': 19,
+      'switch': 7,
+    }),
+  })
+# ---
+# name: test_schema[13]
+  dict({
+    'devices': list([
+      '_circuit2',
+      'heat_pump',
+    ]),
+    'entities': dict({
+      'binary_sensor': 13,
+      'button': 1,
+      'climate': 1,
+      'event': 1,
+      'number': 20,
+      'select': 11,
+      'sensor': 19,
+      'switch': 7,
+    }),
+  })
+# ---
+# name: test_schema[14]
+  dict({
+    'devices': list([
+      '_dhw',
+      'heat_pump',
+    ]),
+    'entities': dict({
+      'binary_sensor': 11,
+      'button': 1,
+      'event': 1,
+      'number': 12,
+      'select': 8,
+      'sensor': 16,
+      'switch': 5,
+      'water_heater': 1,
+    }),
+  })
+# ---
+# name: test_schema[15]
+  dict({
+    'devices': list([
+      '_dhw',
+      '_solar',
+      'heat_pump',
+    ]),
+    'entities': dict({
+      'binary_sensor': 12,
+      'button': 1,
+      'event': 1,
+      'number': 15,
+      'select': 8,
+      'sensor': 20,
+      'switch': 5,
+      'water_heater': 1,
+    }),
+  })
+# ---
+# name: test_schema[16]
+  dict({
+    'devices': list([
+      '_circuit2',
+      '_dhw',
+      'heat_pump',
+    ]),
+    'entities': dict({
+      'binary_sensor': 13,
+      'button': 1,
+      'climate': 1,
+      'event': 1,
+      'number': 25,
+      'select': 14,
+      'sensor': 22,
+      'switch': 8,
+      'water_heater': 1,
+    }),
+  })
+# ---
+# name: test_schema[17]
+  dict({
+    'devices': list([
+      '_circuit2',
+      '_dhw',
+      '_solar',
+      'heat_pump',
+    ]),
+    'entities': dict({
+      'binary_sensor': 14,
+      'button': 1,
+      'climate': 1,
+      'event': 1,
+      'number': 28,
+      'select': 14,
+      'sensor': 26,
+      'switch': 8,
+      'water_heater': 1,
+    }),
+  })
+# ---
+# name: test_schema[18]
+  dict({
+    'devices': list([
+      '_circuit2',
+      'heat_pump',
+    ]),
+    'entities': dict({
+      'binary_sensor': 13,
+      'button': 1,
+      'climate': 1,
+      'event': 1,
+      'number': 21,
+      'select': 11,
+      'sensor': 22,
+      'switch': 7,
+    }),
+  })
+# ---
+# name: test_schema[19]
+  dict({
+    'devices': list([
+      '_circuit2',
+      '_dhw',
+      'heat_pump',
+    ]),
+    'entities': dict({
+      'binary_sensor': 13,
+      'button': 1,
+      'climate': 1,
+      'event': 1,
+      'number': 26,
+      'select': 14,
+      'sensor': 25,
+      'switch': 8,
+      'water_heater': 1,
+    }),
+  })
+# ---
+# name: test_schema[1]
+  dict({
+    'devices': list([
+      '_circuit1',
+      '_dhw',
+      'heat_pump',
+    ]),
+    'entities': dict({
+      'binary_sensor': 13,
+      'button': 1,
+      'climate': 1,
+      'event': 1,
+      'number': 26,
+      'select': 14,
+      'sensor': 25,
+      'switch': 8,
+      'water_heater': 1,
+    }),
+  })
+# ---
+# name: test_schema[20]
+  dict({
+    'devices': list([
+      '_circuit2',
+      '_dhw',
+      '_solar',
+      'heat_pump',
+    ]),
+    'entities': dict({
+      'binary_sensor': 14,
+      'button': 1,
+      'climate': 1,
+      'event': 1,
+      'number': 29,
+      'select': 14,
+      'sensor': 29,
+      'switch': 8,
+      'water_heater': 1,
+    }),
+  })
+# ---
+# name: test_schema[21]
+  dict({
+    'devices': list([
+      '_circuit1',
+      '_circuit2',
+      'heat_pump',
+    ]),
+    'entities': dict({
+      'binary_sensor': 15,
+      'button': 1,
+      'climate': 2,
+      'event': 1,
+      'number': 32,
+      'select': 16,
+      'sensor': 26,
+      'switch': 9,
+    }),
+  })
+# ---
+# name: test_schema[22]
+  dict({
+    'devices': list([
+      '_circuit1',
+      '_circuit2',
+      '_dhw',
+      'heat_pump',
+    ]),
+    'entities': dict({
+      'binary_sensor': 15,
+      'button': 1,
+      'climate': 2,
+      'event': 1,
+      'number': 37,
+      'select': 19,
+      'sensor': 29,
+      'switch': 10,
+      'water_heater': 1,
+    }),
+  })
+# ---
+# name: test_schema[23]
+  dict({
+    'devices': list([
+      '_circuit1',
+      '_circuit2',
+      '_dhw',
+      '_solar',
+      'heat_pump',
+    ]),
+    'entities': dict({
+      'binary_sensor': 16,
+      'button': 1,
+      'climate': 2,
+      'event': 1,
+      'number': 40,
+      'select': 19,
+      'sensor': 33,
+      'switch': 10,
+      'water_heater': 1,
+    }),
+  })
+# ---
+# name: test_schema[24]
+  dict({
+    'devices': list([
+      '_circuit1',
+      '_circuit2',
+      'heat_pump',
+    ]),
+    'entities': dict({
+      'binary_sensor': 15,
+      'button': 1,
+      'climate': 2,
+      'event': 1,
+      'number': 33,
+      'select': 16,
+      'sensor': 29,
+      'switch': 9,
+    }),
+  })
+# ---
+# name: test_schema[25]
+  dict({
+    'devices': list([
+      '_circuit1',
+      '_circuit2',
+      '_dhw',
+      'heat_pump',
+    ]),
+    'entities': dict({
+      'binary_sensor': 15,
+      'button': 1,
+      'climate': 2,
+      'event': 1,
+      'number': 38,
+      'select': 19,
+      'sensor': 32,
+      'switch': 10,
+      'water_heater': 1,
+    }),
+  })
+# ---
+# name: test_schema[26]
+  dict({
+    'devices': list([
+      '_circuit1',
+      '_circuit2',
+      '_dhw',
+      '_solar',
+      'heat_pump',
+    ]),
+    'entities': dict({
+      'binary_sensor': 16,
+      'button': 1,
+      'climate': 2,
+      'event': 1,
+      'number': 41,
+      'select': 19,
+      'sensor': 36,
+      'switch': 10,
+      'water_heater': 1,
+    }),
+  })
+# ---
+# name: test_schema[27]
+  dict({
+    'devices': list([
+      '_solar',
+      'heat_pump',
+    ]),
+    'entities': dict({
+      'binary_sensor': 12,
+      'button': 1,
+      'event': 1,
+      'number': 10,
+      'select': 5,
+      'sensor': 17,
+      'switch': 4,
+    }),
+  })
+# ---
+# name: test_schema[28]
+  dict({
+    'devices': list([
+      '_circuit3',
+      'heat_pump',
+    ]),
+    'entities': dict({
+      'binary_sensor': 12,
+      'button': 1,
+      'climate': 1,
+      'event': 1,
+      'number': 20,
+      'select': 11,
+      'sensor': 18,
+      'switch': 7,
+    }),
+  })
+# ---
+# name: test_schema[29]
+  dict({
+    'devices': list([
+      '_circuit3',
+      '_dhw',
+      'heat_pump',
+    ]),
+    'entities': dict({
+      'binary_sensor': 12,
+      'button': 1,
+      'climate': 1,
+      'event': 1,
+      'number': 25,
+      'select': 14,
+      'sensor': 21,
+      'switch': 8,
+      'water_heater': 1,
+    }),
+  })
+# ---
+# name: test_schema[2]
+  dict({
+    'devices': list([
+      '_circuit1',
+      '_dhw',
+      '_solar',
+      'heat_pump',
+    ]),
+    'entities': dict({
+      'binary_sensor': 14,
+      'button': 1,
+      'climate': 1,
+      'event': 1,
+      'number': 29,
+      'select': 14,
+      'sensor': 29,
+      'switch': 8,
+      'water_heater': 1,
+    }),
+  })
+# ---
+# name: test_schema[30]
+  dict({
+    'devices': list([
+      '_circuit1',
+      '_circuit3',
+      'heat_pump',
+    ]),
+    'entities': dict({
+      'binary_sensor': 14,
+      'button': 1,
+      'climate': 2,
+      'event': 1,
+      'number': 31,
+      'select': 16,
+      'sensor': 22,
+      'switch': 9,
+    }),
+  })
+# ---
+# name: test_schema[31]
+  dict({
+    'devices': list([
+      '_circuit1',
+      '_circuit3',
+      '_dhw',
+      'heat_pump',
+    ]),
+    'entities': dict({
+      'binary_sensor': 14,
+      'button': 1,
+      'climate': 2,
+      'event': 1,
+      'number': 36,
+      'select': 19,
+      'sensor': 25,
+      'switch': 10,
+      'water_heater': 1,
+    }),
+  })
+# ---
+# name: test_schema[32]
+  dict({
+    'devices': list([
+      '_circuit1',
+      '_circuit3',
+      'heat_pump',
+    ]),
+    'entities': dict({
+      'binary_sensor': 14,
+      'button': 1,
+      'climate': 2,
+      'event': 1,
+      'number': 32,
+      'select': 16,
+      'sensor': 25,
+      'switch': 9,
+    }),
+  })
+# ---
+# name: test_schema[33]
+  dict({
+    'devices': list([
+      '_circuit1',
+      '_circuit3',
+      '_dhw',
+      'heat_pump',
+    ]),
+    'entities': dict({
+      'binary_sensor': 14,
+      'button': 1,
+      'climate': 2,
+      'event': 1,
+      'number': 37,
+      'select': 19,
+      'sensor': 28,
+      'switch': 10,
+      'water_heater': 1,
+    }),
+  })
+# ---
+# name: test_schema[34]
+  dict({
+    'devices': list([
+      '_circuit2',
+      '_circuit3',
+      'heat_pump',
+    ]),
+    'entities': dict({
+      'binary_sensor': 14,
+      'button': 1,
+      'climate': 2,
+      'event': 1,
+      'number': 31,
+      'select': 16,
+      'sensor': 22,
+      'switch': 9,
+    }),
+  })
+# ---
+# name: test_schema[35]
+  dict({
+    'devices': list([
+      '_circuit2',
+      '_circuit3',
+      '_dhw',
+      'heat_pump',
+    ]),
+    'entities': dict({
+      'binary_sensor': 14,
+      'button': 1,
+      'climate': 2,
+      'event': 1,
+      'number': 36,
+      'select': 19,
+      'sensor': 25,
+      'switch': 10,
+      'water_heater': 1,
+    }),
+  })
+# ---
+# name: test_schema[36]
+  dict({
+    'devices': list([
+      '_circuit2',
+      '_circuit3',
+      'heat_pump',
+    ]),
+    'entities': dict({
+      'binary_sensor': 14,
+      'button': 1,
+      'climate': 2,
+      'event': 1,
+      'number': 32,
+      'select': 16,
+      'sensor': 25,
+      'switch': 9,
+    }),
+  })
+# ---
+# name: test_schema[37]
+  dict({
+    'devices': list([
+      '_circuit2',
+      '_circuit3',
+      '_dhw',
+      'heat_pump',
+    ]),
+    'entities': dict({
+      'binary_sensor': 14,
+      'button': 1,
+      'climate': 2,
+      'event': 1,
+      'number': 37,
+      'select': 19,
+      'sensor': 28,
+      'switch': 10,
+      'water_heater': 1,
+    }),
+  })
+# ---
+# name: test_schema[38]
+  dict({
+    'devices': list([
+      '_circuit1',
+      '_circuit2',
+      '_circuit3',
+      'heat_pump',
+    ]),
+    'entities': dict({
+      'binary_sensor': 16,
+      'button': 1,
+      'climate': 3,
+      'event': 1,
+      'number': 42,
+      'select': 21,
+      'sensor': 26,
+      'switch': 11,
+    }),
+  })
+# ---
+# name: test_schema[39]
+  dict({
+    'devices': list([
+      '_circuit1',
+      '_circuit2',
+      '_circuit3',
+      '_dhw',
+      'heat_pump',
+    ]),
+    'entities': dict({
+      'binary_sensor': 16,
+      'button': 1,
+      'climate': 3,
+      'event': 1,
+      'number': 47,
+      'select': 24,
+      'sensor': 29,
+      'switch': 12,
+      'water_heater': 1,
+    }),
+  })
+# ---
+# name: test_schema[3]
+  dict({
+    'devices': list([
+      '_circuit1',
+      '_dhw',
+      'heat_pump',
+    ]),
+    'entities': dict({
+      'binary_sensor': 13,
+      'button': 1,
+      'climate': 1,
+      'event': 1,
+      'number': 25,
+      'select': 14,
+      'sensor': 22,
+      'switch': 8,
+      'water_heater': 1,
+    }),
+  })
+# ---
+# name: test_schema[40]
+  dict({
+    'devices': list([
+      '_circuit1',
+      '_circuit2',
+      '_circuit3',
+      'heat_pump',
+    ]),
+    'entities': dict({
+      'binary_sensor': 16,
+      'button': 1,
+      'climate': 3,
+      'event': 1,
+      'number': 43,
+      'select': 21,
+      'sensor': 29,
+      'switch': 11,
+    }),
+  })
+# ---
+# name: test_schema[41]
+  dict({
+    'devices': list([
+      '_circuit1',
+      '_circuit2',
+      '_circuit3',
+      '_dhw',
+      'heat_pump',
+    ]),
+    'entities': dict({
+      'binary_sensor': 16,
+      'button': 1,
+      'climate': 3,
+      'event': 1,
+      'number': 48,
+      'select': 24,
+      'sensor': 32,
+      'switch': 12,
+      'water_heater': 1,
+    }),
+  })
+# ---
+# name: test_schema[42]
+  dict({
+    'devices': list([
+      '_circuit1',
+      '_circuit2',
+      '_circuit3',
+      'heat_pump',
+    ]),
+    'entities': dict({
+      'binary_sensor': 16,
+      'button': 1,
+      'climate': 3,
+      'event': 1,
+      'number': 44,
+      'select': 21,
+      'sensor': 32,
+      'switch': 11,
+    }),
+  })
+# ---
+# name: test_schema[43]
+  dict({
+    'devices': list([
+      '_circuit1',
+      '_circuit2',
+      '_circuit3',
+      '_dhw',
+      'heat_pump',
+    ]),
+    'entities': dict({
+      'binary_sensor': 16,
+      'button': 1,
+      'climate': 3,
+      'event': 1,
+      'number': 49,
+      'select': 24,
+      'sensor': 35,
+      'switch': 12,
+      'water_heater': 1,
+    }),
+  })
+# ---
+# name: test_schema[44]
+  dict({
+    'devices': list([
+      '_circuit1',
+      '_circuit2',
+      '_circuit3',
+      'heat_pump',
+    ]),
+    'entities': dict({
+      'binary_sensor': 16,
+      'button': 1,
+      'climate': 3,
+      'event': 1,
+      'number': 43,
+      'select': 21,
+      'sensor': 29,
+      'switch': 11,
+    }),
+  })
+# ---
+# name: test_schema[45]
+  dict({
+    'devices': list([
+      '_circuit1',
+      '_circuit2',
+      '_circuit3',
+      '_dhw',
+      'heat_pump',
+    ]),
+    'entities': dict({
+      'binary_sensor': 16,
+      'button': 1,
+      'climate': 3,
+      'event': 1,
+      'number': 48,
+      'select': 24,
+      'sensor': 32,
+      'switch': 12,
+      'water_heater': 1,
+    }),
+  })
+# ---
+# name: test_schema[4]
+  dict({
+    'devices': list([
+      '_circuit1',
+      '_dhw',
+      '_solar',
+      'heat_pump',
+    ]),
+    'entities': dict({
+      'binary_sensor': 14,
+      'button': 1,
+      'climate': 1,
+      'event': 1,
+      'number': 28,
+      'select': 14,
+      'sensor': 26,
+      'switch': 8,
+      'water_heater': 1,
+    }),
+  })
+# ---
+# name: test_schema[5]
+  dict({
+    'devices': list([
+      '_circuit1',
+      '_circuit2',
+      '_dhw',
+      'heat_pump',
+    ]),
+    'entities': dict({
+      'binary_sensor': 15,
+      'button': 1,
+      'climate': 2,
+      'event': 1,
+      'number': 37,
+      'select': 19,
+      'sensor': 29,
+      'switch': 10,
+      'water_heater': 1,
+    }),
+  })
+# ---
+# name: test_schema[6]
+  dict({
+    'devices': list([
+      '_circuit1',
+      '_circuit2',
+      '_dhw',
+      '_solar',
+      'heat_pump',
+    ]),
+    'entities': dict({
+      'binary_sensor': 16,
+      'button': 1,
+      'climate': 2,
+      'event': 1,
+      'number': 40,
+      'select': 19,
+      'sensor': 33,
+      'switch': 10,
+      'water_heater': 1,
+    }),
+  })
+# ---
+# name: test_schema[7]
+  dict({
+    'devices': list([
+      '_circuit1',
+      '_circuit2',
+      '_dhw',
+      'heat_pump',
+    ]),
+    'entities': dict({
+      'binary_sensor': 15,
+      'button': 1,
+      'climate': 2,
+      'event': 1,
+      'number': 36,
+      'select': 19,
+      'sensor': 26,
+      'switch': 10,
+      'water_heater': 1,
+    }),
+  })
+# ---
+# name: test_schema[8]
+  dict({
+    'devices': list([
+      '_circuit1',
+      '_circuit2',
+      '_dhw',
+      '_solar',
+      'heat_pump',
+    ]),
+    'entities': dict({
+      'binary_sensor': 16,
+      'button': 1,
+      'climate': 2,
+      'event': 1,
+      'number': 39,
+      'select': 19,
+      'sensor': 30,
+      'switch': 10,
+      'water_heater': 1,
+    }),
+  })
+# ---
+# name: test_schema[9]
+  dict({
+    'devices': list([
+      '_circuit1',
+      '_circuit2',
+      'heat_pump',
+    ]),
+    'entities': dict({
+      'binary_sensor': 15,
+      'button': 1,
+      'climate': 2,
+      'event': 1,
+      'number': 32,
+      'select': 16,
+      'sensor': 26,
+      'switch': 9,
+    }),
+  })
+# ---

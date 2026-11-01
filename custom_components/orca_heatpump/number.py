@@ -30,6 +30,7 @@ from .entity import (
     EntityContext,
     OrcaEntity,
     OrcaEntityDescription,
+    any_circuit,
     entity_targets,
     heater_stage,
     mixing_circuit,
@@ -147,8 +148,8 @@ DESCRIPTIONS: tuple[OrcaNumberEntityDescription, ...] = (
     ),
     _duration(catalog.ADDITIONAL_SOURCE_DELAY, UnitOfTime.MINUTES, enabled=False),
     _temperature(catalog.ADDITIONAL_SOURCE_OUTDOOR_TEMP, enabled=False),
-    _temperature(catalog.SCREED_DRYING_MIN_FLOW, enabled=False),
-    _temperature(catalog.SCREED_DRYING_MAX_FLOW, enabled=False),
+    _temperature(catalog.SCREED_DRYING_MIN_FLOW, enabled=False, exists_fn=any_circuit),
+    _temperature(catalog.SCREED_DRYING_MAX_FLOW, enabled=False, exists_fn=any_circuit),
     # On a constant-temperature circuit the maximum is the flow setpoint (R8).
     _temperature(
         catalog.MAX_FLOW_HEATING,

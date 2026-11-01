@@ -18,7 +18,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from .client import catalog
 from .client.models import TagDef
 from .coordinator import OrcaConfigEntry
-from .entity import OrcaEntity, OrcaEntityDescription, entity_targets
+from .entity import OrcaEntity, OrcaEntityDescription, any_circuit, entity_targets
 
 # The pump takes one write at a time.
 PARALLEL_UPDATES = 1
@@ -34,6 +34,7 @@ def _switch(
     *,
     enabled: bool = False,
     category: EntityCategory | None = EntityCategory.CONFIG,
+    **kwargs: Any,
 ) -> OrcaSwitchEntityDescription:
     return OrcaSwitchEntityDescription(
         key=definition.key,
@@ -41,13 +42,14 @@ def _switch(
         device_class=SwitchDeviceClass.SWITCH,
         entity_registry_enabled_default=enabled,
         entity_category=category,
+        **kwargs,
     )
 
 
 DESCRIPTIONS: tuple[OrcaSwitchEntityDescription, ...] = (
     _switch(catalog.SYSTEM_ENABLE, enabled=True, category=None),
     _switch(catalog.PV_FUNCTION),
-    _switch(catalog.SCREED_DRYING),
+    _switch(catalog.SCREED_DRYING, exists_fn=any_circuit),
     _switch(catalog.ANTI_BLOCK_PROGRAMME),
     _switch(catalog.ADDITIONAL_SOURCE_PARALLEL),
     _switch(catalog.AUTO_HEATING_SWITCH),

@@ -176,7 +176,7 @@ class OrcaClient:
         )
         firmware_date: date | None = None
         if isinstance(year, int) and isinstance(month, int) and isinstance(day, int):
-            with contextlib.suppress(ValueError):
+            with contextlib.suppress(ValueError, OverflowError):
                 firmware_date = date(2000 + year, month, day)
         brand = snapshot.value(catalog.OUTDOOR_UNIT_BRAND)
         return DeviceIdentity(

@@ -11,7 +11,13 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from .client import catalog
 from .client.models import TagDef
 from .coordinator import OrcaConfigEntry, OrcaCoordinator
-from .entity import EntityContext, OrcaEntity, OrcaEntityDescription, entity_targets
+from .entity import (
+    EntityContext,
+    OrcaEntity,
+    OrcaEntityDescription,
+    any_circuit,
+    entity_targets,
+)
 
 # The pump takes one write at a time.
 PARALLEL_UPDATES = 1
@@ -50,7 +56,7 @@ def _electric_heater(context: EntityContext, slot: int | None) -> bool:
 
 DESCRIPTIONS: tuple[OrcaSelectEntityDescription, ...] = (
     _select(catalog.OPERATING_PROGRAMME, category=None),
-    _select(catalog.QUICK_ROOM_MODE, category=None),
+    _select(catalog.QUICK_ROOM_MODE, category=None, exists_fn=any_circuit),
     _select(catalog.QUIET_MODE, enabled=False),
     _select(catalog.QUIET_TIMER_PROGRAMME, enabled=False, timer=True),
     _select(catalog.HEATER_MODE, exists_fn=_electric_heater),

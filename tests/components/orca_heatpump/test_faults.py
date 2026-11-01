@@ -1,12 +1,14 @@
 """Faults of the display, with every platform running on top (PLAN.md P5)."""
 
 from collections.abc import Callable
+import logging
 
 import pytest
 from pytest_homeassistant.common import MockConfigEntry
 
 from custom_components.orca_heatpump.client import catalog
 from custom_components.orca_heatpump.client.models import Kind
+from custom_components.orca_heatpump.client.topology import TOPOLOGY_TAGS
 from homeassistant.config_entries import ConfigEntryState
 from homeassistant.const import EVENT_HOMEASSISTANT_STOP, STATE_UNAVAILABLE
 from homeassistant.core import HomeAssistant
@@ -196,3 +198,35 @@ async def test_restart_loops_release_sessions(
     hass.bus.async_fire(EVENT_HOMEASSISTANT_STOP)
     await hass.async_block_till_done()
     assert emulator.sessions == {}
+
+
+@pytest.mark.parametrize(
+    "values",
+    [
+        pytest.param(
+            {
+                tag: odd
+                for definition in catalog.CATALOG
+                for tag in definition.tag_names()
+                if tag not in TOPOLOGY_TAGS
+            },
+            id=name,
+        )
+        for name, odd in (
+            ("empty", ""),
+            ("text", "abc"),
+            ("not_connected", "-9999"),
+            ("huge", "2147483647"),
+            ("negative", "-1"),
+        )
+    ],
+)
+async def test_odd_values_everywhere(
+    hass: HomeAssistant, entry: MockConfigEntry, caplog: pytest.LogCaptureFixture
+) -> None:
+    """No value the display can send crashes a platform."""
+    await poll(hass, entry)
+
+    assert entry.state is ConfigEntryState.LOADED
+    assert entry.runtime_data.coordinator.last_update_success
+    assert not [r for r in caplog.records if r.levelno >= logging.ERROR]

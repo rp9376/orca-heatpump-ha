@@ -24,6 +24,7 @@ from .coordinator import OrcaConfigEntry
 from .entity import (
     OrcaEntity,
     OrcaEntityDescription,
+    any_circuit,
     entity_targets,
     mixing_circuit,
     power_limit,
@@ -115,6 +116,7 @@ DESCRIPTIONS: tuple[OrcaSensorEntityDescription, ...] = (
             native_unit_of_measurement=UnitOfTime.DAYS,
             entity_category=EntityCategory.DIAGNOSTIC,
             entity_registry_enabled_default=False,
+            exists_fn=any_circuit,
         )
         for definition in (
             catalog.SCREED_DRYING_DAYS,

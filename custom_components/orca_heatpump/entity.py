@@ -63,6 +63,11 @@ def heater_stage(stage: int) -> Callable[[EntityContext, int | None], bool]:
     return exists
 
 
+def any_circuit(context: EntityContext, slot: int | None) -> bool:
+    """Return whether the pump heats or cools rooms through any circuit."""
+    return bool(context.topology.circuits)
+
+
 def mixing_circuit(context: EntityContext, slot: int | None) -> bool:
     """Return whether the slot is a mixing circuit."""
     return slot is not None and bool(
