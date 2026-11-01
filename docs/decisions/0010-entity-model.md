@@ -1,6 +1,6 @@
 # 0010. Entity model
 
-Status: Proposed (structure from `PLAN.md` §8; finalised at CP1)
+Status: Proposed for CP1: the full proposal is `docs/entity-model.md`
 
 ## Context
 The old integration's entity set grew around one setup and crashed on
@@ -15,14 +15,16 @@ The proposal in `PLAN.md` §8, in outline:
 - Entities only for elements the topology says exist; availability then
   follows each value.
 - Unique IDs `{base}_{catalog_key}`, with the circuit number (never its
-  name) in circuit-scoped keys; `base` is the hardware ID from R3, else the
-  config entry ID.
+  name) in circuit-scoped keys; `base` is the config entry ID, because the
+  display exposes no hardware ID (R3).
 - Alarms are first-class: an overall problem sensor, per-alarm sensors,
   the active alarm text and an event entity.
 - Installer settings are never writable (`PLAN.md` §10).
 
-Final keys, names and the enabled-by-default set come out of R7–R9 and are
-written here at CP1.
+The research (R1–R15) is done. The detailed proposal (topology rules,
+devices, every entity with key, tag, platform and default, the climate and
+water heater mappings, alarms, never-exposed tags) is in
+`docs/entity-model.md`; questions marked [CP1] there need the user.
 
 ## Consequences
 - Unique IDs are permanent from 1.0 (`PLAN.md` §7.3a), so the keys must be

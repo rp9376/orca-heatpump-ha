@@ -1,5 +1,9 @@
 # Tag catalog draft (research subagent A)
 
+> **Lead's review, 2026-11-01:** reviewed and accepted as the catalog source
+> for Phase 2, with the live corrections in §10 at the end of this file.
+> Where §10 and an earlier row disagree, §10 wins.
+
 Status: draft for CP1, offline work only (no pump access). Generated on 2026-10-31 from the files below; nothing here
 was read live. Sensitive values are left out: no MAC, IP or serial numbers appear, and every tag whose name contains
 `GESLO` is shown as `<redacted>` (`<r>` in dump columns).
@@ -907,3 +911,19 @@ Non-zero among them: none.
 | `^2_(Zunanja\|Prostor_\d\|Kolektorji\|Moc_TC\|TC\|BF\d\|Vtok_\d)$` | 10 | 10 | 0 | `2_Zunanja`, `2_Prostor_1`, `2_Kolektorji`, `2_Moc_TC` | Duo-only raw sensor/value mirrors. |
 | `VMESNA\|Cas_osvezevanja_RF\|Vhod_ON_OFF_RF1` | 7 | 7 | 3 | `2_Temp_Prostora_VMESNA`, `2_Vhod_ON_OFF_RF1`, `2_Cas_osvezevanja_RF1`, `2_Temp_RF2_VMESNA` | Room-sensor helpers (intermediate value, refresh time). |
 | other | 5 | 5 | 2 | `2_Dod_Vir_Rocno_Avtom`, `2_Izrac_temp_OGR`, `2_Ponoci_min_temp_IZKLOP_MK2_HL`, `2_IME_DK3`, `2_Zahtevana_RF_DK_1` | mixed; see names |
+
+## 10. Lead's corrections from the live sessions (2026-11-01)
+
+Evidence in `research/findings.md` (R-numbers below).
+
+| Row / question | Correction or confirmation |
+|---|---|
+| `alarm_type` (`2_Vrsta_alarma`) | Enum now known: 0 none, 1 error outdoor unit, 2 too high flow temp. HC1, 3 too high flow temp. HC2, 4 no flow, 5 flow switch failure, 6 too low temp. HP; texts in 7 languages in `research/alarm_texts.json` (R4). Input register: read-only. |
+| `alarm_reset_hmi` (`2_Reset_ALARMA_iz_PGDT`) | The display's RESET button on the alarm page (writable coil, shown while `2_JE_ALARM` = 1). Candidate for the reset button; Phase 6 test first. |
+| `outdoor_unit_demand` (`2_PRIKAZ_Reg_temp_vode`), open question 1 | Confirmed: outdoor unit power in % ×10 (0 off, 150 = 15.0 % while heating; register 500009 = ×10). |
+| `outdoor_unit_state` (`2_Rezim_delov_TC`), open question 2 | 1 = heating observed live (heat pump running for circuit 1); 2 cooling and 3 defrost still unconfirmed. |
+| R8 constant mode | Confirmed live: timer on → `2_Izrac_temp_TC` = `2_Max_VF_MK1` (28.0), pumps C0 and C1 on, valve on space heating. |
+| Writability | `accessMode` is READ-WRITE for every tag and says nothing. Tags in IREG/INP registers are physically read-only; the 22 IREG and 13 INP tags must never be `yes` (`research/tag_registers.json`). |
+| Scale | Register address `5xxxxx` ⇔ ×10, `7xxxxx` ⇔ ×1, for all 177 tags with app metadata (R2). Use it to check rows whose scale came from names or dumps. |
+| Tag existence | `browse` lists exactly the 640 controller and 549 display-local tags on our pump; the 1,059 `E_UNKNOWNTAG` names are not listed (R2). |
+| Password and code tags | Extend the "never" rows to every name containing `GESLO`, `KODA` or `KODE`; never read them (findings, "Sensitive tags"). |

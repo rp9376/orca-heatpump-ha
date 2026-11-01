@@ -1,8 +1,110 @@
 # Progress
 
-**Phase 1 (research) in progress.** CP0 passed on 2026-10-31.
+**Phase 1 (research) done. Stopped at checkpoint CP1 (2026-11-01).**
+Next: Phase 2 (client package and emulator) once you've approved.
 
-## CP0 outcome (user, 2026-10-31)
+## CP1: what I need from you
+
+The research, catalog scope and entity model to approve:
+- `research/findings.md`: R1–R15 answered, with evidence; start with its
+  "Summary for the design" and "Corrections to PLAN.md assumptions".
+- `research/catalog_draft.md`: the tag catalog, with the lead's corrections
+  in its §10.
+- `docs/entity-model.md`: topology rules, devices, every entity, the climate
+  and water heater mappings, alarms. Items marked [CP1] are below.
+
+Decisions (my recommendation first):
+1. **Constant-temperature circuits:** climate with HVAC modes only, plus a
+   number "Flow temperature" (= `2_Max_VF_MKn`) on the circuit, as you use
+   it today. Recommended over putting the flow setpoint into the climate's
+   target temperature, which HA treats as a room temperature.
+2. **Power limits** (`2_Max_moc_TC_pri_OGR/SV/HLAJ`, quiet-mode limit):
+   writable numbers with the manufacturer's ranges (40–100 %, cooling
+   16–100 %), disabled by default. They are service-level settings, and an
+   out-of-range write once restarted a user's controller (#20), so the
+   alternative is read-only.
+3. **Cooling:** no tag says whether a pump can cool. Offer cool and
+   heat/cool by default, with an options switch to hide them on heating-only
+   installations? Or hide them by default?
+4. **Password and code tags:** never read or expose any tag whose name
+   contains `GESLO`, `KODA` or `KODE` (14 on our pump). This extends
+   `PLAN.md` §10.
+5. **Circuit modes 4 (by input) and 5 (manual)** show as HVAC `auto` and can
+   only be set through the raw mode select. No presets on the climate: the
+   operating programme (normal / holiday / party / ECO) is global, so it is a
+   select on the heat pump device.
+6. **Session slot count (C's Session 4):** measuring it needs several
+   sessions open at once, which breaks the one-session rule. I recommend
+   skipping it: the design never needs a second session, and a leaked
+   session frees itself within 3 minutes.
+7. **DHCP discovery** on the Carel MAC prefix 00:0A:5C, confirmed by login:
+   build it in P3 (Gold "discovery" rule)?
+
+For your information:
+- Your MK2 (radiator) circuit reports no flow sensor (`2_Temp_VF2` = -9999,
+  `2_Tipalo_VF2` = 0). Expected because it's switched off, or worth checking?
+- Your controller runs program build 61 from 2016-12-12, the oldest of the
+  three known pumps, although the pump was commissioned in October 2026.
+- The two alarms you've seen are codes 4 "Ni pretoka" and 5 "Okvara
+  pretočnega stikala" (flow switch failure).
+
+## Phase 1 (research)
+
+### Done
+- Lead's live work, all read-only, one session at a time, 9 logins, never
+  `E_TOO_MANY_USERS` (session table in `research/findings.md`):
+  - static console files, a two-pass dump of all 1,767 known tags
+  - C's Session 1 (discovery, exact request limit, timing, 10 reliability
+    passes), Session 2 (R14 `readFile`: the alarm page with the alarm texts),
+    Session 3 (session lifetime), a full tag-definition browse and a
+    heating snapshot
+  - not run: C's optional S1-38/39 (oversized POST, duplicate tags; risk
+    without value) and the gated Session 4 (decision 6)
+- Research subagents A (catalog), B (manuals), C (protocol), D (history,
+  parity, credits); all four outputs verified by the lead before use.
+- Tools: `tools/orca_probe.py` (allowlisted transport: lock, backoff, logout
+  in a `finally`, exact header-size measurement, refusal of password tags and
+  unlisted `readFile` paths) and `tools/orca_research.py` (the sessions).
+  Session 1 and 2 runners were dry-run against a local fake server first,
+  which caught two bugs before they reached the pump.
+- Committed derivatives: two fixtures of our pump (timer off; heating),
+  `research/tag_registers.json` (1,189 tag definitions),
+  `research/alarm_texts.json` (alarm codes, 7 languages).
+- `CREDITS.md` handles verified by research D (all 8; "420Cupcake" is
+  @rp9376, "Robert" is @thranduil).
+- `docs/entity-model.md`; ADR 0010 points to it.
+
+### Key results
+- No random record loss: a deterministic HTTP 408 above 4,095 header bytes.
+- Session idle timeout 2–3 min; reads keep it alive; errors on HTTP 500.
+- No hardware ID; MAC vendor prefix is Carel's.
+- Alarm codes 1–6 with texts in 7 languages; no alarm history.
+- Constant mode confirmed: the HP target is `2_Max_VF_MKn` while the timer
+  is on.
+- Register address shows the ×10 scale; IREG/INP tags are read-only.
+
+### Judgement calls to review
+- R14 "stop at the first unexpected error": two stops (`#E_FILEOPENFAIL` on a
+  directory path, `#E_FILENOTEXIST` on `propertymap.xml`). Both meant "not a
+  file"; the display stayed healthy, so I resumed in new sessions with the
+  remaining **named** files only. One follow-up file
+  (`Page109 - Kopija.jmx`) came from the old menu map, not from C's list (C
+  had dropped the " - Kopija" suffix).
+- The register map and snapshot sessions were additions to C's script: the
+  same read-only `browse` and `readTags` calls.
+
+### Not verified, caveats
+- Session slot count and whether logout frees a slot at once (decision 6).
+- `2_Min_VF_MKn` as the setpoint with the "lower temperature" low-regime
+  action: needs a write (Phase 6).
+- Outdoor unit states 2 (cooling) and 3 (defrost); room setpoint ranges
+  (no pump with a room sensor recorded).
+- The code → per-alarm-tag mapping is by name; a real alarm is never
+  provoked.
+
+## Phase 0 (bootstrap)
+
+### CP0 outcome (user, 2026-10-31)
 
 - All decisions confirmed (ADRs 0002–0005, 0007, 0011, and the git author
   `rp9376 <rp9376@student.uni-lj.si>`), with two changes:
@@ -17,7 +119,7 @@
 - The redaction of `2_NOVO_GESLO_PGDT` in the catalog and the deletion of
   the old `orca` config entry stand.
 
-## Done in Phase 0
+### Done
 
 - Read `PLAN.md` and the workspace README. No pump access in this phase.
 - `git init` (branch `main`, local only). First commit: `.gitignore`,
@@ -52,7 +154,7 @@
   from this repo's `pyproject.toml`. Container recreated (`rm` + `up`).
   `../ha-dev/README.md` and `../README.md` updated.
 
-## Verified
+### Verified
 
 | Check | Where | Result |
 |---|---|---|
@@ -65,7 +167,7 @@
 | Entrypoint `dev` group | container log | `hypothesis==6.170.1` installed |
 | HA discovers `orca_heatpump` | container log | yes |
 
-## Not verified, caveats
+### Not verified, caveats
 
 - The GitHub workflow has never run on GitHub; nothing is pushed until CP3.
   The hassfest and HACS actions were not run; hassfest was checked with the
@@ -79,35 +181,9 @@
   have fetched some git objects into `HAcore/.git`. The working tree is
   unchanged (`git status` clean). I then used the release tags on GitHub
   instead.
-- `CREDITS.md` lists the contributors named in the plan. They are not yet
-  verified against the old repository's PR authors (research D in P1).
 
 ## Before CP3 (collected as I go)
 
 - `PLAN.md` will be public. It contains the pump's LAN address, its default
   login and details of your house's setup. Decide whether to publish it
   as is.
-- Verify the GitHub handles in `CREDITS.md`.
-
-## Phase 1 (research), §6.2
-
-1. **Done, 2026-10-31 20:23–20:25.** Lead's first live work with
-   `tools/orca_probe.py` (allowlist in code, lock, backoff, logout in a
-   `finally`). Before it, no HA instance polled the pump.
-   - Static console files, no login: 20 files in `research/captures/console/`.
-   - Full dump, one session: login at the first attempt, 2 passes agreed,
-     logout `#S_OK`. 708 tags `S_OK`, 1,059 `E_UNKNOWNTAG`. One batch of
-     150 tags got HTTP 408 in both passes (request line 4,374 chars; the
-     longest that worked was 3,946); re-read in batches of 50, it worked.
-     Raw passes and the merged dump: `research/captures/2026-10-31_full_dump/`.
-   - First findings: `research/findings.md`.
-2. **Running:** research subagents A (catalog), B (manuals), C (protocol and
-   live-test script), D (history and parity list), offline, writing
-   `research/catalog_draft.md`, `manual_facts.md`, `protocol.md`,
-   `requirements.md`.
-3. Next: review C's live-test script against the allowlist, run it (R1–R4,
-   R11, R13, R14), write `research/findings.md` (R1–R15), finalise the
-   catalog, propose the entity and topology model, then CP1.
-
-The sanitised JSON test fixture of our dump is still to do: the raw dump
-stays in `captures/` until its values are checked for MAC/IP/serial data.
