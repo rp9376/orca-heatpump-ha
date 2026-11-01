@@ -229,6 +229,16 @@ power limits are read-only unless you allow changing them.
 - For a bug report, download the diagnostics (device page → ⋮ → Download
   diagnostics). The address and login are removed from it.
 
+## Automations that change settings
+
+The controller most likely keeps its settings in memory that tolerates a
+limited number of writes (not confirmed for this model). The integration
+never writes a value that is already set, but an automation that changes a
+setpoint every few minutes still writes often. Change settings only when
+something meaningful changes, for example with a threshold of at least
+0.5 °C, or at fixed times of day, and prefer the heat pump's own timer
+programmes for daily schedules.
+
 ## Known limitations
 
 - No discovery: enter the display's address and keep it fixed.
