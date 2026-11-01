@@ -25,6 +25,32 @@ Research, catalog and entity model approved, with these decisions
 7. No network discovery; the display keeps a fixed IP (ADR 0013).
 FYI items (MK2 flow sensor, firmware 2016) were noted without action.
 
+## Phase 2 (client package and emulator): plan and state
+
+Package `custom_components/orca_heatpump/client/`, no HA imports, 100 %
+coverage, tests in `tests/client/`. Steps (tick when committed):
+- [ ] `errors.py`, `models.py` (TagDef, Reading, Snapshot, topology, identity)
+- [ ] `protocol.py`: request targets (budget 3,500 bytes per target, R11),
+      record and login parsing, error-code mapping
+- [ ] `codec.py`: raw ↔ value per tag kind; -9999, empty, unknown option
+- [ ] `topology.py`: the 45 schemas (checked against the manufacturer's
+      list) and detection; tests for all schemas and the real dumps
+- [ ] `catalog.py`: the keys of `docs/entity-model.md`; tests against
+      `moja_orca_catalog.json` (types, ranges, enums) and
+      `tag_registers.json` (×10 ⇔ 5xxxxx, never writable on IREG/INP)
+- [ ] `client.py`: OrcaClient (lock, login single-flight, re-login on
+      E_NEED_LOGIN, batching, stale carry, guarded write with read-back,
+      idempotent logout, identity, topology)
+- [ ] `tools/emulator/`: fake IDAL server with fault injection; client
+      tests against it
+- [ ] `tools/orca_probe.py` on top of the client
+- [ ] exit: 100 % `client/` coverage, mypy strict, one live read-only read
+      of our pump through the client
+
+Design notes: the token is sent as an explicit `Cookie` header (HA's shared
+session has a cookie jar); errors arrive with HTTP 500 and a `#E_…` body;
+HTTP 408 means our request was too big (a bug, never "tag missing").
+
 ## Phase 1 (research)
 
 ### Done
