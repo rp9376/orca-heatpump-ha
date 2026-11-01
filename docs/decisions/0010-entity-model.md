@@ -1,6 +1,6 @@
 # 0010. Entity model
 
-Status: Proposed for CP1: the full proposal is `docs/entity-model.md`
+Status: Accepted (user, CP1, 2026-11-01) with the changes recorded in `docs/entity-model.md` and ADRs 0012–0013
 
 ## Context
 The old integration's entity set grew around one setup and crashed on
@@ -24,7 +24,10 @@ The proposal in `PLAN.md` §8, in outline:
 The research (R1–R15) is done. The detailed proposal (topology rules,
 devices, every entity with key, tag, platform and default, the climate and
 water heater mappings, alarms, never-exposed tags) is in
-`docs/entity-model.md`; questions marked [CP1] there need the user.
+`docs/entity-model.md`. At CP1 the user decided: mode-only climate without
+a room sensor, cooling modes on every circuit, power limits opt-in
+(ADR 0012), no presets, no network discovery (ADR 0013), and no password
+handling at all.
 
 ## Consequences
 - Unique IDs are permanent from 1.0 (`PLAN.md` §7.3a), so the keys must be

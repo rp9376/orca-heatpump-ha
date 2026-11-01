@@ -1,52 +1,29 @@
 # Progress
 
-**Phase 1 (research) done. Stopped at checkpoint CP1 (2026-11-01).**
-Next: Phase 2 (client package and emulator) once you've approved.
+**Phase 2 (client package and emulator) in progress.** CP1 passed on
+2026-11-01.
 
-## CP1: what I need from you
+## CP1 outcome (user, 2026-11-01)
 
-The research, catalog scope and entity model to approve:
-- `research/findings.md`: R1–R15 answered, with evidence; start with its
-  "Summary for the design" and "Corrections to PLAN.md assumptions".
-- `research/catalog_draft.md`: the tag catalog, with the lead's corrections
-  in its §10.
-- `docs/entity-model.md`: topology rules, devices, every entity, the climate
-  and water heater mappings, alarms. Items marked [CP1] are below.
-
-Decisions (my recommendation first):
-1. **Constant-temperature circuits:** climate with HVAC modes only, plus a
-   number "Flow temperature" (= `2_Max_VF_MKn`) on the circuit, as you use
-   it today. Recommended over putting the flow setpoint into the climate's
-   target temperature, which HA treats as a room temperature.
-2. **Power limits** (`2_Max_moc_TC_pri_OGR/SV/HLAJ`, quiet-mode limit):
-   writable numbers with the manufacturer's ranges (40–100 %, cooling
-   16–100 %), disabled by default. They are service-level settings, and an
-   out-of-range write once restarted a user's controller (#20), so the
-   alternative is read-only.
-3. **Cooling:** no tag says whether a pump can cool. Offer cool and
-   heat/cool by default, with an options switch to hide them on heating-only
-   installations? Or hide them by default?
-4. **Password and code tags:** never read or expose any tag whose name
-   contains `GESLO`, `KODA` or `KODE` (14 on our pump). This extends
-   `PLAN.md` §10.
-5. **Circuit modes 4 (by input) and 5 (manual)** show as HVAC `auto` and can
-   only be set through the raw mode select. No presets on the climate: the
-   operating programme (normal / holiday / party / ECO) is global, so it is a
-   select on the heat pump device.
-6. **Session slot count (C's Session 4):** measuring it needs several
-   sessions open at once, which breaks the one-session rule. I recommend
-   skipping it: the design never needs a second session, and a leaked
-   session frees itself within 3 minutes.
-7. **DHCP discovery** on the Carel MAC prefix 00:0A:5C, confirmed by login:
-   build it in P3 (Gold "discovery" rule)?
-
-For your information:
-- Your MK2 (radiator) circuit reports no flow sensor (`2_Temp_VF2` = -9999,
-  `2_Tipalo_VF2` = 0). Expected because it's switched off, or worth checking?
-- Your controller runs program build 61 from 2016-12-12, the oldest of the
-  three known pumps, although the pump was commissioned in October 2026.
-- The two alarms you've seen are codes 4 "Ni pretoka" and 5 "Okvara
-  pretočnega stikala" (flow switch failure).
+Research, catalog and entity model approved, with these decisions
+(`docs/entity-model.md`, ADRs 0010, 0012, 0013):
+1. Constant-temperature circuits: mode-only climate plus a "Flow temperature"
+   number. **Without a room sensor** the climate is stripped down to the
+   controls (on/off, heat/cool); **with one** it is a normal climate entity.
+2. Power limits (heating, hot water, cooling, quiet mode): an **opt-in
+   "Allow changing power limits" checkbox** at setup (and in the options),
+   described as risky; ranges enforced in code (ADR 0012). orca-energy-ha
+   exposes them always, with 10–100 %.
+3. Cooling: Orca pumps can cool their heating circuits. Every circuit offers
+   off / heat / cool / heat-cool, as orca-energy-ha does via "Režim
+   delovanja" (`2_Rezim_MKn`).
+4. Passwords are not this integration's business: no password or code tag in
+   the catalog, nothing more.
+5. No presets on the climate. (Read as "skip presets"; modes 4 and 5 still
+   show as `auto` and are set through the raw mode select.)
+6. Session slot count: not measured (no concurrent sessions).
+7. No network discovery; the display keeps a fixed IP (ADR 0013).
+FYI items (MK2 flow sensor, firmware 2016) were noted without action.
 
 ## Phase 1 (research)
 

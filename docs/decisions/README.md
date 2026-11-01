@@ -15,5 +15,7 @@ that the user confirms at a checkpoint.
 | [0007](0007-polling.md) | One coordinator, 30 s | Accepted 2026-10-31 |
 | [0008](0008-no-migration.md) | No migration from orca-energy-ha | Accepted 2026-10-30 |
 | [0009](0009-brand-icon.md) | Official Orca logo as the brand icon | Accepted 2026-10-31 |
-| [0010](0010-entity-model.md) | Entity model | Proposed (finalised at CP1) |
+| [0010](0010-entity-model.md) | Entity model (`docs/entity-model.md`) | Accepted 2026-11-01 |
 | [0011](0011-test-plugin.md) | Test with HA's pytest-home-assistant, from the core tag | Accepted 2026-10-31 |
+| [0012](0012-power-limits-opt-in.md) | Power limits are an opt-in, guarded setting | Accepted 2026-11-01 |
+| [0013](0013-no-network-discovery.md) | No network discovery | Accepted 2026-11-01 |

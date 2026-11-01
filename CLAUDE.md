@@ -45,10 +45,9 @@ It heats a real house. Address and login are in `PLAN.md` §2.2.
 - `research/captures/` is gitignored: raw captures contain MAC, IP,
   serial numbers and personal data. Commit only sanitised derivatives
   (placeholders for MAC/IP/serial).
-- Password and code tags (name contains `GESLO`, `KODA` or `KODE`, any
-  case, e.g. `2_NOVO_GESLO_PGDT`, `2_Geslo_ZAGON_*`,
-  `2_Pravilna_koda_za_prvi_zagon`) are never exposed, not even read-only,
-  and are `REDACTED` in fixtures.
+- Passwords are not this integration's business: no password or code tag
+  (name contains `GESLO`, `KODA` or `KODE`) goes into the catalog, and
+  fixtures redact them.
 - Manufacturer manuals: extract facts only, never copy text.
 
 ## Writes

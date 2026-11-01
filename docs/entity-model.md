@@ -1,8 +1,8 @@
 # Entity and topology model
 
-Status: **proposal for CP1** (ADR 0010). Built from `research/findings.md`
-and `research/catalog_draft.md`; catalog keys below are the catalog's.
-Questions marked **[CP1]** need the user's decision.
+Status: **accepted at CP1** (user, 2026-11-01; ADRs 0010, 0012, 0013). Built
+from `research/findings.md` and `research/catalog_draft.md`; catalog keys
+below are the catalog's.
 
 ## 1. Topology model
 
@@ -45,8 +45,8 @@ Rules:
   (no hardware ID exists, R3): `{base}_{key}` for system and element keys,
   `{base}_circuit{n}_{key}` for circuit keys. The circuit's name never
   appears in an ID.
-- Config entry unique ID: the host, or the MAC when discovered by DHCP (R13,
-  decided in P3).
+- Config entry unique ID: the host. No network discovery (ADR 0013); the
+  reconfigure flow changes the host.
 
 ## 3. Entities
 
@@ -70,8 +70,8 @@ write only through `OrcaClient.async_write` with the manufacturer's range.
 | `system_enable` | switch | `2_Vklop_Izklop` | on | system on/off |
 | `operating_programme` | select | `2_Delovanje_MENI` | on | normal / holiday / party / ECO |
 | `quick_room_mode` | select | `2_HITRI_Rezim` | on | inactive / off / heating / cooling |
-| `hp_power_limit_heating`, `_dhw`, `_cooling` | number | `2_Max_moc_TC_pri_OGR/SV/HLAJ` | off, cfg | **[CP1] writable?** 40–100 % (cooling 16–100 %) |
-| `quiet_mode`, `quiet_outdoor_temp`, `quiet_power_limit`, `quiet_timer_programme` | select / number / number / select | `2_Tisje_delov`, `2_Temp_AF_za_TISJE_DEL`, `2_Max_moc_TC_TISJA`, `2_Izbira_TIMERJA_TISJE` | off, cfg | |
+| `hp_power_limit_heating`, `_dhw`, `_cooling`, `quiet_power_limit` | number if "Allow changing power limits" is on, else sensor | `2_Max_moc_TC_pri_OGR/SV/HLAJ`, `2_Max_moc_TC_TISJA` | on, cfg | opt-in, ranges enforced in code (ADR 0012): 40–100 %, cooling 16–100 %, quiet 31–100 % |
+| `quiet_mode`, `quiet_outdoor_temp`, `quiet_timer_programme` | select / number / select | `2_Tisje_delov`, `2_Temp_AF_za_TISJE_DEL`, `2_Izbira_TIMERJA_TISJE` | off, cfg | |
 | `quiet_active` | binary_sensor | `2_Vklop_TISJE_DEL` | off | |
 | `heater_mode` | select | `2_Vklop_Elektro_Grelci` | on if heater, cfg | off / auto / manual |
 | `heater_stage1…3_on` | binary_sensor | `2_Vklop_ele_grelca_1…3` | on if stage exists | |
@@ -151,13 +151,14 @@ backlog.
   5 (manual switching) → `auto`. Setting `heat` / `cool` / `heat_cool` writes
   the mode (and enable = 1); `off` writes enable = 0 and keeps the mode;
   `auto` is only shown, never set (the raw `circuit_mode` select changes it).
-- **Offered modes:** off, heat, cool, heat_cool, plus auto while the circuit
-  is in mode 4 or 5. **[CP1]** No tag says whether a pump can cool; propose to
-  offer cooling by default with an options-flow switch to hide it for
-  heating-only installations.
-- **Target temperature** only with a room sensor and room or room + outdoor
-  regulation (R8): the comfort (high) room setpoint, 5–30 °C until the real
-  range is known. Otherwise **mode-only**, like the user's pump; on a
+- **Offered modes:** off, heat, cool, heat_cool on every circuit (Orca pumps
+  can cool their heating circuits; user, CP1), plus auto while the circuit is
+  in mode 4 or 5.
+- **With a room sensor** and room or room + outdoor regulation (R8): a normal
+  climate entity with current room temperature and the comfort (high) room
+  setpoint as target, 5–30 °C until the real range is known.
+- **Without a room sensor** (the user's pump): a stripped-down, **mode-only**
+  climate: on/off and heat/cool modes, no temperatures (user, CP1). On a
   constant-temperature circuit the flow setpoint is the separate number
   entity, because a climate target means a room temperature in HA.
 - **Current temperature:** room temperature with a sensor, else none.
@@ -192,9 +193,9 @@ No alarm history from the display exists (R4); HA's recorder keeps it.
 
 ## 6. Never exposed
 
-- Password and code tags: any name containing `GESLO`, `KODA` or `KODE`
-  (never read, redacted in diagnostics and fixtures). **[CP1]** This extends
-  `PLAN.md` §10.
+- Passwords are not this integration's business (user, CP1): no password or
+  code tag is in the catalog, so none is ever read, shown or written. No
+  further machinery.
 - Clock setting (`2_NEW_*`, `2_SET_*`), test outputs (`2_Vklop_TESTNI_*`),
   commissioning (`2_Opravljen_prvi_zagon`, `2_Zagon_opravlja_oseba`).
 - HMI helper flags and legacy `*_DK1/*_DK2` duplicates (A §2.18–2.19);
