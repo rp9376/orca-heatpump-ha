@@ -4,6 +4,7 @@ import pytest
 from pytest_homeassistant.common import MockConfigEntry
 
 from custom_components.orca_heatpump.const import (
+    CONF_ALLOW_POWER_LIMITS,
     CONF_BUFFER,
     CONF_SOLAR,
     CONF_TOPOLOGY,
@@ -12,9 +13,13 @@ from custom_components.orca_heatpump.const import (
 )
 from custom_components.orca_heatpump.helpers import topology_to_data
 from homeassistant.config_entries import ConfigEntryDisabler, ConfigEntryState
-from homeassistant.const import EVENT_HOMEASSISTANT_STOP
+from homeassistant.const import EVENT_HOMEASSISTANT_STOP, Platform
 from homeassistant.core import HomeAssistant
-from homeassistant.helpers import device_registry as dr, issue_registry as ir
+from homeassistant.helpers import (
+    device_registry as dr,
+    entity_registry as er,
+    issue_registry as ir,
+)
 from tools.emulator import Emulator, Faults
 
 from .conftest import OUR_TOPOLOGY
@@ -211,3 +216,34 @@ async def test_remove_entry_removes_issues(
     await hass.config_entries.async_remove(init_integration.entry_id)
 
     assert issue_registry.async_get_issue(DOMAIN, issue_id) is None
+
+
+@pytest.mark.parametrize("platforms", [[Platform.NUMBER, Platform.SENSOR]])
+async def test_power_limit_option_swaps_entities(
+    hass: HomeAssistant,
+    init_integration: MockConfigEntry,
+    entity_registry: er.EntityRegistry,
+) -> None:
+    """Allowing power limit changes swaps their sensors for numbers, and back."""
+    entry = init_integration
+
+    def power_limits() -> set[str]:
+        return {
+            e.entity_id
+            for e in er.async_entries_for_config_entry(entity_registry, entry.entry_id)
+            if e.unique_id.endswith("_hp_power_limit_heating")
+        }
+
+    assert power_limits() == {"sensor.heat_pump_power_limit_heating"}
+
+    for allow, entity_id in (
+        (True, "number.heat_pump_power_limit_heating"),
+        (False, "sensor.heat_pump_power_limit_heating"),
+    ):
+        hass.config_entries.async_update_entry(
+            entry, options={**entry.options, CONF_ALLOW_POWER_LIMITS: allow}
+        )
+        await hass.config_entries.async_reload(entry.entry_id)
+        await hass.async_block_till_done()
+
+        assert power_limits() == {entity_id}

@@ -1,7 +1,31 @@
 # Progress
 
-**Phase 4 (platforms) next.** Phases 2 and 3 done on 2026-11-01; CP1
-passed the same day.
+**Phase 4 (platforms) in progress.** Phases 2 and 3 done on 2026-11-01;
+CP1 passed the same day.
+
+## Phase 4 (platforms): in progress
+
+One commit per platform, each with en + sl names, snapshot tests for the
+three real pumps (ours, Duo, Mono) and 100 % coverage.
+
+- Done: binary_sensor, sensor, event (alarm raised/cleared), climate
+  (thermostat with a room sensor and room-based regulation, else
+  mode-only; CP1), water_heater, number (manufacturer ranges, box mode;
+  power limits opt-in with the other form removed from the registry,
+  ADR 0012).
+- Next: select, switch, button (alarm reset, disabled until the Phase 6
+  write test).
+- Writes go through `async_write_values`: several values in order, one
+  refresh. A climate mode is written before the circuit's enable.
+- Names and defaults that depend on regulation (flow setpoint vs maximum
+  flow temperature, curve settings enabled) are decided at setup; a
+  regulation change shows after a reload. The climate's target follows
+  regulation on every poll.
+- **Real data below the manufacturer's minimum:** the Mono fixture holds a
+  heating power limit of 39.0 % (minimum 40.0 %). Home Assistant shows it;
+  writing it back would be refused. Ask the user at CP2 whether installers
+  can set lower values (then the catalog minimum is wrong) or this is a
+  leftover from older firmware.
 
 ## Phase 3 (integration core): done 2026-11-01
 

@@ -16,14 +16,24 @@ from homeassistant.exceptions import (
     ConfigEntryNotReady,
     IntegrationError,
 )
-from homeassistant.helpers import device_registry as dr, issue_registry as ir
+from homeassistant.helpers import (
+    device_registry as dr,
+    entity_registry as er,
+    issue_registry as ir,
+)
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
 from .client import catalog
 from .client.client import OrcaClient
 from .client.errors import OrcaAuthError, OrcaError, OrcaTooManyUsersError
 from .client.models import DeviceIdentity, PumpTopology, Snapshot
-from .const import CONF_TOPOLOGY, DOMAIN, OLD_CONF_HOST, OLD_DOMAIN
+from .const import (
+    CONF_ALLOW_POWER_LIMITS,
+    CONF_TOPOLOGY,
+    DOMAIN,
+    OLD_CONF_HOST,
+    OLD_DOMAIN,
+)
 from .coordinator import OrcaConfigEntry, OrcaCoordinator, OrcaRuntimeData
 from .helpers import apply_overrides, split_host, topology_from_data, topology_to_data
 
@@ -31,9 +41,16 @@ PLATFORMS: list[Platform] = [
     Platform.BINARY_SENSOR,
     Platform.CLIMATE,
     Platform.EVENT,
+    Platform.NUMBER,
     Platform.SENSOR,
     Platform.WATER_HEATER,
 ]
+POWER_LIMITS = (
+    catalog.HP_POWER_LIMIT_HEATING,
+    catalog.HP_POWER_LIMIT_DHW,
+    catalog.HP_POWER_LIMIT_COOLING,
+    catalog.QUIET_POWER_LIMIT,
+)
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: OrcaConfigEntry) -> None:
@@ -62,6 +79,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: OrcaConfigEntry) -> None
         raise
     entry.runtime_data = OrcaRuntimeData(client, coordinator, topology, identity)
     _register_devices(hass, entry, topology, identity, coordinator.data)
+    _remove_unused_power_limits(hass, entry)
     _check_old_integration(hass, entry, host)
 
     async def _logout(event: Event) -> None:
@@ -81,6 +99,24 @@ async def async_remove_entry(hass: HomeAssistant, entry: ConfigEntry) -> None:
     """Remove the entry's repair issues."""
     for issue in ("topology_changed", "old_integration", "sessions_exhausted"):
         ir.async_delete_issue(hass, DOMAIN, f"{issue}_{entry.entry_id}")
+
+
+@callback
+def _remove_unused_power_limits(hass: HomeAssistant, entry: OrcaConfigEntry) -> None:
+    """Remove the power limits' sensors or numbers, whichever the option hides.
+
+    Changing the option swaps one form for the other (ADR 0012).
+    """
+    unused = (
+        Platform.SENSOR
+        if entry.options.get(CONF_ALLOW_POWER_LIMITS)
+        else Platform.NUMBER
+    )
+    registry = er.async_get(hass)
+    for definition in POWER_LIMITS:
+        unique_id = f"{entry.entry_id}_{definition.key}"
+        if entity_id := registry.async_get_entity_id(unused, DOMAIN, unique_id):
+            registry.async_remove(entity_id)
 
 
 def _setup_error(err: OrcaError) -> IntegrationError:

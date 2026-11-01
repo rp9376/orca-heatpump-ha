@@ -19,10 +19,16 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
 from .client import catalog
-from .client.models import CircuitKind, Reason, TagDef, Value
+from .client.models import Reason, TagDef, Value
 from .const import CONF_ALLOW_POWER_LIMITS
 from .coordinator import OrcaConfigEntry
-from .entity import EntityContext, OrcaEntity, OrcaEntityDescription, entity_targets
+from .entity import (
+    OrcaEntity,
+    OrcaEntityDescription,
+    entity_targets,
+    mixing_circuit,
+    room_sensor,
+)
 
 PARALLEL_UPDATES = 0
 
@@ -79,20 +85,6 @@ def _power_limit(definition: TagDef) -> OrcaSensorEntityDescription:
     )
 
 
-def _mixing(context: EntityContext, slot: int | None) -> bool:
-    # A direct circuit's flow follows the heat pump's own target.
-    return slot is not None and bool(
-        (circuit := context.topology.circuit(slot))
-        and circuit.kind is CircuitKind.MIXING
-    )
-
-
-def _room_sensor(context: EntityContext, slot: int | None) -> bool:
-    return slot is not None and bool(
-        (circuit := context.topology.circuit(slot)) and circuit.room_sensor
-    )
-
-
 DESCRIPTIONS: tuple[OrcaSensorEntityDescription, ...] = (
     _temperature(catalog.OUTDOOR_TEMPERATURE),
     _temperature(catalog.HP_TEMPERATURE),
@@ -138,8 +130,9 @@ DESCRIPTIONS: tuple[OrcaSensorEntityDescription, ...] = (
         entity_registry_enabled_default=False,
     ),
     _temperature(catalog.FLOW_TEMPERATURE),
-    _temperature(catalog.FLOW_TARGET, exists_fn=_mixing),
-    _temperature(catalog.ROOM_TEMPERATURE, exists_fn=_room_sensor),
+    # A direct circuit's flow follows the heat pump's own target.
+    _temperature(catalog.FLOW_TARGET, exists_fn=mixing_circuit),
+    _temperature(catalog.ROOM_TEMPERATURE, exists_fn=room_sensor),
     _temperature(catalog.ROOM_SETPOINT_ACTIVE, enabled=False, diagnostic=True),
     _enum(catalog.MIXING_VALVE_STATE),
     OrcaSensorEntityDescription(

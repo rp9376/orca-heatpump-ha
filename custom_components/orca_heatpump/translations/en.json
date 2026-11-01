@@ -263,6 +263,150 @@
         "name": "Controller error"
       }
     },
+    "event": {
+      "alarm_event": {
+        "name": "Alarm",
+        "state_attributes": {
+          "event_type": {
+            "state": {
+              "alarm_raised": "Alarm raised",
+              "alarm_cleared": "Alarm cleared"
+            }
+          }
+        }
+      }
+    },
+    "number": {
+      "hp_power_limit_heating": {
+        "name": "Power limit heating"
+      },
+      "hp_power_limit_dhw": {
+        "name": "Power limit hot water"
+      },
+      "hp_power_limit_cooling": {
+        "name": "Power limit cooling"
+      },
+      "quiet_power_limit": {
+        "name": "Power limit quiet operation"
+      },
+      "quiet_outdoor_temp": {
+        "name": "Quiet operation outdoor temperature"
+      },
+      "heater_stage1_delay": {
+        "name": "Electric heater stage 1 delay"
+      },
+      "heater_stage2_delay": {
+        "name": "Electric heater stage 2 delay"
+      },
+      "heater_stage3_delay": {
+        "name": "Electric heater stage 3 delay"
+      },
+      "heater_stage1_outdoor_temp": {
+        "name": "Electric heater stage 1 outdoor temperature"
+      },
+      "heater_stage2_outdoor_temp": {
+        "name": "Electric heater stage 2 outdoor temperature"
+      },
+      "heater_stage3_outdoor_temp": {
+        "name": "Electric heater stage 3 outdoor temperature"
+      },
+      "additional_source_delay": {
+        "name": "Additional heat source delay"
+      },
+      "additional_source_outdoor_temp": {
+        "name": "Additional heat source outdoor temperature"
+      },
+      "screed_drying_min_flow": {
+        "name": "Screed drying minimum flow temperature"
+      },
+      "screed_drying_max_flow": {
+        "name": "Screed drying maximum flow temperature"
+      },
+      "flow_setpoint": {
+        "name": "Flow temperature setpoint"
+      },
+      "max_flow_heating": {
+        "name": "Maximum heating flow temperature"
+      },
+      "min_flow_heating": {
+        "name": "Minimum heating flow temperature"
+      },
+      "hp_boost_for_circuit": {
+        "name": "Heat pump temperature boost"
+      },
+      "curve_parallel_shift": {
+        "name": "Heating curve shift"
+      },
+      "curve_slope": {
+        "name": "Heating curve slope correction"
+      },
+      "room_setpoint_high": {
+        "name": "Comfort room temperature"
+      },
+      "room_setpoint_low": {
+        "name": "Reduced room temperature"
+      },
+      "min_flow_cooling": {
+        "name": "Minimum cooling flow temperature"
+      },
+      "cooling_flow_at_20": {
+        "name": "Cooling flow temperature at 20 °C outside"
+      },
+      "cooling_flow_at_30": {
+        "name": "Cooling flow temperature at 30 °C outside"
+      },
+      "auto_heating_switch_temp": {
+        "name": "Automatic heating switch outdoor temperature"
+      },
+      "auto_heating_switch_delay": {
+        "name": "Automatic heating switch delay"
+      },
+      "auto_cooling_switch_temp": {
+        "name": "Automatic cooling switch outdoor temperature"
+      },
+      "auto_cooling_switch_delay": {
+        "name": "Automatic cooling switch delay"
+      },
+      "dhw_setpoint_low": {
+        "name": "Lower temperature"
+      },
+      "dhw_on_difference": {
+        "name": "Switch-on difference"
+      },
+      "dhw_hp_boost": {
+        "name": "Heat pump temperature boost"
+      },
+      "legionella_temperature": {
+        "name": "Legionella protection temperature"
+      },
+      "legionella_hour": {
+        "name": "Legionella protection start hour"
+      },
+      "solar_min_collector_temp": {
+        "name": "Minimum collector temperature"
+      },
+      "solar_on_difference": {
+        "name": "Switch-on difference"
+      },
+      "solar_off_difference": {
+        "name": "Switch-off difference"
+      },
+      "buffer_high_heating": {
+        "name": "Higher heating temperature"
+      },
+      "buffer_low_heating": {
+        "name": "Lower heating temperature"
+      },
+      "buffer_high_cooling": {
+        "name": "Higher cooling temperature"
+      },
+      "buffer_low_cooling": {
+        "name": "Lower cooling temperature"
+      },
+      "buffer_on_difference": {
+        "name": "Switch-on difference"
+      }
+    },
     "sensor": {
       "outdoor_temperature": {
         "name": "Outdoor temperature"
@@ -409,19 +553,6 @@
       },
       "buffer_target": {
         "name": "Target temperature"
-      }
-    },
-    "event": {
-      "alarm_event": {
-        "name": "Alarm",
-        "state_attributes": {
-          "event_type": {
-            "state": {
-              "alarm_raised": "Alarm raised",
-              "alarm_cleared": "Alarm cleared"
-            }
-          }
-        }
       }
     }
   }

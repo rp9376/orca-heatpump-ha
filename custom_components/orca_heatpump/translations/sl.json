@@ -263,6 +263,150 @@
         "name": "Napaka regulatorja"
       }
     },
+    "event": {
+      "alarm_event": {
+        "name": "Alarm",
+        "state_attributes": {
+          "event_type": {
+            "state": {
+              "alarm_raised": "Alarm sprožen",
+              "alarm_cleared": "Alarm odpravljen"
+            }
+          }
+        }
+      }
+    },
+    "number": {
+      "hp_power_limit_heating": {
+        "name": "Omejitev moči pri ogrevanju"
+      },
+      "hp_power_limit_dhw": {
+        "name": "Omejitev moči pri sanitarni vodi"
+      },
+      "hp_power_limit_cooling": {
+        "name": "Omejitev moči pri hlajenju"
+      },
+      "quiet_power_limit": {
+        "name": "Omejitev moči pri tišjem delovanju"
+      },
+      "quiet_outdoor_temp": {
+        "name": "Zunanja temperatura za tišje delovanje"
+      },
+      "heater_stage1_delay": {
+        "name": "Zakasnitev električnega grelca, stopnja 1"
+      },
+      "heater_stage2_delay": {
+        "name": "Zakasnitev električnega grelca, stopnja 2"
+      },
+      "heater_stage3_delay": {
+        "name": "Zakasnitev električnega grelca, stopnja 3"
+      },
+      "heater_stage1_outdoor_temp": {
+        "name": "Zunanja temperatura za električni grelec, stopnja 1"
+      },
+      "heater_stage2_outdoor_temp": {
+        "name": "Zunanja temperatura za električni grelec, stopnja 2"
+      },
+      "heater_stage3_outdoor_temp": {
+        "name": "Zunanja temperatura za električni grelec, stopnja 3"
+      },
+      "additional_source_delay": {
+        "name": "Zakasnitev dodatnega vira"
+      },
+      "additional_source_outdoor_temp": {
+        "name": "Zunanja temperatura za dodatni vir"
+      },
+      "screed_drying_min_flow": {
+        "name": "Najnižja temperatura vtoka pri sušenju estrihov"
+      },
+      "screed_drying_max_flow": {
+        "name": "Najvišja temperatura vtoka pri sušenju estrihov"
+      },
+      "flow_setpoint": {
+        "name": "Nastavljena temperatura vtoka"
+      },
+      "max_flow_heating": {
+        "name": "Najvišja temperatura vtoka pri ogrevanju"
+      },
+      "min_flow_heating": {
+        "name": "Najnižja temperatura vtoka pri ogrevanju"
+      },
+      "hp_boost_for_circuit": {
+        "name": "Povišanje temperature toplotne črpalke"
+      },
+      "curve_parallel_shift": {
+        "name": "Vzporedna korekcija krivulje"
+      },
+      "curve_slope": {
+        "name": "Korekcija nagiba krivulje"
+      },
+      "room_setpoint_high": {
+        "name": "Dnevna sobna temperatura"
+      },
+      "room_setpoint_low": {
+        "name": "Nočna sobna temperatura"
+      },
+      "min_flow_cooling": {
+        "name": "Najnižja temperatura vtoka pri hlajenju"
+      },
+      "cooling_flow_at_20": {
+        "name": "Temperatura vtoka pri hlajenju pri zunanji temperaturi 20 °C"
+      },
+      "cooling_flow_at_30": {
+        "name": "Temperatura vtoka pri hlajenju pri zunanji temperaturi 30 °C"
+      },
+      "auto_heating_switch_temp": {
+        "name": "Zunanja temperatura za samodejni vklop ogrevanja"
+      },
+      "auto_heating_switch_delay": {
+        "name": "Zakasnitev samodejnega vklopa ogrevanja"
+      },
+      "auto_cooling_switch_temp": {
+        "name": "Zunanja temperatura za samodejni vklop hlajenja"
+      },
+      "auto_cooling_switch_delay": {
+        "name": "Zakasnitev samodejnega vklopa hlajenja"
+      },
+      "dhw_setpoint_low": {
+        "name": "Nižja temperatura"
+      },
+      "dhw_on_difference": {
+        "name": "Diferenca vklopa"
+      },
+      "dhw_hp_boost": {
+        "name": "Povišanje temperature toplotne črpalke"
+      },
+      "legionella_temperature": {
+        "name": "Temperatura zaščite pred legionelo"
+      },
+      "legionella_hour": {
+        "name": "Ura začetka zaščite pred legionelo"
+      },
+      "solar_min_collector_temp": {
+        "name": "Najnižja temperatura kolektorja"
+      },
+      "solar_on_difference": {
+        "name": "Diferenca vklopa"
+      },
+      "solar_off_difference": {
+        "name": "Diferenca izklopa"
+      },
+      "buffer_high_heating": {
+        "name": "Višja temperatura pri ogrevanju"
+      },
+      "buffer_low_heating": {
+        "name": "Nižja temperatura pri ogrevanju"
+      },
+      "buffer_high_cooling": {
+        "name": "Višja temperatura pri hlajenju"
+      },
+      "buffer_low_cooling": {
+        "name": "Nižja temperatura pri hlajenju"
+      },
+      "buffer_on_difference": {
+        "name": "Diferenca vklopa"
+      }
+    },
     "sensor": {
       "outdoor_temperature": {
         "name": "Zunanja temperatura"
@@ -409,19 +553,6 @@
       },
       "buffer_target": {
         "name": "Želena temperatura"
-      }
-    },
-    "event": {
-      "alarm_event": {
-        "name": "Alarm",
-        "state_attributes": {
-          "event_type": {
-            "state": {
-              "alarm_raised": "Alarm sprožen",
-              "alarm_cleared": "Alarm odpravljen"
-            }
-          }
-        }
       }
     }
   }

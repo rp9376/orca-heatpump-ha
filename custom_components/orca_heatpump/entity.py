@@ -9,6 +9,7 @@ from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.entity import EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
+from .client import catalog
 from .client.errors import OrcaError, OrcaValueError
 from .client.models import (
     CircuitKind,
@@ -47,6 +48,34 @@ class OrcaEntityDescription(EntityDescription):
         """Default the translation key to the catalog key."""
         if self.translation_key is None:
             object.__setattr__(self, "translation_key", self.key)
+
+
+HEATER_STAGES = {"one_stage": 1, "two_stages": 2, "three_stages": 3}
+
+
+def heater_stage(stage: int) -> Callable[[EntityContext, int | None], bool]:
+    """Return whether the pump's electric heater has this stage."""
+
+    def exists(context: EntityContext, slot: int | None) -> bool:
+        stages = context.snapshot.value(catalog.HEATER_STAGES)
+        return not isinstance(stages, str) or HEATER_STAGES[stages] >= stage
+
+    return exists
+
+
+def mixing_circuit(context: EntityContext, slot: int | None) -> bool:
+    """Return whether the slot is a mixing circuit."""
+    return slot is not None and bool(
+        (circuit := context.topology.circuit(slot))
+        and circuit.kind is CircuitKind.MIXING
+    )
+
+
+def room_sensor(context: EntityContext, slot: int | None) -> bool:
+    """Return whether the slot's circuit has a room sensor."""
+    return slot is not None and bool(
+        (circuit := context.topology.circuit(slot)) and circuit.room_sensor
+    )
 
 
 def entity_targets[D: OrcaEntityDescription](

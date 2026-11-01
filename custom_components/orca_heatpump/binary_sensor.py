@@ -16,11 +16,9 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from .client import catalog
 from .client.models import TagDef, Value
 from .coordinator import OrcaConfigEntry
-from .entity import EntityContext, OrcaEntity, OrcaEntityDescription, entity_targets
+from .entity import OrcaEntity, OrcaEntityDescription, entity_targets, heater_stage
 
 PARALLEL_UPDATES = 0
-
-HEATER_STAGES = {"one_stage": 1, "two_stages": 2, "three_stages": 3}
 
 
 @dataclass(frozen=True, kw_only=True)
@@ -30,16 +28,6 @@ class OrcaBinarySensorEntityDescription(
     """Describes an Orca binary sensor."""
 
     is_on_fn: Callable[[Value], bool] = lambda value: value is True
-
-
-def heater_stage(stage: int) -> Callable[[EntityContext, int | None], bool]:
-    """Return whether the pump's electric heater has this stage."""
-
-    def exists(context: EntityContext, slot: int | None) -> bool:
-        stages = context.snapshot.value(catalog.HEATER_STAGES)
-        return not isinstance(stages, str) or HEATER_STAGES[stages] >= stage
-
-    return exists
 
 
 def _problem(

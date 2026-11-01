@@ -1,6 +1,7 @@
 """Fixtures for the Orca Heat Pump integration tests."""
 
 from collections.abc import AsyncIterator, Iterator
+from typing import Any
 from unittest.mock import AsyncMock, patch
 
 from aiohttp import web
@@ -104,7 +105,13 @@ async def host(socket_enabled: None, emulator: Emulator) -> AsyncIterator[str]:
 
 
 @pytest.fixture
-def mock_config_entry(host: str, pump: str) -> MockConfigEntry:
+def options() -> dict[str, Any]:
+    """Return the entry's options; tests override this."""
+    return {CONF_ALLOW_POWER_LIMITS: False}
+
+
+@pytest.fixture
+def mock_config_entry(host: str, pump: str, options: dict[str, Any]) -> MockConfigEntry:
     """Return a config entry of the pump on the emulator."""
     return MockConfigEntry(
         domain=DOMAIN,
@@ -117,7 +124,7 @@ def mock_config_entry(host: str, pump: str) -> MockConfigEntry:
             CONF_PASSWORD: "admin",
             CONF_TOPOLOGY: topology_to_data(PUMPS[pump][1]),
         },
-        options={CONF_ALLOW_POWER_LIMITS: False},
+        options=options,
     )
 
 

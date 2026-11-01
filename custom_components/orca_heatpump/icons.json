@@ -23,6 +23,43 @@
         "default": "mdi:heating-coil"
       }
     },
+    "event": {
+      "alarm_event": {
+        "default": "mdi:alarm-light-outline"
+      }
+    },
+    "number": {
+      "hp_power_limit_heating": {
+        "default": "mdi:speedometer"
+      },
+      "hp_power_limit_dhw": {
+        "default": "mdi:speedometer"
+      },
+      "hp_power_limit_cooling": {
+        "default": "mdi:speedometer"
+      },
+      "quiet_power_limit": {
+        "default": "mdi:speedometer"
+      },
+      "heater_stage1_delay": {
+        "default": "mdi:timer-outline"
+      },
+      "heater_stage2_delay": {
+        "default": "mdi:timer-outline"
+      },
+      "heater_stage3_delay": {
+        "default": "mdi:timer-outline"
+      },
+      "additional_source_delay": {
+        "default": "mdi:timer-outline"
+      },
+      "curve_slope": {
+        "default": "mdi:chart-line-variant"
+      },
+      "legionella_hour": {
+        "default": "mdi:clock-outline"
+      }
+    },
     "sensor": {
       "outdoor_unit_power": {
         "default": "mdi:gauge"
@@ -80,11 +117,6 @@
       },
       "solar_target": {
         "default": "mdi:solar-power"
-      }
-    },
-    "event": {
-      "alarm_event": {
-        "default": "mdi:alarm-light-outline"
       }
     }
   }
