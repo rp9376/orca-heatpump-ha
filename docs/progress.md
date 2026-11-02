@@ -32,6 +32,10 @@ below.
    poll every 30 s without gaps (gaps with no log lines at all mean the
    host slept). Then ask the user to spot-check values against the touch
    display.
+   - At the user's request (2026-11-02), suspend and lid-close sleep are
+     blocked until 2026-11-03 20:05 UTC by a detached `systemd-inhibit`
+     ("Orca heat pump live run"; `systemd-inhibit --list` shows it, killing
+     its process ends it early). It ends on its own.
    - First attempt (2026-11-01 19:44 → 2026-11-02 17:29 UTC) doesn't count:
      the host suspended at 22:21 UTC and stayed mostly asleep, then
      rebooted, which stopped the container. Polling covered about 3.5 h:
