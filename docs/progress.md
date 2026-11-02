@@ -25,11 +25,20 @@ below.
    Each prompt: read-only (no file changes, no commits), never contact the
    pump or the dev HA, only `ha-dev.sh test` / `hassfest` (never `lint`,
    which auto-fixes), no nested subagents. Then fix the findings.
-2. **24 h live run.** Started 2026-11-01 19:44 UTC, when the dev HA was
-   restarted with all platforms; due 2026-11-02 19:44 UTC. Check
+2. **24 h live run.** Restarted 2026-11-02 20:00 UTC (`ha-dev.sh up`); due
+   2026-11-03 20:00 UTC, **only valid if the host stays awake**. Check
    `../HAcore/config/home-assistant.log` from then on: no warnings or errors
-   from `orca_heatpump`, no `too_many_users`, no availability gaps. Then ask
-   the user to spot-check values against the touch display.
+   from `orca_heatpump`, no `too_many_users`, no availability gaps, and a
+   poll every 30 s without gaps (gaps with no log lines at all mean the
+   host slept). Then ask the user to spot-check values against the touch
+   display.
+   - First attempt (2026-11-01 19:44 → 2026-11-02 17:29 UTC) doesn't count:
+     the host suspended at 22:21 UTC and stayed mostly asleep, then
+     rebooted, which stopped the container. Polling covered about 3.5 h:
+     387 polls and 9 timer reads, none failed, no warning or error from
+     the integration. After each wake the display had dropped the session
+     and the client logged in again within the poll (05:18 and 16:58 UTC),
+     with nothing going unavailable.
 3. Update this file, the PLAN Status line and the Work log, and **stop at
    CP2** (before any write to the pump, PLAN §2.3) with the report and the
    questions collected below.
