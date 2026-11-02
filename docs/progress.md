@@ -1,7 +1,98 @@
 # Progress
 
-**Phase 5 (hardening and review) next.** Phase 4 done on 2026-11-01;
-Phases 2 and 3 and CP1 the same day.
+**Phase 5 (hardening and review) in progress.** Paused 2026-11-01 ~20:05
+UTC at the user's request, resumed 2026-11-02 ~20:00 UTC. Phase 4 done on
+2026-11-01; Phases 2 and 3 and CP1 the same day. Next: see "Resume here"
+below.
+
+## Phase 5 (hardening and review): in progress
+
+### Resume here
+1. **Independent reviews (PLAN §9 P5).** Three read-only review subagents
+   were started at ~19:58 and stopped for the pause before they reported;
+   nothing of theirs is on disk. Restart them in the background:
+   - HA code review of the whole integration, following
+     `../HAcore/.claude/skills/ha-review/SKILL.md` (no upstream base: review
+     everything as new code).
+   - Quality scale: verify every rule in `quality_scale.yaml` from scratch
+     with `../HAcore/.claude/skills/ha-quality-scale-verify/SKILL.md`
+     (docs = README; brands = `brand/`; strict typing = mypy strict in
+     `pyproject.toml`).
+   - Security and write safety: every service → `writeTags` path, catalog
+     writability vs PLAN §10 and the register areas, ranges vs
+     `research/moja_orca_catalog.json`, no password/code tags, endpoint
+     allowlist in `protocol.py` and the probe tools, sessions, redaction.
+   Each prompt: read-only (no file changes, no commits), never contact the
+   pump or the dev HA, only `ha-dev.sh test` / `hassfest` (never `lint`,
+   which auto-fixes), no nested subagents. Then fix the findings.
+2. **24 h live run.** Started 2026-11-01 19:44 UTC, when the dev HA was
+   restarted with all platforms; due 2026-11-02 19:44 UTC. Check
+   `../HAcore/config/home-assistant.log` from then on: no warnings or errors
+   from `orca_heatpump`, no `too_many_users`, no availability gaps. Then ask
+   the user to spot-check values against the touch display.
+3. Update this file, the PLAN Status line and the Work log, and **stop at
+   CP2** (before any write to the pump, PLAN §2.3) with the report and the
+   questions collected below.
+
+### State while paused
+- The dev HA keeps running and its `orca_heatpump` entry keeps polling the
+  real pump every 30 s (one login; timers hourly). That is the 24 h run.
+  To free the display, disable the entry in the dev HA (Settings → Devices
+  & services) or stop the container (`../ha-dev/ha-dev.sh down`); a
+  disabled or stopped entry ends the 24 h run, which then has to start
+  again.
+- Nothing has been written to the pump. All work is committed; the
+  repository is clean.
+
+### Done (committed)
+- **Fault suite** (`tests/components/orca_heatpump/test_faults.py`), all
+  platforms on the emulator: failed polls (HTTP 503, malformed body,
+  disconnect, whole-response error) and recovery; token expiry renewed
+  within the poll; display reboot; exhausted sessions and recovery;
+  dropped records never make an entity flap (10 polls at 10 % drops);
+  five reloads and an HA stop with only one session allowed leave none
+  behind.
+- **All 45 schemas** set up against the emulator, are detected as stored,
+  raise no issue and get one device per element (`test_schemas.py`,
+  snapshot of devices and entity counts). Pumps without a heating circuit
+  no longer get quick room mode or screed drying.
+- **Odd values everywhere** (empty, text, -9999, huge, negative in every
+  non-topology tag): the integration stays loaded with no error logged.
+  This found a real bug: a huge firmware year raised `OverflowError` in
+  `async_read_identity` and stopped setup; fixed and tested.
+- Values nobody has seen yet keep any entity available with an unknown
+  state (rule moved into the base entity).
+- `quality_scale.yaml`: every rule done or exempt with a reason
+  (exempt: action-setup, docs-actions/conditions/triggers,
+  dependency-transparency, discovery, discovery-update-info,
+  dynamic-devices). **Not yet independently verified** (see above).
+- Docs (PLAN §11): README rewritten (what it does, supported pumps,
+  install, setup, options, entities, data updates, alarms with an
+  automation example, moving from orca-energy-ha, troubleshooting, write
+  wear advice from §10/R10, known limitations, removal),
+  `docs/supported-setups.md`, `CONTRIBUTING.md`.
+- `tools/dump_to_fixture.py` turns a diagnostics download into a fixture;
+  a test replays each real pump's diagnostics through the emulator and gets
+  identical readings.
+- A test keeps `translations/en.json` equal to `strings.json` and
+  `sl.json` complete.
+- Tests: 1,038 passing; coverage 100 % for every module; ruff, ruff
+  format, mypy (strict), hassfest clean.
+
+### Live checks so far
+- Startup with all platforms (19:44 UTC): 123 entities, polls 50–90 ms,
+  timers read in 0.19 s, no warnings or errors from the integration.
+- Six reloads of the live entry in a row, 20 s apart (19:58–20:01 UTC):
+  each loaded, no refused login, no failed read, no warning or error, so
+  no session leaks on the real display.
+
+### Questions collected for CP2
+- Mono fixture's heating power limit 39.0 % is below the manufacturer's
+  minimum 40.0 %: can installers set lower values (then the catalog minimum
+  is wrong), or is it a leftover from older firmware?
+- Alarm reset button: does the controller clear the flag itself? (The
+  client's read-back would then report a failed write.) Phase 6 test.
+- Climate on the real pump: mode written before the circuit's enable.
 
 ## Phase 4 (platforms): done 2026-11-01
 
