@@ -360,3 +360,77 @@ async def test_write_not_taking_effect(client: OrcaClient, emulator: Emulator) -
 
     with pytest.raises(OrcaWriteError, match="reads '280' after writing 300"):
         await client.async_write(FLOW, 1, 30.0)
+
+
+@pytest.mark.parametrize(
+    "response",
+    [
+        pytest.param("#{tag}\tS_OK\n", id="status_only"),
+        pytest.param("1\n#S_OK\n", id="login_style"),
+        pytest.param("", id="empty"),
+        pytest.param("something else entirely", id="unexpected"),
+    ],
+)
+async def test_write_response_form_does_not_matter(
+    client: OrcaClient, emulator: Emulator, response: str
+) -> None:
+    """The form of a write response isn't known yet; the read-back decides."""
+    emulator.faults.write_response = response
+
+    await client.async_write(FLOW, 1, 30.0)
+
+    assert emulator.values["2_Max_VF_MK1"] == "300"
+
+
+async def test_close_prevents_new_login(client: OrcaClient, emulator: Emulator) -> None:
+    """After closing, a late refresh can't open a session nobody logs out."""
+    await client.async_login()
+
+    await client.async_close()
+    logins = sum("login" in request for request in emulator.requests)
+
+    with pytest.raises(OrcaConnectionError, match="closed"):
+        await client.async_read(catalog.HP_TEMPERATURE.refs())
+    assert sum("login" in request for request in emulator.requests) == logins
+    assert emulator.sessions == {}
+
+
+async def test_outage_clears_stale_values(
+    client: OrcaClient, emulator: Emulator
+) -> None:
+    """A record missing right after an outage has no value from before it."""
+    refs = list(catalog.HP_TEMPERATURE.refs())
+    await client.async_read(refs)
+
+    emulator.faults = Faults(http_status=503)
+    with pytest.raises(OrcaProtocolError):
+        await client.async_read(refs)
+
+    emulator.faults = Faults(drop_record_rate=1.0)
+    reading = (await client.async_read(refs)).reading(catalog.HP_TEMPERATURE)
+    assert reading.value is None
+    assert reading.reason is Reason.NO_RESPONSE
+
+
+async def test_password_never_in_errors(socket_enabled: None) -> None:
+    """Aiohttp's message holds the URL; the login URL holds the password."""
+    del socket_enabled
+
+    async def not_http(_: asyncio.StreamReader, writer: asyncio.StreamWriter) -> None:
+        writer.write(b"this is not http\r\n\r\n")
+        await writer.drain()
+        writer.close()
+
+    server = await asyncio.start_server(not_http, "127.0.0.1", 0)
+    port = server.sockets[0].getsockname()[1]
+    try:
+        async with aiohttp.ClientSession() as session:
+            client = OrcaClient(session, "127.0.0.1", "admin", "S3cret-pw", port=port)
+            with pytest.raises(OrcaConnectionError) as err:
+                await client.async_login()
+    finally:
+        server.close()
+
+    assert "S3cret-pw" not in str(err.value)
+    assert err.value.__cause__ is None
+    assert err.value.__suppress_context__

@@ -29,7 +29,7 @@ NOT_CONNECTED: Final = "-9999"
 
 _TOKEN_RE: Final = re.compile(r"IDALToken=(\w+)")
 # A whole-response error is a line holding only the code; records carry a tab.
-_WHOLE_ERROR_RE: Final = re.compile(r"^#(E_[A-Z0-9_-]+)[ \t]*$", re.MULTILINE)
+_WHOLE_ERROR_RE: Final = re.compile(r"^#(E_[A-Z0-9_-]+)[ \t\r]*$", re.MULTILINE)
 
 
 @dataclass(frozen=True, slots=True)
@@ -106,6 +106,21 @@ def parse_login(text: str) -> str:
     raise OrcaProtocolError(f"unexpected login response: {text.strip()[:80]!r}")
 
 
+def parse_write_status(text: str, tag: str) -> str | None:
+    """Return the status a writeTags response gives for a tag, if it gives one.
+
+    Reads nothing else: the format of a write response has not been seen
+    live, and a surprise here must not fail a write that landed. The read
+    back decides.
+    """
+    raise_for_error(text)
+    for line in text.replace("\r", "").split("\n"):
+        name, sep, status = line.removeprefix("#").partition("\t")
+        if line.startswith("#") and sep and name == tag:
+            return status.strip()
+    return None
+
+
 def parse_records(text: str) -> list[Record]:
     r"""Parse ``#<tag>\t<status>\n<quality>\t<value>`` records, in order.
 
@@ -129,7 +144,7 @@ def parse_records(text: str) -> list[Record]:
             continue
         payload = lines[index] if index < len(lines) else ""
         quality, sep, value = payload.partition("\t")
-        if not sep or not quality.strip().isdigit():
+        if not sep or not quality.strip().isdecimal():
             raise OrcaProtocolError(f"record {tag} has no value line")
         index += 1
         records.append(Record(tag, status, int(quality), value))

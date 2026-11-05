@@ -33,6 +33,7 @@ class Faults:
     drop_record_rate: float = 0.0
     drop_tags_once: set[str] = field(default_factory=set)
     ignore_writes: bool = False
+    write_response: str | None = None
     delay: float = 0.0
     malformed_body: bool = False
     http_status: int | None = None
@@ -139,7 +140,10 @@ class Emulator:
             return _text("#E_TOO_MANY_USERS\n")
         token = secrets.token_hex(16)
         self.sessions[token] = now
-        return _text(f"1\n#S_OK\nIDALToken={token}")
+        response = _text(f"1\n#S_OK\nIDALToken={token}")
+        # The real display sets the token as a cookie too.
+        response.headers["Set-Cookie"] = f"IDALToken={token}; Path=/"
+        return response
 
     async def _logout(self, request: web.Request) -> web.Response:
         if (token := self._token(request)) is None:
@@ -170,6 +174,8 @@ class Emulator:
         self.writes.append((tag, raw))
         if not self.faults.ignore_writes:
             self.values[tag] = str(raw)
+        if self.faults.write_response is not None:
+            return _text(self.faults.write_response.format(tag=tag))
         return _text(self._record(tag))
 
     def _drop(self, tag: str) -> bool:

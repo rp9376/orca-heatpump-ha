@@ -21,6 +21,8 @@ from custom_components.orca_heatpump.client.protocol import (
     login_target,
     parse_login,
     parse_records,
+    parse_write_status,
+    raise_for_error,
     read_batches,
     read_target,
     write_target,
@@ -166,3 +168,31 @@ def test_parse_records_never_crashes(text: str) -> None:
     """Arbitrary bodies either parse or raise an Orca error, nothing else."""
     with contextlib.suppress(OrcaError):
         parse_records(text)
+
+
+@pytest.mark.parametrize(
+    ("text", "status"),
+    [
+        pytest.param("#tag\tS_OK\n192\t1\n", "S_OK", id="full_record"),
+        pytest.param("#tag\tS_OK\n", "S_OK", id="status_only"),
+        pytest.param("#tag\tE_WRITEFORBIDDEN\r\n", "E_WRITEFORBIDDEN", id="refused"),
+        pytest.param("#other\tE_FAIL\n", None, id="other_tag"),
+        pytest.param("1\n#S_OK\n", None, id="no_tag"),
+        pytest.param("", None, id="empty"),
+    ],
+)
+def test_parse_write_status(text: str, status: str | None) -> None:
+    """Only a status for this tag counts; any other form says nothing."""
+    assert parse_write_status(text, "tag") == status
+
+
+def test_whole_error_with_crlf() -> None:
+    """A whole-response error is recognised with any line ending."""
+    with pytest.raises(OrcaTooManyUsersError):
+        raise_for_error("#E_TOO_MANY_USERS\r\n")
+
+
+def test_quality_digits_only_ascii() -> None:
+    """A quality that isn't a plain number is a protocol error, not a crash."""
+    with pytest.raises(OrcaProtocolError, match="no value line"):
+        parse_records("#tag\tS_OK\n²\t1\n")

@@ -267,3 +267,25 @@ def test_decode_timers_odd(
 
     assert programmes.get(2) == programme_2
     assert set(programmes) - {2} == {1, 3, 4, 5}
+
+
+@pytest.mark.parametrize(
+    ("status", "expected"),
+    [
+        pytest.param("E_UNACTIVETAG", Reason.NO_RESPONSE, id="inactive"),
+        pytest.param("E_INACTIVETAG", Reason.NO_RESPONSE, id="inactive_other_spelling"),
+        pytest.param("E_FAIL", Reason.NO_RESPONSE, id="failed"),
+        pytest.param("E_TAG_NOT_BOUNDED_TO_A_TAG", Reason.UNKNOWN_TAG, id="unbound"),
+        pytest.param(
+            "E_BOUNDED_TAG_NOT_CONNECTED_TO_PROTOCOL",
+            Reason.UNKNOWN_TAG,
+            id="not_connected_to_protocol",
+        ),
+        pytest.param("E_READFORBIDDEN", Reason.TAG_ERROR, id="forbidden"),
+    ],
+)
+def test_decode_status(status: str, expected: Reason) -> None:
+    """Temporary statuses count as no response, unbound tags as absent."""
+    assert (
+        decode(catalog.HP_TEMPERATURE, None, Record("tag", status)).reason is expected
+    )

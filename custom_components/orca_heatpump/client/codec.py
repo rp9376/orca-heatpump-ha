@@ -17,6 +17,15 @@ from .models import (
 )
 from .protocol import NOT_CONNECTED, STATUS_OK, STATUS_UNKNOWN_TAG, Record
 
+# The tag isn't there on this firmware or isn't bound in the display's project.
+_ABSENT_STATUSES = frozenset(
+    {
+        STATUS_UNKNOWN_TAG,
+        "E_TAG_NOT_BOUNDED_TO_A_TAG",
+        "E_BOUNDED_TAG_NOT_CONNECTED_TO_PROTOCOL",
+    }
+)
+_TEMPORARY_STATUSES = frozenset({"E_UNACTIVETAG", "E_INACTIVETAG", "E_FAIL"})
 DAYS = ("monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday")
 
 
@@ -24,8 +33,10 @@ def decode(definition: TagDef, slot: int | None, record: Record | None) -> Readi
     """Decode a record; anything odd becomes a reading without a value."""
     if record is None:
         return NO_RESPONSE
-    if record.status == STATUS_UNKNOWN_TAG:
+    if record.status in _ABSENT_STATUSES:
         return Reading(None, reason=Reason.UNKNOWN_TAG)
+    if record.status in _TEMPORARY_STATUSES:
+        return NO_RESPONSE
     if record.status != STATUS_OK:
         return Reading(None, raw=record.status, reason=Reason.TAG_ERROR)
     raw = (record.value or "").strip()

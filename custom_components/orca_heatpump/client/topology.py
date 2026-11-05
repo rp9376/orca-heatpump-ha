@@ -6,7 +6,7 @@ from types import MappingProxyType
 from typing import Final
 
 from . import catalog
-from .errors import OrcaProtocolError
+from .errors import OrcaIncompleteError, OrcaProtocolError
 from .models import (
     SLOTS,
     CircuitKind,
@@ -131,5 +131,5 @@ def _received(
 ) -> Reading:
     reading = snapshot.reading(definition, slot)
     if reading.reason is Reason.NO_RESPONSE:
-        raise OrcaProtocolError(f"{definition.key} was not received")
+        raise OrcaIncompleteError(f"{definition.key} was not received")
     return reading

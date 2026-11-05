@@ -29,6 +29,10 @@ class OrcaSessionExpiredError(OrcaProtocolError):
     """The session token is no longer valid; the client logs in again."""
 
 
+class OrcaIncompleteError(OrcaProtocolError):
+    """The display answered, but a value the client needs did not come."""
+
+
 class OrcaTagError(OrcaError):
     """A tag is unknown to the display or may not be accessed."""
 

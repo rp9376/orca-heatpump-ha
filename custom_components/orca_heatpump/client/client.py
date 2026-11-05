@@ -40,6 +40,7 @@ from .protocol import (
     login_target,
     parse_login,
     parse_records,
+    parse_write_status,
     read_batches,
     read_target,
     write_target,
@@ -93,6 +94,7 @@ class OrcaClient:
         self._timeout = timeout
         self._lock = asyncio.Lock()
         self._token: str | None = None
+        self._closed = False
         self._last: dict[str, tuple[Reading, int]] = {}
         self._logged_options: set[tuple[str, str | None]] = set()
 
@@ -119,13 +121,27 @@ class OrcaClient:
             finally:
                 self._token = None
 
+    async def async_close(self) -> None:
+        """Log out for good: later requests fail instead of logging in again.
+
+        A refresh that follows a write could otherwise open a session nobody
+        logs out, on a display with very few of them.
+        """
+        self._closed = True
+        await self.async_logout()
+
     async def async_read(self, refs: Iterable[TagRef]) -> Snapshot:
         """Read and decode tags; the snapshot has a reading for every one."""
         wanted = [(d, s, tag) for d, s in refs if (tag := d.tag_name(s)) is not None]
         async with self._lock:
-            records = await self._read_records(
-                list(dict.fromkeys(tag for _, _, tag in wanted))
-            )
+            try:
+                records = await self._read_records(
+                    list(dict.fromkeys(tag for _, _, tag in wanted))
+                )
+            except OrcaError:
+                # Stale values may bridge dropped records, not an outage.
+                self._last.clear()
+                raise
         readings: dict[str, Reading] = {}
         for definition, slot, tag in wanted:
             readings[tag] = self._reading(definition, slot, tag, records.get(tag))
@@ -152,10 +168,10 @@ class OrcaClient:
                 raise OrcaTagError(f"{tag} is not readable before writing")
             if (current.value or "").strip() == str(raw):
                 return
-            records = await self._authenticated(write_target(tag, raw), parse_records)
-            result = next((r for r in records if r.tag == tag), None)
-            if result is None or result.status != STATUS_OK:
-                status = result.status if result else "no record"
+            status = await self._authenticated(
+                write_target(tag, raw), lambda text: parse_write_status(text, tag)
+            )
+            if status not in (None, STATUS_OK):
                 raise OrcaWriteError(f"writing {tag} = {raw} failed: {status}")
             check = (await self._read_records([tag])).get(tag)
         if check is None or (check.value or "").strip() != str(raw):
@@ -250,6 +266,8 @@ class OrcaClient:
             return parse(await self._get(target))
 
     async def _login(self) -> None:
+        if self._closed:
+            raise OrcaConnectionError("the client is closed")
         self._token = parse_login(
             await self._get(login_target(self._username, self._password))
         )
@@ -267,9 +285,18 @@ class OrcaClient:
         except TimeoutError as err:
             raise OrcaTimeoutError(f"no answer from {self._base}") from err
         except aiohttp.ClientError as err:
-            raise OrcaConnectionError(f"cannot reach {self._base}: {err}") from err
+            # aiohttp's message can hold the URL, and the login URL the password.
+            raise OrcaConnectionError(
+                f"cannot reach {self._base}: {_describe(err)}"
+            ) from None
         if status == 408:
             raise OrcaProtocolError("request too large for the display (HTTP 408)")
         if status not in (200, 500):
             raise OrcaProtocolError(f"unexpected HTTP status {status}")
         return body.decode("utf-8", "replace")
+
+
+def _describe(err: aiohttp.ClientError) -> str:
+    if isinstance(err, aiohttp.ClientResponseError):
+        return f"{type(err).__name__}: {err.status}, {err.message}"
+    return type(err).__name__
