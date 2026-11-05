@@ -1,7 +1,29 @@
 # Progress
 
-**Stopped at CP2, waiting for the user.** Phase 5 is done apart from the user's
-spot check; nothing has been written to the pump. Phase 6 needs the user present.
+**CP2 answered; waiting for the user to say when Phase 6 may start.** Phase 5 is
+done and nothing has been written to the pump. One question is still open (see the
+CP2 outcome).
+
+## CP2 outcome (user, 2026-11-05)
+
+1. The four setting changes were the user's own, made by hand. Resolved.
+2. Spot check against the touch display: values check out.
+3. Write test plan: **the user says when.** Do not start before that. Tier C not
+   chosen yet.
+4. System switch: stays, disabled by default (done). An existing registry entry keeps
+   its state, so it is still enabled in the dev HA.
+5. Alarm reset: left out of v1, in `docs/backlog.md`, and the README says to ask for
+   it (done). The user prefers it that way: alarms usually mean someone must look at
+   the heat pump.
+6. Service-level settings: **open.** The user asked what "flow" means; explained in
+   the reply. They stay writable and hidden as accepted at CP1 unless the user says
+   otherwise.
+7. Limits below the manufacturer's minimum: no, the limits stay (ADR 0012). The
+   user's "let's keep some limits in place" was read as this answer; it may also
+   mean more, so it is worth confirming with decision 6.
+8. Room setpoint range: the user has no sensor, and asked to use the old integration's
+   limits or normal values. The old integration has 10.0–35.0 °C, step 0.1, and all
+   recorded values fit, so the catalog keeps that. Not the manufacturer's data.
 
 ## CP2 report (2026-11-05)
 
@@ -15,7 +37,7 @@ spot check; nothing has been written to the pump. Phase 6 needs the user present
   held up. Their findings are fixed, except those listed below.
 - The Phase 6 plan is ready: `docs/phase6-write-test-plan.md`.
 
-### Decisions needed from the user
+### Decisions asked of the user (answered above)
 1. **The four setting changes** (hot water power limit 65 → 75 %, underfloor flow
    setpoint 28 → 30 °C, minimum flow 24 → 25 °C, hot water switch-on difference
    6 → 7 °C): did the user make them? The old integration's history of "max power

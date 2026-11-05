@@ -42,3 +42,5 @@ Manufacturer ranges (`research/moja_orca_catalog.json`, raw ×10):
   numbers or back; the entities of the other form are removed from the
   entity registry, so nothing stale is left (`PLAN.md` §7.3a).
 - The README documents the risk and the ranges.
+- The minimums stay even though a pump can hold less (user, CP2): the recorded Mono
+  holds a heating limit of 39 %. Such a value is shown, and can't be written back.

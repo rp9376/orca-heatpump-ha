@@ -47,7 +47,9 @@ def _switch(
 
 
 DESCRIPTIONS: tuple[OrcaSwitchEntityDescription, ...] = (
-    _switch(catalog.SYSTEM_ENABLE, enabled=True, category=None),
+    # Disabled by default: enabled, "turn everything off" on an area or by voice
+    # would include it and stop heating and hot water.
+    _switch(catalog.SYSTEM_ENABLE, category=None),
     _switch(catalog.PV_FUNCTION),
     _switch(catalog.SCREED_DRYING, exists_fn=any_circuit),
     _switch(catalog.ANTI_BLOCK_PROGRAMME),

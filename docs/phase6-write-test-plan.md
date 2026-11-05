@@ -13,6 +13,8 @@ only run against the emulator.
 
 ## How it runs
 
+- The dev HA is restarted first if the code changed since it last started, so it
+  runs the committed code, including the debug line for the write response.
 - Through Home Assistant's own actions on the dev HA, one at a time, so the whole
   path is exercised on the integration's one session.
 - Settings hidden by default are enabled for the test and disabled again
@@ -139,7 +141,7 @@ inside the manufacturer's range, one step from the current value.
 | Heat pump: Power limit hot water | `2_Max_moc_TC_pri_SV` | 75.0 % | 74.0 % | needs the power limit option on |
 | Heat pump: Power limit quiet operation | `2_Max_moc_TC_TISJA` | 65.0 % | 64.0 % | needs the power limit option on |
 | Heat pump: Quick room mode | `2_HITRI_Rezim` | inactive | heating | overrides every circuit, including the radiators that are off |
-| Heat pump: System | `2_Vklop_Izklop` | on | off | stops heating and hot water while off; only with the pump idle |
+| Heat pump: System | `2_Vklop_Izklop` | on | off | disabled by default, so enable it first; stops heating and hot water while off; only with the pump idle |
 
 ### Not tested live (6)
 

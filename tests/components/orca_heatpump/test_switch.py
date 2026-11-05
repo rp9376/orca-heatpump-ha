@@ -53,7 +53,7 @@ async def test_entities(
         pytest.param({SYSTEM_TAG: "0"}, SERVICE_TURN_ON, 1, STATE_ON, id="on"),
     ],
 )
-@pytest.mark.usefixtures("init_integration")
+@pytest.mark.usefixtures("entity_registry_enabled_by_default", "init_integration")
 async def test_turn_on_off(
     hass: HomeAssistant, emulator: Emulator, service: str, written: int, state: str
 ) -> None:
@@ -66,3 +66,13 @@ async def test_turn_on_off(
     assert emulator.writes == [(SYSTEM_TAG, written)]
     assert (current := hass.states.get(SYSTEM)) is not None
     assert current.state == state
+
+
+@pytest.mark.usefixtures("init_integration")
+async def test_system_switch_disabled_by_default(
+    entity_registry: er.EntityRegistry,
+) -> None:
+    """Nothing can switch the whole heat pump off until someone enables this."""
+    entry = entity_registry.async_get(SYSTEM)
+    assert entry is not None
+    assert entry.disabled_by is er.RegistryEntryDisabler.INTEGRATION

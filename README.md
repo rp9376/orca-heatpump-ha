@@ -113,9 +113,10 @@ tank**. Settings that only installers or service technicians use are hidden
 - Sensors: outdoor temperature, water temperature and its target, outdoor
   unit power and state, 3-way valve, active alarm, power limits.
 - Binary sensors: circulation pump, defrost, electric heater stages, alarm.
-- Switch: system on/off. Selects: operating programme (normal, holiday,
-  party, eco), quick room mode, electric heater mode.
-- Hidden: quiet operation, electric heater stage settings, additional heat
+- Selects: operating programme (normal, holiday, party, eco), quick room mode,
+  electric heater mode.
+- Hidden: the system on/off switch (enabled, "turn everything off" on an area or
+  by voice would include it and stop heating and hot water), quiet operation, electric heater stage settings, additional heat
   source settings, PV function, screed drying, anti-blocking programme, the
   specific alarms, installer settings.
 
@@ -170,8 +171,9 @@ the display doesn't report for the moment shows as unknown.
   the alarm and its code.
 
 The display keeps no alarm history; Home Assistant's history does. Alarms are
-reset on the display: a reset from Home Assistant hasn't been tested on a real
-alarm yet, and resetting an alarm whose cause remains could be harmful.
+reset on the display, not from Home Assistant: an alarm usually means someone
+should look at the heat pump itself. If you need a reset button, open a feature
+request; it can be added.
 
 Example: a notification when an alarm is raised.
 

@@ -74,7 +74,7 @@
     'switch.heat_pump_anti_blocking_programme | anti_block_programme | disabled',
     'switch.heat_pump_pv_function | pv_function | disabled',
     'switch.heat_pump_screed_drying | screed_drying | disabled',
-    'switch.heat_pump_system | system_enable | on',
+    'switch.heat_pump_system | system_enable | disabled',
     'switch.underfloor_heating_automatic_cooling_switch | circuit1_auto_cooling_switch | disabled',
     'switch.underfloor_heating_automatic_heating_switch | circuit1_auto_heating_switch | disabled',
   ])
@@ -224,7 +224,7 @@
     'switch.heat_pump_anti_blocking_programme | anti_block_programme | disabled',
     'switch.heat_pump_pv_function | pv_function | disabled',
     'switch.heat_pump_screed_drying | screed_drying | disabled',
-    'switch.heat_pump_system | system_enable | on',
+    'switch.heat_pump_system | system_enable | disabled',
     'switch.heating_circuit_3_automatic_cooling_switch | circuit3_auto_cooling_switch | disabled',
     'switch.heating_circuit_3_automatic_heating_switch | circuit3_auto_heating_switch | disabled',
     'switch.hot_water_legionella_protection | legionella_enable | off',

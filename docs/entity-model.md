@@ -69,7 +69,7 @@ write only through `OrcaClient.async_write` with the manufacturer's range.
 | `pump_p0` | binary_sensor (running) | `2_Vklop_C0` | on | |
 | `flow_switch` | binary_sensor | `2_Pogoj_maska_pret_stik` | off, diag | flow OK |
 | `defrost_active` | binary_sensor | `2_Odtaljevanje_izhod` | on | |
-| `system_enable` | switch | `2_Vklop_Izklop` | on | system on/off |
+| `system_enable` | switch | `2_Vklop_Izklop` | off | system on/off; disabled by default (user, CP2) so bulk "turn off" actions and voice assistants can't stop the heat pump |
 | `operating_programme` | select | `2_Delovanje_MENI` | on | normal / holiday / party / ECO |
 | `quick_room_mode` | select | `2_HITRI_Rezim` | on | inactive / off / heating / cooling |
 | `hp_power_limit_heating`, `_dhw`, `_cooling`, `quiet_power_limit` | number if "Allow changing power limits" is on, else sensor | `2_Max_moc_TC_pri_OGR/SV/HLAJ`, `2_Max_moc_TC_TISJA` | on, cfg | opt-in, ranges enforced in code (ADR 0012): 40–100 %, cooling 16–100 %, quiet 31–100 % |
@@ -145,7 +145,7 @@ hour through the same client (they only change on the display). Each
 timer-programme select has a `schedule` attribute with the selected
 programme's ranges (start, end, days; not recorded), and diagnostics hold
 all five. A programme with a missing or odd record keeps its last good
-value. Editing them is in the backlog.
+value. Editing them is in `docs/backlog.md`.
 
 ## 4. Climate and water heater mapping
 
@@ -197,11 +197,8 @@ value. Editing them is in the backlog.
 
 No alarm history from the display exists (R4); HA's recorder keeps it.
 
-No reset button in v1: `2_Reset_ALARMA_iz_PGDT` is in neither the catalog nor
-the platforms. PLAN §7.3 allows one only after a Phase 6 test, and §11 never
-provokes an alarm on purpose, so it can be added once a real alarm allows a
-test. It should then be available only while an alarm is active, with a
-minimum interval between resets.
+No reset button in v1 (user, CP2): `2_Reset_ALARMA_iz_PGDT` is in neither the
+catalog nor the platforms. See `docs/backlog.md`.
 
 ## 6. Never exposed
 

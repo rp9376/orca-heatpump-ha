@@ -1,6 +1,6 @@
 # Orca heat pump integration — rewrite master plan
 
-Status: **P0–P5 done; stopped at CP2 (2026-11-05), waiting for the user; see `docs/progress.md`** · Written 2026-10-30 ·
+Status: **P0–P5 done; CP2 answered (2026-11-05); P6 waits for the user to say when; see `docs/progress.md`** · Written 2026-10-30 ·
 Owner: @rp9376 (GitHub) · Domain: `orca_heatpump`
 
 This is the brief for the lead agent (Claude Fable) that builds a new Home
