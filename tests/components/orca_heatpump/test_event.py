@@ -62,10 +62,10 @@ async def test_alarm_sequence(
 async def test_unreadable_alarm(
     hass: HomeAssistant, init_integration: MockConfigEntry, emulator: Emulator
 ) -> None:
-    """An unreadable alarm code makes the entity unavailable, firing nothing."""
+    """An unreadable alarm code fires nothing, and neither does its return."""
     await set_alarm(hass, init_integration, emulator, "")
 
-    assert event(hass).state == "unavailable"
+    assert event(hass).state == STATE_UNKNOWN
 
     await set_alarm(hass, init_integration, emulator, "0")
     assert event(hass).state == STATE_UNKNOWN

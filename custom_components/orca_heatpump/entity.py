@@ -2,6 +2,7 @@
 
 from collections.abc import Callable, Iterable, Iterator, Mapping
 from dataclasses import dataclass
+import math
 from typing import Any, override
 
 from homeassistant.exceptions import HomeAssistantError, ServiceValidationError
@@ -10,10 +11,12 @@ from homeassistant.helpers.entity import EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
 from .client import catalog
+from .client.codec import encode
 from .client.errors import OrcaError, OrcaValueError
 from .client.models import (
     CircuitKind,
     Element,
+    Kind,
     PumpTopology,
     Reading,
     Reason,
@@ -145,32 +148,53 @@ async def async_write_value(
     await async_write_values(coordinator, ((definition, slot, value),))
 
 
+def round_to_step(value: float, step: float) -> float:
+    """Round a number to a step; NaN and infinity are left for the client to refuse."""
+    return round(value / step) * step if math.isfinite(value) else value
+
+
 async def async_write_values(
-    coordinator: OrcaCoordinator,
-    writes: Iterable[TagWrite],
+    coordinator: OrcaCoordinator, writes: Iterable[TagWrite]
 ) -> None:
     """Write values in order through the client, then refresh once.
 
-    The client validates against the catalog before anything is sent, skips
-    unchanged values and reads each value back (PLAN.md §10). One refresh
-    at the end keeps the debouncer from delaying the last write's state.
+    Every value is checked before the first one is sent, so a bad value can't
+    leave a call half done. The client checks again, skips unchanged values
+    and reads each value back (PLAN.md §10). One refresh at the end keeps the
+    debouncer from delaying the last write's state.
     """
-    for definition, slot, value in writes:
-        try:
+    # Home Assistant converts units without rounding: 70 °F arrives as 21.111 °C.
+    rounded = [
+        (
+            definition,
+            slot,
+            round_to_step(value, 1 / definition.scale)
+            if definition.kind is Kind.NUMBER and isinstance(value, float)
+            else value,
+        )
+        for definition, slot, value in writes
+    ]
+    try:
+        for definition, slot, value in rounded:
+            encode(definition, slot, value)
+    except OrcaValueError as err:
+        raise ServiceValidationError(
+            translation_domain=DOMAIN,
+            translation_key="invalid_value",
+            translation_placeholders={"error": str(err)},
+        ) from err
+    try:
+        for definition, slot, value in rounded:
             await coordinator.client.async_write(definition, slot, value)
-        except OrcaValueError as err:
-            raise ServiceValidationError(
-                translation_domain=DOMAIN,
-                translation_key="invalid_value",
-                translation_placeholders={"error": str(err)},
-            ) from err
-        except OrcaError as err:
-            raise HomeAssistantError(
-                translation_domain=DOMAIN,
-                translation_key="write_failed",
-                translation_placeholders={"error": str(err)},
-            ) from err
-    await coordinator.async_request_refresh()
+    except OrcaError as err:
+        raise HomeAssistantError(
+            translation_domain=DOMAIN,
+            translation_key="write_failed",
+            translation_placeholders={"error": str(err)},
+        ) from err
+    finally:
+        # A failed write, or one before it, may have taken effect.
+        await coordinator.async_request_refresh()
 
 
 class OrcaEntity(CoordinatorEntity[OrcaCoordinator]):
@@ -220,15 +244,12 @@ class OrcaEntity(CoordinatorEntity[OrcaCoordinator]):
     @property
     @override
     def available(self) -> bool:
-        """Return whether the tag was read; a stale value still counts.
+        """Return false only if the read failed or the sensor isn't connected.
 
-        A value nobody has seen yet keeps the entity available with an
-        unknown state, so a select can still set it back.
+        A value that is missing or nobody has seen yet shows as unknown: the
+        display answered. A select can then still set it back.
         """
-        reading = self.reading
-        return super().available and (
-            reading.value is not None or reading.reason is Reason.UNKNOWN_OPTION
-        )
+        return super().available and self.reading.reason is not Reason.NOT_CONNECTED
 
     async def async_write(self, value: Value) -> None:
         """Write the entity's own tag."""

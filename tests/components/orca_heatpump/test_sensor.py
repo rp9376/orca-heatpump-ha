@@ -5,7 +5,7 @@ from pytest_homeassistant.common import MockConfigEntry, snapshot_platform
 from syrupy.assertion import SnapshotAssertion
 
 from custom_components.orca_heatpump.const import CONF_ALLOW_POWER_LIMITS
-from homeassistant.const import STATE_UNAVAILABLE, Platform
+from homeassistant.const import STATE_UNKNOWN, Platform
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers import entity_registry as er
 from tools.emulator import Emulator
@@ -36,7 +36,7 @@ async def test_entities(
     [
         pytest.param("4", "no_flow", 4, id="known"),
         pytest.param("42", "unknown_code", 42, id="unknown"),
-        pytest.param("", STATE_UNAVAILABLE, None, id="empty"),
+        pytest.param("", STATE_UNKNOWN, None, id="empty"),
     ],
 )
 async def test_active_alarm(

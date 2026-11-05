@@ -72,12 +72,6 @@ class OrcaAlarmEvent(OrcaEntity, EventEntity):
             return None
         return str(reading.value), reading.raw
 
-    @property
-    @override
-    def available(self) -> bool:
-        """Return whether an alarm code was read, known or not."""
-        return self.coordinator.last_update_success and self._current() is not None
-
     @callback
     @override
     def _handle_coordinator_update(self) -> None:

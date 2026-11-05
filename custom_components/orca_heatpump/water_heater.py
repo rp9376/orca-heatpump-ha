@@ -90,7 +90,10 @@ class OrcaWaterHeater(OrcaEntity, WaterHeaterEntity):
     @override
     def current_operation(self) -> str | None:
         """Return heat_pump while hot water is on."""
-        return STATE_HEAT_PUMP if self.reading.value else STATE_OFF
+        value = self.reading.value
+        if value is None:
+            return None
+        return STATE_HEAT_PUMP if value else STATE_OFF
 
     @property
     @override

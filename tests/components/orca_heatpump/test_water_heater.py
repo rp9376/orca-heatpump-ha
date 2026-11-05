@@ -16,7 +16,14 @@ from homeassistant.components.water_heater import (
     SERVICE_TURN_ON,
     STATE_HEAT_PUMP,
 )
-from homeassistant.const import ATTR_ENTITY_ID, ATTR_TEMPERATURE, STATE_OFF, Platform
+from homeassistant.const import (
+    ATTR_ENTITY_ID,
+    ATTR_TEMPERATURE,
+    STATE_OFF,
+    STATE_UNAVAILABLE,
+    STATE_UNKNOWN,
+    Platform,
+)
 from homeassistant.core import HomeAssistant, State
 from homeassistant.exceptions import ServiceValidationError
 from homeassistant.helpers import entity_registry as er
@@ -151,6 +158,11 @@ async def test_set_temperature(
             id="operation",
         ),
         pytest.param({ATTR_TEMPERATURE: 60}, "invalid_value", id="above_range"),
+        pytest.param(
+            {ATTR_TEMPERATURE: 60, ATTR_OPERATION_MODE: STATE_OFF},
+            "invalid_value",
+            id="above_range_with_operation",
+        ),
     ],
 )
 @pytest.mark.usefixtures("init_integration")
@@ -168,8 +180,14 @@ async def test_set_temperature_invalid(
     assert emulator.writes == []
 
 
-@pytest.mark.parametrize("values", [{ENABLE: ""}])
+@pytest.mark.parametrize(
+    ("values", "state"),
+    [
+        pytest.param({ENABLE: ""}, STATE_UNKNOWN, id="empty"),
+        pytest.param({ENABLE: "-9999"}, STATE_UNAVAILABLE, id="not_connected"),
+    ],
+)
 @pytest.mark.usefixtures("init_integration")
-async def test_unreadable(hass: HomeAssistant) -> None:
-    """Without a readable enable the water heater is unavailable."""
-    assert water_heater(hass).state == "unavailable"
+async def test_unreadable(hass: HomeAssistant, state: str) -> None:
+    """A missing value is unknown; only a disconnected one is unavailable."""
+    assert water_heater(hass).state == state

@@ -67,10 +67,14 @@ async def test_entities(
 
 
 @pytest.mark.parametrize(
-    ("entity_id", "value", "write"),
+    ("entity_id", "value", "write", "state"),
     [
-        pytest.param(DHW_LOW, 40.5, (DHW_LOW_TAG, 405), id="temperature"),
-        pytest.param(POWER_LIMIT, 75, (POWER_LIMIT_TAG, 750), id="power_limit"),
+        pytest.param(DHW_LOW, 40.5, (DHW_LOW_TAG, 405), 40.5, id="temperature"),
+        pytest.param(POWER_LIMIT, 75, (POWER_LIMIT_TAG, 750), 75, id="power_limit"),
+        pytest.param(DHW_LOW, 40.56, (DHW_LOW_TAG, 406), 40.6, id="rounded_to_step"),
+        pytest.param(
+            POWER_LIMIT, 75.4, (POWER_LIMIT_TAG, 750), 75, id="whole_percent_only"
+        ),
     ],
 )
 @pytest.mark.usefixtures("init_integration")
@@ -80,21 +84,22 @@ async def test_set_value(
     entity_id: str,
     value: float,
     write: tuple[str, int],
+    state: float,
 ) -> None:
-    """A value is written in the pump's scale and read back."""
+    """A value is rounded to the entity's step, written and read back."""
     await set_value(hass, entity_id, value)
 
     assert emulator.writes == [write]
-    state = hass.states.get(entity_id)
-    assert state is not None
-    assert float(state.state) == value
+    current = hass.states.get(entity_id)
+    assert current is not None
+    assert float(current.state) == state
 
 
 @pytest.mark.parametrize(
     ("entity_id", "value", "translation_key"),
     [
         pytest.param(POWER_LIMIT, 39, "out_of_range", id="below_range"),
-        pytest.param(DHW_LOW, 40.55, "invalid_value", id="step"),
+        pytest.param(DHW_LOW, float("nan"), "invalid_value", id="not_a_number"),
     ],
 )
 @pytest.mark.usefixtures("init_integration")
@@ -105,7 +110,7 @@ async def test_set_value_invalid(
     value: float,
     translation_key: str,
 ) -> None:
-    """Values outside the range or step are refused before anything is sent."""
+    """Values outside the range are refused before anything is sent."""
     with pytest.raises(ServiceValidationError) as err:
         await set_value(hass, entity_id, value)
 

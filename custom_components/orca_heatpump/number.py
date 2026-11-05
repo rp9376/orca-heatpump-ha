@@ -36,6 +36,7 @@ from .entity import (
     mixing_circuit,
     power_limit,
     room_sensor,
+    round_to_step,
 )
 
 # The pump takes one write at a time.
@@ -242,5 +243,5 @@ class OrcaNumber(OrcaEntity, NumberEntity):
 
     @override
     async def async_set_native_value(self, value: float) -> None:
-        """Write the value; the client checks the range and step first."""
-        await self.async_write(value)
+        """Write the value on the entity's step; the client checks the range."""
+        await self.async_write(round_to_step(value, self.native_step or 1))

@@ -115,7 +115,10 @@ class OrcaClimate(OrcaEntity, ClimateEntity):
     @override
     def hvac_mode(self) -> HVACMode | None:
         """Return off when the circuit is disabled, else its mode."""
-        if self.reading.value is False:
+        enabled = self.reading.value
+        if enabled is None:
+            return None
+        if enabled is False:
             return HVACMode.OFF
         mode = self.value_of(catalog.CIRCUIT_MODE)
         return HVAC_MODES.get(mode) if isinstance(mode, str) else None
@@ -134,6 +137,8 @@ class OrcaClimate(OrcaEntity, ClimateEntity):
     @override
     def hvac_action(self) -> HVACAction | None:
         """Return what the circuit is doing, from its pump and the heat pump."""
+        if self.reading.value is None:
+            return None
         if (
             self.hvac_mode is HVACMode.OFF
             or self.value_of(catalog.SYSTEM_ENABLE) is False
@@ -167,7 +172,7 @@ class OrcaClimate(OrcaEntity, ClimateEntity):
 
     def _mode_writes(self, hvac_mode: HVACMode) -> list[TagWrite]:
         enable = self.entity_description.definition
-        if hvac_mode is HVACMode.OFF:
+        if hvac_mode == HVACMode.OFF:
             # The mode stays, so turning on resumes it.
             return [(enable, self.slot, False)]
         writes: list[TagWrite] = []

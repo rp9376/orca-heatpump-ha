@@ -39,6 +39,7 @@ from homeassistant.core import HomeAssistant, State
 from homeassistant.exceptions import HomeAssistantError, ServiceValidationError
 from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.update_coordinator import REQUEST_REFRESH_DEFAULT_COOLDOWN
+from homeassistant.util.unit_system import US_CUSTOMARY_SYSTEM
 from tools.emulator import Emulator
 
 UNDERFLOOR = "climate.underfloor_heating"
@@ -273,7 +274,11 @@ async def test_set_temperature(
             "not_valid_hvac_mode",
             id="mode_not_offered",
         ),
-        pytest.param({ATTR_TEMPERATURE: 21.55}, "invalid_value", id="step"),
+        pytest.param(
+            {ATTR_TEMPERATURE: 40, ATTR_HVAC_MODE: HVACMode.COOL},
+            "temp_out_of_range",
+            id="above_range_with_mode",
+        ),
     ],
 )
 async def test_set_temperature_invalid(
@@ -347,3 +352,38 @@ async def test_write_failed(
 
     assert err.value.translation_key == "write_failed"
     assert climate(hass).state == HVACMode.HEAT
+
+
+@pytest.mark.parametrize("pump", ["duo"], indirect=True)
+async def test_temperature_in_fahrenheit(
+    hass: HomeAssistant, init_integration: MockConfigEntry, emulator: Emulator
+) -> None:
+    """A converted temperature is rounded to what the pump can store."""
+    hass.config.units = US_CUSTOMARY_SYSTEM
+
+    await call(hass, SERVICE_SET_TEMPERATURE, temperature=70)
+
+    assert emulator.writes == [(tag(catalog.ROOM_SETPOINT_HIGH), 211)]
+
+
+async def test_failed_enable_still_refreshes(
+    hass: HomeAssistant, init_integration: MockConfigEntry, emulator: Emulator
+) -> None:
+    """If the mode was written and the enable failed, the state shows the mode."""
+    emulator.writable.discard(tag(catalog.CIRCUIT_ENABLE, 2))
+
+    with pytest.raises(HomeAssistantError):
+        await call(hass, SERVICE_SET_HVAC_MODE, RADIATORS, hvac_mode=HVACMode.COOL)
+
+    assert emulator.writes == [(tag(catalog.CIRCUIT_MODE, 2), 2)]
+    coordinator = init_integration.runtime_data.coordinator
+    assert coordinator.data.value(catalog.CIRCUIT_MODE, 2) == "cooling"
+
+
+@pytest.mark.parametrize("values", [{tag(catalog.CIRCUIT_ENABLE): ""}])
+@pytest.mark.usefixtures("init_integration")
+async def test_unreadable_enable(hass: HomeAssistant) -> None:
+    """Without a readable enable the circuit claims no state or action."""
+    state = climate(hass)
+    assert state.state == STATE_UNKNOWN
+    assert ATTR_HVAC_ACTION not in state.attributes
