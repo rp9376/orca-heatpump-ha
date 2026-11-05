@@ -570,14 +570,6 @@ ALARM_HP_TEMPERATURE_LOW = TagDef(
     tag="2_Alarm_prenizka_temp_TC",
 )
 
-ALARM_RESET = TagDef(
-    key="alarm_reset",
-    element=Element.SYSTEM,
-    kind=Kind.BOOL,
-    tag="2_Reset_ALARMA_iz_PGDT",
-    writable=True,
-)
-
 ALARM_ERROR = TagDef(
     key="alarm_error",
     element=Element.SYSTEM,
@@ -1448,7 +1440,6 @@ CATALOG: Final[tuple[TagDef, ...]] = (
     ALARM_FLOW_SWITCH,
     ALARM_NO_FLOW,
     ALARM_HP_TEMPERATURE_LOW,
-    ALARM_RESET,
     ALARM_ERROR,
     ALARM_FLOW_TEMPERATURE,
     ALARM_ROOM_SENSOR,

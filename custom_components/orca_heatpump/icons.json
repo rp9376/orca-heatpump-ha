@@ -23,11 +23,6 @@
         "default": "mdi:heating-coil"
       }
     },
-    "button": {
-      "alarm_reset": {
-        "default": "mdi:alarm-light-off-outline"
-      }
-    },
     "event": {
       "alarm_event": {
         "default": "mdi:alarm-light-outline"

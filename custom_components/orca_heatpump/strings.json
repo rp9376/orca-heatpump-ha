@@ -263,11 +263,6 @@
         "name": "Controller error"
       }
     },
-    "button": {
-      "alarm_reset": {
-        "name": "Reset alarms"
-      }
-    },
     "event": {
       "alarm_event": {
         "name": "Alarm",

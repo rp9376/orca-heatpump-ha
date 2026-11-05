@@ -263,11 +263,6 @@
         "name": "Napaka regulatorja"
       }
     },
-    "button": {
-      "alarm_reset": {
-        "name": "Ponastavi alarme"
-      }
-    },
     "event": {
       "alarm_event": {
         "name": "Alarm",

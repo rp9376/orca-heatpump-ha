@@ -149,3 +149,28 @@ def test_timer_tags() -> None:
     assert len(tags) == len(set(tags)) == 165
     assert all(tag in REGISTERS for tag in tags)
     assert timer_tags(2, 2)[:2] == ("2_TIMER_2_Ura_ON_2", "2_TIMER_2_Minute_ON_2")
+
+
+NEVER_WRITABLE = re.compile(
+    r"2_Shema"
+    r"|Kontakt"
+    r"|Kalibracija"
+    r"|GESLO|Geslo|KODA|KODE"
+    r"|CURRENT"
+    r"|Cas_MP"
+    r"|Krivulja_TC"
+    r"|Limita_moci"
+    r"|Sobni"
+    r"|Talno_Radiatorsko"
+)
+
+
+def test_installer_settings_never_writable() -> None:
+    """The installer settings of PLAN.md §10 are never writable."""
+    assert not [
+        tag
+        for definition in CATALOG
+        if definition.writable
+        for tag in definition.tag_names()
+        if NEVER_WRITABLE.search(tag)
+    ]

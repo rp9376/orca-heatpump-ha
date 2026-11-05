@@ -167,10 +167,10 @@ unavailable and come back with the next good read.
   shows as "Unknown alarm", with the code in the `code` attribute.
 - **Heat pump Alarm** (event) fires `alarm_raised` and `alarm_cleared` with
   the alarm and its code.
-- **Reset alarms** (button, hidden) resets alarms that need a manual reset.
-  It stays hidden until it has been confirmed on a real heat pump.
 
-The display keeps no alarm history; Home Assistant's history does.
+The display keeps no alarm history; Home Assistant's history does. Alarms are
+reset on the display: a reset from Home Assistant hasn't been tested on a real
+alarm yet, and resetting an alarm whose cause remains could be harmful.
 
 Example: a notification when an alarm is raised.
 

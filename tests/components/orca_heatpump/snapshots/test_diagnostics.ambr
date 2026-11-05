@@ -562,12 +562,6 @@
         'stale': False,
         'value': 'room_and_outdoor',
       }),
-      '2_Reset_ALARMA_iz_PGDT': dict({
-        'raw': '0',
-        'reason': None,
-        'stale': False,
-        'value': False,
-      }),
       '2_Rezim_MK1': dict({
         'raw': '1',
         'reason': None,
