@@ -59,7 +59,6 @@ async def test_schema(
         domain=DOMAIN,
         title=DEFAULT_TITLE,
         entry_id="01ORCAHEATPUMPTESTENTRY000",
-        unique_id=host,
         data={
             CONF_HOST: host,
             CONF_USERNAME: "admin",

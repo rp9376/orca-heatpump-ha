@@ -54,6 +54,13 @@ class OrcaEntityDescription(EntityDescription):
 
 
 HEATER_STAGES = {"one_stage": 1, "two_stages": 2, "three_stages": 3}
+HEATER_SOURCES = ("electric_heater", "electric_heater_and_additional_source")
+
+
+def electric_heater(context: EntityContext, slot: int | None) -> bool:
+    """Return whether the pump may have an electric heater; unknown counts."""
+    source = context.snapshot.value(catalog.ADDITIONAL_SOURCE)
+    return not isinstance(source, str) or source in HEATER_SOURCES
 
 
 def heater_stage(stage: int) -> Callable[[EntityContext, int | None], bool]:
@@ -61,7 +68,9 @@ def heater_stage(stage: int) -> Callable[[EntityContext, int | None], bool]:
 
     def exists(context: EntityContext, slot: int | None) -> bool:
         stages = context.snapshot.value(catalog.HEATER_STAGES)
-        return not isinstance(stages, str) or HEATER_STAGES[stages] >= stage
+        return electric_heater(context, slot) and (
+            not isinstance(stages, str) or HEATER_STAGES[stages] >= stage
+        )
 
     return exists
 
@@ -215,11 +224,13 @@ class OrcaEntity(CoordinatorEntity[OrcaCoordinator]):
         self.slot = slot
         entry_id = coordinator.config_entry.entry_id
         key = description.key
-        self._attr_unique_id = (
+        unique_id = (
             f"{entry_id}_circuit{slot}_{key}"
             if slot is not None
             else f"{entry_id}_{key}"
         )
+        self._attr_unique_id = unique_id
+        coordinator.config_entry.runtime_data.unique_ids.add(unique_id)
         self._attr_device_info = DeviceInfo(
             identifiers={
                 (

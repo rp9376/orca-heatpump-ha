@@ -12,17 +12,16 @@ from .client import catalog
 from .client.models import TagDef
 from .coordinator import OrcaConfigEntry, OrcaCoordinator
 from .entity import (
-    EntityContext,
     OrcaEntity,
     OrcaEntityDescription,
     any_circuit,
+    electric_heater,
     entity_targets,
 )
 
 # The pump takes one write at a time.
 PARALLEL_UPDATES = 1
 
-HEATER_SOURCES = ("electric_heater", "electric_heater_and_additional_source")
 ATTR_SCHEDULE = "schedule"
 
 
@@ -49,18 +48,13 @@ def _select(
     )
 
 
-def _electric_heater(context: EntityContext, slot: int | None) -> bool:
-    source = context.snapshot.value(catalog.ADDITIONAL_SOURCE)
-    return not isinstance(source, str) or source in HEATER_SOURCES
-
-
 DESCRIPTIONS: tuple[OrcaSelectEntityDescription, ...] = (
     _select(catalog.OPERATING_PROGRAMME, category=None),
     _select(catalog.QUICK_ROOM_MODE, category=None, exists_fn=any_circuit),
     _select(catalog.QUIET_MODE, enabled=False),
     _select(catalog.QUIET_TIMER_PROGRAMME, enabled=False, timer=True),
-    _select(catalog.HEATER_MODE, exists_fn=_electric_heater),
-    _select(catalog.HEATER_PARALLEL, enabled=False, exists_fn=_electric_heater),
+    _select(catalog.HEATER_MODE, exists_fn=electric_heater),
+    _select(catalog.HEATER_PARALLEL, enabled=False, exists_fn=electric_heater),
     _select(catalog.CIRCUIT_MODE),
     _select(catalog.HEATING_REGULATION, enabled=False),
     _select(catalog.COOLING_REGULATION, enabled=False),

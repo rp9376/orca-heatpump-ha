@@ -2,7 +2,11 @@
 
 import json
 
-from homeassistant.config_entries import ConfigEntry
+from homeassistant.config_entries import (
+    SIGNAL_CONFIG_ENTRY_CHANGED,
+    ConfigEntry,
+    ConfigEntryChange,
+)
 from homeassistant.const import (
     CONF_HOST,
     CONF_PASSWORD,
@@ -21,26 +25,28 @@ from homeassistant.helpers import (
     entity_registry as er,
     issue_registry as ir,
 )
-from homeassistant.helpers.aiohttp_client import async_get_clientsession
+from homeassistant.helpers.dispatcher import async_dispatcher_connect
 
 from .client import catalog
 from .client.client import OrcaClient
 from .client.errors import OrcaAuthError, OrcaError, OrcaTooManyUsersError
 from .client.models import DeviceIdentity, PumpTopology, Snapshot
-from .const import (
-    CONF_ALLOW_POWER_LIMITS,
-    CONF_TOPOLOGY,
-    DOMAIN,
-    OLD_CONF_HOST,
-    OLD_DOMAIN,
-)
+from .const import CONF_ALLOW_POWER_LIMITS, CONF_TOPOLOGY, DOMAIN, OLD_DOMAIN
 from .coordinator import (
     OrcaConfigEntry,
     OrcaCoordinator,
     OrcaRuntimeData,
     OrcaTimerCoordinator,
 )
-from .helpers import apply_overrides, split_host, topology_from_data, topology_to_data
+from .helpers import (
+    apply_overrides,
+    async_create_session,
+    old_integration_has,
+    split_host,
+    topology_from_data,
+    topology_label,
+    topology_to_data,
+)
 
 PLATFORMS: list[Platform] = [
     Platform.BINARY_SENSOR,
@@ -64,7 +70,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: OrcaConfigEntry) -> None
     """Set up Orca Heat Pump from a config entry."""
     host, port = split_host(entry.data[CONF_HOST])
     client = OrcaClient(
-        async_get_clientsession(hass),
+        async_create_session(hass),
         host,
         entry.data[CONF_USERNAME],
         entry.data[CONF_PASSWORD],
@@ -74,7 +80,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: OrcaConfigEntry) -> None
         identity = await client.async_read_identity()
         detected = await client.async_detect_topology()
     except OrcaError as err:
-        await client.async_logout()
+        await client.async_close()
         raise _setup_error(err) from err
 
     topology = apply_overrides(_stored_topology(hass, entry, detected), entry.options)
@@ -82,7 +88,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: OrcaConfigEntry) -> None
     try:
         await coordinator.async_config_entry_first_refresh()
     except IntegrationError:
-        await client.async_logout()
+        await client.async_close()
         raise
     timers = OrcaTimerCoordinator(hass, entry, client)
     await timers.async_refresh()
@@ -93,23 +99,45 @@ async def async_setup_entry(hass: HomeAssistant, entry: OrcaConfigEntry) -> None
     _remove_unused_power_limits(hass, entry)
     _check_old_integration(hass, entry, host)
 
-    async def _logout(event: Event) -> None:
-        await client.async_logout()
+    async def _close(event: Event) -> None:
+        await client.async_close()
 
-    entry.async_on_unload(hass.bus.async_listen_once(EVENT_HOMEASSISTANT_STOP, _logout))
+    @callback
+    def _entry_changed(change: ConfigEntryChange, changed: ConfigEntry) -> None:
+        if changed.domain == OLD_DOMAIN:
+            _check_old_integration(hass, entry, host)
+
+    entry.async_on_unload(hass.bus.async_listen_once(EVENT_HOMEASSISTANT_STOP, _close))
+    entry.async_on_unload(
+        async_dispatcher_connect(hass, SIGNAL_CONFIG_ENTRY_CHANGED, _entry_changed)
+    )
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
+    _remove_orphaned_entities(hass, entry)
 
 
 async def async_unload_entry(hass: HomeAssistant, entry: OrcaConfigEntry) -> None:
     """Unload a config entry and free the display's session."""
     await hass.config_entries.async_unload_platforms_or_raise(entry, PLATFORMS)
-    await entry.runtime_data.client.async_logout()
+    await entry.runtime_data.client.async_close()
 
 
-async def async_remove_entry(hass: HomeAssistant, entry: ConfigEntry) -> None:
+async def async_remove_entry(hass: HomeAssistant, entry: OrcaConfigEntry) -> None:
     """Remove the entry's repair issues."""
     for issue in ("topology_changed", "old_integration", "sessions_exhausted"):
         ir.async_delete_issue(hass, DOMAIN, f"{issue}_{entry.entry_id}")
+
+
+@callback
+def _remove_orphaned_entities(hass: HomeAssistant, entry: OrcaConfigEntry) -> None:
+    """Remove the entry's entities that no platform creates any more.
+
+    Options and an accepted topology change can take entities away; they would
+    stay behind as "no longer provided".
+    """
+    registry = er.async_get(hass)
+    for registered in er.async_entries_for_config_entry(registry, entry.entry_id):
+        if registered.unique_id not in entry.runtime_data.unique_ids:
+            registry.async_remove(registered.entity_id)
 
 
 @callback
@@ -156,10 +184,11 @@ def _stored_topology(
     the change, so a misread signal can't make devices disappear.
     """
     issue_id = f"topology_changed_{entry.entry_id}"
-    stored = entry.data[CONF_TOPOLOGY]
-    if (new := topology_to_data(detected)) == stored:
+    stored = topology_from_data(entry.data[CONF_TOPOLOGY])
+    if detected == stored:
         ir.async_delete_issue(hass, DOMAIN, issue_id)
     else:
+        labels = {"old": topology_label(stored), "new": topology_label(detected)}
         ir.async_create_issue(
             hass,
             DOMAIN,
@@ -167,9 +196,14 @@ def _stored_topology(
             is_fixable=True,
             severity=ir.IssueSeverity.WARNING,
             translation_key="topology_changed",
-            data={"entry_id": entry.entry_id, "topology": json.dumps(new)},
+            translation_placeholders=labels,
+            data={
+                "entry_id": entry.entry_id,
+                "topology": json.dumps(topology_to_data(detected)),
+                **labels,
+            },
         )
-    return topology_from_data(stored)
+    return stored
 
 
 @callback
@@ -211,10 +245,10 @@ def _register_devices(
                 via_device_id=main.id,
             ).id
         )
-    for element, present in (
-        ("dhw", topology.dhw),
-        ("solar", topology.solar),
-        ("buffer", topology.buffer),
+    for element, model, present in (
+        ("dhw", "Hot water", topology.dhw),
+        ("solar", "Solar collectors", topology.solar),
+        ("buffer", "Buffer tank", topology.buffer),
     ):
         if present:
             keep.add(
@@ -222,6 +256,7 @@ def _register_devices(
                     config_entry_id=entry.entry_id,
                     identifiers={(DOMAIN, f"{entry.entry_id}_{element}")},
                     manufacturer="Orca Energija",
+                    model=model,
                     translation_key=element,
                     via_device_id=main.id,
                 ).id
@@ -239,10 +274,7 @@ def _check_old_integration(
 ) -> None:
     """Raise an issue while orca-energy-ha polls the same pump (ADR 0001)."""
     issue_id = f"old_integration_{entry.entry_id}"
-    if any(
-        old.disabled_by is None and host in (old.unique_id, old.data.get(OLD_CONF_HOST))
-        for old in hass.config_entries.async_entries(OLD_DOMAIN)
-    ):
+    if old_integration_has(hass, host):
         ir.async_create_issue(
             hass,
             DOMAIN,

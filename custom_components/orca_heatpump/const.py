@@ -10,6 +10,8 @@ LOGGER = logging.getLogger(__package__)
 SCAN_INTERVAL: Final = timedelta(seconds=30)
 # Timer programmes only change on the display; 165 tags aren't worth 30 s.
 TIMER_SCAN_INTERVAL: Final = timedelta(hours=1)
+
+UNKNOWN_ALARM: Final = "unknown_code"
 DEFAULT_USERNAME: Final = "admin"
 DEFAULT_TITLE: Final = "Orca heat pump"
 

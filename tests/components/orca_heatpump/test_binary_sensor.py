@@ -43,3 +43,10 @@ async def test_heater_stages_unknown(
     await hass.async_block_till_done()
 
     assert hass.states.get("binary_sensor.heat_pump_electric_heater_stage_3")
+
+
+@pytest.mark.parametrize("values", [{"2_Izbira_DOD_VIRA": "2"}])
+@pytest.mark.usefixtures("entity_registry_enabled_by_default", "init_integration")
+async def test_no_heater_stages_without_a_heater(hass: HomeAssistant) -> None:
+    """A pump whose only additional source isn't a heater has no stage sensors."""
+    assert hass.states.get("binary_sensor.heat_pump_electric_heater_stage_1") is None

@@ -16,6 +16,7 @@ class TopologyChangedFlow(RepairsFlow):
         """Initialize the flow with the issue's data."""
         self._entry_id: str = data["entry_id"]
         self._topology: dict[str, Any] = json.loads(data["topology"])
+        self._labels = {"old": data["old"], "new": data["new"]}
 
     async def async_step_init(
         self, user_input: dict[str, str] | None = None
@@ -28,7 +29,9 @@ class TopologyChangedFlow(RepairsFlow):
     ) -> RepairsFlowResult:
         """Store the new topology and reload."""
         if user_input is None:
-            return self.async_show_form(step_id="confirm")
+            return self.async_show_form(
+                step_id="confirm", description_placeholders=self._labels
+            )
         if (
             entry := self.hass.config_entries.async_get_entry(self._entry_id)
         ) is not None:

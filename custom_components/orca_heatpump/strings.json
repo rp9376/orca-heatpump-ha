@@ -53,7 +53,8 @@
       "invalid_auth": "The display rejected the username or password.",
       "too_many_users": "All of the display's logins are in use. Close the Moja Orca app or other integrations and try again in a few minutes.",
       "not_orca": "The device answered, but not like an Orca heat pump display.",
-      "unknown": "Unexpected error."
+      "unknown": "Unexpected error.",
+      "invalid_host": "Enter an IP address or host name, optionally with :port, without http:// or a path."
     },
     "abort": {
       "already_configured": "This heat pump is already configured.",
@@ -195,7 +196,7 @@
         "step": {
           "confirm": {
             "title": "Heat pump setup changed",
-            "description": "The heat pump now reports a different setup (heating circuits, hot water, solar or buffer tank) than when it was added. Until you confirm, the integration keeps the old setup. Confirm to use the new setup and reload the integration."
+            "description": "The heat pump now reports a different setup (heating circuits, hot water, solar or buffer tank) than when it was added: wiring schema {new}, it was {old}. Until you confirm, the integration keeps the old setup. Confirm to use the new setup and reload the integration."
           }
         }
       }

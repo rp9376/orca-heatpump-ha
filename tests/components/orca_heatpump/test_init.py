@@ -1,8 +1,14 @@
 """Tests for setting up and unloading the integration."""
 
+from collections.abc import Awaitable, Callable
+from typing import Any
+from unittest.mock import patch
+
+import aiohttp
 import pytest
 from pytest_homeassistant.common import MockConfigEntry
 
+from custom_components.orca_heatpump.config_flow import validate
 from custom_components.orca_heatpump.const import (
     CONF_ALLOW_POWER_LIMITS,
     CONF_BUFFER,
@@ -10,10 +16,20 @@ from custom_components.orca_heatpump.const import (
     CONF_TOPOLOGY,
     DOMAIN,
     OLD_DOMAIN,
+    OVERRIDE_ABSENT,
 )
-from custom_components.orca_heatpump.helpers import topology_to_data
+from custom_components.orca_heatpump.helpers import (
+    async_create_session,
+    topology_to_data,
+)
 from homeassistant.config_entries import ConfigEntryDisabler, ConfigEntryState
-from homeassistant.const import EVENT_HOMEASSISTANT_STOP, Platform
+from homeassistant.const import (
+    CONF_HOST,
+    CONF_PASSWORD,
+    CONF_USERNAME,
+    EVENT_HOMEASSISTANT_STOP,
+    Platform,
+)
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers import (
     device_registry as dr,
@@ -141,6 +157,10 @@ async def test_topology_change_raises_issue(
     )
     assert issue is not None
     assert issue.is_fixable
+    assert issue.translation_placeholders == {
+        "old": "23 (DK1, MK2, SV, SOLAR, ZALOG)",
+        "new": "23 (DK1, MK2, SV, SOLAR)",
+    }
     assert mock_config_entry.runtime_data.topology.buffer is True
 
 
@@ -247,3 +267,93 @@ async def test_power_limit_option_swaps_entities(
         await hass.async_block_till_done()
 
         assert power_limits() == {entity_id}
+
+
+@pytest.mark.parametrize(
+    "change",
+    [
+        pytest.param(
+            lambda hass, old: hass.config_entries.async_remove(old.entry_id),
+            id="removed",
+        ),
+        pytest.param(
+            lambda hass, old: hass.config_entries.async_set_disabled_by(
+                old.entry_id, ConfigEntryDisabler.USER
+            ),
+            id="disabled",
+        ),
+    ],
+)
+async def test_old_integration_issue_clears(
+    hass: HomeAssistant,
+    mock_config_entry: MockConfigEntry,
+    issue_registry: ir.IssueRegistry,
+    change: Callable[[HomeAssistant, MockConfigEntry], Awaitable[Any]],
+) -> None:
+    """The issue goes away as soon as orca-energy-ha stops polling, no reload."""
+    old = MockConfigEntry(
+        domain=OLD_DOMAIN, unique_id="127.0.0.1", data={"hostname": "127.0.0.1"}
+    )
+    old.add_to_hass(hass)
+    mock_config_entry.add_to_hass(hass)
+    await hass.config_entries.async_setup(mock_config_entry.entry_id)
+    issue_id = f"old_integration_{mock_config_entry.entry_id}"
+    assert issue_registry.async_get_issue(DOMAIN, issue_id) is not None
+
+    await change(hass, old)
+    await hass.async_block_till_done()
+
+    assert issue_registry.async_get_issue(DOMAIN, issue_id) is None
+
+
+@pytest.mark.usefixtures("entity_registry_enabled_by_default")
+@pytest.mark.parametrize("pump", ["duo"], indirect=True)
+@pytest.mark.parametrize("platforms", [[Platform.NUMBER, Platform.SENSOR]])
+async def test_option_removes_orphaned_entities(
+    hass: HomeAssistant,
+    init_integration: MockConfigEntry,
+    entity_registry: er.EntityRegistry,
+) -> None:
+    """Saying a room sensor is absent removes its entities, and only those."""
+    entry = init_integration
+    room = "sensor.underfloor_heating_room_temperature"
+    assert entity_registry.async_get(room) is not None
+    before = len(er.async_entries_for_config_entry(entity_registry, entry.entry_id))
+
+    hass.config_entries.async_update_entry(
+        entry,
+        options={**entry.options, "room_sensor_1": OVERRIDE_ABSENT},
+    )
+    await hass.config_entries.async_reload(entry.entry_id)
+    await hass.async_block_till_done()
+
+    assert entity_registry.async_get(room) is None
+    # The room temperature and the two room setpoints.
+    after = er.async_entries_for_config_entry(entity_registry, entry.entry_id)
+    assert before - len(after) == 3
+
+
+async def test_sessions_keep_no_cookies(
+    hass: HomeAssistant, init_integration: MockConfigEntry
+) -> None:
+    """The entry's client uses a session without a cookie jar."""
+    session = init_integration.runtime_data.client._session
+    assert isinstance(session.cookie_jar, aiohttp.DummyCookieJar)
+
+
+async def test_flow_check_cleans_up_its_session(
+    hass: HomeAssistant, host: str, emulator: Emulator
+) -> None:
+    """The flow's check logs out and detaches its own cookie-free session."""
+    session = async_create_session(hass, auto_cleanup=False)
+    with patch(
+        "custom_components.orca_heatpump.config_flow.async_create_session",
+        return_value=session,
+    ):
+        errors, topology = await validate(
+            hass, {CONF_HOST: host, CONF_USERNAME: "admin", CONF_PASSWORD: "admin"}
+        )
+
+    assert (errors, topology) == ({}, OUR_TOPOLOGY)
+    assert session.closed
+    assert emulator.sessions == {}

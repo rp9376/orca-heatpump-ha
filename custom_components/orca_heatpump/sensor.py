@@ -20,6 +20,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
 from .client import catalog
 from .client.models import Reason, TagDef, Value
+from .const import UNKNOWN_ALARM
 from .coordinator import OrcaConfigEntry
 from .entity import (
     OrcaEntity,
@@ -32,8 +33,6 @@ from .entity import (
 )
 
 PARALLEL_UPDATES = 0
-
-UNKNOWN_ALARM = "unknown_code"
 
 
 @dataclass(frozen=True, kw_only=True)
@@ -109,19 +108,24 @@ DESCRIPTIONS: tuple[OrcaSensorEntityDescription, ...] = (
     _power_limit(catalog.HP_POWER_LIMIT_DHW),
     _power_limit(catalog.HP_POWER_LIMIT_COOLING),
     _power_limit(catalog.QUIET_POWER_LIMIT),
-    *(
-        OrcaSensorEntityDescription(
-            key=definition.key,
-            definition=definition,
-            native_unit_of_measurement=UnitOfTime.DAYS,
-            entity_category=EntityCategory.DIAGNOSTIC,
-            entity_registry_enabled_default=False,
-            exists_fn=any_circuit,
-        )
-        for definition in (
-            catalog.SCREED_DRYING_DAYS,
-            catalog.SCREED_DRYING_CURRENT_DAY,
-        )
+    OrcaSensorEntityDescription(
+        key="screed_drying_days",
+        definition=catalog.SCREED_DRYING_DAYS,
+        device_class=SensorDeviceClass.DURATION,
+        native_unit_of_measurement=UnitOfTime.DAYS,
+        suggested_display_precision=0,
+        entity_category=EntityCategory.DIAGNOSTIC,
+        entity_registry_enabled_default=False,
+        exists_fn=any_circuit,
+    ),
+    # A position in the programme, not a duration.
+    OrcaSensorEntityDescription(
+        key="screed_drying_current_day",
+        definition=catalog.SCREED_DRYING_CURRENT_DAY,
+        native_unit_of_measurement=UnitOfTime.DAYS,
+        entity_category=EntityCategory.DIAGNOSTIC,
+        entity_registry_enabled_default=False,
+        exists_fn=any_circuit,
     ),
     _enum(catalog.ADDITIONAL_SOURCE, enabled=False, diagnostic=True),
     _enum(catalog.HEATER_STAGES, enabled=False, diagnostic=True),

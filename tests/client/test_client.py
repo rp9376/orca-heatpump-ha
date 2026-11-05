@@ -3,6 +3,7 @@
 import asyncio
 from collections.abc import AsyncIterator
 import logging
+import socket
 
 import aiohttp
 from aiohttp import web
@@ -434,3 +435,35 @@ async def test_password_never_in_errors(socket_enabled: None) -> None:
     assert "S3cret-pw" not in str(err.value)
     assert err.value.__cause__ is None
     assert err.value.__suppress_context__
+
+
+async def test_host_name_keeps_clients_apart(
+    socket_enabled: None, emulator: Emulator
+) -> None:
+    """Without a cookie jar, one client's login doesn't take over another's."""
+    del socket_enabled
+    runner = web.AppRunner(emulator.app)
+    await runner.setup()
+    await web.TCPSite(runner, "127.0.0.1", 0).start()
+    port = runner.addresses[0][1]
+    try:
+        async with aiohttp.ClientSession(
+            cookie_jar=aiohttp.DummyCookieJar(),
+            connector=aiohttp.TCPConnector(family=socket.AF_INET),
+        ) as session:
+            first = OrcaClient(session, "localhost", "admin", "admin", port=port)
+            await first.async_read(catalog.HP_TEMPERATURE.refs())
+            logins = sum("login" in request for request in emulator.requests)
+
+            second = OrcaClient(session, "localhost", "admin", "admin", port=port)
+            await second.async_read(catalog.HP_TEMPERATURE.refs())
+            await second.async_close()
+            await first.async_read(catalog.HP_TEMPERATURE.refs())
+
+            assert (
+                sum("login" in request for request in emulator.requests) == logins + 1
+            )
+            assert len(emulator.sessions) == 1
+            await first.async_close()
+    finally:
+        await runner.cleanup()

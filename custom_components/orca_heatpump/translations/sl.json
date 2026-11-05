@@ -53,7 +53,8 @@
       "invalid_auth": "Zaslon je zavrnil uporabniško ime ali geslo.",
       "too_many_users": "Vse prijave zaslona so zasedene. Zaprite aplikacijo Moja Orca ali druge integracije in poskusite znova čez nekaj minut.",
       "not_orca": "Naprava se je odzvala, vendar ne kot zaslon toplotne črpalke Orca.",
-      "unknown": "Nepričakovana napaka."
+      "unknown": "Nepričakovana napaka.",
+      "invalid_host": "Vnesite naslov IP ali ime gostitelja, po želji z :vrata, brez http:// in brez poti."
     },
     "abort": {
       "already_configured": "Ta toplotna črpalka je že nastavljena.",
@@ -195,7 +196,7 @@
         "step": {
           "confirm": {
             "title": "Sistem toplotne črpalke se je spremenil",
-            "description": "Toplotna črpalka zdaj sporoča drugačen sistem (ogrevalni krogi, sanitarna voda, solar ali zalogovnik) kot ob dodajanju. Dokler ne potrdite, integracija uporablja prejšnji sistem. Potrdite, da uporabi novega in se ponovno naloži."
+            "description": "Toplotna črpalka zdaj sporoča drugačen sistem (ogrevalni krogi, sanitarna voda, solar ali zalogovnik) kot ob dodajanju: shema {new}, prej {old}. Dokler ne potrdite, integracija uporablja prejšnji sistem. Potrdite, da uporabi novega in se ponovno naloži."
           }
         }
       }

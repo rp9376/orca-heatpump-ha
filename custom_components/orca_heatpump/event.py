@@ -9,9 +9,9 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
 from .client import catalog
 from .client.models import Reason
+from .const import UNKNOWN_ALARM
 from .coordinator import OrcaConfigEntry, OrcaCoordinator
 from .entity import OrcaEntity, OrcaEntityDescription, entity_targets
-from .sensor import UNKNOWN_ALARM
 
 PARALLEL_UPDATES = 0
 

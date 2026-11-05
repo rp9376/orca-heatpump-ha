@@ -6,14 +6,12 @@ from typing import Any, override
 import probatio
 
 from homeassistant.config_entries import (
-    ConfigEntry,
     ConfigFlow,
     ConfigFlowResult,
     OptionsFlowWithReload,
 )
 from homeassistant.const import CONF_HOST, CONF_PASSWORD, CONF_USERNAME
 from homeassistant.core import HomeAssistant, callback
-from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.selector import (
     BooleanSelector,
     SelectSelector,
@@ -29,6 +27,8 @@ from .client.errors import (
     OrcaAuthError,
     OrcaConnectionError,
     OrcaError,
+    OrcaIncompleteError,
+    OrcaSessionExpiredError,
     OrcaTooManyUsersError,
 )
 from .client.models import PumpTopology
@@ -42,13 +42,19 @@ from .const import (
     DEFAULT_USERNAME,
     DOMAIN,
     LOGGER,
-    OLD_CONF_HOST,
-    OLD_DOMAIN,
     OVERRIDE_ABSENT,
     OVERRIDE_AUTO,
     OVERRIDE_PRESENT,
 )
-from .helpers import split_host, topology_from_data, topology_to_data
+from .coordinator import OrcaConfigEntry
+from .helpers import (
+    async_create_session,
+    normalize_host,
+    old_integration_has,
+    split_host,
+    topology_from_data,
+    topology_to_data,
+)
 
 PASSWORD = TextSelector(TextSelectorConfig(type=TextSelectorType.PASSWORD))
 CONNECTION_SCHEMA = probatio.Schema(
@@ -75,8 +81,9 @@ async def validate(
 ) -> tuple[dict[str, str], PumpTopology | None]:
     """Connect, read the topology and log out; return errors or the topology."""
     host, port = split_host(data[CONF_HOST])
+    session = async_create_session(hass, auto_cleanup=False)
     client = OrcaClient(
-        async_get_clientsession(hass),
+        session,
         host,
         data[CONF_USERNAME],
         data[CONF_PASSWORD],
@@ -88,7 +95,7 @@ async def validate(
         return {"base": "invalid_auth"}, None
     except OrcaTooManyUsersError:
         return {"base": "too_many_users"}, None
-    except OrcaConnectionError:
+    except OrcaConnectionError, OrcaIncompleteError, OrcaSessionExpiredError:
         return {"base": "cannot_connect"}, None
     except OrcaError:
         return {"base": "not_orca"}, None
@@ -96,17 +103,9 @@ async def validate(
         LOGGER.exception("Unexpected error while connecting to %s", host)
         return {"base": "unknown"}, None
     finally:
-        await client.async_logout()
+        await client.async_close()
+        session.detach()
     return {}, topology
-
-
-def old_integration_has(hass: HomeAssistant, host: str) -> bool:
-    """Return whether orca-energy-ha is set up for this host."""
-    host = split_host(host)[0]
-    return any(
-        host in (entry.unique_id, entry.data.get(OLD_CONF_HOST))
-        for entry in hass.config_entries.async_entries(OLD_DOMAIN)
-    )
 
 
 class OrcaConfigFlow(ConfigFlow, domain=DOMAIN):
@@ -122,7 +121,7 @@ class OrcaConfigFlow(ConfigFlow, domain=DOMAIN):
     @staticmethod
     @callback
     @override
-    def async_get_options_flow(config_entry: ConfigEntry) -> OrcaOptionsFlow:
+    def async_get_options_flow(config_entry: OrcaConfigEntry) -> OrcaOptionsFlow:
         """Return the options flow."""
         return OrcaOptionsFlow()
 
@@ -133,23 +132,28 @@ class OrcaConfigFlow(ConfigFlow, domain=DOMAIN):
         """Ask for the display's address and login."""
         errors: dict[str, str] = {}
         if user_input is not None:
-            host = user_input[CONF_HOST].strip()
-            await self.async_set_unique_id(host.lower())
-            self._abort_if_unique_id_configured()
-            data = {
-                CONF_HOST: host,
-                CONF_USERNAME: user_input[CONF_USERNAME],
-                CONF_PASSWORD: user_input[CONF_PASSWORD],
-            }
-            errors, topology = await validate(self.hass, data)
-            if topology is not None:
-                self._data = data | {CONF_TOPOLOGY: topology_to_data(topology)}
-                self._options = {
-                    CONF_ALLOW_POWER_LIMITS: user_input[CONF_ALLOW_POWER_LIMITS]
+            try:
+                host = normalize_host(user_input[CONF_HOST])
+            except ValueError:
+                errors[CONF_HOST] = "invalid_host"
+            else:
+                # The display has no ID of its own, and a host isn't a valid
+                # unique ID (ADR 0013), so entries are told apart by their host.
+                self._async_abort_entries_match({CONF_HOST: host})
+                data = {
+                    CONF_HOST: host,
+                    CONF_USERNAME: user_input[CONF_USERNAME],
+                    CONF_PASSWORD: user_input[CONF_PASSWORD],
                 }
-                if old_integration_has(self.hass, host):
-                    return await self.async_step_old_integration()
-                return self._create_entry()
+                errors, topology = await validate(self.hass, data)
+                if topology is not None:
+                    self._data = data | {CONF_TOPOLOGY: topology_to_data(topology)}
+                    self._options = {
+                        CONF_ALLOW_POWER_LIMITS: user_input[CONF_ALLOW_POWER_LIMITS]
+                    }
+                    if old_integration_has(self.hass, host):
+                        return await self.async_step_old_integration()
+                    return self._create_entry()
         return self.async_show_form(
             step_id="user",
             data_schema=self.add_suggested_values_to_schema(USER_SCHEMA, user_input),
@@ -212,16 +216,17 @@ class OrcaConfigFlow(ConfigFlow, domain=DOMAIN):
         entry = self._get_reconfigure_entry()
         errors: dict[str, str] = {}
         if user_input is not None:
-            host = user_input[CONF_HOST].strip()
-            if host.lower() != entry.unique_id:
-                await self.async_set_unique_id(host.lower())
-                self._abort_if_unique_id_configured()
-            data = user_input | {CONF_HOST: host}
-            errors, topology = await validate(self.hass, data)
-            if topology is not None:
-                return self.async_update_reload_and_abort(
-                    entry, unique_id=host.lower(), data_updates=data
-                )
+            try:
+                host = normalize_host(user_input[CONF_HOST])
+            except ValueError:
+                errors[CONF_HOST] = "invalid_host"
+            else:
+                if host != entry.data[CONF_HOST]:
+                    self._async_abort_entries_match({CONF_HOST: host})
+                data = user_input | {CONF_HOST: host}
+                errors, topology = await validate(self.hass, data)
+                if topology is not None:
+                    return self.async_update_reload_and_abort(entry, data_updates=data)
         return self.async_show_form(
             step_id="reconfigure",
             data_schema=self.add_suggested_values_to_schema(

@@ -41,6 +41,10 @@ async def test_accept_topology_change(
 
     result = await start_repair_fix_flow(client, DOMAIN, issue_id)
     assert result["step_id"] == "confirm"
+    assert result["description_placeholders"] == {
+        "old": "23 (DK1, MK2, SV, SOLAR, ZALOG)",
+        "new": "23 (DK1, MK2, SV, SOLAR)",
+    }
     result = await process_repair_fix_flow(client, result["flow_id"])
     await hass.async_block_till_done()
 
@@ -65,7 +69,7 @@ async def test_fix_after_entry_removed(
         is_fixable=True,
         severity=ir.IssueSeverity.WARNING,
         translation_key="topology_changed",
-        data={"entry_id": "gone", "topology": "{}"},
+        data={"entry_id": "gone", "topology": "{}", "old": "1", "new": "2"},
     )
     client = await hass_client()
 

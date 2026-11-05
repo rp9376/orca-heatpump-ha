@@ -91,3 +91,24 @@ async def test_timers_keep_last_good(
     assert timers.last_update_success
     assert timers.data[2] == before[2]
     assert timers.data[3] != before[3]
+
+
+async def test_sessions_issue_cleared_by_reload(
+    hass: HomeAssistant,
+    init_integration: MockConfigEntry,
+    emulator: Emulator,
+    issue_registry: ir.IssueRegistry,
+) -> None:
+    """A reload after freeing the display's logins clears the issue too."""
+    issue_id = f"sessions_exhausted_{init_integration.entry_id}"
+    emulator.expire_sessions()
+    emulator.max_sessions = 0
+    for _ in range(3):
+        await poll(hass, init_integration)
+    assert issue_registry.async_get_issue(DOMAIN, issue_id) is not None
+
+    emulator.max_sessions = 2
+    await hass.config_entries.async_reload(init_integration.entry_id)
+    await hass.async_block_till_done()
+
+    assert issue_registry.async_get_issue(DOMAIN, issue_id) is None

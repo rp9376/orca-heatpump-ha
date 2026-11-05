@@ -1,6 +1,6 @@
 """Polling of the heat pump."""
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import override
 
 from homeassistant.config_entries import ConfigEntry
@@ -33,6 +33,7 @@ class OrcaRuntimeData:
     timers: OrcaTimerCoordinator
     topology: PumpTopology
     identity: DeviceIdentity
+    unique_ids: set[str] = field(default_factory=set)
 
 
 class OrcaCoordinator(DataUpdateCoordinator[Snapshot]):
@@ -94,9 +95,9 @@ class OrcaCoordinator(DataUpdateCoordinator[Snapshot]):
                 translation_key="cannot_connect",
                 translation_placeholders={"error": str(err)},
             ) from err
-        if self._refused:
-            self._refused = 0
-            ir.async_delete_issue(self.hass, DOMAIN, self.sessions_issue_id)
+        self._refused = 0
+        # Also after a reload, which starts counting anew.
+        ir.async_delete_issue(self.hass, DOMAIN, self.sessions_issue_id)
         return snapshot
 
 

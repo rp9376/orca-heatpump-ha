@@ -3,15 +3,19 @@
 import json
 from pathlib import Path
 
+import aiohttp
 import pytest
 
 from custom_components.orca_heatpump.client.catalog import CATALOG
 from custom_components.orca_heatpump.helpers import (
+    async_create_session,
+    normalize_host,
     refs_for,
     split_host,
     topology_from_data,
     topology_to_data,
 )
+from homeassistant.core import HomeAssistant
 
 from .conftest import OUR_TOPOLOGY
 
@@ -76,3 +80,41 @@ def test_translations_complete() -> None:
 
     assert english == strings
     assert keys(slovenian) == keys(strings)
+
+
+@pytest.mark.parametrize(
+    ("value", "expected"),
+    [
+        pytest.param("192.168.1.5", "192.168.1.5", id="ip"),
+        pytest.param(" Orca.Local ", "orca.local", id="name"),
+        pytest.param("192.168.1.5:80", "192.168.1.5", id="default_port"),
+        pytest.param("127.0.0.1:8780", "127.0.0.1:8780", id="port"),
+    ],
+)
+def test_normalize_host(value: str, expected: str) -> None:
+    """One display has one spelling."""
+    assert normalize_host(value) == expected
+
+
+@pytest.mark.parametrize(
+    "value",
+    [
+        pytest.param("", id="empty"),
+        pytest.param("1.2.3.4/cgi/restart", id="path"),
+        pytest.param("1.2.3.4?x=1", id="query"),
+        pytest.param("user@1.2.3.4", id="user"),
+        pytest.param("http://1.2.3.4", id="scheme"),
+        pytest.param("1.2.3.4:0", id="port_zero"),
+        pytest.param("1.2.3.4:70000", id="port_high"),
+        pytest.param(".local", id="leading_dot"),
+    ],
+)
+def test_normalize_host_invalid(value: str) -> None:
+    """Anything that could reach another URL is refused."""
+    with pytest.raises(ValueError):
+        normalize_host(value)
+
+
+async def test_session_keeps_no_cookies(hass: HomeAssistant) -> None:
+    """A session of the integration has no cookie jar to mix tokens up in."""
+    assert isinstance(async_create_session(hass).cookie_jar, aiohttp.DummyCookieJar)
