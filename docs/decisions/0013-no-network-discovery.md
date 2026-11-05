@@ -15,6 +15,10 @@ reservation); if it changes, the reconfigure flow updates the host.
 ## Consequences
 - The quality scale rules `discovery` and `discovery-update-info` are
   `exempt`, with this ADR as the reason.
-- The config entry's unique ID is the host (`PLAN.md` §7.3 fallback);
-  reconfigure updates it together with the host.
+- Config entries have no unique ID. `PLAN.md` §7.3 had the host as a fallback,
+  but Home Assistant's rules exclude an IP address or a changeable host name
+  as a unique ID (quality scale review, 2026-11-05). Entries are told apart by
+  their normalised host instead (lower case, no default port), checked in the
+  user and reconfigure flows. An IP and a host name of one display can't be
+  recognised as the same; the README says so.
 - The README tells users to give the display a fixed IP.

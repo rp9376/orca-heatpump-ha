@@ -45,8 +45,10 @@ Rules:
   (no hardware ID exists, R3): `{base}_{key}` for system and element keys,
   `{base}_circuit{n}_{key}` for circuit keys. The circuit's name never
   appears in an ID.
-- Config entry unique ID: the host. No network discovery (ADR 0013); the
-  reconfigure flow changes the host.
+- Config entries have no unique ID: the display has no ID of its own, and
+  Home Assistant excludes a host as one. Entries are told apart by their
+  normalised host. No network discovery (ADR 0013); the reconfigure flow
+  changes the host.
 
 ## 3. Entities
 
@@ -93,7 +95,7 @@ write only through `OrcaClient.async_write` with the manufacturer's range.
 | `room_setpoint_active` | sensor | `2_Zahtevana_RF_MK_1` | off, diag | |
 | `circuit_pump` | binary_sensor (running) | `2_Vklop_C1` | on | |
 | `mixing_valve_state`, `mixing_valve_position` | sensor | `2_Delovanje_MP1`, `2_Odstotki_odprtosti_MP1` | on | MK circuits only |
-| `flow_setpoint_heating` | number | `2_Max_VF_MK1` | on | **named "Flow temperature" in constant mode** (R8), "Maximum flow temperature" otherwise; 8–60 °C |
+| `max_flow_heating` | number | `2_Max_VF_MK1` | on | **named "Flow temperature setpoint" in constant mode** (R8; "Flow temperature" is the sensor), "Maximum heating flow temperature" otherwise, decided at setup; 8–60 °C |
 | `min_flow_heating` | number | `2_Min_VF_MK1` | off, cfg | 8–50 °C |
 | `curve_parallel_shift`, `curve_slope` | number | `2_Zamik/Nagib_krivulje_MK1` | on with outdoor-based regulation, else off | ±15.0 |
 | `room_setpoint_high`, `room_setpoint_low` | number | `2_Temp_prostor_dnevna/nocna` | only with a room sensor | high also via climate |
@@ -187,14 +189,19 @@ value. Editing them is in the backlog.
 
 | Key | Platform | Source | Default |
 |---|---|---|---|
-| `alarm` | binary_sensor (problem) | `2_JE_ALARM` | on |
-| `active_alarm` | sensor (enum) | `2_Vrsta_alarma` → texts of `research/alarm_texts.json`; unknown code → "Unknown alarm (code N)" | on |
-| `alarm_outdoor_unit`, `alarm_flow_temp_circuit1/2`, `alarm_no_flow`, `alarm_flow_switch`, `alarm_hp_temp_low` | binary_sensor (problem) | `2_Alarm_*` (R4 table) | off |
+| `alarm_active` | binary_sensor (problem) | `2_JE_ALARM` | on |
+| `alarm_code` | sensor (enum) | `2_Vrsta_alarma` → texts of `research/alarm_texts.json`; unknown code → `unknown_code` with the code as an attribute | on |
+| `alarm_outdoor_unit`, `alarm_flow_temperature` (per circuit), `alarm_no_flow`, `alarm_flow_switch`, `alarm_hp_temperature_low` | binary_sensor (problem) | `2_Alarm_*` (R4 table) | off |
 | `alarm_event` | event | changes of `2_Vrsta_alarma`/`2_JE_ALARM`: `alarm_raised` / `alarm_cleared` with code and text | on |
-| `reset_alarms` | button | `2_Reset_ALARMA_iz_PGDT` | off; works only after the Phase 6 test |
 | newer firmware (`2_NAPAKA`, `2_Alarm_RF1…3`) | binary_sensor | when the tags exist | off |
 
 No alarm history from the display exists (R4); HA's recorder keeps it.
+
+No reset button in v1: `2_Reset_ALARMA_iz_PGDT` is in neither the catalog nor
+the platforms. PLAN §7.3 allows one only after a Phase 6 test, and §11 never
+provokes an alarm on purpose, so it can be added once a real alarm allows a
+test. It should then be available only while an alarm is active, with a
+minimum interval between resets.
 
 ## 6. Never exposed
 

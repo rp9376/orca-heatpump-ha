@@ -726,10 +726,9 @@ orca-heatpump-ha/
   - User flow (host, username, password) with standard error keys:
     `cannot_connect`, `invalid_auth`, `too_many_users`, `unknown`
     (`unknown` is logged with `_LOGGER.exception`)
-  - Config entry unique ID from R3, falling back to the host
-  - Reauth flow and reconfigure flow (change host or credentials). With the
-    host fallback, reconfigure also updates the entry's unique ID. With a
-    hardware ID, reconfigure aborts if the new host is a different pump.
+  - No hardware ID exists (R3) and a host isn't a valid unique ID, so entries
+    have none and are told apart by their normalised host (ADR 0013)
+  - Reauth flow and reconfigure flow (change host or credentials)
   - Options flow (stored in `entry.options`): topology overrides (force an
     element present/absent, or a room sensor present/absent) for the rare
     pumps where detection is wrong, or where a sensor input is repurposed

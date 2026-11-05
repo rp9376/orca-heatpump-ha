@@ -70,7 +70,7 @@ how to help add your setup.
 
 | Field | What to enter |
 |---|---|
-| Host | IP address (or host name) of the touch display. |
+| Host | IP address (or host name) of the touch display, without `http://`. |
 | Username | The display's web interface username, usually `admin`. |
 | Password | The display's web interface password. |
 | Allow changing power limits | Off unless you know what you're doing; see below. |
@@ -114,9 +114,9 @@ tank**. Settings that only installers or service technicians use are hidden
   unit power and state, 3-way valve, active alarm, power limits.
 - Binary sensors: circulation pump, defrost, electric heater stages, alarm.
 - Switch: system on/off. Selects: operating programme (normal, holiday,
-  party, eco), quick room mode.
-- Hidden: quiet operation, electric heater and additional heat source
-  settings, PV function, screed drying, anti-blocking programme, the
+  party, eco), quick room mode, electric heater mode.
+- Hidden: quiet operation, electric heater stage settings, additional heat
+  source settings, PV function, screed drying, anti-blocking programme, the
   specific alarms, installer settings.
 
 **Each heating circuit**
@@ -153,10 +153,11 @@ tank**. Settings that only installers or service technicians use are hidden
 ## How data is updated
 
 The integration reads all values every 30 seconds in one login, and the
-weekly timer programmes once an hour (they only change on the display). A
-change you make is written, read back to confirm it, and the values are read
-again right away. If the display doesn't answer, the entities become
-unavailable and come back with the next good read.
+weekly timer programmes once an hour (they rarely change). A change you make
+is written, read back to confirm it, and the values are read again right away.
+If the display doesn't answer, the entities become unavailable and come back
+with the next good read. A sensor that isn't connected is unavailable; a value
+the display doesn't report for the moment shows as unknown.
 
 ## Alarms
 
@@ -178,6 +179,10 @@ Example: a notification when an alarm is raised.
 triggers:
   - trigger: state
     entity_id: event.heat_pump_alarm
+    # Coming back after an outage isn't a new alarm.
+    not_from:
+      - unavailable
+      - unknown
 conditions:
   - condition: state
     entity_id: event.heat_pump_alarm
@@ -190,6 +195,23 @@ actions:
       message: >-
         {{ state_translated('sensor.heat_pump_active_alarm') }}
         (code {{ state_attr('event.heat_pump_alarm', 'code') }})
+```
+
+Example: lower the hot water temperature when nobody has been home for a day.
+
+```yaml
+triggers:
+  - trigger: state
+    entity_id: person.your_name
+    to: not_home
+    for:
+      hours: 24
+actions:
+  - action: water_heater.set_temperature
+    target:
+      entity_id: water_heater.hot_water
+    data:
+      temperature: 38
 ```
 
 ## Moving from orca-energy-ha
@@ -222,7 +244,9 @@ power limits are read-only unless you allow changing them.
   installer changed the wiring schema. Confirm it to reload with the new
   setup.
 - **A setting doesn't change.** The heat pump refuses values outside the
-  manufacturer's range and the error says so. Some settings only take effect
+  manufacturer's range and the error says so. Numbers are rounded to what the
+  pump can store (0.1 °C, whole percent for power limits). Some settings only
+  take effect
   in certain modes (for example the heating curve with outdoor-based
   regulation).
 - **Wrong elements detected.** Correct them in the options.
@@ -246,8 +270,10 @@ programmes for daily schedules.
 - The display's own clock, passwords and installer settings are never
   changed; installer settings are shown read-only (hidden).
 - Values refresh every 30 seconds, timer programmes every hour.
-- Room setpoint ranges are the manufacturer's (10–35 °C); no pump with a room
-  sensor has been tested live yet.
+- The room setpoint range (10–35 °C) comes from the older integration, not the
+  manufacturer's data, and no pump with a room sensor has been tested live yet.
+- The same display added under both its IP address and a host name isn't
+  recognised as one display; the display has no ID of its own.
 
 ## Removal
 

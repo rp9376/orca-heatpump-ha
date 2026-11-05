@@ -52,12 +52,15 @@ rules:
   discovery:
     status: exempt
     comment: >-
-      The display announces nothing on the network and its API exposes no
-      MAC or hostname; a DHCP match on the MAC prefix would also match other
-      Carel equipment (ADR 0013).
+      The display announces nothing on the network and its API exposes no MAC
+      or hostname. Only a DHCP match on Carel's MAC prefix 00:0A:5C is possible;
+      it also matches other Carel equipment, and only a login could tell them
+      apart. Decided with the user: the display keeps a fixed address (ADR 0013).
   discovery-update-info:
     status: exempt
-    comment: No discovery (ADR 0013); the reconfigure flow changes the host.
+    comment: >-
+      No discovery (ADR 0013). The README asks for a fixed address, and the
+      reconfigure flow changes the host.
   docs-data-update: done
   docs-examples: done
   docs-known-limitations: done
@@ -68,9 +71,10 @@ rules:
   dynamic-devices:
     status: exempt
     comment: >-
-      One device per pump element, fixed by its wiring schema. Rewiring by an
-      installer raises a repair issue that reloads with the new elements and
-      removes the old devices.
+      One physical pump whose sub-devices are its fixed parts. They only change
+      when an installer rewires the pump: the next setup detects that and raises
+      a repair issue, and confirming it reloads with the new parts and removes
+      the old devices.
   entity-category: done
   entity-device-class: done
   entity-disabled-by-default: done
