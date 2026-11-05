@@ -25,24 +25,8 @@ below.
    Each prompt: read-only (no file changes, no commits), never contact the
    pump or the dev HA, only `ha-dev.sh test` / `hassfest` (never `lint`,
    which auto-fixes), no nested subagents. Then fix the findings.
-2. **24 h live run.** Restarted 2026-11-02 20:00 UTC (`ha-dev.sh up`); due
-   2026-11-03 20:00 UTC, **only valid if the host stays awake**. Check
-   `../HAcore/config/home-assistant.log` from then on: no warnings or errors
-   from `orca_heatpump`, no `too_many_users`, no availability gaps, and a
-   poll every 30 s without gaps (gaps with no log lines at all mean the
-   host slept). Then ask the user to spot-check values against the touch
-   display.
-   - At the user's request (2026-11-02), suspend and lid-close sleep are
-     blocked until 2026-11-03 20:05 UTC by a detached `systemd-inhibit`
-     ("Orca heat pump live run"; `systemd-inhibit --list` shows it, killing
-     its process ends it early). It ends on its own.
-   - First attempt (2026-11-01 19:44 → 2026-11-02 17:29 UTC) doesn't count:
-     the host suspended at 22:21 UTC and stayed mostly asleep, then
-     rebooted, which stopped the container. Polling covered about 3.5 h:
-     387 polls and 9 timer reads, none failed, no warning or error from
-     the integration. After each wake the display had dropped the session
-     and the client logged in again within the poll (05:18 and 16:58 UTC),
-     with nothing going unavailable.
+2. **Live run: passed.** See "Live checks so far". What is left of it is the
+   user's spot check of values against the touch display.
 3. Update this file, the PLAN Status line and the Work log, and **stop at
    CP2** (before any write to the pump, PLAN §2.3) with the report and the
    questions collected below.
@@ -98,6 +82,30 @@ below.
 - Six reloads of the live entry in a row, 20 s apart (19:58–20:01 UTC):
   each loaded, no refused login, no failed read, no warning or error, so
   no session leaks on the real display.
+- **Long read-only run: 2026-11-02 21:32 → 2026-11-05 19:15 UTC, 69.7 h**
+  (plan: at least 24 h), on the code as of commit `75de131`:
+  - 8,369 polls, all successful; all 8,368 intervals exactly 30 s, so no
+    gap and no off-beat refresh, which also proves nothing was written
+    through Home Assistant. 70 hourly timer reads, all successful.
+  - No warning or error from the integration, no refused login, no session
+    renewal, no re-read records, no unknown values, no repair issue. Read
+    time 61 ms median, 273 ms at most.
+  - From the recorder: no enabled entity went unavailable or unknown.
+    Outdoor 5.8–11.8 °C; hot water top 33.5–43.2 °C (setpoint 42); bottom
+    22.2–41.1 °C; underfloor flow 21.8–27.9 °C (setpoint 28); collector
+    5.2–36 °C; water 22.5–51.7 °C. All plausible.
+  - Outdoor unit power reached 75 % although the limits read 70 % (heating)
+    and 65 % (hot water). The ×10 scale is confirmed (R7), so this is what
+    the display reports; ask the user at CP2 whether that is expected.
+  - The target water temperature reads 9.0 °C while the timer has heating
+    off (evening to 07:00 UTC). That is the pump's own value.
+  - The underfloor timer programme changed at 18:36 and 19:43 UTC on 3 Nov
+    (all day → programme 4 → programme 2). Not through Home Assistant (see
+    above), so from the display or the app; the integration followed it.
+  - Earlier attempt (2026-11-01 19:44 → 2026-11-02 17:29 UTC) was cut short
+    by the host suspending: 387 polls over about 3.5 h, none failed. After
+    each wake the display had dropped the session and the client logged in
+    again within the poll, with nothing going unavailable.
 
 ### Questions collected for CP2
 - Mono fixture's heating power limit 39.0 % is below the manufacturer's
@@ -106,6 +114,7 @@ below.
 - Alarm reset button: does the controller clear the flag itself? (The
   client's read-back would then report a failed write.) Phase 6 test.
 - Climate on the real pump: mode written before the circuit's enable.
+- Outdoor unit power above the power limits (75 % vs 70 %): expected?
 
 ## Phase 4 (platforms): done 2026-11-01
 
