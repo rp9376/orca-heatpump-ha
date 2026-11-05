@@ -240,4 +240,4 @@ convention = "google"
 property-decorators = ["propcache.api.cached_property"]
 
 [tool.codespell]
-ignore-words-list = "hass"
+ignore-words-list = "hass,sistem"

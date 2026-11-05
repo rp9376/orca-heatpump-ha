@@ -151,6 +151,28 @@ tank**. Settings that only installers or service technicians use are hidden
 
 **Buffer tank**: temperature and target, and its heating and cooling setpoints.
 
+## Dashboard
+
+A ready-made dashboard ships with the integration. It uses Home Assistant's built-in
+cards only, so there is nothing to install: a live diagram of the system with pipes
+that animate while water moves, gauges, trend graphs, every circuit and the alarm
+history.
+
+![The dashboard, here with every pipe running at once](docs/dashboard/overview.png)
+
+Use [`orca-heat-pump.yaml`](docs/dashboard/orca-heat-pump.yaml), or
+[`orca-heat-pump.sl.yaml`](docs/dashboard/orca-heat-pump.sl.yaml) for Slovenian
+headings:
+
+1. **Settings → Dashboards → Add dashboard → New dashboard from scratch.**
+2. Open it, then **Edit → ⋮ → Raw configuration editor**, and paste the file.
+3. Circuits are named after their name on your display. Replace `underfloor_heating`
+   and `radiators` with yours (see their entity IDs), and delete the parts your pump
+   doesn't have.
+
+Tapping anything opens its details, where you can change it; there are no one-tap
+controls on the dashboard itself.
+
 ## How data is updated
 
 The integration reads all values every 30 seconds in one login, and the

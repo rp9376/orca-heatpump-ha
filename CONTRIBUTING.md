@@ -61,6 +61,12 @@ exactly the same keys (a test checks both). To add a language, copy
 See [docs/supported-setups.md](docs/supported-setups.md#add-your-setup):
 diagnostics downloads become fixtures with `tools/dump_to_fixture.py`.
 
+## The dashboard
+
+`docs/dashboard/` is generated: change `tools/build_dashboard.py` and run
+`python -m tools.build_dashboard`. It uses built-in cards only, and only entities
+that are enabled by default; a test checks both.
+
 ## Style
 
 Python 3.14, Home Assistant's ruff settings, mypy strict, `@override` on

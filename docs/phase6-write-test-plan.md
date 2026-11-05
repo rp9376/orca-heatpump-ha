@@ -55,6 +55,12 @@ The first write is the moment to catch surprises: orca-energy-ha #20 restarted a
 controller with an out-of-range value, which is why every test value here is
 inside the manufacturer's range, one step from the current value.
 
+## Afterwards
+
+Once writes are proven, add one-tap controls to the dashboard
+(`tools/build_dashboard.py`): mode buttons on the climates, on/off on the water
+heater. Until then it deliberately has none: tapping opens the details.
+
 ## Settings
 
 ### Tier A: no effect on what the pump is doing right now (48)
