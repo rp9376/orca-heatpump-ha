@@ -94,14 +94,27 @@ below.
     Outdoor 5.8–11.8 °C; hot water top 33.5–43.2 °C (setpoint 42); bottom
     22.2–41.1 °C; underfloor flow 21.8–27.9 °C (setpoint 28); collector
     5.2–36 °C; water 22.5–51.7 °C. All plausible.
-  - Outdoor unit power reached 75 % although the limits read 70 % (heating)
-    and 65 % (hot water). The ×10 scale is confirmed (R7), so this is what
-    the display reports; ask the user at CP2 whether that is expected.
+  - Outdoor unit power reaches 75 % in hot water cycles (target 50.5 or
+    44.5 °C) and at most 70 % in heating (target 30 °C): exactly the limits
+    the pump holds now, 75 % and 70 %. An earlier note here said it exceeded
+    them; that compared against the old 65 % from a fixture.
+  - **Settings changed outside the integration since 2026-11-01 09:36**
+    (user asked to confirm; investigated after they saw 75 % from 11:50 on
+    1 Nov in the old integration's data):
+    `2_Max_moc_TC_pri_SV` 65 → 75 % (between the 10:28 read and 20:44 on
+    1 Nov), `2_Max_VF_MK1` 28 → 30 °C (2 Nov 21:08 local), `2_Min_VF_MK1`
+    24 → 25 °C and `2_Diferenca_vklopa_SV` 6 → 7 °C (time unknown, entities
+    disabled by default). Not this integration: the code running 10:42–20:44
+    on 1 Nov (`fbbbc89`) has `PLATFORMS = []`, no services and no write call
+    outside the client; the tools have no write endpoint and last touched
+    the pump at 10:28; the 2 Nov change fell on the regular poll beat with
+    no off-beat refresh. The log of 1 Nov 20:44 → 2 Nov 17:29 has rotated
+    away, so that window's rhythm can't be re-checked.
   - The target water temperature reads 9.0 °C while the timer has heating
     off (evening to 07:00 UTC). That is the pump's own value.
   - The underfloor timer programme changed at 18:36 and 19:43 UTC on 3 Nov
-    (all day → programme 4 → programme 2). Not through Home Assistant (see
-    above), so from the display or the app; the integration followed it.
+    (all day → programme 4 → programme 2). The user did that in the app
+    (confirmed); the integration followed it.
   - Earlier attempt (2026-11-01 19:44 → 2026-11-02 17:29 UTC) was cut short
     by the host suspending: 387 polls over about 3.5 h, none failed. After
     each wake the display had dropped the session and the client logged in
@@ -114,7 +127,9 @@ below.
 - Alarm reset button: does the controller clear the flag itself? (The
   client's read-back would then report a failed write.) Phase 6 test.
 - Climate on the real pump: mode written before the circuit's enable.
-- Outdoor unit power above the power limits (75 % vs 70 %): expected?
+- Did the user make the four setting changes above? Their old integration's
+  history of "max power hot water" dates the first one exactly. If not, who
+  else can write (app, display, the old integration in their other HA)?
 
 ## Phase 4 (platforms): done 2026-11-01
 
