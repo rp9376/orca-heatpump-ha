@@ -168,9 +168,12 @@ class OrcaClient:
                 raise OrcaTagError(f"{tag} is not readable before writing")
             if (current.value or "").strip() == str(raw):
                 return
-            status = await self._authenticated(
-                write_target(tag, raw), lambda text: parse_write_status(text, tag)
-            )
+
+            def parse(text: str) -> str | None:
+                _LOGGER.debug("Writing %s = %s answered %r", tag, raw, text[:200])
+                return parse_write_status(text, tag)
+
+            status = await self._authenticated(write_target(tag, raw), parse)
             if status not in (None, STATUS_OK):
                 raise OrcaWriteError(f"writing {tag} = {raw} failed: {status}")
             check = (await self._read_records([tag])).get(tag)

@@ -1,45 +1,97 @@
 # Progress
 
-**Phase 5 (hardening and review) in progress.** Paused 2026-11-01 ~20:05
-UTC at the user's request, resumed 2026-11-02 ~20:00 UTC. Phase 4 done on
-2026-11-01; Phases 2 and 3 and CP1 the same day. Next: see "Resume here"
-below.
+**Stopped at CP2, waiting for the user.** Phase 5 is done apart from the user's
+spot check; nothing has been written to the pump. Phase 6 needs the user present.
 
-## Phase 5 (hardening and review): in progress
+## CP2 report (2026-11-05)
 
-### Resume here
-1. **Independent reviews (PLAN §9 P5).** Three read-only review subagents
-   were started at ~19:58 and stopped for the pause before they reported;
-   nothing of theirs is on disk. Restart them in the background:
-   - HA code review of the whole integration, following
-     `../HAcore/.claude/skills/ha-review/SKILL.md` (no upstream base: review
-     everything as new code).
-   - Quality scale: verify every rule in `quality_scale.yaml` from scratch
-     with `../HAcore/.claude/skills/ha-quality-scale-verify/SKILL.md`
-     (docs = README; brands = `brand/`; strict typing = mypy strict in
-     `pyproject.toml`).
-   - Security and write safety: every service → `writeTags` path, catalog
-     writability vs PLAN §10 and the register areas, ranges vs
-     `research/moja_orca_catalog.json`, no password/code tags, endpoint
-     allowlist in `protocol.py` and the probe tools, sessions, redaction.
-   Each prompt: read-only (no file changes, no commits), never contact the
-   pump or the dev HA, only `ha-dev.sh test` / `hassfest` (never `lint`,
-   which auto-fixes), no nested subagents. Then fix the findings.
-2. **Live run: passed.** See "Live checks so far". What is left of it is the
-   user's spot check of values against the touch display.
-3. Update this file, the PLAN Status line and the Work log, and **stop at
-   CP2** (before any write to the pump, PLAN §2.3) with the report and the
-   questions collected below.
+### Where things stand
+- The integration is complete: every platform, 45 schemas, fault and odd-value
+  suites, docs. 1,107 tests, 100 % coverage of every module, ruff, mypy strict
+  and hassfest clean.
+- 69.7 hours of read-only polling on the real pump without a single failure
+  (details under "Live checks so far").
+- Three independent reviews ran. No critical or high findings; the write path
+  held up. Their findings are fixed, except those listed below.
+- The Phase 6 plan is ready: `docs/phase6-write-test-plan.md`.
 
-### State while paused
-- The dev HA keeps running and its `orca_heatpump` entry keeps polling the
-  real pump every 30 s (one login; timers hourly). That is the 24 h run.
-  To free the display, disable the entry in the dev HA (Settings → Devices
-  & services) or stop the container (`../ha-dev/ha-dev.sh down`); a
-  disabled or stopped entry ends the 24 h run, which then has to start
-  again.
-- Nothing has been written to the pump. All work is committed; the
-  repository is clean.
+### Decisions needed from the user
+1. **The four setting changes** (hot water power limit 65 → 75 %, underfloor flow
+   setpoint 28 → 30 °C, minimum flow 24 → 25 °C, hot water switch-on difference
+   6 → 7 °C): did the user make them? The old integration's history of "max power
+   hot water" dates the first exactly. If not, find out who can write before any
+   write test.
+2. **Spot check** of values in Home Assistant against the touch display.
+3. **Write test plan:** agree to it, pick from Tier C, and choose a time when the
+   user is present.
+4. **System switch category** (safety review L4). As an ordinary control,
+   `switch.turn_off` on an area or device and voice assistants include it, so "turn
+   everything off" would stop heating and hot water. Recommendation: entity category
+   config, which excludes it from both and keeps it on the device page. Differs
+   from the entity model accepted at CP1, so it's the user's call.
+5. **Alarm reset left out of v1.** The plan allows the button only after a Phase 6
+   test, and alarms are never provoked on purpose, so it can't be tested on demand.
+6. **Service-level settings** (minimum/maximum flow, regulation, screed drying) are
+   writable but hidden by default, as accepted at CP1; only power limits have an
+   opt-in. Keep that? The regulation select also offers "room" on circuits without
+   a room sensor, which is what the pump's own menu holds today for the radiators'
+   cooling regulation, so it isn't filtered.
+7. **Below the manufacturer's minimum:** the recorded Mono holds a heating limit of
+   39 % (minimum 40 %). Can installers go lower, so the catalog minimum is wrong?
+8. **Room setpoint range:** 10–35 °C comes from the older integration, not the
+   manufacturer. If the display shows the allowed range, it would confirm it.
+
+### Next steps after CP2
+Phase 6 per the plan: first write, look at the raw answer and read-back timing, then
+the tiers. Then Phase 7. The first live write settles how the client should treat
+the write response and whether the read-back needs to wait.
+
+### From the reviews: fixed
+- **Password in errors** (M1): aiohttp's text holds the login URL; connection
+  errors now name only the error type and status.
+- **Partial writes** (M2): every value is checked before the first is sent; state
+  refreshes after a failed write too.
+- **Write response format** (M3): only an explicit per-tag error counts as failure;
+  the read-back decides. The raw answer is logged at debug level.
+- **Alarm reset** (M4): removed (decision 5).
+- **Host validation** (L1): closes the one route to a never-call endpoint. Entries
+  have no unique ID any more; `host` and `host:80` are one display (ADR 0013).
+- **Cookie collision** (L2): cookie-free sessions, proven with a test that fails on
+  a normal jar.
+- **Closed client** (L3): no login after the final logout.
+- **Fahrenheit** (L7): numbers are rounded to the pump's resolution.
+- **§10 test** (L6): the never-writable list is enforced against the catalog.
+- Repair issues clear themselves and say what changed; orphaned entities are
+  removed (checked on the real registry: only the old button went, 123 → 122);
+  stale values don't outlast an outage; temporary tag statuses count as no
+  response; missing values are unknown rather than unavailable; heater stages need
+  a heater; reauth and reconfigure test all five errors; README corrections.
+
+### From the reviews: deliberately not changed
+- A rewired pump is noticed at the next setup or reload, not while running; the
+  dynamic-devices exemption now says so.
+- No DHCP discovery (CP1). The display's DHCP host name was never checked; that
+  would be the way in if this is ever revisited.
+- No `configuration_url`: whether the display serves a useful page isn't verified.
+- Device models are English: Home Assistant can't translate them.
+- `**kwargs: Any` in the description helpers, and in the probe tool percent-encoded
+  `..` and unencoded credentials: developer-only, left alone.
+- `quality_scale.yaml` was reviewed before these fixes and not re-reviewed since.
+  hassfest checks none of it for a custom integration.
+
+### Not verified yet
+- **Any write on the real pump.** All write behaviour so far is emulator-only.
+- The reviewed code has run on the real pump only since 2026-11-05 19:44 UTC; the
+  69.7 h run was on the code before the fixes. It keeps polling.
+- The window 2026-11-01 20:44 → 2026-11-02 17:29 UTC can't be re-checked for
+  off-beat refreshes (log rotated). Nothing wrote in it as far as is known.
+- HACS validation and CI wait for a remote repository (CP3).
+
+### Running now
+The dev HA keeps polling the real pump every 30 s (one login, timers hourly). To
+free the display: disable the entry in the dev HA, or `../ha-dev/ha-dev.sh down`.
+
+## Phase 5 (hardening and review): record
 
 ### Done (committed)
 - **Fault suite** (`tests/components/orca_heatpump/test_faults.py`), all
@@ -59,10 +111,10 @@ below.
   `async_read_identity` and stopped setup; fixed and tested.
 - Values nobody has seen yet keep any entity available with an unknown
   state (rule moved into the base entity).
-- `quality_scale.yaml`: every rule done or exempt with a reason
-  (exempt: action-setup, docs-actions/conditions/triggers,
-  dependency-transparency, discovery, discovery-update-info,
-  dynamic-devices). **Not yet independently verified** (see above).
+- `quality_scale.yaml`: every rule done or exempt with a reason (exempt:
+  action-setup, docs-actions/conditions/triggers, dependency-transparency,
+  discovery, discovery-update-info, dynamic-devices). The independent review found
+  three over-claims, since fixed.
 - Docs (PLAN §11): README rewritten (what it does, supported pumps,
   install, setup, options, entities, data updates, alarms with an
   automation example, moving from orca-energy-ha, troubleshooting, write
@@ -73,8 +125,7 @@ below.
   identical readings.
 - A test keeps `translations/en.json` equal to `strings.json` and
   `sl.json` complete.
-- Tests: 1,038 passing; coverage 100 % for every module; ruff, ruff
-  format, mypy (strict), hassfest clean.
+- Tests at that point: 1,038. After the review fixes: 1,107, see the CP2 report.
 
 ### Live checks so far
 - Startup with all platforms (19:44 UTC): 123 entities, polls 50–90 ms,
@@ -120,17 +171,6 @@ below.
     each wake the display had dropped the session and the client logged in
     again within the poll, with nothing going unavailable.
 
-### Questions collected for CP2
-- Mono fixture's heating power limit 39.0 % is below the manufacturer's
-  minimum 40.0 %: can installers set lower values (then the catalog minimum
-  is wrong), or is it a leftover from older firmware?
-- Alarm reset button: does the controller clear the flag itself? (The
-  client's read-back would then report a failed write.) Phase 6 test.
-- Climate on the real pump: mode written before the circuit's enable.
-- Did the user make the four setting changes above? Their old integration's
-  history of "max power hot water" dates the first one exactly. If not, who
-  else can write (app, display, the old integration in their other HA)?
-
 ## Phase 4 (platforms): done 2026-11-01
 
 One commit per platform, each with en + sl names, icons, snapshot tests for
@@ -173,14 +213,7 @@ one author kept names and translations consistent.
   0.19 s, polls 50–90 ms, no warnings or errors from the integration, no
   unknown values. Entity values not yet compared with the touch display
   (user spot check in P5). Nothing was written.
-- **Real data below the manufacturer's minimum:** the Mono fixture holds a
-  heating power limit of 39.0 % (minimum 40.0 %). Home Assistant shows it;
-  writing it back would be refused. Ask the user at CP2 whether installers
-  can set lower values (then the catalog minimum is wrong) or this is a
-  leftover from older firmware.
-- **For CP2 / Phase 6:** the alarm reset button's behaviour (does the
-  controller clear the flag itself? The client's read-back would then report
-  a failed write); the climate's mode-then-enable order on the real pump.
+- Questions from this phase moved into the CP2 report.
 
 ## Phase 3 (integration core): done 2026-11-01
 
@@ -412,3 +445,5 @@ HTTP 408 means our request was too big (a bug, never "tag missing").
 - `PLAN.md` will be public. It contains the pump's LAN address, its default
   login and details of your house's setup. Decide whether to publish it
   as is.
+- `research/protocol.md` also holds the pump's address (safety review). Remove it,
+  or keep the research files out of the public repository.
