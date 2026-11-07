@@ -745,7 +745,7 @@
     'state': '21',
   })
 # ---
-# name: test_entities[duo][sensor.heat_pump_target_water_temperature-entry]
+# name: test_entities[duo][sensor.heat_pump_target_temperature-entry]
   EntityRegistryEntrySnapshot({
     'aliases': list([
       None,
@@ -761,7 +761,7 @@
     'disabled_by': None,
     'domain': 'sensor',
     'entity_category': None,
-    'entity_id': 'sensor.heat_pump_target_water_temperature',
+    'entity_id': 'sensor.heat_pump_target_temperature',
     'has_entity_name': True,
     'hidden_by': None,
     'icon': None,
@@ -769,7 +769,7 @@
     'labels': set({
     }),
     'name': None,
-    'object_id_base': 'Target water temperature',
+    'object_id_base': 'Target temperature',
     'options': dict({
       'sensor': dict({
         'suggested_display_precision': 1,
@@ -777,7 +777,7 @@
     }),
     'original_device_class': <SensorDeviceClass.TEMPERATURE: 'temperature'>,
     'original_icon': None,
-    'original_name': 'Target water temperature',
+    'original_name': 'Target temperature',
     'platform': 'orca_heatpump',
     'previous_unique_id': None,
     'suggested_object_id': None,
@@ -787,23 +787,23 @@
     'unit_of_measurement': <UnitOfTemperature.CELSIUS: '°C'>,
   })
 # ---
-# name: test_entities[duo][sensor.heat_pump_target_water_temperature-state]
+# name: test_entities[duo][sensor.heat_pump_target_temperature-state]
   StateSnapshot({
     'attributes': ReadOnlyDict({
       <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'temperature',
-      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Target water temperature',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Target temperature',
       <SensorEntityCapabilityAttribute.STATE_CLASS: 'state_class'>: <SensorStateClass.MEASUREMENT: 'measurement'>,
       <EntityStateAttribute.UNIT_OF_MEASUREMENT: 'unit_of_measurement'>: <UnitOfTemperature.CELSIUS: '°C'>,
     }),
     'context': <ANY>,
-    'entity_id': 'sensor.heat_pump_target_water_temperature',
+    'entity_id': 'sensor.heat_pump_target_temperature',
     'last_changed': <ANY>,
     'last_reported': <ANY>,
     'last_updated': <ANY>,
     'state': '9.0',
   })
 # ---
-# name: test_entities[duo][sensor.heat_pump_water_temperature-entry]
+# name: test_entities[duo][sensor.heat_pump_temperature-entry]
   EntityRegistryEntrySnapshot({
     'aliases': list([
       None,
@@ -819,7 +819,7 @@
     'disabled_by': None,
     'domain': 'sensor',
     'entity_category': None,
-    'entity_id': 'sensor.heat_pump_water_temperature',
+    'entity_id': 'sensor.heat_pump_temperature',
     'has_entity_name': True,
     'hidden_by': None,
     'icon': None,
@@ -827,7 +827,7 @@
     'labels': set({
     }),
     'name': None,
-    'object_id_base': 'Water temperature',
+    'object_id_base': 'Temperature',
     'options': dict({
       'sensor': dict({
         'suggested_display_precision': 1,
@@ -835,7 +835,7 @@
     }),
     'original_device_class': <SensorDeviceClass.TEMPERATURE: 'temperature'>,
     'original_icon': None,
-    'original_name': 'Water temperature',
+    'original_name': 'Temperature',
     'platform': 'orca_heatpump',
     'previous_unique_id': None,
     'suggested_object_id': None,
@@ -845,16 +845,16 @@
     'unit_of_measurement': <UnitOfTemperature.CELSIUS: '°C'>,
   })
 # ---
-# name: test_entities[duo][sensor.heat_pump_water_temperature-state]
+# name: test_entities[duo][sensor.heat_pump_temperature-state]
   StateSnapshot({
     'attributes': ReadOnlyDict({
       <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'temperature',
-      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Water temperature',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Temperature',
       <SensorEntityCapabilityAttribute.STATE_CLASS: 'state_class'>: <SensorStateClass.MEASUREMENT: 'measurement'>,
       <EntityStateAttribute.UNIT_OF_MEASUREMENT: 'unit_of_measurement'>: <UnitOfTemperature.CELSIUS: '°C'>,
     }),
     'context': <ANY>,
-    'entity_id': 'sensor.heat_pump_water_temperature',
+    'entity_id': 'sensor.heat_pump_temperature',
     'last_changed': <ANY>,
     'last_reported': <ANY>,
     'last_updated': <ANY>,
@@ -2124,7 +2124,7 @@
     'state': '21',
   })
 # ---
-# name: test_entities[mono][sensor.heat_pump_target_water_temperature-entry]
+# name: test_entities[mono][sensor.heat_pump_target_temperature-entry]
   EntityRegistryEntrySnapshot({
     'aliases': list([
       None,
@@ -2140,7 +2140,7 @@
     'disabled_by': None,
     'domain': 'sensor',
     'entity_category': None,
-    'entity_id': 'sensor.heat_pump_target_water_temperature',
+    'entity_id': 'sensor.heat_pump_target_temperature',
     'has_entity_name': True,
     'hidden_by': None,
     'icon': None,
@@ -2148,7 +2148,7 @@
     'labels': set({
     }),
     'name': None,
-    'object_id_base': 'Target water temperature',
+    'object_id_base': 'Target temperature',
     'options': dict({
       'sensor': dict({
         'suggested_display_precision': 1,
@@ -2156,7 +2156,7 @@
     }),
     'original_device_class': <SensorDeviceClass.TEMPERATURE: 'temperature'>,
     'original_icon': None,
-    'original_name': 'Target water temperature',
+    'original_name': 'Target temperature',
     'platform': 'orca_heatpump',
     'previous_unique_id': None,
     'suggested_object_id': None,
@@ -2166,23 +2166,23 @@
     'unit_of_measurement': <UnitOfTemperature.CELSIUS: '°C'>,
   })
 # ---
-# name: test_entities[mono][sensor.heat_pump_target_water_temperature-state]
+# name: test_entities[mono][sensor.heat_pump_target_temperature-state]
   StateSnapshot({
     'attributes': ReadOnlyDict({
       <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'temperature',
-      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Target water temperature',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Target temperature',
       <SensorEntityCapabilityAttribute.STATE_CLASS: 'state_class'>: <SensorStateClass.MEASUREMENT: 'measurement'>,
       <EntityStateAttribute.UNIT_OF_MEASUREMENT: 'unit_of_measurement'>: <UnitOfTemperature.CELSIUS: '°C'>,
     }),
     'context': <ANY>,
-    'entity_id': 'sensor.heat_pump_target_water_temperature',
+    'entity_id': 'sensor.heat_pump_target_temperature',
     'last_changed': <ANY>,
     'last_reported': <ANY>,
     'last_updated': <ANY>,
     'state': '47.0',
   })
 # ---
-# name: test_entities[mono][sensor.heat_pump_water_temperature-entry]
+# name: test_entities[mono][sensor.heat_pump_temperature-entry]
   EntityRegistryEntrySnapshot({
     'aliases': list([
       None,
@@ -2198,7 +2198,7 @@
     'disabled_by': None,
     'domain': 'sensor',
     'entity_category': None,
-    'entity_id': 'sensor.heat_pump_water_temperature',
+    'entity_id': 'sensor.heat_pump_temperature',
     'has_entity_name': True,
     'hidden_by': None,
     'icon': None,
@@ -2206,7 +2206,7 @@
     'labels': set({
     }),
     'name': None,
-    'object_id_base': 'Water temperature',
+    'object_id_base': 'Temperature',
     'options': dict({
       'sensor': dict({
         'suggested_display_precision': 1,
@@ -2214,7 +2214,7 @@
     }),
     'original_device_class': <SensorDeviceClass.TEMPERATURE: 'temperature'>,
     'original_icon': None,
-    'original_name': 'Water temperature',
+    'original_name': 'Temperature',
     'platform': 'orca_heatpump',
     'previous_unique_id': None,
     'suggested_object_id': None,
@@ -2224,16 +2224,16 @@
     'unit_of_measurement': <UnitOfTemperature.CELSIUS: '°C'>,
   })
 # ---
-# name: test_entities[mono][sensor.heat_pump_water_temperature-state]
+# name: test_entities[mono][sensor.heat_pump_temperature-state]
   StateSnapshot({
     'attributes': ReadOnlyDict({
       <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'temperature',
-      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Water temperature',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Temperature',
       <SensorEntityCapabilityAttribute.STATE_CLASS: 'state_class'>: <SensorStateClass.MEASUREMENT: 'measurement'>,
       <EntityStateAttribute.UNIT_OF_MEASUREMENT: 'unit_of_measurement'>: <UnitOfTemperature.CELSIUS: '°C'>,
     }),
     'context': <ANY>,
-    'entity_id': 'sensor.heat_pump_water_temperature',
+    'entity_id': 'sensor.heat_pump_temperature',
     'last_changed': <ANY>,
     'last_reported': <ANY>,
     'last_updated': <ANY>,
@@ -3746,7 +3746,7 @@
     'state': '21',
   })
 # ---
-# name: test_entities[ours][sensor.heat_pump_target_water_temperature-entry]
+# name: test_entities[ours][sensor.heat_pump_target_temperature-entry]
   EntityRegistryEntrySnapshot({
     'aliases': list([
       None,
@@ -3762,7 +3762,7 @@
     'disabled_by': None,
     'domain': 'sensor',
     'entity_category': None,
-    'entity_id': 'sensor.heat_pump_target_water_temperature',
+    'entity_id': 'sensor.heat_pump_target_temperature',
     'has_entity_name': True,
     'hidden_by': None,
     'icon': None,
@@ -3770,7 +3770,7 @@
     'labels': set({
     }),
     'name': None,
-    'object_id_base': 'Target water temperature',
+    'object_id_base': 'Target temperature',
     'options': dict({
       'sensor': dict({
         'suggested_display_precision': 1,
@@ -3778,7 +3778,7 @@
     }),
     'original_device_class': <SensorDeviceClass.TEMPERATURE: 'temperature'>,
     'original_icon': None,
-    'original_name': 'Target water temperature',
+    'original_name': 'Target temperature',
     'platform': 'orca_heatpump',
     'previous_unique_id': None,
     'suggested_object_id': None,
@@ -3788,23 +3788,23 @@
     'unit_of_measurement': <UnitOfTemperature.CELSIUS: '°C'>,
   })
 # ---
-# name: test_entities[ours][sensor.heat_pump_target_water_temperature-state]
+# name: test_entities[ours][sensor.heat_pump_target_temperature-state]
   StateSnapshot({
     'attributes': ReadOnlyDict({
       <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'temperature',
-      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Target water temperature',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Target temperature',
       <SensorEntityCapabilityAttribute.STATE_CLASS: 'state_class'>: <SensorStateClass.MEASUREMENT: 'measurement'>,
       <EntityStateAttribute.UNIT_OF_MEASUREMENT: 'unit_of_measurement'>: <UnitOfTemperature.CELSIUS: '°C'>,
     }),
     'context': <ANY>,
-    'entity_id': 'sensor.heat_pump_target_water_temperature',
+    'entity_id': 'sensor.heat_pump_target_temperature',
     'last_changed': <ANY>,
     'last_reported': <ANY>,
     'last_updated': <ANY>,
     'state': '28.0',
   })
 # ---
-# name: test_entities[ours][sensor.heat_pump_water_temperature-entry]
+# name: test_entities[ours][sensor.heat_pump_temperature-entry]
   EntityRegistryEntrySnapshot({
     'aliases': list([
       None,
@@ -3820,7 +3820,7 @@
     'disabled_by': None,
     'domain': 'sensor',
     'entity_category': None,
-    'entity_id': 'sensor.heat_pump_water_temperature',
+    'entity_id': 'sensor.heat_pump_temperature',
     'has_entity_name': True,
     'hidden_by': None,
     'icon': None,
@@ -3828,7 +3828,7 @@
     'labels': set({
     }),
     'name': None,
-    'object_id_base': 'Water temperature',
+    'object_id_base': 'Temperature',
     'options': dict({
       'sensor': dict({
         'suggested_display_precision': 1,
@@ -3836,7 +3836,7 @@
     }),
     'original_device_class': <SensorDeviceClass.TEMPERATURE: 'temperature'>,
     'original_icon': None,
-    'original_name': 'Water temperature',
+    'original_name': 'Temperature',
     'platform': 'orca_heatpump',
     'previous_unique_id': None,
     'suggested_object_id': None,
@@ -3846,16 +3846,16 @@
     'unit_of_measurement': <UnitOfTemperature.CELSIUS: '°C'>,
   })
 # ---
-# name: test_entities[ours][sensor.heat_pump_water_temperature-state]
+# name: test_entities[ours][sensor.heat_pump_temperature-state]
   StateSnapshot({
     'attributes': ReadOnlyDict({
       <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'temperature',
-      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Water temperature',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Temperature',
       <SensorEntityCapabilityAttribute.STATE_CLASS: 'state_class'>: <SensorStateClass.MEASUREMENT: 'measurement'>,
       <EntityStateAttribute.UNIT_OF_MEASUREMENT: 'unit_of_measurement'>: <UnitOfTemperature.CELSIUS: '°C'>,
     }),
     'context': <ANY>,
-    'entity_id': 'sensor.heat_pump_water_temperature',
+    'entity_id': 'sensor.heat_pump_temperature',
     'last_changed': <ANY>,
     'last_reported': <ANY>,
     'last_updated': <ANY>,

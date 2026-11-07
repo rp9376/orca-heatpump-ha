@@ -110,6 +110,15 @@ has no radiator flow sensor. The mixing valve sits on the split with its opening
 it. Seen on the real page in light and at phone width in dark, in English; the Slovenian
 files come from the same generator, with no diagram text of their own.
 
+### Heat pump temperature renamed (user, 2026-11-07)
+
+"Water temperature" could be read as hot water, so `2_Poti1` follows the app's "HP
+temperature" / "Temperatura toplotne črpalke". It is named "Temperature" on the Heat
+pump device, as the buffer tank's already is, to avoid "Heat pump Heat pump
+temperature". The target and the "too low" alarm changed with it. Unique IDs are
+unchanged. Its logged behaviour (142 hours) fits water leaving the heat pump: it follows
+its target to either circuits or tank, and drifts to about 24 °C when stopped.
+
 ### Decisions for the user
 
 1. **The go, and how to authenticate.** Install `gh` and run `gh auth login`, or give me
@@ -338,7 +347,7 @@ free the display: disable the entry in the dev HA, or `../ha-dev/ha-dev.sh down`
     the pump at 10:28; the 2 Nov change fell on the regular poll beat with
     no off-beat refresh. The log of 1 Nov 20:44 → 2 Nov 17:29 has rotated
     away, so that window's rhythm can't be re-checked.
-  - The target water temperature reads 9.0 °C while the timer has heating
+  - The heat pump's target temperature reads 9.0 °C while the timer has heating
     off (evening to 07:00 UTC). That is the pump's own value.
   - The underfloor timer programme changed at 18:36 and 19:43 UTC on 3 Nov
     (all day → programme 4 → programme 2). The user did that in the app

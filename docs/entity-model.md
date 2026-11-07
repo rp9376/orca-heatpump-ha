@@ -61,8 +61,8 @@ write only through `OrcaClient.async_write` with the manufacturer's range.
 | Key | Platform | Tag | Default | Notes |
 |---|---|---|---|---|
 | `outdoor_temperature` | sensor | `2_Temp_Zunanja` | on | °C |
-| `hp_temperature` | sensor | `2_Poti1` | on | HP water temperature |
-| `hp_target_temperature` | sensor | `2_Izrac_temp_TC` | on | |
+| `hp_temperature` | sensor | `2_Poti1` | on | named "Temperature", so with the device it reads like the app's "HP temperature" ("Temperatura toplotne črpalke"): water leaving the heat pump |
+| `hp_target_temperature` | sensor | `2_Izrac_temp_TC` | on | named "Target temperature" (app: "Desired HP temperature") |
 | `outdoor_unit_power` | sensor | `2_PRIKAZ_Reg_temp_vode` | on | %, ×10 (R7) |
 | `outdoor_unit_state` | sensor (enum) | `2_Rezim_delov_TC` | on | off / heating / cooling / defrost (2–3 to confirm) |
 | `valve_3way` | sensor (enum) | `2_Preklop_PV1` | on | space heating / hot water |

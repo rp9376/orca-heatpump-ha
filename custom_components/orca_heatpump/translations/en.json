@@ -232,7 +232,7 @@
         "name": "No flow"
       },
       "alarm_hp_temperature_low": {
-        "name": "Water temperature too low"
+        "name": "Temperature too low"
       },
       "alarm_flow_temperature": {
         "name": "Flow temperature too high"
@@ -560,10 +560,10 @@
         "name": "Outdoor temperature"
       },
       "hp_temperature": {
-        "name": "Water temperature"
+        "name": "Temperature"
       },
       "hp_target_temperature": {
-        "name": "Target water temperature"
+        "name": "Target temperature"
       },
       "outdoor_unit_power": {
         "name": "Outdoor unit power"

@@ -136,8 +136,9 @@ was wired to it for something else, also gets a **Solar input temperature** sens
 sensor wired later appears after the next reload.
 
 **Heat pump**
-- Sensors: outdoor temperature, water temperature and its target, outdoor
-  unit power and state, 3-way valve, active alarm, power limits.
+- Sensors: outdoor temperature, temperature and its target ("HP temperature" in the
+  app: the water leaving the heat pump), outdoor unit power and state, 3-way valve,
+  active alarm, power limits.
 - Binary sensors: circulation pump, defrost, electric heater stages, alarm.
 - Selects: operating programme (normal, holiday, party, eco), quick room mode,
   electric heater mode.

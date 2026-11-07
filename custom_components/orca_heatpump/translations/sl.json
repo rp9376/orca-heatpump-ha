@@ -232,7 +232,7 @@
         "name": "Ni pretoka"
       },
       "alarm_hp_temperature_low": {
-        "name": "Prenizka temperatura vode"
+        "name": "Prenizka temperatura"
       },
       "alarm_flow_temperature": {
         "name": "Previsoka temperatura vtoka"
@@ -560,10 +560,10 @@
         "name": "Zunanja temperatura"
       },
       "hp_temperature": {
-        "name": "Temperatura vode"
+        "name": "Temperatura"
       },
       "hp_target_temperature": {
-        "name": "Želena temperatura vode"
+        "name": "Želena temperatura"
       },
       "outdoor_unit_power": {
         "name": "Moč zunanje enote"

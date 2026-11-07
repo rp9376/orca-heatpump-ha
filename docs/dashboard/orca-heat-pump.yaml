@@ -319,7 +319,7 @@ views:
           action: more-info
         style:
           left: 13.0%
-          top: 43.7%
+          top: 44.0%
           color: var(--primary-text-color)
           --mdc-icon-size: clamp(20px, 2.8vw, 36px)
       - type: state-label
@@ -343,7 +343,7 @@ views:
           white-space: nowrap
           padding: '0'
       - type: state-label
-        entity: sensor.heat_pump_water_temperature
+        entity: sensor.heat_pump_temperature
         style:
           left: 30.0%
           top: 44.7%
@@ -353,7 +353,7 @@ views:
           white-space: nowrap
           padding: '0'
       - type: state-label
-        entity: sensor.heat_pump_target_water_temperature
+        entity: sensor.heat_pump_target_temperature
         prefix: '→ '
         style:
           left: 30.0%
@@ -571,8 +571,8 @@ views:
         columns: 6
         rows: 3
     - type: gauge
-      entity: sensor.heat_pump_water_temperature
-      name: Water
+      entity: sensor.heat_pump_temperature
+      name: Temperature
       min: 10
       max: 60
       needle: true
@@ -596,7 +596,7 @@ views:
         columns: 6
         rows: 2
     - type: tile
-      entity: sensor.heat_pump_water_temperature
+      entity: sensor.heat_pump_temperature
       name:
         type: entity
       features:
@@ -761,7 +761,7 @@ views:
       hours_to_show: 24
       entities:
       - sensor.heat_pump_outdoor_temperature
-      - sensor.heat_pump_water_temperature
+      - sensor.heat_pump_temperature
       - sensor.underfloor_heating_flow_temperature
       grid_options:
         columns: full
