@@ -100,6 +100,10 @@ when cooling. The stub at the valve is neutral grey. So at a start the label can
 I had told the user the pipes would stop when the unit stops. That was wrong for the old
 rule: the data above was already there to check.
 
+Seen on the real pump with a page left open and no reload: the unit stopped at 15:44:30
+and only the grey stub stayed; it started at 15:49:30 and the pipes came back. A cooling
+run and a real hot water run with this rule are covered by tests only so far.
+
 ### Decisions for the user
 
 1. **The go, and how to authenticate.** Install `gh` and run `gh auth login`, or give me

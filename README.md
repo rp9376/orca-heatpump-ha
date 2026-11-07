@@ -184,7 +184,7 @@ cards only, so there is nothing to install: a live diagram of the system with pi
 that animate while the heat pump produces heat or cold, gauges, trend graphs, every circuit and the alarm
 history.
 
-![The dashboard, here with every pipe running at once](docs/dashboard/overview.png)
+![The dashboard, here with the heating and solar pipes running at once](docs/dashboard/overview.png)
 
 Use [`orca-heat-pump.yaml`](docs/dashboard/orca-heat-pump.yaml), or
 [`orca-heat-pump.sl.yaml`](docs/dashboard/orca-heat-pump.sl.yaml) for Slovenian
