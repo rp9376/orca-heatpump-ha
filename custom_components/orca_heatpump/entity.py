@@ -169,7 +169,7 @@ async def async_write_values(
 
     Every value is checked before the first one is sent, so a bad value can't
     leave a call half done. The client checks again, skips unchanged values
-    and reads each value back (PLAN.md §10). One refresh at the end keeps the
+    and reads each value back. One refresh at the end keeps the
     debouncer from delaying the last write's state.
     """
     # Home Assistant converts units without rounding: 70 °F arrives as 21.111 °C.

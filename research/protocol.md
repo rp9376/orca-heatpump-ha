@@ -10,7 +10,7 @@ Confidence tags: **H** = read directly from bytecode, HTML/JS or a live capture;
 
 Placeholders: `<TOKEN>` = 32-hex session token, `<NOW>` = Unix time in seconds,
 `<MS>` = Unix time in milliseconds, `<MAC>`, `<SERIAL>`, `<IP-…>` = values never
-written down here. The pump's address `192.168.178.62` is known and allowed.
+written down here. The pump's address is known and allowed.
 
 ---
 
@@ -635,7 +635,7 @@ not used before Phase 6.
      complete when the buffer is full, the read fails and ABYSS answers 408 at once.
      A real timeout would take seconds.
    - Prediction: request line + CRLF + every header line + the final CRLF ≤ 4,095
-     bytes. The probe's headers are `Host: 192.168.178.62` (22 bytes with CRLF),
+     bytes. The probe's headers are `Host: <pump address>` (22 bytes with CRLF),
      `Accept-Encoding: identity` (27) and `Cookie: IDALToken=<32>` (52), plus the
      final CRLF (2): 103 bytes on top of the request line and its own CRLF. That
      gives a maximum request line of **3,990**.
@@ -666,7 +666,7 @@ not used before Phase 6.
 | Item | Where it might be | Confidence |
 |---|---|---|
 | IP, netmask, broadcast, gateway, SA | `getTCPIPSettings` | H (format) |
-| MAC | **Not** in any allowlisted endpoint's 2007 format. Options: the lead's own ARP cache after any request (`ip neigh show 192.168.178.62`, local and passive, OUI only in sanitised notes); HA DHCP discovery supplies `macaddress` | H / M |
+| MAC | **Not** in any allowlisted endpoint's 2007 format. Options: the lead's own ARP cache after any request (`ip neigh show <pump address>`, local and passive, OUI only in sanitised notes); HA DHCP discovery supplies `macaddress` | H / M |
 | Hostname | Not exposed by the CGI. Only via DHCP (router or HA DHCP discovery) | M |
 | Serial number, IDAL/runtime version | Possibly IDAL properties (`propertymap.xml` → getProperties) or status parameters (names unknown) | L |
 | Controller firmware | Tags `2_Verzija_programa_LETO/MESEC/DAN/ZAPOREDJE` exist in `all_fields.txt` (agent A/R5) | M |

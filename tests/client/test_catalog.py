@@ -166,7 +166,7 @@ NEVER_WRITABLE = re.compile(
 
 
 def test_installer_settings_never_writable() -> None:
-    """The installer settings of PLAN.md §10 are never writable."""
+    """The installer settings are never writable."""
     assert not [
         tag
         for definition in CATALOG

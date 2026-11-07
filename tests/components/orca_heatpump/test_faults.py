@@ -1,4 +1,4 @@
-"""Faults of the display, with every platform running on top (PLAN.md P5)."""
+"""Faults of the display, with every platform running on top."""
 
 from collections.abc import Callable
 import logging

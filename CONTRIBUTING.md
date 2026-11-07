@@ -37,7 +37,7 @@ Tests never talk to a real heat pump. They run Home Assistant against
    Circuit tags name the tag of each slot in `slot_tags`, because the
    display's names are irregular. Password and code tags never go in.
 3. Only settings the display offers to users may be `writable`; installer
-   settings stay read-only (`PLAN.md` §10).
+   settings stay read-only.
 4. Add an entity description to the platform module, with a
    `translation_key` (by default the catalog key), and names in
    `strings.json`, `translations/en.json` (same content) and

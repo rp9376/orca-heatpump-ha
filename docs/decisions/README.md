@@ -2,7 +2,8 @@
 
 One file per decision: context, decision, consequences. "Accepted" means the
 user decided; "Proposed" means a default from `PLAN.md` §3 or a new finding
-that the user confirms at a checkpoint.
+that the user confirms at a checkpoint. `PLAN.md` and `docs/progress.md`, which some
+records mention, are the project's private working files.
 
 | ADR | Decision | Status |
 |---|---|---|

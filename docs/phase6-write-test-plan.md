@@ -27,7 +27,11 @@ integration, power cycled the pump and switched the system off. **Passed.**
     the issue names no value). It is tested on the emulator. The option is back off.
   - **System switch:** on, off and on again, ending on as agreed. Afterwards the pump
     came up by itself: circuit pump, circulation pump, then the outdoor unit about a
-    minute later, with power up to exactly its 70 % limit, no alarm.
+    minute later, with power up to exactly its 70 % limit, no alarm. The off came 10
+    seconds after the first on, when the circulation pump had just started. The check
+    I made before it read the integration's cached values, not a fresh poll, so it
+    proved little. The recorded states do: the outdoor unit stayed off until 13:27:03,
+    a minute after the final on, so no compressor start was interrupted.
   - **Quick room mode:** skipped, the user's choice.
 - **One setting doesn't hold: the operating programme.** The pump accepts Eco and reads
   it back, then goes back to Normal by itself: within 5 seconds with the system off, by
