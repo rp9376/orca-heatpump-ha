@@ -44,7 +44,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - uses: home-assistant/actions/hassfest@26d56ed1a1cbfeabf59feb7b26e368e13f47ef52 # master
+      - uses: home-assistant/actions/hassfest@86d4564712fa02543c808e3a693dd04f9d3f8361 # master
 
   hacs:
     name: HACS validation
@@ -89,12 +89,14 @@ jobs:
           # the core tag that matches the Home Assistant under test.
           core="$RUNNER_TEMP/core"
           git clone --quiet --depth 1 --branch "$HA_VERSION" https://github.com/home-assistant/core.git "$core"
+          # The folder is pytest-homeassistant in 2026.11 and pytest-home-assistant on dev.
+          plugin=$(echo "$core"/packages/pytest-home*assistant)
           if [ "$HA_VERSION" = dev ]; then
-            uv pip install -e "$core" "$core/packages/pytest-home-assistant" --group ci
+            uv pip install -e "$core" "$plugin" --group ci
             # A source checkout has no built translations; the tests need them.
             (cd "$core" && python -m script.translations develop --all)
           else
-            uv pip install "homeassistant==$HA_VERSION" "$core/packages/pytest-home-assistant" --group ci
+            uv pip install "homeassistant==$HA_VERSION" "$plugin" --group ci
           fi
       - name: mypy
         run: mypy

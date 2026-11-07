@@ -7,7 +7,12 @@
 dev = ["hypothesis==6.170.1"]
 # CI installs homeassistant and pytest-home-assistant per channel (ADR 0011),
 # plus this group.
-ci = [{ include-group = "dev" }, "mypy==2.4.0", "pytest-cov==7.1.0"]
+ci = [
+  { include-group = "dev" },
+  "mypy==2.4.0",
+  "pytest-cov==7.1.0",
+  "types-PyYAML==6.0.12.20260906",
+]
 
 [tool.pytest.ini_options]
 # Let Home Assistant install its httpx alias before respx is imported.
