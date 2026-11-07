@@ -109,9 +109,8 @@ def parse_login(text: str) -> str:
 def parse_write_status(text: str, tag: str) -> str | None:
     """Return the status a writeTags response gives for a tag, if it gives one.
 
-    Reads nothing else: the format of a write response has not been seen
-    live, and a surprise here must not fail a write that landed. The read
-    back decides.
+    Reads nothing else: a surprise here must not fail a write that landed, and
+    the read back decides. The real display answers like a read record.
     """
     raise_for_error(text)
     for line in text.replace("\r", "").split("\n"):

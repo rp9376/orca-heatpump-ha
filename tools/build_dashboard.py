@@ -83,6 +83,11 @@ SOLAR_PIPE = "M780 430 H840"
 VALVE_TO_HEATING = "M400 274 V215"
 VALVE_TO_TANK = "M400 326 V385"
 
+HVAC_MODES = {
+    "type": "climate-hvac-modes",
+    "hvac_modes": ["off", "heat", "cool", "heat_cool"],
+}
+
 PUMP = "binary_sensor.heat_pump_circulation_pump"
 VALVE = "sensor.heat_pump_3_way_valve"
 OUTDOOR_STATE = "sensor.heat_pump_outdoor_unit_state"
@@ -440,7 +445,11 @@ def _overview(text: dict[str, str]) -> dict[str, Any]:
             _section(
                 text["floor"],
                 "mdi:heating-coil",
-                _main_tile("climate.underfloor_heating", state_content="hvac_action"),
+                _main_tile(
+                    "climate.underfloor_heating",
+                    state_content="hvac_action",
+                    features=[HVAC_MODES],
+                ),
                 _trend(
                     "sensor.underfloor_heating_flow_temperature",
                     grid_options={"columns": "full", "rows": 2},
@@ -452,7 +461,11 @@ def _overview(text: dict[str, str]) -> dict[str, Any]:
             _section(
                 text["radiators"],
                 "mdi:radiator",
-                _main_tile("climate.radiators", state_content="hvac_action"),
+                _main_tile(
+                    "climate.radiators",
+                    state_content="hvac_action",
+                    features=[HVAC_MODES],
+                ),
                 _tile("number.radiators_flow_temperature_setpoint"),
                 _tile("sensor.radiators_mixing_valve_opening"),
                 _tile("select.radiators_timer_programme"),
@@ -464,6 +477,12 @@ def _overview(text: dict[str, str]) -> dict[str, Any]:
                 _main_tile(
                     "water_heater.hot_water",
                     state_content=["state", "temperature"],
+                    features=[
+                        {
+                            "type": "water-heater-operation-modes",
+                            "operation_modes": ["off", "heat_pump"],
+                        }
+                    ],
                 ),
                 _trend("sensor.hot_water_top_temperature"),
                 _trend("sensor.hot_water_bottom_temperature"),

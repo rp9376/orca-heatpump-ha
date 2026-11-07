@@ -1,9 +1,37 @@
 # Phase 6: live write test plan
 
-For CP2. **Nothing here runs until the user agrees in the conversation and is
-present** (`PLAN.md` §2.2, §2.3). Values are from 2026-11-05 and only show the
+The plan agreed at CP2. Anything further needs the user's agreement in the conversation
+and them present (`PLAN.md` §2.2, §2.3). Values are from 2026-11-05 and only show the
 size of each change: the "now" value is read again right before each write, and
 that is what gets restored.
+
+## Result (2026-11-07)
+
+Run with the user's agreement, with the system switched off and no alarm, after they
+had turned off the old integration and power cycled the pump. **Passed.**
+
+- **65 settings** (Tier A and B), 141 writes through Home Assistant's own actions.
+  Each changed by one step, read back and restored. Every answer `S_OK`, no failed
+  poll, no warning, no alarm, and no other setting moved at any point (checked after
+  every write). At the end every writable setting equalled the baseline.
+- **The display answers a write like a read record:** `#tag`, `S_OK`, then quality
+  and value. A new value is readable at once, so the read-back needs no wait. One
+  value held across several polls for 80 seconds.
+- **Combined actions:** the climate writes the mode, then the enable, 0.5 s apart.
+  Turning on and off, and a hot water temperature set with an operation, work too.
+- **One setting didn't hold: the operating programme.** The pump accepted Eco and read
+  it back, then went back to Normal by itself within 5 seconds. Every other setting
+  kept its test value until restored. Not explained yet: either a programme can't start
+  with the system off, or `2_Delovanje_MENI` only shows the programme and another tag
+  starts it (`2_ECO`, `2_PARTY`, `2_POCITNISKI`: coils, all 0, purpose unknown). The
+  recorded ECO duration on this pump is 8 hours, so a zero duration isn't the cause.
+- **Not run:** Tier C (not chosen), and the six settings below that are not tested
+  live. With the system off, nothing here shows how the pump *acts* on a new value.
+- The hidden test entities were disabled again, by the user rather than by the
+  integration, because the API doesn't allow setting that back. It makes no practical
+  difference.
+
+The full log is in `research/captures/write_tests.md` (not in the repository).
 
 ## What it proves
 
@@ -57,9 +85,7 @@ inside the manufacturer's range, one step from the current value.
 
 ## Afterwards
 
-Once writes are proven, add one-tap controls to the dashboard
-(`tools/build_dashboard.py`): mode buttons on the climates, on/off on the water
-heater. Until then it deliberately has none: tapping opens the details.
+Done: the dashboard has mode buttons on the climates and on the water heater.
 
 ## Settings
 

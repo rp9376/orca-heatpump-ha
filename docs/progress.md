@@ -1,7 +1,9 @@
 # Progress
 
-**CP2 answered; waiting for the user to say when Phase 6 may start.** Phase 5 is
-done and nothing has been written to the pump.
+**Phase 6 live write tests passed on 2026-11-07, with one open point: the operating
+programme** (see the result in `docs/phase6-write-test-plan.md`). Waiting for the
+user's answers on it and on Tier C; Phase 7 is next. The system was left off, as the
+user had it.
 
 ## Dashboard (user's request, 2026-11-05)
 
@@ -13,7 +15,7 @@ deployed to the dev HA as "Heat pump" in the sidebar.
   mini-graph-card, button-card, apexcharts-card) and not needed.
 - A live system diagram (picture-elements over inlined SVG), sections with tiles,
   gauges and trend graphs, a Trends view with history and the alarm log.
-- No one-tap controls until the write test has passed; see the Phase 6 plan.
+- Mode buttons on the circuits and hot water, added once the write test had passed.
 - Tests: the files are current, no custom cards, and every entity exists and is
   enabled by default on our pump.
 - Checked with headless Chrome: dark, light, phone width, no card errors; the pipes

@@ -20,9 +20,12 @@ Faults the display can produce (lost connection, refused logins, expired
 sessions, dropped records, malformed answers, values nobody has seen yet)
 are tested against an emulator of the display (`tools/emulator/`).
 
-Not tested live yet: a pump with a room sensor, cooling, a third heating
-circuit, a buffer tank, and any write (writes are tested against the
-emulator only so far).
+Writes were tested live on the Duo 300 Solar with the system switched off: 65
+settings, each changed by one step, read back and restored. See
+`docs/phase6-write-test-plan.md` for what was left out.
+
+Not tested live yet: a pump with a room sensor, cooling in operation, a third
+heating circuit, a buffer tank, and the writes left out of that test.
 
 ## Add your setup
 

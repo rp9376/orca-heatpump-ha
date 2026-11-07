@@ -170,8 +170,8 @@ headings:
    and `radiators` with yours (see their entity IDs), and delete the parts your pump
    doesn't have.
 
-Tapping anything opens its details, where you can change it; there are no one-tap
-controls on the dashboard itself.
+The mode buttons on the circuits and on hot water act at once. Anything else opens
+its details when tapped, where you can change it.
 
 ## How data is updated
 
@@ -296,6 +296,9 @@ programmes for daily schedules.
 - Values refresh every 30 seconds, timer programmes every hour.
 - The room setpoint range (10–35 °C) comes from the older integration, not the
   manufacturer's data, and no pump with a room sensor has been tested live yet.
+- **Operating programme:** on the tested pump, with the system switched off, Eco went
+  back to Normal by itself within seconds. Whether Party, Eco and Holiday work from
+  Home Assistant with the system on isn't known yet.
 - The same display added under both its IP address and a host name isn't
   recognised as one display; the display has no ID of its own.
 

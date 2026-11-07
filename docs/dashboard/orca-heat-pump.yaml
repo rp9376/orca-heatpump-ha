@@ -499,6 +499,14 @@ views:
       grid_options:
         columns: full
       state_content: hvac_action
+      features:
+      - &id002
+        type: climate-hvac-modes
+        hvac_modes:
+        - 'off'
+        - heat
+        - cool
+        - heat_cool
     - type: tile
       entity: sensor.underfloor_heating_flow_temperature
       name:
@@ -530,6 +538,8 @@ views:
       grid_options:
         columns: full
       state_content: hvac_action
+      features:
+      - *id002
     - type: tile
       entity: number.radiators_flow_temperature_setpoint
       name:
@@ -558,6 +568,11 @@ views:
       state_content:
       - state
       - temperature
+      features:
+      - type: water-heater-operation-modes
+        operation_modes:
+        - 'off'
+        - heat_pump
     - type: tile
       entity: sensor.hot_water_top_temperature
       name:
