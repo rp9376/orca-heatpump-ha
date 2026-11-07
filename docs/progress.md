@@ -76,6 +76,10 @@ they had no real use. That was wrong: @sinjorgo depended on the solar one for a 
 wired to the solar input (orca-energy-ha #30). That case is now detected from the
 input's value.
 
+Looked at in a browser for the first time, against the dev HA: the options dialog in
+English, and the setup form in English and Slovenian (opened, not submitted). All three
+render correctly.
+
 ### Decisions for the user
 
 1. **The go, and how to authenticate.** Install `gh` and run `gh auth login`, or give me
