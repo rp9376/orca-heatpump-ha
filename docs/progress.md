@@ -76,6 +76,13 @@ agents.
   decision.
 - **Moving:** tested on the emulator, by removing the old entry. Disabling it instead
   is covered by tests but wasn't run end to end.
+- **Wrong password and too many logins on a real display:** neither answer has ever been
+  recorded. `E_PASS_DONT_MATCH` comes from another product's client, and the emulator
+  was written to give the same answer, so the tests can't catch a difference.
+- **The setup and options forms in a browser:** never looked at by an agent; the flows
+  ran through the API. The room sensor, solar and buffer dropdowns have never been used
+  on the real pump. Forcing them on the emulator only adds devices and entities the
+  pump doesn't have, so removing them is proposed to the user.
 
 ## Dashboard (user's request, 2026-11-05)
 
