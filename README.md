@@ -5,9 +5,8 @@ heat pumps with a networked touch display. It reads and changes the heat
 pump's settings through the display's web interface on your local network;
 no cloud account is needed.
 
-> **Status: in development, not released yet.** Until the first release, use
-> [orca-energy-ha](https://github.com/Tomasinjo/orca-energy-ha) if you need
-> an Orca integration today.
+> **Status: beta.** Tested live on one heat pump, a Duo 300 Solar, with recorded data
+> from two more. If your setup is different, [tell us how it goes](docs/supported-setups.md#add-your-setup).
 
 ## What it does
 

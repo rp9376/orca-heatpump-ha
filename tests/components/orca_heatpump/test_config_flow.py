@@ -487,3 +487,32 @@ async def test_disabled_old_integration_needs_no_warning(
     )
 
     assert result["type"] is FlowResultType.CREATE_ENTRY
+
+
+async def test_old_integration_warning_comes_before_login(
+    hass: HomeAssistant, host: str, emulator: Emulator
+) -> None:
+    """The old integration never logs out, so the warning can't depend on a login."""
+    MockConfigEntry(
+        domain=OLD_DOMAIN, unique_id="127.0.0.1", data={"hostname": "127.0.0.1"}
+    ).add_to_hass(hass)
+    emulator.max_sessions = 0
+    result = await hass.config_entries.flow.async_init(
+        DOMAIN, context={"source": SOURCE_USER}
+    )
+
+    result = await hass.config_entries.flow.async_configure(
+        result["flow_id"], login(host) | {CONF_ALLOW_POWER_LIMITS: False}
+    )
+    assert result["step_id"] == "old_integration"
+    assert emulator.requests == []
+
+    result = await hass.config_entries.flow.async_configure(result["flow_id"], {})
+    assert result["step_id"] == "user"
+    assert result["errors"] == {"base": "too_many_users"}
+
+    emulator.max_sessions = 2
+    result = await hass.config_entries.flow.async_configure(
+        result["flow_id"], login(host) | {CONF_ALLOW_POWER_LIMITS: False}
+    )
+    assert result["type"] is FlowResultType.CREATE_ENTRY

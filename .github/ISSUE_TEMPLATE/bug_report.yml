@@ -1,0 +1,39 @@
+name: Bug report
+description: Something doesn't work as the README says.
+labels: [bug]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened, and what did you expect?
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Integration and Home Assistant versions
+      placeholder: 1.0.0b1, 2026.11.0
+    validations:
+      required: true
+  - type: input
+    id: pump
+    attributes:
+      label: Heat pump model and what is connected
+      placeholder: Duo 300 Solar, underfloor heating and radiators, hot water, solar
+    validations:
+      required: true
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Diagnostics
+      description: >-
+        Open the heat pump's device page, choose ⋮ and Download diagnostics, then drop
+        the file here. The display's address and login are removed from it.
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Log lines
+      description: Anything from the log that mentions orca_heatpump.
+      render: text

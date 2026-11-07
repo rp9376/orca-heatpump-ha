@@ -115,8 +115,8 @@ class OrcaConfigFlow(ConfigFlow, domain=DOMAIN):
 
     def __init__(self) -> None:
         """Initialize the flow."""
-        self._data: dict[str, Any] = {}
-        self._options: dict[str, Any] = {}
+        self._user_input: dict[str, Any] | None = None
+        self._warned_host: str | None = None
 
     @staticmethod
     @callback
@@ -140,6 +140,15 @@ class OrcaConfigFlow(ConfigFlow, domain=DOMAIN):
                 # The display has no ID of its own, and a host isn't a valid
                 # unique ID (ADR 0013), so entries are told apart by their host.
                 self._async_abort_entries_match({CONF_HOST: host})
+                # Before logging in: the old integration never logs out, so the
+                # login could fail for the reason the warning explains.
+                if host != self._warned_host and old_integration_has(self.hass, host):
+                    self._warned_host = host
+                    self._user_input = user_input
+                    return self.async_show_form(
+                        step_id="old_integration",
+                        description_placeholders={"host": host},
+                    )
                 data = {
                     CONF_HOST: host,
                     CONF_USERNAME: user_input[CONF_USERNAME],
@@ -147,13 +156,13 @@ class OrcaConfigFlow(ConfigFlow, domain=DOMAIN):
                 }
                 errors, topology = await validate(self.hass, data)
                 if topology is not None:
-                    self._data = data | {CONF_TOPOLOGY: topology_to_data(topology)}
-                    self._options = {
-                        CONF_ALLOW_POWER_LIMITS: user_input[CONF_ALLOW_POWER_LIMITS]
-                    }
-                    if old_integration_has(self.hass, host):
-                        return await self.async_step_old_integration()
-                    return self._create_entry()
+                    return self.async_create_entry(
+                        title=DEFAULT_TITLE,
+                        data=data | {CONF_TOPOLOGY: topology_to_data(topology)},
+                        options={
+                            CONF_ALLOW_POWER_LIMITS: user_input[CONF_ALLOW_POWER_LIMITS]
+                        },
+                    )
         return self.async_show_form(
             step_id="user",
             data_schema=self.add_suggested_values_to_schema(USER_SCHEMA, user_input),
@@ -163,18 +172,8 @@ class OrcaConfigFlow(ConfigFlow, domain=DOMAIN):
     async def async_step_old_integration(
         self, user_input: dict[str, Any] | None = None
     ) -> ConfigFlowResult:
-        """Warn that orca-energy-ha polls the same pump."""
-        if user_input is not None:
-            return self._create_entry()
-        return self.async_show_form(
-            step_id="old_integration",
-            description_placeholders={"host": self._data[CONF_HOST]},
-        )
-
-    def _create_entry(self) -> ConfigFlowResult:
-        return self.async_create_entry(
-            title=DEFAULT_TITLE, data=self._data, options=self._options
-        )
+        """Continue after the warning that orca-energy-ha polls the same pump."""
+        return await self.async_step_user(self._user_input)
 
     async def async_step_reauth(
         self, entry_data: Mapping[str, Any]

@@ -1,0 +1,36 @@
+name: Add my setup
+description: Share your pump's data so it can be tested from now on.
+labels: [fixture]
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        Thanks! See docs/supported-setups.md. Your diagnostics file becomes a test
+        fixture, so other pumps like yours keep working.
+  - type: input
+    id: pump
+    attributes:
+      label: Heat pump model and firmware
+      description: The firmware is on the heat pump's device page.
+    validations:
+      required: true
+  - type: textarea
+    id: connected
+    attributes:
+      label: What is connected?
+      description: Heating circuits, hot water, solar, buffer tank, room sensors.
+    validations:
+      required: true
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Diagnostics
+      description: >-
+        Open the heat pump's device page, choose ⋮ and Download diagnostics, then drop
+        the file here. The display's address and login are removed from it.
+    validations:
+      required: true
+  - type: textarea
+    id: wrong
+    attributes:
+      label: Anything that looks wrong in Home Assistant?
