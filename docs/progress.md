@@ -1,9 +1,8 @@
 # Progress
 
-**Phase 6 live write tests passed on 2026-11-07, with one open point: the operating
-programme** (see the result in `docs/phase6-write-test-plan.md`). Waiting for the
-user's answers on it and on Tier C; Phase 7 is next. The system was left off, as the
-user had it.
+**Phase 6 done on 2026-11-07: the live write tests passed.** Eco doesn't hold, which
+the user decided to leave (firmware from 2016). The system is on, as the user agreed.
+Phase 7 is next. Result: `docs/phase6-write-test-plan.md`.
 
 ## Dashboard (user's request, 2026-11-05)
 

@@ -8,7 +8,7 @@ The heat pump's power limits are service-level settings:
 `2_Max_moc_TC_pri_HLAJ` (space cooling) and `2_Max_moc_TC_TISJA` (quiet
 mode). orca-energy-ha exposes the first three as writable numbers for
 everyone, with a range of 10–100 %. The manufacturer's minimums are higher,
-and in orca-energy-ha #20 an out-of-range value written by an automation
+and in [orca-energy-ha #20](https://github.com/Tomasinjo/orca-energy-ha/issues/20) an out-of-range value written by an automation
 **restarted the controller**.
 
 Manufacturer ranges (`research/moja_orca_catalog.json`, raw ×10):

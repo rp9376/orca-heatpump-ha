@@ -82,8 +82,9 @@ circuits, hot water, solar and buffer tank your pump has.
 heating, hot water, cooling and quiet mode adjustable. These are service
 settings: wrong values can stop the heat pump. Values outside the
 manufacturer's ranges (40–100 % for heating and hot water, 16–100 % for
-cooling, 31–100 % for quiet mode) are always refused. Without the option the
-limits are shown read-only.
+cooling, 31–100 % for quiet mode) are always refused: a user of the older integration
+saw [their controller restart](https://github.com/Tomasinjo/orca-energy-ha/issues/20) after an automation wrote out-of-range values.
+Without the option the limits are shown read-only.
 
 ## Options
 
@@ -296,9 +297,9 @@ programmes for daily schedules.
 - Values refresh every 30 seconds, timer programmes every hour.
 - The room setpoint range (10–35 °C) comes from the older integration, not the
   manufacturer's data, and no pump with a room sensor has been tested live yet.
-- **Operating programme:** on the tested pump, with the system switched off, Eco went
-  back to Normal by itself within seconds. Whether Party, Eco and Holiday work from
-  Home Assistant with the system on isn't known yet.
+- **Operating programme:** on the tested pump (firmware from 2016), Eco goes back to
+  Normal by itself within seconds, whether the system is on or off. The Moja Orca app's
+  dropdown writes the same setting. Party and Holiday weren't tried.
 - The same display added under both its IP address and a host name isn't
   recognised as one display; the display has no ID of its own.
 
