@@ -200,6 +200,10 @@ The pipes stay still between compressor runs, even though the circulation pump u
 keeps running (its tile shows that). The grey piece at the valve shows where the valve
 points; it rests on hot water when idle, which doesn't mean the water is heating.
 
+Each circuit shows its flow temperature and its set point (`→`). On a circuit with no
+flow sensor connected, the flow temperature line stays empty. The valve at the split
+is the radiator circuit's mixing valve, with its opening next to it.
+
 The mode buttons on the circuits and on hot water act at once. Anything else opens
 its details when tapped, where you can change it.
 

@@ -180,3 +180,19 @@ def test_pipes_flow_only_while_heat_is_produced(
     }
 
     assert shown == flows
+
+
+@pytest.mark.parametrize(
+    ("flow", "shown"),
+    [("35.0", True), ("unavailable", False), ("unknown", False)],
+)
+def test_radiator_flow_is_empty_without_a_value(flow: str, *, shown: bool) -> None:
+    """The radiators' flow line stays empty on a circuit without a flow sensor."""
+    states = {build_dashboard.RADIATOR_FLOW: flow}
+    group = next(
+        element
+        for element in build_dashboard._diagram()["elements"]
+        if element.get("type") == "conditional"
+        and element["elements"][0].get("entity") == build_dashboard.RADIATOR_FLOW
+    )
+    assert all(_holds(c, states) for c in group["conditions"]) is shown

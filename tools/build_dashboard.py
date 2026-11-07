@@ -75,9 +75,9 @@ COLD = "#42a5f5"
 SOLAR = "#ffb300"
 
 SUPPLY = "M220 300 H384"
-HEATING_MAIN = "M400 284 V110 H520"
-FLOOR = "M520 110 H620"
-RADIATORS = "M520 110 V250 H620"
+HEATING_MAIN = "M400 284 V110 H494"
+FLOOR = "M546 110 H620"
+RADIATORS = "M520 136 V250 H620"
 TANK = "M400 316 V455 H620"
 SOLAR_PIPE = "M780 430 H840"
 VALVE_TO_HEATING = "M400 274 V215"
@@ -94,6 +94,8 @@ OUTDOOR_STATE = "sensor.heat_pump_outdoor_unit_state"
 OUTDOOR_POWER = "sensor.heat_pump_outdoor_unit_power"
 FLOOR_PUMP = "binary_sensor.underfloor_heating_circuit_pump"
 RADIATOR_PUMP = "binary_sensor.radiators_circuit_pump"
+RADIATOR_FLOW = "sensor.radiators_flow_temperature"
+MIXING_VALVE = "sensor.radiators_mixing_valve_opening"
 SOLAR_PUMP = "binary_sensor.solar_collectors_solar_pump"
 ALARM = "binary_sensor.heat_pump_alarm"
 
@@ -136,6 +138,7 @@ def _base() -> str:
         'stroke="#8886" stroke-width="2"/>'
         f'<rect x="840" y="365" width="120" height="130" rx="20" {box}/>'
         '<circle cx="400" cy="300" r="26" fill="#8883" stroke="#8886" stroke-width="2"/>'
+        '<circle cx="520" cy="110" r="26" fill="#8883" stroke="#8886" stroke-width="2"/>'
     )
 
 
@@ -219,15 +222,12 @@ def _label(
     }
 
 
+def _small(entity: str, x: float, y: float, **options: str) -> dict[str, Any]:
+    return _label(entity, x, y, size="clamp(10px, 1.1vw, 14px)", weight=400, **options)
+
+
 def _name(entity: str, x: float, y: float) -> dict[str, Any]:
-    return _label(
-        entity,
-        x,
-        y,
-        size="clamp(10px, 1.1vw, 14px)",
-        weight=400,
-        attribute="friendly_name",
-    )
+    return _small(entity, x, y, attribute="friendly_name")
 
 
 def _icon(icon: str, entity: str, x: float, y: float, color: str) -> dict[str, Any]:
@@ -279,37 +279,38 @@ def _diagram() -> dict[str, Any]:
             _overlay(_spin(), {"entity": OUTDOOR_STATE, "state_not": "off"}),
             _icon("mdi:fan", OUTDOOR_STATE, 130, 262, "var(--primary-text-color)"),
             _label("sensor.heat_pump_outdoor_temperature", 130, 340),
-            _label(
-                "sensor.heat_pump_outdoor_unit_power",
-                130,
-                372,
-                size="clamp(10px, 1.1vw, 14px)",
-                weight=400,
-            ),
+            _small("sensor.heat_pump_outdoor_unit_power", 130, 372),
             _label("sensor.heat_pump_water_temperature", 300, 268),
-            _label(
-                "sensor.heat_pump_target_water_temperature",
-                300,
-                332,
-                size="clamp(10px, 1.1vw, 14px)",
-                weight=400,
-                prefix="→ ",
-            ),
+            _small("sensor.heat_pump_target_water_temperature", 300, 332, prefix="→ "),
             _icon("mdi:valve", VALVE, 400, 300, "var(--primary-text-color)"),
+            _icon("mdi:valve", MIXING_VALVE, 520, 110, "var(--primary-text-color)"),
+            _small(MIXING_VALVE, 572, 145),
             _icon("mdi:heating-coil", "climate.underfloor_heating", 672, 105, HOT),
             _name("climate.underfloor_heating", 820, 78),
             _label("sensor.underfloor_heating_flow_temperature", 820, 115),
-            _label(
+            _small(
                 "number.underfloor_heating_flow_temperature_setpoint",
                 820,
                 145,
-                size="clamp(10px, 1.1vw, 14px)",
-                weight=400,
                 prefix="→ ",
             ),
             _icon("mdi:radiator", "climate.radiators", 672, 250, HOT),
             _name("climate.radiators", 820, 223),
-            _label("climate.radiators", 820, 260),
+            # A mixing circuit can have no flow sensor, as on the tested pump.
+            {
+                "type": "conditional",
+                "conditions": [
+                    {"entity": RADIATOR_FLOW, "state_not": "unavailable"},
+                    {"entity": RADIATOR_FLOW, "state_not": "unknown"},
+                ],
+                "elements": [_label(RADIATOR_FLOW, 820, 260)],
+            },
+            _small(
+                "number.radiators_flow_temperature_setpoint",
+                820,
+                290,
+                prefix="→ ",
+            ),
             _label("sensor.hot_water_top_temperature", 700, 385),
             _icon("mdi:water-boiler", "water_heater.hot_water", 700, 455, "white"),
             _label("sensor.hot_water_bottom_temperature", 700, 530),
@@ -486,7 +487,7 @@ def _overview(text: dict[str, str]) -> dict[str, Any]:
                     features=[HVAC_MODES],
                 ),
                 _tile("number.radiators_flow_temperature_setpoint"),
-                _tile("sensor.radiators_mixing_valve_opening"),
+                _tile(MIXING_VALVE),
                 _tile("select.radiators_timer_programme"),
                 _tile("binary_sensor.radiators_circuit_pump"),
             ),

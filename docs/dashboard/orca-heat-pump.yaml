@@ -51,7 +51,7 @@ views:
       heading: System
       icon: mdi:sitemap-outline
     - type: picture-elements
-      image: data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAwIDYwMCIgZmlsbD0ibm9uZSI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJ0IiB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZmY1MjUyIiBzdG9wLW9wYWNpdHk9Ii41NSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzQyYTVmNSIgc3RvcC1vcGFjaXR5PSIuNDUiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cGF0aCBkPSJNMjIwIDMwMCBIMzg0IiBzdHJva2U9IiM4ODg3IiBzdHJva2Utd2lkdGg9IjkiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjxwYXRoIGQ9Ik00MDAgMjg0IFYxMTAgSDUyMCIgc3Ryb2tlPSIjODg4NyIgc3Ryb2tlLXdpZHRoPSI5IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48cGF0aCBkPSJNNTIwIDExMCBINjIwIiBzdHJva2U9IiM4ODg3IiBzdHJva2Utd2lkdGg9IjkiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjxwYXRoIGQ9Ik01MjAgMTEwIFYyNTAgSDYyMCIgc3Ryb2tlPSIjODg4NyIgc3Ryb2tlLXdpZHRoPSI5IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48cGF0aCBkPSJNNDAwIDMxNiBWNDU1IEg2MjAiIHN0cm9rZT0iIzg4ODciIHN0cm9rZS13aWR0aD0iOSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PHBhdGggZD0iTTc4MCA0MzAgSDg0MCIgc3Ryb2tlPSIjODg4NyIgc3Ryb2tlLXdpZHRoPSI5IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48cmVjdCB4PSI0MCIgeT0iMjAwIiB3aWR0aD0iMTgwIiBoZWlnaHQ9IjIwMCIgcng9IjIwIiBmaWxsPSIjODg4MiIgc3Ryb2tlPSIjODg4NiIgc3Ryb2tlLXdpZHRoPSIyIi8+PHJlY3QgeD0iNjIwIiB5PSI0MCIgd2lkdGg9IjM0MCIgaGVpZ2h0PSIxMzAiIHJ4PSIyMCIgZmlsbD0iIzg4ODIiIHN0cm9rZT0iIzg4ODYiIHN0cm9rZS13aWR0aD0iMiIvPjxyZWN0IHg9IjYyMCIgeT0iMTg1IiB3aWR0aD0iMzQwIiBoZWlnaHQ9IjEzMCIgcng9IjIwIiBmaWxsPSIjODg4MiIgc3Ryb2tlPSIjODg4NiIgc3Ryb2tlLXdpZHRoPSIyIi8+PHJlY3QgeD0iNjIwIiB5PSIzMzUiIHdpZHRoPSIxNjAiIGhlaWdodD0iMjQwIiByeD0iNDQiIGZpbGw9InVybCgjdCkiIHN0cm9rZT0iIzg4ODYiIHN0cm9rZS13aWR0aD0iMiIvPjxyZWN0IHg9Ijg0MCIgeT0iMzY1IiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEzMCIgcng9IjIwIiBmaWxsPSIjODg4MiIgc3Ryb2tlPSIjODg4NiIgc3Ryb2tlLXdpZHRoPSIyIi8+PGNpcmNsZSBjeD0iNDAwIiBjeT0iMzAwIiByPSIyNiIgZmlsbD0iIzg4ODMiIHN0cm9rZT0iIzg4ODYiIHN0cm9rZS13aWR0aD0iMiIvPjwvc3ZnPg==
+      image: data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAwIDYwMCIgZmlsbD0ibm9uZSI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJ0IiB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZmY1MjUyIiBzdG9wLW9wYWNpdHk9Ii41NSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzQyYTVmNSIgc3RvcC1vcGFjaXR5PSIuNDUiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cGF0aCBkPSJNMjIwIDMwMCBIMzg0IiBzdHJva2U9IiM4ODg3IiBzdHJva2Utd2lkdGg9IjkiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjxwYXRoIGQ9Ik00MDAgMjg0IFYxMTAgSDQ5NCIgc3Ryb2tlPSIjODg4NyIgc3Ryb2tlLXdpZHRoPSI5IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48cGF0aCBkPSJNNTQ2IDExMCBINjIwIiBzdHJva2U9IiM4ODg3IiBzdHJva2Utd2lkdGg9IjkiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjxwYXRoIGQ9Ik01MjAgMTM2IFYyNTAgSDYyMCIgc3Ryb2tlPSIjODg4NyIgc3Ryb2tlLXdpZHRoPSI5IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48cGF0aCBkPSJNNDAwIDMxNiBWNDU1IEg2MjAiIHN0cm9rZT0iIzg4ODciIHN0cm9rZS13aWR0aD0iOSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PHBhdGggZD0iTTc4MCA0MzAgSDg0MCIgc3Ryb2tlPSIjODg4NyIgc3Ryb2tlLXdpZHRoPSI5IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48cmVjdCB4PSI0MCIgeT0iMjAwIiB3aWR0aD0iMTgwIiBoZWlnaHQ9IjIwMCIgcng9IjIwIiBmaWxsPSIjODg4MiIgc3Ryb2tlPSIjODg4NiIgc3Ryb2tlLXdpZHRoPSIyIi8+PHJlY3QgeD0iNjIwIiB5PSI0MCIgd2lkdGg9IjM0MCIgaGVpZ2h0PSIxMzAiIHJ4PSIyMCIgZmlsbD0iIzg4ODIiIHN0cm9rZT0iIzg4ODYiIHN0cm9rZS13aWR0aD0iMiIvPjxyZWN0IHg9IjYyMCIgeT0iMTg1IiB3aWR0aD0iMzQwIiBoZWlnaHQ9IjEzMCIgcng9IjIwIiBmaWxsPSIjODg4MiIgc3Ryb2tlPSIjODg4NiIgc3Ryb2tlLXdpZHRoPSIyIi8+PHJlY3QgeD0iNjIwIiB5PSIzMzUiIHdpZHRoPSIxNjAiIGhlaWdodD0iMjQwIiByeD0iNDQiIGZpbGw9InVybCgjdCkiIHN0cm9rZT0iIzg4ODYiIHN0cm9rZS13aWR0aD0iMiIvPjxyZWN0IHg9Ijg0MCIgeT0iMzY1IiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEzMCIgcng9IjIwIiBmaWxsPSIjODg4MiIgc3Ryb2tlPSIjODg4NiIgc3Ryb2tlLXdpZHRoPSIyIi8+PGNpcmNsZSBjeD0iNDAwIiBjeT0iMzAwIiByPSIyNiIgZmlsbD0iIzg4ODMiIHN0cm9rZT0iIzg4ODYiIHN0cm9rZS13aWR0aD0iMiIvPjxjaXJjbGUgY3g9IjUyMCIgY3k9IjExMCIgcj0iMjYiIGZpbGw9IiM4ODgzIiBzdHJva2U9IiM4ODg2IiBzdHJva2Utd2lkdGg9IjIiLz48L3N2Zz4=
       grid_options:
         columns: full
       elements:
@@ -144,7 +144,7 @@ views:
           state_not: cooling
         elements:
         - type: image
-          image: data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAwIDYwMCIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTQwMCAyODQgVjExMCBINTIwIiBzdHJva2U9IiNmZjcwNDMiIHN0cm9rZS13aWR0aD0iOSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2UtZGFzaGFycmF5PSI0IDIyIj48YW5pbWF0ZSBhdHRyaWJ1dGVOYW1lPSJzdHJva2UtZGFzaG9mZnNldCIgZnJvbT0iMjYiIHRvPSIwIiBkdXI9Ii45cyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiLz48L3BhdGg+PC9zdmc+
+          image: data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAwIDYwMCIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTQwMCAyODQgVjExMCBINDk0IiBzdHJva2U9IiNmZjcwNDMiIHN0cm9rZS13aWR0aD0iOSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2UtZGFzaGFycmF5PSI0IDIyIj48YW5pbWF0ZSBhdHRyaWJ1dGVOYW1lPSJzdHJva2UtZGFzaG9mZnNldCIgZnJvbT0iMjYiIHRvPSIwIiBkdXI9Ii45cyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiLz48L3BhdGg+PC9zdmc+
           tap_action:
             action: none
           hold_action:
@@ -164,7 +164,7 @@ views:
           state: cooling
         elements:
         - type: image
-          image: data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAwIDYwMCIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTQwMCAyODQgVjExMCBINTIwIiBzdHJva2U9IiM0MmE1ZjUiIHN0cm9rZS13aWR0aD0iOSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2UtZGFzaGFycmF5PSI0IDIyIj48YW5pbWF0ZSBhdHRyaWJ1dGVOYW1lPSJzdHJva2UtZGFzaG9mZnNldCIgZnJvbT0iMjYiIHRvPSIwIiBkdXI9Ii45cyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiLz48L3BhdGg+PC9zdmc+
+          image: data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAwIDYwMCIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTQwMCAyODQgVjExMCBINDk0IiBzdHJva2U9IiM0MmE1ZjUiIHN0cm9rZS13aWR0aD0iOSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2UtZGFzaGFycmF5PSI0IDIyIj48YW5pbWF0ZSBhdHRyaWJ1dGVOYW1lPSJzdHJva2UtZGFzaG9mZnNldCIgZnJvbT0iMjYiIHRvPSIwIiBkdXI9Ii45cyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiLz48L3BhdGg+PC9zdmc+
           tap_action:
             action: none
           hold_action:
@@ -205,7 +205,7 @@ views:
           state_not: cooling
         elements:
         - type: image
-          image: data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAwIDYwMCIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTUyMCAxMTAgSDYyMCIgc3Ryb2tlPSIjZmY3MDQzIiBzdHJva2Utd2lkdGg9IjkiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLWRhc2hhcnJheT0iNCAyMiI+PGFuaW1hdGUgYXR0cmlidXRlTmFtZT0ic3Ryb2tlLWRhc2hvZmZzZXQiIGZyb209IjI2IiB0bz0iMCIgZHVyPSIuOXMiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIi8+PC9wYXRoPjwvc3ZnPg==
+          image: data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAwIDYwMCIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTU0NiAxMTAgSDYyMCIgc3Ryb2tlPSIjZmY3MDQzIiBzdHJva2Utd2lkdGg9IjkiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLWRhc2hhcnJheT0iNCAyMiI+PGFuaW1hdGUgYXR0cmlidXRlTmFtZT0ic3Ryb2tlLWRhc2hvZmZzZXQiIGZyb209IjI2IiB0bz0iMCIgZHVyPSIuOXMiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIi8+PC9wYXRoPjwvc3ZnPg==
           tap_action:
             action: none
           hold_action:
@@ -226,7 +226,7 @@ views:
           state: cooling
         elements:
         - type: image
-          image: data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAwIDYwMCIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTUyMCAxMTAgSDYyMCIgc3Ryb2tlPSIjNDJhNWY1IiBzdHJva2Utd2lkdGg9IjkiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLWRhc2hhcnJheT0iNCAyMiI+PGFuaW1hdGUgYXR0cmlidXRlTmFtZT0ic3Ryb2tlLWRhc2hvZmZzZXQiIGZyb209IjI2IiB0bz0iMCIgZHVyPSIuOXMiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIi8+PC9wYXRoPjwvc3ZnPg==
+          image: data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAwIDYwMCIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTU0NiAxMTAgSDYyMCIgc3Ryb2tlPSIjNDJhNWY1IiBzdHJva2Utd2lkdGg9IjkiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLWRhc2hhcnJheT0iNCAyMiI+PGFuaW1hdGUgYXR0cmlidXRlTmFtZT0ic3Ryb2tlLWRhc2hvZmZzZXQiIGZyb209IjI2IiB0bz0iMCIgZHVyPSIuOXMiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIi8+PC9wYXRoPjwvc3ZnPg==
           tap_action:
             action: none
           hold_action:
@@ -249,7 +249,7 @@ views:
           state_not: cooling
         elements:
         - type: image
-          image: data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAwIDYwMCIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTUyMCAxMTAgVjI1MCBINjIwIiBzdHJva2U9IiNmZjcwNDMiIHN0cm9rZS13aWR0aD0iOSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2UtZGFzaGFycmF5PSI0IDIyIj48YW5pbWF0ZSBhdHRyaWJ1dGVOYW1lPSJzdHJva2UtZGFzaG9mZnNldCIgZnJvbT0iMjYiIHRvPSIwIiBkdXI9Ii45cyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiLz48L3BhdGg+PC9zdmc+
+          image: data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAwIDYwMCIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTUyMCAxMzYgVjI1MCBINjIwIiBzdHJva2U9IiNmZjcwNDMiIHN0cm9rZS13aWR0aD0iOSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2UtZGFzaGFycmF5PSI0IDIyIj48YW5pbWF0ZSBhdHRyaWJ1dGVOYW1lPSJzdHJva2UtZGFzaG9mZnNldCIgZnJvbT0iMjYiIHRvPSIwIiBkdXI9Ii45cyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiLz48L3BhdGg+PC9zdmc+
           tap_action:
             action: none
           hold_action:
@@ -270,7 +270,7 @@ views:
           state: cooling
         elements:
         - type: image
-          image: data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAwIDYwMCIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTUyMCAxMTAgVjI1MCBINjIwIiBzdHJva2U9IiM0MmE1ZjUiIHN0cm9rZS13aWR0aD0iOSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2UtZGFzaGFycmF5PSI0IDIyIj48YW5pbWF0ZSBhdHRyaWJ1dGVOYW1lPSJzdHJva2UtZGFzaG9mZnNldCIgZnJvbT0iMjYiIHRvPSIwIiBkdXI9Ii45cyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiLz48L3BhdGg+PC9zdmc+
+          image: data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAwIDYwMCIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTUyMCAxMzYgVjI1MCBINjIwIiBzdHJva2U9IiM0MmE1ZjUiIHN0cm9rZS13aWR0aD0iOSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2UtZGFzaGFycmF5PSI0IDIyIj48YW5pbWF0ZSBhdHRyaWJ1dGVOYW1lPSJzdHJva2UtZGFzaG9mZnNldCIgZnJvbT0iMjYiIHRvPSIwIiBkdXI9Ii45cyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiLz48L3BhdGg+PC9zdmc+
           tap_action:
             action: none
           hold_action:
@@ -374,6 +374,26 @@ views:
           color: var(--primary-text-color)
           --mdc-icon-size: clamp(20px, 2.8vw, 36px)
       - type: icon
+        icon: mdi:valve
+        entity: sensor.radiators_mixing_valve_opening
+        tap_action:
+          action: more-info
+        style:
+          left: 52.0%
+          top: 18.3%
+          color: var(--primary-text-color)
+          --mdc-icon-size: clamp(20px, 2.8vw, 36px)
+      - type: state-label
+        entity: sensor.radiators_mixing_valve_opening
+        style:
+          left: 57.2%
+          top: 24.2%
+          color: var(--primary-text-color)
+          font-size: clamp(10px, 1.1vw, 14px)
+          font-weight: '400'
+          white-space: nowrap
+          padding: '0'
+      - type: icon
         icon: mdi:heating-coil
         entity: climate.underfloor_heating
         tap_action:
@@ -436,14 +456,32 @@ views:
           font-weight: '400'
           white-space: nowrap
           padding: '0'
+      - type: conditional
+        conditions:
+        - entity: sensor.radiators_flow_temperature
+          state_not: unavailable
+        - entity: sensor.radiators_flow_temperature
+          state_not: unknown
+        elements:
+        - type: state-label
+          entity: sensor.radiators_flow_temperature
+          style:
+            left: 82.0%
+            top: 43.3%
+            color: var(--primary-text-color)
+            font-size: clamp(12px, 1.5vw, 18px)
+            font-weight: '600'
+            white-space: nowrap
+            padding: '0'
       - type: state-label
-        entity: climate.radiators
+        entity: number.radiators_flow_temperature_setpoint
+        prefix: '→ '
         style:
           left: 82.0%
-          top: 43.3%
+          top: 48.3%
           color: var(--primary-text-color)
-          font-size: clamp(12px, 1.5vw, 18px)
-          font-weight: '600'
+          font-size: clamp(10px, 1.1vw, 14px)
+          font-weight: '400'
           white-space: nowrap
           padding: '0'
       - type: state-label

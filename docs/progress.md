@@ -104,6 +104,12 @@ Seen on the real pump with a page left open and no reload: the unit stopped at 1
 and only the grey stub stayed; it started at 15:49:30 and the pipes came back. A cooling
 run and a real hot water run with this rule are covered by tests only so far.
 
+The radiator box now matches the underfloor one at the user's request: flow temperature
+and set point, with the flow line empty when there is no value, as on this pump, which
+has no radiator flow sensor. The mixing valve sits on the split with its opening beside
+it. Seen on the real page in light and at phone width in dark, in English; the Slovenian
+files come from the same generator, with no diagram text of their own.
+
 ### Decisions for the user
 
 1. **The go, and how to authenticate.** Install `gh` and run `gh auth login`, or give me
