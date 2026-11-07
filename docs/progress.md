@@ -134,8 +134,10 @@ its target to either circuits or tank, and drifts to about 24 °C when stopped.
 
 ### Not verified
 
-- **CI is not green on GitHub yet.** On the first push Lint and hassfest passed. HACS
-  validation failed only on the missing repository topics. All three test jobs failed at
+- **CI is green on GitHub since `485a427` (2026-11-07):** Lint, hassfest, HACS
+  validation and the tests on minimum, stable and beta all pass. HACS warns only that the
+  manifest has no categories. On the first push HACS validation failed only on the
+  missing repository topics. All three test jobs failed at
   install: the plugin's folder is `pytest-homeassistant` in the 2026.11.0 tag and
   `pytest-home-assistant` on dev, and CI used the dev name. With that fixed, a fresh
   Python 3.14 venv with `homeassistant==2026.11.0` showed `mypy` lacked the PyYAML stubs
