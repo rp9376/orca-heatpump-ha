@@ -1,8 +1,65 @@
 # Progress
 
-**Phase 6 done on 2026-11-07: the live write tests passed.** Eco doesn't hold, which
-the user decided to leave (firmware from 2016). The system is on, as the user agreed.
-Phase 7 is next. Result: `docs/phase6-write-test-plan.md`.
+**Phase 7 done on 2026-11-07: stopped at CP3. Nothing is pushed or published.** The
+user decides the points below and publishes.
+
+## CP3 report (2026-11-07)
+
+### Where things stand
+
+- **Version `1.0.0b1`.** Changelog, README, supported setups, backlog, contributing
+  guide, CI and release workflows, issue templates and HACS settings are in place.
+- **Checks on this commit's code:** lint, ruff, mypy strict and zizmor pass, hassfest
+  reports the integration valid, 1,115 tests and 739 snapshots pass, coverage is 100 %
+  (1,525 statements, 292 branches). The one test warning comes from the `backoff`
+  package, not from this code.
+- **"Moving from orca-energy-ha", end to end in the dev HA, emulator only.** The old
+  integration set up, then this one: the warning appears before any login, continuing
+  works, and a repair issue opens. Removing the old entry closes the issue. Adding the
+  same display as `127.0.0.1:80` aborts as already configured. Removing the test entry
+  leaves no entities behind. The first run of this test found a real bug: the warning
+  came after the login, which the old integration's open sessions could refuse. Fixed
+  in `809d5fd`.
+- **The real pump:** dev HA restarted on the release code and polls normally. Every
+  writable setting equals the baseline of 7 Nov apart from the system switch, on as
+  agreed. No alarm. Power limit option off. No warning from `orca_heatpump` in the log.
+  The log's warnings about deprecated properties all come from the old `orca` component
+  in the dev HA, which the move test loaded.
+- **Publish steps dry-run locally** on a throwaway clone, with no remote: one commit,
+  136 files, no address or private file in it, and all 1,115 tests pass from that tree,
+  so they need nothing outside git. This corrected `docs/repo-setup.md`, which had
+  offered leaving `research/` out; the tests load two files from it.
+- **Address:** only `PLAN.md` holds it now in tracked files; `research/protocol.md` no
+  longer does. The login in `PLAN.md` is the manufacturer's default, which the README
+  gives anyway.
+
+### Decisions for the user
+
+1. **The go, and how to authenticate.** Install `gh` and run `gh auth login`, or give me
+   a remote. I never handle tokens. Steps: `docs/repo-setup.md`.
+2. **What goes public.** Recommended: everything except `PLAN.md`, `CLAUDE.md` and
+   `docs/progress.md`, pushed as one fresh commit, because the local history holds the
+   address and those files.
+3. **Commit author address.** The local commits use `rp9376@student.uni-lj.si`, which
+   would be public. GitHub's private address is the alternative (in the steps).
+4. **Release.** `v1.0.0b1` as a pre-release, installed through HACS as a custom
+   repository. The HACS default store can wait until the beta has been used.
+5. **Tom Kern.** Draft in `.scratch/note-to-tom-kern.md`, not sent. Send it, change it
+   or skip it; it links to the repository, so it goes after the push. `<your name>` is
+   a placeholder.
+6. **PyPI:** nothing to do. The client is inside the integration (ADR 0005).
+
+### Not verified
+
+- **HACS validation, CI and the release workflow have never run:** they need a remote.
+  The first push may need small fixes.
+- **Only one real pump:** schema 23. The other 44 schemas run on synthetic data. Not
+  tested live: a room sensor, cooling in operation, a third circuit, a buffer tank.
+- **Out-of-range refusal:** tested on the emulator only, deliberately (#20).
+- **Eco:** the pump goes back to Normal by itself, a known limitation by the user's
+  decision.
+- **Moving:** tested on the emulator, by removing the old entry. Disabling it instead
+  is covered by tests but wasn't run end to end.
 
 ## Dashboard (user's request, 2026-11-05)
 
@@ -483,10 +540,3 @@ HTTP 408 means our request was too big (a bug, never "tag missing").
   unchanged (`git status` clean). I then used the release tags on GitHub
   instead.
 
-## Before CP3 (collected as I go)
-
-- `PLAN.md` will be public. It contains the pump's LAN address, its default
-  login and details of your house's setup. Decide whether to publish it
-  as is.
-- `research/protocol.md` also holds the pump's address (safety review). Remove it,
-  or keep the research files out of the public repository.
