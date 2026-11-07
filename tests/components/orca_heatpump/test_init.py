@@ -1,6 +1,7 @@
 """Tests for setting up and unloading the integration."""
 
 from collections.abc import Awaitable, Callable
+from dataclasses import replace
 from typing import Any
 from unittest.mock import patch
 
@@ -11,15 +12,13 @@ from pytest_homeassistant.common import MockConfigEntry
 from custom_components.orca_heatpump.config_flow import validate
 from custom_components.orca_heatpump.const import (
     CONF_ALLOW_POWER_LIMITS,
-    CONF_BUFFER,
-    CONF_SOLAR,
     CONF_TOPOLOGY,
     DOMAIN,
     OLD_DOMAIN,
-    OVERRIDE_ABSENT,
 )
 from custom_components.orca_heatpump.helpers import (
     async_create_session,
+    topology_from_data,
     topology_to_data,
 )
 from homeassistant.config_entries import ConfigEntryDisabler, ConfigEntryState
@@ -193,27 +192,20 @@ async def test_old_integration_issue(
     assert (issue_registry.async_get_issue(DOMAIN, issue_id) is not None) is has_issue
 
 
-async def test_overrides_and_stale_devices(
+async def test_stale_devices(
     hass: HomeAssistant,
     mock_config_entry: MockConfigEntry,
     device_registry: dr.DeviceRegistry,
 ) -> None:
-    """Options override detection; devices of absent elements are removed."""
+    """Devices of elements the pump doesn't have are removed."""
     mock_config_entry.add_to_hass(hass)
-    hass.config_entries.async_update_entry(
-        mock_config_entry,
-        options={"room_sensor_1": "present", CONF_SOLAR: "absent", CONF_BUFFER: "auto"},
-    )
     stale = device_registry.async_get_or_create(
         config_entry_id=mock_config_entry.entry_id,
-        identifiers={(DOMAIN, f"{mock_config_entry.entry_id}_solar")},
+        identifiers={(DOMAIN, f"{mock_config_entry.entry_id}_buffer")},
     )
 
     await hass.config_entries.async_setup(mock_config_entry.entry_id)
 
-    topology = mock_config_entry.runtime_data.topology
-    assert topology.circuits[0].room_sensor is True
-    assert topology.solar is False
     assert device_registry.async_get(stale.id) is None
 
 
@@ -309,20 +301,27 @@ async def test_old_integration_issue_clears(
 @pytest.mark.usefixtures("entity_registry_enabled_by_default")
 @pytest.mark.parametrize("pump", ["duo"], indirect=True)
 @pytest.mark.parametrize("platforms", [[Platform.NUMBER, Platform.SENSOR]])
-async def test_option_removes_orphaned_entities(
+async def test_topology_change_removes_orphaned_entities(
     hass: HomeAssistant,
     init_integration: MockConfigEntry,
     entity_registry: er.EntityRegistry,
 ) -> None:
-    """Saying a room sensor is absent removes its entities, and only those."""
+    """A topology without the room sensor removes its entities, and only those."""
     entry = init_integration
     room = "sensor.underfloor_heating_room_temperature"
     assert entity_registry.async_get(room) is not None
     before = len(er.async_entries_for_config_entry(entity_registry, entry.entry_id))
 
+    topology = topology_from_data(entry.data[CONF_TOPOLOGY])
+    circuits = tuple(
+        replace(c, room_sensor=False) if c.slot == 1 else c for c in topology.circuits
+    )
     hass.config_entries.async_update_entry(
         entry,
-        options={**entry.options, "room_sensor_1": OVERRIDE_ABSENT},
+        data={
+            **entry.data,
+            CONF_TOPOLOGY: topology_to_data(replace(topology, circuits=circuits)),
+        },
     )
     await hass.config_entries.async_reload(entry.entry_id)
     await hass.async_block_till_done()

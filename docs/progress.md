@@ -50,6 +50,32 @@ on the public fork `rp9376/orca-energy-ha`) and this log. This can't prove the a
 of a value nobody knew to look for, such as a cloud password that was never given to the
 agents.
 
+### Login limits on the real display (user's request, 2026-11-07)
+
+With the dev HA running, using only `login` and `logout`, one request at a time. Raw
+answers are in `research/captures/2026-11-07_login_limits/`. The user accepted a power
+cycle as the worst case for the full-display test; it wasn't needed.
+
+- **Wrong password:** `E_PASS_DONT_MATCH`, and the real form says the login was rejected.
+- **Wrong username:** `E_USER_DONT_EXIST`, which the code read as "not an Orca display".
+  **A real bug, fixed.** Neither wrong login locks the display.
+- **Full display:** three sessions fit, the next login gets `E_TOO_MANY_USERS`, and the
+  form says so. An open session keeps polling (15:06:06 and 15:06:36 succeeded). Logout
+  frees a slot at once.
+- **Setup while full:** `setup_retry` with a clear reason, then loaded by itself 21 s
+  after the slots were freed. No entity changed.
+- **My mistakes on the way:** the first attempt got HTTP 400 from a script bug
+  (`//cgi/login`), not a lockout. The script's "last poll" check didn't move either; the
+  log proved the polls succeeded. The emulator now gives these answers and allows three
+  sessions.
+
+### Options menu (user's decision, 2026-11-07)
+
+The room sensor, solar and buffer dropdowns are gone (ADR 0014). I first told the user
+they had no real use. That was wrong: @sinjorgo depended on the solar one for a sensor
+wired to the solar input (orca-energy-ha #30). That case is now detected from the
+input's value.
+
 ### Decisions for the user
 
 1. **The go, and how to authenticate.** Install `gh` and run `gh auth login`, or give me
@@ -76,13 +102,11 @@ agents.
   decision.
 - **Moving:** tested on the emulator, by removing the old entry. Disabling it instead
   is covered by tests but wasn't run end to end.
-- **Wrong password and too many logins on a real display:** neither answer has ever been
-  recorded. `E_PASS_DONT_MATCH` comes from another product's client, and the emulator
-  was written to give the same answer, so the tests can't catch a difference.
-- **The setup and options forms in a browser:** never looked at by an agent; the flows
-  ran through the API. The room sensor, solar and buffer dropdowns have never been used
-  on the real pump. Forcing them on the emulator only adds devices and entities the
-  pump doesn't have, so removing them is proposed to the user.
+- **Refused logins while running:** the repair issue raised when a running integration
+  keeps being refused needs its session to die while the display is full. Emulator only,
+  though it reads the same recorded answer.
+- **Solar input temperature:** never run on a real pump with a wired input; it rests on
+  the reading reported in orca-energy-ha #30.
 
 ## Dashboard (user's request, 2026-11-05)
 

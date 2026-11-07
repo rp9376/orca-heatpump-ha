@@ -66,32 +66,12 @@
     "step": {
       "init": {
         "title": "Orca heat pump options",
-        "description": "Corrections are only needed if detection got your setup wrong, for example when a sensor input is used for something else.",
         "data": {
-          "allow_power_limits": "Allow changing power limits",
-          "room_sensor_1": "Room sensor of circuit 1",
-          "room_sensor_2": "Room sensor of circuit 2",
-          "room_sensor_3": "Room sensor of circuit 3",
-          "solar": "Solar",
-          "buffer": "Buffer tank"
+          "allow_power_limits": "Allow changing power limits"
         },
         "data_description": {
-          "allow_power_limits": "Risky: makes the heat pump's power limits for heating, hot water, cooling and quiet mode adjustable. Wrong values can stop the heat pump; values outside the manufacturer's range are always refused.",
-          "room_sensor_1": "Automatic uses what the heat pump reports.",
-          "room_sensor_2": "Automatic uses what the heat pump reports.",
-          "room_sensor_3": "Automatic uses what the heat pump reports.",
-          "solar": "Automatic uses what the heat pump reports.",
-          "buffer": "Automatic uses what the heat pump reports."
+          "allow_power_limits": "Risky: makes the heat pump's power limits for heating, hot water, cooling and quiet mode adjustable. Wrong values can stop the heat pump; values outside the manufacturer's range are always refused."
         }
-      }
-    }
-  },
-  "selector": {
-    "override": {
-      "options": {
-        "auto": "Automatic",
-        "present": "Present",
-        "absent": "Absent"
       }
     }
   },
@@ -702,6 +682,9 @@
       },
       "solar_collector_temperature": {
         "name": "Collector temperature"
+      },
+      "solar_input_temperature": {
+        "name": "Solar input temperature"
       },
       "solar_target": {
         "name": "Solar heating target",

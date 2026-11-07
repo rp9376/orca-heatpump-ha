@@ -17,13 +17,6 @@ DEFAULT_TITLE: Final = "Orca heat pump"
 
 CONF_TOPOLOGY: Final = "topology"
 CONF_ALLOW_POWER_LIMITS: Final = "allow_power_limits"
-CONF_SOLAR: Final = "solar"
-CONF_BUFFER: Final = "buffer"
-CONF_ROOM_SENSORS: Final = ("room_sensor_1", "room_sensor_2", "room_sensor_3")
-
-OVERRIDE_AUTO: Final = "auto"
-OVERRIDE_PRESENT: Final = "present"
-OVERRIDE_ABSENT: Final = "absent"
 
 # orca-energy-ha, which must not poll the same pump (ADR 0001).
 OLD_DOMAIN: Final = "orca"

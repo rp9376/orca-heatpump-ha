@@ -66,32 +66,12 @@
     "step": {
       "init": {
         "title": "Možnosti toplotne črpalke Orca",
-        "description": "Popravki so potrebni le, če je zaznavanje napačno prepoznalo vaš sistem, na primer, ko je vhod tipala uporabljen za kaj drugega.",
         "data": {
-          "allow_power_limits": "Dovoli spreminjanje omejitev moči",
-          "room_sensor_1": "Sobno tipalo kroga 1",
-          "room_sensor_2": "Sobno tipalo kroga 2",
-          "room_sensor_3": "Sobno tipalo kroga 3",
-          "solar": "Solar",
-          "buffer": "Zalogovnik"
+          "allow_power_limits": "Dovoli spreminjanje omejitev moči"
         },
         "data_description": {
-          "allow_power_limits": "Tvegano: omogoči spreminjanje omejitev moči toplotne črpalke pri ogrevanju, sanitarni vodi, hlajenju in tišjem delovanju. Napačne vrednosti lahko ustavijo toplotno črpalko; vrednosti zunaj proizvajalčevega območja so vedno zavrnjene.",
-          "room_sensor_1": "Samodejno uporabi to, kar sporoča toplotna črpalka.",
-          "room_sensor_2": "Samodejno uporabi to, kar sporoča toplotna črpalka.",
-          "room_sensor_3": "Samodejno uporabi to, kar sporoča toplotna črpalka.",
-          "solar": "Samodejno uporabi to, kar sporoča toplotna črpalka.",
-          "buffer": "Samodejno uporabi to, kar sporoča toplotna črpalka."
+          "allow_power_limits": "Tvegano: omogoči spreminjanje omejitev moči toplotne črpalke pri ogrevanju, sanitarni vodi, hlajenju in tišjem delovanju. Napačne vrednosti lahko ustavijo toplotno črpalko; vrednosti zunaj proizvajalčevega območja so vedno zavrnjene."
         }
-      }
-    }
-  },
-  "selector": {
-    "override": {
-      "options": {
-        "auto": "Samodejno",
-        "present": "Prisotno",
-        "absent": "Ni prisotno"
       }
     }
   },
@@ -702,6 +682,9 @@
       },
       "solar_collector_temperature": {
         "name": "Temperatura kolektorja"
+      },
+      "solar_input_temperature": {
+        "name": "Temperatura na solarnem vhodu"
       },
       "solar_target": {
         "name": "Namen solarnega ogrevanja",

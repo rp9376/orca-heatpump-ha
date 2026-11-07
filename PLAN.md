@@ -729,10 +729,9 @@ orca-heatpump-ha/
   - No hardware ID exists (R3) and a host isn't a valid unique ID, so entries
     have none and are told apart by their normalised host (ADR 0013)
   - Reauth flow and reconfigure flow (change host or credentials)
-  - Options flow (stored in `entry.options`): topology overrides (force an
-    element present/absent, or a room sensor present/absent) for the rare
-    pumps where detection is wrong, or where a sensor input is repurposed
-    (#30). There's no "show advanced entities" toggle: advanced entities
+  - Options flow (stored in `entry.options`): the power limit permission. The
+    topology overrides first planned here were removed at CP3 (ADR 0014). There's
+    no "show advanced entities" toggle: advanced entities
     always exist and are disabled by default, which is the HA convention.
   - The config flow logs out after validating.
 - **Diagnostics:** topology, identity, full snapshot and raw values (with
@@ -833,8 +832,8 @@ the enabled-by-default set come out of R7–R9.
   - boost / extra temperature (`2_Povec_temp_TC_pri_SV`)
   - enable
   - legionella programme (enable, temperature, day, hour, cycle)
-- **Solar:** collector temperature, pump, enable (repurposed input, #30:
-  options override).
+- **Solar:** collector temperature, pump, enable (a repurposed input, #30, is detected
+  from its value: ADR 0014).
 - **Buffer:** temperature, setpoints, explaining the actual logic from #39 in
   the docs.
 - **Not in v1:**
@@ -1089,7 +1088,7 @@ each owning only its files:
 | Users run old and new integration together | Different domains prevent file clashes; config-flow warning and repair issue against session exhaustion |
 | Writes harm the heating system | Allowlist, P6 only with the user, read-back, restore log |
 | Flash wear from frequent writes | Skip unchanged values, box-mode numbers, documentation (R10) |
-| Topology detection wrong on unseen pumps | Multiple signals with precedence, options overrides, diagnostics → fixture pipeline, repairs on change |
+| Topology detection wrong on unseen pumps | Multiple signals with precedence, diagnostics → fixture pipeline, repairs on change |
 | Unknown firmware differences (older pumps) | Tolerant snapshot (unknown tag → None), feature detection over version checks, community fixtures |
 | HA API deprecations | CI against HA beta weekly, min version policy (D6) |
 | Upstream relationship | Credit prominently, draft a note to Tom Kern, offer collaboration; the user decides at CP3 |

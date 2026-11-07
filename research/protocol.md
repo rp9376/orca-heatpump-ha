@@ -238,8 +238,9 @@ If `qq == 0`, the applet replaces the value with the string `BAD_QUALITY` (H:
 | `E_UNKNOWNARCHIVE`, `E_NONEXISTING_TYPE`, `E_NONEXISTING_SUBTYPE`, `E_NOT_SUPPORTED` | readEvent | | H `fetchEventValues@577-620` |
 | `E_UNKNOWNSOURCE` | alarms/trends | | H `ICUcgi` |
 | `E_NEED_LOGIN` | any CGI | no or expired token | M (PLAN §5.1, Waterkotte client) |
-| `E_TOO_MANY_USERS` | login | all session slots taken | M (PLAN §5.1, Waterkotte) |
-| `E_PASS_DONT_MATCH` | login | wrong credentials | M (PLAN §5.1, Waterkotte) |
+| `E_TOO_MANY_USERS` | login | all session slots taken | H, recorded 2026-11-07: `-37\n#E_TOO_MANY_USERS` |
+| `E_PASS_DONT_MATCH` | login | wrong password | H, recorded 2026-11-07: `-45\n#E_PASS_DONT_MATCH` |
+| `E_USER_DONT_EXIST` | login | wrong username | H, recorded 2026-11-07: `-49\n#E_USER_DONT_EXIST` |
 | `E_RE-LOGIN_ATTEMPT` | login | treated as success by the console, see §4 | H `root.html:92`; meaning L |
 
 Alarm states (`ICUcgi`, H): `NOT_TRIGGERED`, `DISABLED`, `TRIGGERED`,
@@ -614,7 +615,7 @@ not used before Phase 6.
 |---|---|---|---|
 | What is "lease management"? | Activation of tag groups (`activateGroups`: group plus lease time in ms, returning an activation ID and lease time; `deactivate` by activation ID). The server presumably keeps a group refreshed while its lease runs. **Unrelated to login sessions; both endpoints FORBIDDEN.** | H | none |
 | How is a session created? | `GET /cgi/login` → `IDALToken` in the body, and probably in `Set-Cookie` as well | H / M | S1-01 records headers |
-| Max sessions | Not in the static files. A related device: 2 | L | S4 (gated) |
+| Max sessions | Three, measured 2026-11-07 (`research/findings.md`) | H | S4 (gated) |
 | Idle timeout | Not in the static files. A related device: about 5 min | L | S3 |
 | Do reads keep a session alive? | Unknown. The 2007 applet has no keep-alive, and the Waterkotte client simply re-logs-in on `E_NEED_LOGIN`. | L | S3 keep-alive phase |
 | What does logout do? | Returns `1\n#S_OK`. Most likely destroys the token server-side, freeing the slot. | M | S1-91 (stale token → `E_NEED_LOGIN`?), S4 (slot freed at once?) |

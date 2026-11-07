@@ -50,7 +50,8 @@ class Emulator:
     writable: set[str] = field(default_factory=set)
     username: str = "admin"
     password: str = "admin"
-    max_sessions: int = 2
+    # Measured on the real display.
+    max_sessions: int = 3
     idle_timeout: float = 150.0
     faults: Faults = field(default_factory=Faults)
     clock: Callable[[], float] = time.monotonic
@@ -127,17 +128,16 @@ class Emulator:
 
     async def _login(self, request: web.Request) -> web.Response:
         query = request.query
-        if (
-            query.get("username") != self.username
-            or query.get("password") != self.password
-        ):
-            return _text("#E_PASS_DONT_MATCH\n")
+        if query.get("username") != self.username:
+            return _text("-49\n#E_USER_DONT_EXIST")
+        if query.get("password") != self.password:
+            return _text("-45\n#E_PASS_DONT_MATCH")
         now = self.clock()
         for token, used in list(self.sessions.items()):
             if now - used > self.idle_timeout:
                 del self.sessions[token]
         if len(self.sessions) >= self.max_sessions:
-            return _text("#E_TOO_MANY_USERS\n")
+            return _text("-37\n#E_TOO_MANY_USERS")
         token = secrets.token_hex(16)
         self.sessions[token] = now
         response = _text(f"1\n#S_OK\nIDALToken={token}")

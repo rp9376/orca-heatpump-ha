@@ -39,7 +39,6 @@ from .coordinator import (
     OrcaTimerCoordinator,
 )
 from .helpers import (
-    apply_overrides,
     async_create_session,
     old_integration_has,
     split_host,
@@ -83,7 +82,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: OrcaConfigEntry) -> None
         await client.async_close()
         raise _setup_error(err) from err
 
-    topology = apply_overrides(_stored_topology(hass, entry, detected), entry.options)
+    topology = _stored_topology(hass, entry, detected)
     coordinator = OrcaCoordinator(hass, entry, client, topology)
     try:
         await coordinator.async_config_entry_first_refresh()

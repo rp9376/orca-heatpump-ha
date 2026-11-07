@@ -75,6 +75,16 @@ def heater_stage(stage: int) -> Callable[[EntityContext, int | None], bool]:
     return exists
 
 
+def repurposed_solar_input(context: EntityContext, slot: int | None) -> bool:
+    """Return whether a pump without solar has a sensor on the solar input.
+
+    The display reports an empty input as not connected. Anything else counts,
+    so one bad read can't hide the sensor.
+    """
+    reading = context.snapshot.reading(catalog.SOLAR_INPUT_TEMPERATURE)
+    return not context.topology.solar and reading.reason is not Reason.NOT_CONNECTED
+
+
 def any_circuit(context: EntityContext, slot: int | None) -> bool:
     """Return whether the pump heats or cools rooms through any circuit."""
     return bool(context.topology.circuits)

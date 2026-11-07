@@ -14,9 +14,6 @@ from homeassistant.const import CONF_HOST, CONF_PASSWORD, CONF_USERNAME
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.selector import (
     BooleanSelector,
-    SelectSelector,
-    SelectSelectorConfig,
-    SelectSelectorMode,
     TextSelector,
     TextSelectorConfig,
     TextSelectorType,
@@ -34,17 +31,11 @@ from .client.errors import (
 from .client.models import PumpTopology
 from .const import (
     CONF_ALLOW_POWER_LIMITS,
-    CONF_BUFFER,
-    CONF_ROOM_SENSORS,
-    CONF_SOLAR,
     CONF_TOPOLOGY,
     DEFAULT_TITLE,
     DEFAULT_USERNAME,
     DOMAIN,
     LOGGER,
-    OVERRIDE_ABSENT,
-    OVERRIDE_AUTO,
-    OVERRIDE_PRESENT,
 )
 from .coordinator import OrcaConfigEntry
 from .helpers import (
@@ -52,7 +43,6 @@ from .helpers import (
     normalize_host,
     old_integration_has,
     split_host,
-    topology_from_data,
     topology_to_data,
 )
 
@@ -64,16 +54,11 @@ CONNECTION_SCHEMA = probatio.Schema(
         probatio.Required(CONF_PASSWORD): PASSWORD,
     }
 )
-USER_SCHEMA = CONNECTION_SCHEMA.extend(
-    {probatio.Required(CONF_ALLOW_POWER_LIMITS, default=False): BooleanSelector()}
-)
-OVERRIDE = SelectSelector(
-    SelectSelectorConfig(
-        options=[OVERRIDE_AUTO, OVERRIDE_PRESENT, OVERRIDE_ABSENT],
-        mode=SelectSelectorMode.DROPDOWN,
-        translation_key="override",
-    )
-)
+OPTIONS_FIELDS = {
+    probatio.Required(CONF_ALLOW_POWER_LIMITS, default=False): BooleanSelector()
+}
+USER_SCHEMA = CONNECTION_SCHEMA.extend(OPTIONS_FIELDS)
+OPTIONS_SCHEMA = probatio.Schema(OPTIONS_FIELDS)
 
 
 async def validate(
@@ -241,7 +226,7 @@ class OrcaConfigFlow(ConfigFlow, domain=DOMAIN):
 
 
 class OrcaOptionsFlow(OptionsFlowWithReload):
-    """Power limit permission and corrections for topology detection."""
+    """The permission to change the power limits."""
 
     async def async_step_init(
         self, user_input: dict[str, Any] | None = None
@@ -249,21 +234,9 @@ class OrcaOptionsFlow(OptionsFlowWithReload):
         """Show the options."""
         if user_input is not None:
             return self.async_create_entry(data=user_input)
-        topology = topology_from_data(self.config_entry.data[CONF_TOPOLOGY])
-        fields: dict[Any, Any] = {
-            probatio.Required(CONF_ALLOW_POWER_LIMITS, default=False): BooleanSelector()
-        }
-        for circuit in topology.circuits:
-            fields[
-                probatio.Required(
-                    CONF_ROOM_SENSORS[circuit.slot - 1], default=OVERRIDE_AUTO
-                )
-            ] = OVERRIDE
-        fields[probatio.Required(CONF_SOLAR, default=OVERRIDE_AUTO)] = OVERRIDE
-        fields[probatio.Required(CONF_BUFFER, default=OVERRIDE_AUTO)] = OVERRIDE
         return self.async_show_form(
             step_id="init",
             data_schema=self.add_suggested_values_to_schema(
-                probatio.Schema(fields), self.config_entry.options
+                OPTIONS_SCHEMA, self.config_entry.options
             ),
         )

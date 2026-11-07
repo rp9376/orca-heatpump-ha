@@ -20,3 +20,4 @@ that the user confirms at a checkpoint. `PLAN.md` is the project's original plan
 | [0011](0011-test-plugin.md) | Test with HA's pytest-home-assistant, from the core tag | Accepted 2026-10-31 |
 | [0012](0012-power-limits-opt-in.md) | Power limits are an opt-in, guarded setting | Accepted 2026-11-01 |
 | [0013](0013-no-network-discovery.md) | No network discovery | Accepted 2026-11-01 |
+| [0014](0014-no-topology-overrides.md) | No topology overrides | Accepted 2026-11-07 |

@@ -1,7 +1,6 @@
 """Helpers of the integration."""
 
 from collections.abc import Mapping
-from dataclasses import replace
 import re
 from typing import Any
 
@@ -12,15 +11,7 @@ from homeassistant.helpers.aiohttp_client import async_create_clientsession
 
 from .client.catalog import CATALOG
 from .client.models import CircuitKind, CircuitTopology, Element, PumpTopology, TagRef
-from .const import (
-    CONF_BUFFER,
-    CONF_ROOM_SENSORS,
-    CONF_SOLAR,
-    OLD_CONF_HOST,
-    OLD_DOMAIN,
-    OVERRIDE_ABSENT,
-    OVERRIDE_PRESENT,
-)
+from .const import OLD_CONF_HOST, OLD_DOMAIN
 
 _HOST_RE = re.compile(r"[a-z0-9](?:[a-z0-9.-]*[a-z0-9])?(?::[0-9]{1,5})?")
 
@@ -119,32 +110,6 @@ def topology_from_data(data: Mapping[str, Any]) -> PumpTopology:
         dhw=data["dhw"],
         solar=data["solar"],
         buffer=data["buffer"],
-    )
-
-
-def _override(detected: bool, choice: object) -> bool:
-    if choice == OVERRIDE_PRESENT:
-        return True
-    if choice == OVERRIDE_ABSENT:
-        return False
-    return detected
-
-
-def apply_overrides(topology: PumpTopology, options: Mapping[str, Any]) -> PumpTopology:
-    """Apply the user's corrections for setups detection gets wrong (#30)."""
-    return replace(
-        topology,
-        circuits=tuple(
-            replace(
-                c,
-                room_sensor=_override(
-                    c.room_sensor, options.get(CONF_ROOM_SENSORS[c.slot - 1])
-                ),
-            )
-            for c in topology.circuits
-        ),
-        solar=_override(topology.solar, options.get(CONF_SOLAR)),
-        buffer=_override(topology.buffer, options.get(CONF_BUFFER)),
     )
 
 

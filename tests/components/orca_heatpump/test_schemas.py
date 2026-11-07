@@ -87,3 +87,42 @@ async def test_schema(
         ),
         "entities": dict(sorted(Counter(e.domain for e in entities).items())),
     } == snapshot
+
+
+@pytest.mark.parametrize(
+    ("schema", "raw", "expected"),
+    [
+        pytest.param(39, "379", "37.9", id="sensor_wired"),
+        pytest.param(39, "-9999", None, id="nothing_wired"),
+        pytest.param(23, "379", None, id="real_solar"),
+    ],
+)
+async def test_solar_input(
+    hass: HomeAssistant,
+    host: str,
+    emulator: Emulator,
+    schema: int,
+    raw: str,
+    expected: str | None,
+) -> None:
+    """A sensor on the solar input of a pump without solar shows up by itself (#30)."""
+    emulator.values["2_Shema"] = str(schema)
+    emulator.values["2_Poti5"] = raw
+    entry = MockConfigEntry(
+        domain=DOMAIN,
+        title=DEFAULT_TITLE,
+        data={
+            CONF_HOST: host,
+            CONF_USERNAME: "admin",
+            CONF_PASSWORD: "admin",
+            CONF_TOPOLOGY: topology_to_data(expected_topology(schema)),
+        },
+        options={CONF_ALLOW_POWER_LIMITS: False},
+    )
+    entry.add_to_hass(hass)
+
+    await hass.config_entries.async_setup(entry.entry_id)
+    await hass.async_block_till_done()
+
+    state = hass.states.get("sensor.heat_pump_solar_input_temperature")
+    assert (state.state if state else None) == expected

@@ -83,8 +83,9 @@ def test_read_batches_rejects_huge_tag() -> None:
     ("text", "error"),
     [
         pytest.param("#E_NEED_LOGIN\n", OrcaSessionExpiredError, id="need_login"),
-        pytest.param("1\n#E_TOO_MANY_USERS\n", OrcaTooManyUsersError, id="too_many"),
-        pytest.param("#E_PASS_DONT_MATCH", OrcaAuthError, id="password"),
+        pytest.param("-37\n#E_TOO_MANY_USERS", OrcaTooManyUsersError, id="too_many"),
+        pytest.param("-45\n#E_PASS_DONT_MATCH", OrcaAuthError, id="password"),
+        pytest.param("-49\n#E_USER_DONT_EXIST", OrcaAuthError, id="username"),
         pytest.param("#E_RE-LOGIN_ATTEMPT\n", OrcaProtocolError, id="relogin"),
         pytest.param("#E_FAIL\n", OrcaProtocolError, id="fail"),
     ],

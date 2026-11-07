@@ -84,10 +84,13 @@ with the remaining **named** files only; no path was guessed.
 - 9 logins over 13 hours, never `E_TOO_MANY_USERS`, including right after
   the old integration's config entry was deleted.
 
-**Not measured:** how many sessions fit at once, and whether logout frees a
-slot immediately. Both need several sessions open at the same time, which
-breaks `PLAN.md` §2.2 rule 4 (C's gated Session 4). A related device of the
-same server family allows 2 (C, low). Decision at CP1.
+**Measured on 2026-11-07, at the user's request (a shorter gated Session 4):** three
+sessions fit at once. The next login gets HTTP 200 with `-37\n#E_TOO_MANY_USERS`.
+Logout frees a slot at once, and a session already open keeps working while the display
+is full. A wrong password gets `-45\n#E_PASS_DONT_MATCH` and a wrong username
+`-49\n#E_USER_DONT_EXIST`, both HTTP 200, with no lockout after either. The display
+can't list its sessions, so three is what was free with nothing else known to be
+connected.
 
 **Design consequences.** A 30 s poll keeps one session indefinitely. A
 leaked session (crash, kill) frees its slot within 3 min by itself, so the
@@ -237,8 +240,8 @@ tag column (by name, not observed).
 
 **Design consequences.** Topology = schema table + `2_Shema_ZALOG` + the OK
 flags, with an element present only when its signals were read and agree;
-"not received" never means absent. Options flow overrides stay for repurposed
-inputs (#30).
+"not received" never means absent. A repurposed solar input is detected from its
+value (#30, ADR 0014).
 
 **Confidence:** high for the schema and room sensor; low for cooling.
 

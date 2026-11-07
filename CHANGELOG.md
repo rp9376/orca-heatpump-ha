@@ -14,6 +14,7 @@ orca-energy-ha" in the README.
   heater; sensors, numbers, selects and switches for what the display offers users,
   with the manufacturer's ranges. Installer settings are read-only.
 - Alarms as a sensor, problem binary sensors and an event entity.
+- A sensor wired to the unused solar input of a pump without solar is detected and shown.
 - Weekly timer programmes shown on the timer selects.
 - A ready-made dashboard with a live system diagram, built-in cards only, in English
   and Slovenian.

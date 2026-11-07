@@ -26,8 +26,8 @@ Rules:
   A missing record is "unknown", never "absent"; setup retries and then fails
   with `ConfigEntryNotReady` rather than guess.
 - Never used: `2_Shema_DK1/DK2`, `2_Tipalo_*`, `2_Sobni_*` (R6).
-- The options flow can force an element or a room sensor present/absent
-  (repurposed inputs, #30).
+- Nothing can be forced. A repurposed solar input is detected from its value
+  (#30, ADR 0014).
 
 ## 2. Devices and unique IDs
 
@@ -128,6 +128,7 @@ Circuit on/off is the climate's off mode; there is no duplicate switch.
 | Key | Platform | Tag | Default |
 |---|---|---|---|
 | `solar_collector_temperature` | sensor | `2_Poti5` | on |
+| `solar_input_temperature` | sensor | `2_Poti5`, only on a pump without solar that reads a value there | on |
 | `solar_pump` | binary_sensor | `2_Vklop_C3` | on |
 | `solar_min_collector_temp`, `solar_on_difference`, `solar_off_difference` | number | A §2.6 | off, cfg |
 | solar installer settings (enable, target, max temps) | sensor | A §2.6 | off, diag |

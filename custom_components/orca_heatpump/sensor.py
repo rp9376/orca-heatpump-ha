@@ -29,6 +29,7 @@ from .entity import (
     entity_targets,
     mixing_circuit,
     power_limit,
+    repurposed_solar_input,
     room_sensor,
 )
 
@@ -153,6 +154,7 @@ DESCRIPTIONS: tuple[OrcaSensorEntityDescription, ...] = (
     _temperature(catalog.DHW_TEMP_TOP),
     _temperature(catalog.DHW_TEMP_BOTTOM),
     _temperature(catalog.SOLAR_COLLECTOR_TEMPERATURE),
+    _temperature(catalog.SOLAR_INPUT_TEMPERATURE, exists_fn=repurposed_solar_input),
     _enum(catalog.SOLAR_TARGET, enabled=False, diagnostic=True),
     _temperature(catalog.SOLAR_MAX_DHW_TEMP, enabled=False, diagnostic=True),
     _temperature(catalog.SOLAR_MAX_COLLECTOR_TEMP, enabled=False, diagnostic=True),

@@ -43,7 +43,7 @@ yourself whether that is good enough for your house.
 - Reports alarms as a sensor, problem binary sensors and an event entity you
   can use to notify yourself.
 - Uses one login on the display and always logs out, because the display
-  allows only a few logins at a time.
+  allows very few logins at a time (three on the tested pump).
 - English and Slovenian.
 
 Typical uses: see and log what the heat pump does, switch heating to cooling
@@ -99,7 +99,9 @@ how to help add your setup.
 | Allow changing power limits | Off unless you know what you're doing; see below. |
 
 The integration logs in once to check the connection and reads which heating
-circuits, hot water, solar and buffer tank your pump has.
+circuits, hot water, solar, buffer tank and room sensors your pump has. There is
+nothing to configure. If it gets your setup wrong,
+[report it with your diagnostics](docs/supported-setups.md#add-your-setup).
 
 **Allow changing power limits** makes the heat pump's power limits for
 heating, hot water, cooling and quiet mode adjustable. These are service
@@ -113,13 +115,9 @@ Without the option the limits are shown read-only.
 
 **Settings → Devices & services → Orca Heat Pump → Configure.**
 
-| Option | Meaning |
-|---|---|
-| Allow changing power limits | As in the setup. Changing it swaps the read-only power limit sensors for adjustable numbers or back. |
-| Room sensor of circuit 1–3 | Automatic, present or absent. Only needed when detection is wrong, for example when a sensor input is used for something else. |
-| Solar, Buffer tank | Automatic, present or absent, for the same reason. |
-
-The integration reloads when you save the options.
+The only option is **Allow changing power limits**, as in the setup. Changing it swaps
+the read-only power limit sensors for adjustable numbers or back, and the integration
+reloads.
 
 **Reconfigure** (in the integration's menu) changes the display's address or
 login. If the display rejects the login later, Home Assistant asks you to log
@@ -132,6 +130,10 @@ circuit (named after the circuit's name on the display, for example
 "Underfloor heating"), **Hot water**, **Solar collectors** and **Buffer
 tank**. Settings that only installers or service technicians use are hidden
 (disabled by default); you can enable them in the device page.
+
+A pump without solar that reads a temperature on its solar input, because a sensor
+was wired to it for something else, also gets a **Solar input temperature** sensor. A
+sensor wired later appears after the next reload.
 
 **Heat pump**
 - Sensors: outdoor temperature, water temperature and its target, outdoor

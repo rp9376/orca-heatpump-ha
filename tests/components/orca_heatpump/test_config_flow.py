@@ -9,8 +9,6 @@ from pytest_homeassistant.common import MockConfigEntry
 
 from custom_components.orca_heatpump.const import (
     CONF_ALLOW_POWER_LIMITS,
-    CONF_BUFFER,
-    CONF_SOLAR,
     CONF_TOPOLOGY,
     DEFAULT_TITLE,
     DOMAIN,
@@ -69,6 +67,7 @@ async def test_user_flow(hass: HomeAssistant, host: str, emulator: Emulator) -> 
     ("broken", "error"),
     [
         pytest.param({"password": "other"}, "invalid_auth", id="invalid_auth"),
+        pytest.param({"username": "other"}, "invalid_auth", id="wrong_username"),
         pytest.param({"max_sessions": 0}, "too_many_users", id="too_many_users"),
         pytest.param(
             {"faults": Faults(malformed_body=True)}, "not_orca", id="not_orca"
@@ -250,26 +249,14 @@ async def test_reconfigure_to_other_entry(
 
 
 async def test_options(hass: HomeAssistant, mock_config_entry: MockConfigEntry) -> None:
-    """Options offer power limits and one override per present element."""
+    """The only option is the permission to change the power limits."""
     mock_config_entry.add_to_hass(hass)
     result = await hass.config_entries.options.async_init(mock_config_entry.entry_id)
     assert result["type"] is FlowResultType.FORM
     schema = result["data_schema"]
     assert schema is not None
-    assert [str(key) for key in schema.schema] == [
-        CONF_ALLOW_POWER_LIMITS,
-        "room_sensor_1",
-        "room_sensor_2",
-        CONF_SOLAR,
-        CONF_BUFFER,
-    ]
-    options = {
-        CONF_ALLOW_POWER_LIMITS: True,
-        "room_sensor_1": "present",
-        "room_sensor_2": "auto",
-        CONF_SOLAR: "absent",
-        CONF_BUFFER: "auto",
-    }
+    assert [str(key) for key in schema.schema] == [CONF_ALLOW_POWER_LIMITS]
+    options = {CONF_ALLOW_POWER_LIMITS: True}
 
     result = await hass.config_entries.options.async_configure(
         result["flow_id"], options
@@ -281,6 +268,7 @@ async def test_options(hass: HomeAssistant, mock_config_entry: MockConfigEntry) 
 
 ERRORS = [
     pytest.param({"password": "other"}, "invalid_auth", id="invalid_auth"),
+    pytest.param({"username": "other"}, "invalid_auth", id="wrong_username"),
     pytest.param({"max_sessions": 0}, "too_many_users", id="too_many_users"),
     pytest.param({"faults": Faults(malformed_body=True)}, "not_orca", id="not_orca"),
     pytest.param({"faults": Faults(disconnect=True)}, "cannot_connect", id="connect"),

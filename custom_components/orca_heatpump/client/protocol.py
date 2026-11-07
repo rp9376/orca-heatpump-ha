@@ -93,7 +93,7 @@ def raise_for_error(text: str) -> None:
         raise OrcaSessionExpiredError(code)
     if code == "E_TOO_MANY_USERS":
         raise OrcaTooManyUsersError(code)
-    if code == "E_PASS_DONT_MATCH":
+    if code in ("E_PASS_DONT_MATCH", "E_USER_DONT_EXIST"):
         raise OrcaAuthError(code)
     raise OrcaProtocolError(code)
 

@@ -1221,6 +1221,16 @@ SOLAR_COLLECTOR_TEMPERATURE = TagDef(
     unit="°C",
 )
 
+# The same input on a pump without solar, where any sensor can be wired to it (#30).
+SOLAR_INPUT_TEMPERATURE = TagDef(
+    key="solar_input_temperature",
+    element=Element.SYSTEM,
+    kind=Kind.NUMBER,
+    tag="2_Poti5",
+    scale=10,
+    unit="°C",
+)
+
 SOLAR_PUMP = TagDef(
     key="solar_pump",
     element=Element.SOLAR,
@@ -1501,6 +1511,7 @@ CATALOG: Final[tuple[TagDef, ...]] = (
     LEGIONELLA_HOUR,
     LEGIONELLA_CYCLE,
     SOLAR_COLLECTOR_TEMPERATURE,
+    SOLAR_INPUT_TEMPERATURE,
     SOLAR_PUMP,
     SOLAR_MIN_COLLECTOR_TEMP,
     SOLAR_ON_DIFFERENCE,
