@@ -25,29 +25,41 @@ user decides the points below and publishes.
   agreed. No alarm. Power limit option off. No warning from `orca_heatpump` in the log.
   The log's warnings about deprecated properties all come from the old `orca` component
   in the dev HA, which the move test loaded.
-- **Publish steps dry-run locally** on a throwaway clone, with no remote: one commit,
-  136 files, no address or private file in it, and all 1,115 tests pass from that tree,
-  so they need nothing outside git. This corrected `docs/repo-setup.md`, which had
-  offered leaving `research/` out; the tests load two files from it.
-- **Address:** only `PLAN.md` holds it now in tracked files; `research/protocol.md` no
-  longer does. The login in `PLAN.md` is the manufacturer's default, which the README
-  gives anyway.
+- **The tests need nothing outside git:** all 1,115 pass from a throwaway clone. The
+  `research/` folder has to stay public, because the tests load two files from it.
+
+### History audit before publishing (user's request, 2026-11-07)
+
+The user will push the full history if nothing critical is in it. **Nothing is.**
+
+- **Scope:** every file version in all 62 commits at that point (383 blobs), plus commit
+  messages and author fields.
+- **Real values:** the dev HA password, every session token and cookie in the raw
+  captures, and the dev HA's home location. None found. The pump's serial number isn't
+  labelled in any capture, so it was never there to copy.
+- **Patterns:** login tokens, API keys, private keys, logins in URLs. None found.
+- **gitleaks 8.24.0, offline, as a second opinion:** 12 hits, all false positives (the
+  entity key `heater_stageN_outdoor_temp` and one tag name).
+- **Code and password tags in the fixtures:** every value is redacted or absent.
+- **Never committed:** captures, HAR files, databases, `.storage` files.
+- **Images:** logos and dashboard screenshots, no metadata, nothing personal.
+
+Public but not secret: the display's private LAN address (`PLAN.md`, older versions of
+`research/protocol.md`), the manufacturer's default login, the author address (already
+on the public fork `rp9376/orca-energy-ha`) and this log. This can't prove the absence
+of a value nobody knew to look for, such as a cloud password that was never given to the
+agents.
 
 ### Decisions for the user
 
 1. **The go, and how to authenticate.** Install `gh` and run `gh auth login`, or give me
    a remote. I never handle tokens. Steps: `docs/repo-setup.md`.
-2. **What goes public.** Recommended: everything except `PLAN.md`, `CLAUDE.md` and
-   `docs/progress.md`, pushed as one fresh commit, because the local history holds the
-   address and those files.
-3. **Commit author address.** The local commits use `rp9376@student.uni-lj.si`, which
-   would be public. GitHub's private address is the alternative (in the steps).
-4. **Release.** `v1.0.0b1` as a pre-release, installed through HACS as a custom
+2. **Release.** `v1.0.0b1` as a pre-release, installed through HACS as a custom
    repository. The HACS default store can wait until the beta has been used.
-5. **Tom Kern.** Draft in `.scratch/note-to-tom-kern.md`, not sent. Send it, change it
+3. **Tom Kern.** Draft in `.scratch/note-to-tom-kern.md`, not sent. Send it, change it
    or skip it; it links to the repository, so it goes after the push. `<your name>` is
    a placeholder.
-6. **PyPI:** nothing to do. The client is inside the integration (ADR 0005).
+4. **PyPI:** nothing to do. The client is inside the integration (ADR 0005).
 
 ### Not verified
 

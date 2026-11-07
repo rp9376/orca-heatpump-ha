@@ -5,33 +5,7 @@ Install `gh` and run `gh auth login` first.
 
 ## What goes public
 
-Everything except three private working files:
-
-| File | Why it stays out |
-|---|---|
-| `PLAN.md` | The pump's local address and details of one house |
-| `CLAUDE.md` | Rules for the agents working from that plan |
-| `docs/progress.md` | The working log, with the maintainer's own notes and decisions |
-
-`research/` has to stay: the tests load `moja_orca_catalog.json` and
-`tag_registers.json` from it. `research/captures/` is ignored by git and never goes.
-
-The local history holds the address too, so removing files isn't enough. The first
-push is a single fresh commit, on a new branch. The old branch stays local as the
-private history, and the three files stay on disk.
-
-## Make the public branch
-
-The commit's author address becomes public. To use GitHub's private one instead, run
-`git config user.email "<id>+rp9376@users.noreply.github.com"` first (the address is
-on github.com/settings/emails).
-
-```sh
-git checkout --orphan public
-git rm --cached -q PLAN.md CLAUDE.md docs/progress.md
-printf 'PLAN.md\nCLAUDE.md\ndocs/progress.md\n' >> .git/info/exclude
-git commit -m "Orca Heat Pump 1.0.0b1"
-```
+The full history, as it is. `research/captures/` is ignored by git and never goes.
 
 ## Create it
 
@@ -44,10 +18,8 @@ gh repo create rp9376/orca-heatpump-ha --public --source . --remote origin \
 gh repo edit rp9376/orca-heatpump-ha \
   --add-topic home-assistant --add-topic hacs --add-topic heat-pump --add-topic orca \
   --enable-wiki=false
-git push -u origin public:main
+git push -u origin main
 ```
-
-Work continues on the local `public` branch.
 
 ## Protect the main branch
 

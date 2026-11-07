@@ -1,5 +1,9 @@
 # Orca Heat Pump for Home Assistant
 
+> **This integration is 100 % vibe coded.** Every line of its code, tests and docs was
+> written by an AI, Claude Opus 5.5. No human wrote any of it.
+> [How this was made](#how-this-was-made).
+
 A Home Assistant integration for [Orca Energija](https://www.orcaenergy.eu/)
 heat pumps with a networked touch display. It reads and changes the heat
 pump's settings through the display's web interface on your local network;
@@ -7,6 +11,26 @@ no cloud account is needed.
 
 > **Status: beta.** Tested live on one heat pump, a Duo 300 Solar, with recorded data
 > from two more. If your setup is different, [tell us how it goes](docs/supported-setups.md#add-your-setup).
+
+## How this was made
+
+Claude Opus 5.5, Anthropic's AI model, wrote all of it in
+[Claude Code](https://claude.com/claude-code): the code, the tests, the dashboard, the
+docs and this README. Almost all of it ran on Extra High effort, the rest on High or
+Max, and it used up a few full 5-hour usage limits.
+
+- **The human:** [@rp9376](https://github.com/rp9376) wrote none of it. In their own
+  words, they were "a meaty elf sitting behind a computer": watching, giving
+  instructions and making the decisions, and doing whatever needed hands on the real
+  pump.
+- **Reviews:** done by Claude too. No human has read through the code.
+- **Testing:** an automated test suite, plus live reads and writes on one real pump. See
+  [what is tested](docs/supported-setups.md).
+- **What it builds on:** the protocol and tag research is human work, by Tom Kern and
+  the contributors of orca-energy-ha. See [CREDITS.md](CREDITS.md).
+
+This integration can change the settings of real heating equipment, so decide for
+yourself whether that is good enough for your house.
 
 ## What it does
 
