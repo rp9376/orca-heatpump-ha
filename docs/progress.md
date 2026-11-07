@@ -53,6 +53,10 @@ user decides the points below and publishes.
 
 - **HACS validation, CI and the release workflow have never run:** they need a remote.
   The first push may need small fixes.
+- **The diagram changing without a page reload.** A page opened on 7 Nov for about 16
+  minutes and later for 15 saw no state change: the outdoor unit stopped at 13:59:59
+  and started at 14:05:29, between the two, 2 seconds before the second page's first
+  reading. The user is asked to look when the unit next stops with the dashboard open.
 - **Only one real pump:** schema 23. The other 44 schemas run on synthetic data. Not
   tested live: a room sensor, cooling in operation, a third circuit, a buffer tank.
 - **Out-of-range refusal:** tested on the emulator only, deliberately (#20).
@@ -76,10 +80,10 @@ deployed to the dev HA as "Heat pump" in the sidebar.
   enabled by default on our pump.
 - Checked with headless Chrome: dark, light, phone width, no card errors; the pipes
   animate (4 of 4 frames differ), on a temporary preview with the conditions removed,
-  because the pump was idle. **Not seen yet: a real state change switching a pipe on
-  in the diagram.** In this version conditions are evaluated through the backend, so a
-  simulated state in the browser doesn't reach them. The first real heating start
-  will show it.
+  because the pump was idle. In this version conditions are evaluated through the
+  backend, so a simulated state in the browser doesn't reach them. Since then, a page
+  loaded while the pump was really heating showed the right pipes. **Not seen yet: a
+  pipe changing while the page stays open** (see the CP3 report).
 - The Marketplace's first-run warning was left for the user; nothing was installed.
 - Seen in the data, not a defect: about 40 outdoor unit starts a day, 3–4 an hour
   during the 12 heating hours (median run 12.5 min, pause 5 min, 3–5 Nov). Mentioned
