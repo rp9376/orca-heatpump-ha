@@ -80,6 +80,26 @@ Looked at in a browser for the first time, against the dev HA: the options dialo
 English, and the setup form in English and Slovenian (opened, not submitted). All three
 render correctly.
 
+### Diagram rule (user's report, 2026-11-07)
+
+The user toggled the underfloor circuit and saw the diagram change live, which also
+settles the open check on redrawing without a reload. It showed flow to the hot water
+tank at 0 % power. The diagram drew what the pump reported, but from the wrong rule:
+
+- The valve rests on hot water when nothing demands heat. It did for one poll after the
+  toggle (15:27:00–15:27:30), with the unit off, and for hours overnight.
+- The circulation pump keeps running between compressor runs (6.1 of 39 logged hours).
+- At a start the power reads 70 % up to 3.5 minutes before the unit reports heating.
+
+Pipes now animate only with the circulation pump on, the unit not off and power above
+0. Circuit pipes also need the valve on space heating, which removes the underfloor pipe
+staying orange during hot water runs (2.5 logged hours), and the supply pipe turns blue
+when cooling. The stub at the valve is neutral grey. So at a start the label can read
+70 % with no flow yet, for up to 3.5 minutes.
+
+I had told the user the pipes would stop when the unit stops. That was wrong for the old
+rule: the data above was already there to check.
+
 ### Decisions for the user
 
 1. **The go, and how to authenticate.** Install `gh` and run `gh auth login`, or give me
@@ -95,10 +115,6 @@ render correctly.
 
 - **HACS validation, CI and the release workflow have never run:** they need a remote.
   The first push may need small fixes.
-- **The diagram changing without a page reload.** A page opened on 7 Nov for about 16
-  minutes and later for 15 saw no state change: the outdoor unit stopped at 13:59:59
-  and started at 14:05:29, between the two, 2 seconds before the second page's first
-  reading. The user is asked to look when the unit next stops with the dashboard open.
 - **Only one real pump:** schema 23. The other 44 schemas run on synthetic data. Not
   tested live: a room sensor, cooling in operation, a third circuit, a buffer tank.
 - **Out-of-range refusal:** tested on the emulator only, deliberately (#20).
@@ -129,8 +145,8 @@ deployed to the dev HA as "Heat pump" in the sidebar.
   animate (4 of 4 frames differ), on a temporary preview with the conditions removed,
   because the pump was idle. In this version conditions are evaluated through the
   backend, so a simulated state in the browser doesn't reach them. Since then, a page
-  loaded while the pump was really heating showed the right pipes. **Not seen yet: a
-  pipe changing while the page stays open** (see the CP3 report).
+  loaded while the pump was really heating showed the right pipes, and the user saw it
+  change live (see the CP3 report).
 - The Marketplace's first-run warning was left for the user; nothing was installed.
 - Seen in the data, not a defect: about 40 outdoor unit starts a day, 3–4 an hour
   during the 12 heating hours (median run 12.5 min, pause 5 min, 3–5 Nov). Mentioned

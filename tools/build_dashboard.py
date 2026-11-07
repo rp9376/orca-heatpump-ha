@@ -91,10 +91,20 @@ HVAC_MODES = {
 PUMP = "binary_sensor.heat_pump_circulation_pump"
 VALVE = "sensor.heat_pump_3_way_valve"
 OUTDOOR_STATE = "sensor.heat_pump_outdoor_unit_state"
+OUTDOOR_POWER = "sensor.heat_pump_outdoor_unit_power"
 FLOOR_PUMP = "binary_sensor.underfloor_heating_circuit_pump"
 RADIATOR_PUMP = "binary_sensor.radiators_circuit_pump"
 SOLAR_PUMP = "binary_sensor.solar_collectors_solar_pump"
 ALARM = "binary_sensor.heat_pump_alarm"
+
+# Heat only flows while the unit really produces it. The circulation pump keeps running
+# between compressor runs, the valve rests on hot water when idle, and at a start the
+# power reads 70 % for up to minutes before the unit reports that it is heating.
+RUNNING: tuple[dict[str, Any], ...] = (
+    {"entity": PUMP, "state": "on"},
+    {"entity": OUTDOOR_STATE, "state_not": "off"},
+    {"condition": "numeric_state", "entity": OUTDOOR_POWER, "above": 0},
+)
 
 
 def _svg(body: str) -> str:
@@ -140,9 +150,12 @@ def _flow(path: str, color: str) -> str:
 
 
 def _stub(path: str) -> str:
-    """Return a solid piece of pipe showing which way the valve points."""
+    """Return a solid piece of pipe showing which way the valve points.
+
+    Neutral, because the valve's position says nothing about heat.
+    """
     return _svg(
-        f'<path d="{path}" stroke="#ff7043" stroke-width="9" stroke-linecap="round"/>'
+        f'<path d="{path}" stroke="#9e9e9e" stroke-width="9" stroke-linecap="round"/>'
     )
 
 
@@ -161,7 +174,7 @@ def _position(x: float, y: float) -> dict[str, str]:
     return {"left": f"{x / WIDTH:.1%}", "top": f"{y / HEIGHT:.1%}"}
 
 
-def _overlay(image: str, *conditions: dict[str, str]) -> dict[str, Any]:
+def _overlay(image: str, *conditions: dict[str, Any]) -> dict[str, Any]:
     return {
         "type": "conditional",
         "conditions": list(conditions),
@@ -228,34 +241,40 @@ def _icon(icon: str, entity: str, x: float, y: float, color: str) -> dict[str, A
     }
 
 
+def _heat_flow(path: str, *conditions: dict[str, Any]) -> list[dict[str, Any]]:
+    """Return a pipe's overlays: orange while heating, blue while cooling."""
+    return [
+        _overlay(
+            _flow(path, HOT),
+            *RUNNING,
+            *conditions,
+            {"entity": OUTDOOR_STATE, "state_not": "cooling"},
+        ),
+        _overlay(
+            _flow(path, COLD),
+            *RUNNING,
+            *conditions,
+            {"entity": OUTDOOR_STATE, "state": "cooling"},
+        ),
+    ]
+
+
 def _diagram() -> dict[str, Any]:
     on = {"state": "on"}
-    moving = {"entity": PUMP} | on
+    to_circuits = {"entity": VALVE, "state": "space_heating"}
+    to_tank = {"entity": VALVE, "state": "hot_water"}
     return {
         "type": "picture-elements",
         "image": _base(),
         "grid_options": {"columns": "full"},
         "elements": [
-            _overlay(
-                _stub(VALVE_TO_HEATING), {"entity": VALVE, "state": "space_heating"}
-            ),
-            _overlay(_stub(VALVE_TO_TANK), {"entity": VALVE, "state": "hot_water"}),
-            _overlay(_flow(SUPPLY, HOT), moving),
-            _overlay(
-                _flow(HEATING_MAIN, HOT),
-                moving,
-                {"entity": VALVE, "state": "space_heating"},
-                {"entity": OUTDOOR_STATE, "state_not": "cooling"},
-            ),
-            _overlay(
-                _flow(HEATING_MAIN, COLD),
-                moving,
-                {"entity": VALVE, "state": "space_heating"},
-                {"entity": OUTDOOR_STATE, "state": "cooling"},
-            ),
-            _overlay(_flow(TANK, HOT), moving, {"entity": VALVE, "state": "hot_water"}),
-            _overlay(_flow(FLOOR, HOT), {"entity": FLOOR_PUMP} | on),
-            _overlay(_flow(RADIATORS, HOT), {"entity": RADIATOR_PUMP} | on),
+            _overlay(_stub(VALVE_TO_HEATING), to_circuits),
+            _overlay(_stub(VALVE_TO_TANK), to_tank),
+            *_heat_flow(SUPPLY),
+            *_heat_flow(HEATING_MAIN, to_circuits),
+            _overlay(_flow(TANK, HOT), *RUNNING, to_tank),
+            *_heat_flow(FLOOR, to_circuits, {"entity": FLOOR_PUMP} | on),
+            *_heat_flow(RADIATORS, to_circuits, {"entity": RADIATOR_PUMP} | on),
             _overlay(_flow(SOLAR_PIPE, SOLAR), {"entity": SOLAR_PUMP} | on),
             _overlay(_spin(), {"entity": OUTDOOR_STATE, "state_not": "off"}),
             _icon("mdi:fan", OUTDOOR_STATE, 130, 262, "var(--primary-text-color)"),

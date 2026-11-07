@@ -181,7 +181,7 @@ sensor wired later appears after the next reload.
 
 A ready-made dashboard ships with the integration. It uses Home Assistant's built-in
 cards only, so there is nothing to install: a live diagram of the system with pipes
-that animate while water moves, gauges, trend graphs, every circuit and the alarm
+that animate while the heat pump produces heat or cold, gauges, trend graphs, every circuit and the alarm
 history.
 
 ![The dashboard, here with every pipe running at once](docs/dashboard/overview.png)
@@ -195,6 +195,10 @@ headings:
 3. Circuits are named after their name on your display. Replace `underfloor_heating`
    and `radiators` with yours (see their entity IDs), and delete the parts your pump
    doesn't have.
+
+The pipes stay still between compressor runs, even though the circulation pump usually
+keeps running (its tile shows that). The grey piece at the valve shows where the valve
+points; it rests on hot water when idle, which doesn't mean the water is heating.
 
 The mode buttons on the circuits and on hot water act at once. Anything else opens
 its details when tapped, where you can change it.

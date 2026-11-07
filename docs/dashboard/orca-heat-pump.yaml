@@ -57,11 +57,12 @@ views:
       elements:
       - type: conditional
         conditions:
-        - entity: sensor.heat_pump_3_way_valve
+        - &id004
+          entity: sensor.heat_pump_3_way_valve
           state: space_heating
         elements:
         - type: image
-          image: data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAwIDYwMCIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTQwMCAyNzQgVjIxNSIgc3Ryb2tlPSIjZmY3MDQzIiBzdHJva2Utd2lkdGg9IjkiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjwvc3ZnPg==
+          image: data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAwIDYwMCIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTQwMCAyNzQgVjIxNSIgc3Ryb2tlPSIjOWU5ZTllIiBzdHJva2Utd2lkdGg9IjkiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjwvc3ZnPg==
           tap_action:
             action: none
           hold_action:
@@ -73,11 +74,12 @@ views:
             pointer-events: none
       - type: conditional
         conditions:
-        - entity: sensor.heat_pump_3_way_valve
+        - &id005
+          entity: sensor.heat_pump_3_way_valve
           state: hot_water
         elements:
         - type: image
-          image: data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAwIDYwMCIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTQwMCAzMjYgVjM4NSIgc3Ryb2tlPSIjZmY3MDQzIiBzdHJva2Utd2lkdGg9IjkiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjwvc3ZnPg==
+          image: data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAwIDYwMCIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTQwMCAzMjYgVjM4NSIgc3Ryb2tlPSIjOWU5ZTllIiBzdHJva2Utd2lkdGg9IjkiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjwvc3ZnPg==
           tap_action:
             action: none
           hold_action:
@@ -92,6 +94,15 @@ views:
         - &id001
           entity: binary_sensor.heat_pump_circulation_pump
           state: 'on'
+        - &id002
+          entity: sensor.heat_pump_outdoor_unit_state
+          state_not: 'off'
+        - &id003
+          condition: numeric_state
+          entity: sensor.heat_pump_outdoor_unit_power
+          above: 0
+        - entity: sensor.heat_pump_outdoor_unit_state
+          state_not: cooling
         elements:
         - type: image
           image: data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAwIDYwMCIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTIyMCAzMDAgSDM4NCIgc3Ryb2tlPSIjZmY3MDQzIiBzdHJva2Utd2lkdGg9IjkiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLWRhc2hhcnJheT0iNCAyMiI+PGFuaW1hdGUgYXR0cmlidXRlTmFtZT0ic3Ryb2tlLWRhc2hvZmZzZXQiIGZyb209IjI2IiB0bz0iMCIgZHVyPSIuOXMiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIi8+PC9wYXRoPjwvc3ZnPg==
@@ -107,8 +118,28 @@ views:
       - type: conditional
         conditions:
         - *id001
-        - entity: sensor.heat_pump_3_way_valve
-          state: space_heating
+        - *id002
+        - *id003
+        - entity: sensor.heat_pump_outdoor_unit_state
+          state: cooling
+        elements:
+        - type: image
+          image: data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAwIDYwMCIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTIyMCAzMDAgSDM4NCIgc3Ryb2tlPSIjNDJhNWY1IiBzdHJva2Utd2lkdGg9IjkiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLWRhc2hhcnJheT0iNCAyMiI+PGFuaW1hdGUgYXR0cmlidXRlTmFtZT0ic3Ryb2tlLWRhc2hvZmZzZXQiIGZyb209IjI2IiB0bz0iMCIgZHVyPSIuOXMiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIi8+PC9wYXRoPjwvc3ZnPg==
+          tap_action:
+            action: none
+          hold_action:
+            action: none
+          style:
+            left: 50%
+            top: 50%
+            width: 100%
+            pointer-events: none
+      - type: conditional
+        conditions:
+        - *id001
+        - *id002
+        - *id003
+        - *id004
         - entity: sensor.heat_pump_outdoor_unit_state
           state_not: cooling
         elements:
@@ -126,8 +157,9 @@ views:
       - type: conditional
         conditions:
         - *id001
-        - entity: sensor.heat_pump_3_way_valve
-          state: space_heating
+        - *id002
+        - *id003
+        - *id004
         - entity: sensor.heat_pump_outdoor_unit_state
           state: cooling
         elements:
@@ -145,8 +177,9 @@ views:
       - type: conditional
         conditions:
         - *id001
-        - entity: sensor.heat_pump_3_way_valve
-          state: hot_water
+        - *id002
+        - *id003
+        - *id005
         elements:
         - type: image
           image: data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAwIDYwMCIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTQwMCAzMTYgVjQ1NSBINjIwIiBzdHJva2U9IiNmZjcwNDMiIHN0cm9rZS13aWR0aD0iOSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2UtZGFzaGFycmF5PSI0IDIyIj48YW5pbWF0ZSBhdHRyaWJ1dGVOYW1lPSJzdHJva2UtZGFzaG9mZnNldCIgZnJvbT0iMjYiIHRvPSIwIiBkdXI9Ii45cyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiLz48L3BhdGg+PC9zdmc+
@@ -161,8 +194,15 @@ views:
             pointer-events: none
       - type: conditional
         conditions:
-        - entity: binary_sensor.underfloor_heating_circuit_pump
+        - *id001
+        - *id002
+        - *id003
+        - *id004
+        - &id006
+          entity: binary_sensor.underfloor_heating_circuit_pump
           state: 'on'
+        - entity: sensor.heat_pump_outdoor_unit_state
+          state_not: cooling
         elements:
         - type: image
           image: data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAwIDYwMCIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTUyMCAxMTAgSDYyMCIgc3Ryb2tlPSIjZmY3MDQzIiBzdHJva2Utd2lkdGg9IjkiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLWRhc2hhcnJheT0iNCAyMiI+PGFuaW1hdGUgYXR0cmlidXRlTmFtZT0ic3Ryb2tlLWRhc2hvZmZzZXQiIGZyb209IjI2IiB0bz0iMCIgZHVyPSIuOXMiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIi8+PC9wYXRoPjwvc3ZnPg==
@@ -177,11 +217,60 @@ views:
             pointer-events: none
       - type: conditional
         conditions:
-        - entity: binary_sensor.radiators_circuit_pump
+        - *id001
+        - *id002
+        - *id003
+        - *id004
+        - *id006
+        - entity: sensor.heat_pump_outdoor_unit_state
+          state: cooling
+        elements:
+        - type: image
+          image: data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAwIDYwMCIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTUyMCAxMTAgSDYyMCIgc3Ryb2tlPSIjNDJhNWY1IiBzdHJva2Utd2lkdGg9IjkiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLWRhc2hhcnJheT0iNCAyMiI+PGFuaW1hdGUgYXR0cmlidXRlTmFtZT0ic3Ryb2tlLWRhc2hvZmZzZXQiIGZyb209IjI2IiB0bz0iMCIgZHVyPSIuOXMiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIi8+PC9wYXRoPjwvc3ZnPg==
+          tap_action:
+            action: none
+          hold_action:
+            action: none
+          style:
+            left: 50%
+            top: 50%
+            width: 100%
+            pointer-events: none
+      - type: conditional
+        conditions:
+        - *id001
+        - *id002
+        - *id003
+        - *id004
+        - &id007
+          entity: binary_sensor.radiators_circuit_pump
           state: 'on'
+        - entity: sensor.heat_pump_outdoor_unit_state
+          state_not: cooling
         elements:
         - type: image
           image: data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAwIDYwMCIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTUyMCAxMTAgVjI1MCBINjIwIiBzdHJva2U9IiNmZjcwNDMiIHN0cm9rZS13aWR0aD0iOSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2UtZGFzaGFycmF5PSI0IDIyIj48YW5pbWF0ZSBhdHRyaWJ1dGVOYW1lPSJzdHJva2UtZGFzaG9mZnNldCIgZnJvbT0iMjYiIHRvPSIwIiBkdXI9Ii45cyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiLz48L3BhdGg+PC9zdmc+
+          tap_action:
+            action: none
+          hold_action:
+            action: none
+          style:
+            left: 50%
+            top: 50%
+            width: 100%
+            pointer-events: none
+      - type: conditional
+        conditions:
+        - *id001
+        - *id002
+        - *id003
+        - *id004
+        - *id007
+        - entity: sensor.heat_pump_outdoor_unit_state
+          state: cooling
+        elements:
+        - type: image
+          image: data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAwIDYwMCIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTUyMCAxMTAgVjI1MCBINjIwIiBzdHJva2U9IiM0MmE1ZjUiIHN0cm9rZS13aWR0aD0iOSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2UtZGFzaGFycmF5PSI0IDIyIj48YW5pbWF0ZSBhdHRyaWJ1dGVOYW1lPSJzdHJva2UtZGFzaG9mZnNldCIgZnJvbT0iMjYiIHRvPSIwIiBkdXI9Ii45cyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiLz48L3BhdGg+PC9zdmc+
           tap_action:
             action: none
           hold_action:
@@ -500,7 +589,7 @@ views:
         columns: full
       state_content: hvac_action
       features:
-      - &id002
+      - &id008
         type: climate-hvac-modes
         hvac_modes:
         - 'off'
@@ -539,7 +628,7 @@ views:
         columns: full
       state_content: hvac_action
       features:
-      - *id002
+      - *id008
     - type: tile
       entity: number.radiators_flow_temperature_setpoint
       name:
