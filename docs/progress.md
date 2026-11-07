@@ -8,7 +8,9 @@ user decides the points below and publishes.
 ### Where things stand
 
 - **Public since 2026-11-07:** the user pushed the full history to
-  `rp9376/orca-heatpump-ha`. No release yet.
+  `rp9376/orca-heatpump-ha`. Pre-release `v1.0.0b1` published the same day on
+  `29a5f17`; the release workflow passed and attached `orca_heatpump.zip` (38 files,
+  manifest 1.0.0b1). The two Dependabot updates were checked against upstream and merged.
 - **Version `1.0.0b1`.** Changelog, README, supported setups, backlog, contributing
   guide, CI and release workflows, issue templates and HACS settings are in place.
 - **Checks on this commit's code:** lint, ruff, mypy strict and zizmor pass, hassfest
@@ -143,7 +145,6 @@ its target to either circuits or tank, and drifts to about 24 °C when stopped.
   Python 3.14 venv with `homeassistant==2026.11.0` showed `mypy` lacked the PyYAML stubs
   it gets from the container; with those added, mypy and all 1,137 tests pass there, at
   100 % coverage. That was the first run against the release rather than dev.
-- **The release workflow has never run.**
 - **Only one real pump:** schema 23. The other 44 schemas run on synthetic data. Not
   tested live: a room sensor, cooling in operation, a third circuit, a buffer tank.
 - **Out-of-range refusal:** tested on the emulator only, deliberately (#20).
