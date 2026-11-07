@@ -7,6 +7,8 @@ user decides the points below and publishes.
 
 ### Where things stand
 
+- **Public since 2026-11-07:** the user pushed the full history to
+  `rp9376/orca-heatpump-ha`. No release yet.
 - **Version `1.0.0b1`.** Changelog, README, supported setups, backlog, contributing
   guide, CI and release workflows, issue templates and HACS settings are in place.
 - **Checks on this commit's code:** lint, ruff, mypy strict and zizmor pass, hassfest
@@ -121,8 +123,8 @@ its target to either circuits or tank, and drifts to about 24 °C when stopped.
 
 ### Decisions for the user
 
-1. **The go, and how to authenticate.** Install `gh` and run `gh auth login`, or give me
-   a remote. I never handle tokens. Steps: `docs/repo-setup.md`.
+1. **Pushing.** Done by the user: this machine holds no GitHub login, and I never handle
+   tokens. The remaining steps are in `docs/repo-setup.md`.
 2. **Release.** `v1.0.0b1` as a pre-release, installed through HACS as a custom
    repository. The HACS default store can wait until the beta has been used.
 3. **Tom Kern.** Draft in `.scratch/note-to-tom-kern.md`, not sent. Send it, change it
@@ -132,8 +134,14 @@ its target to either circuits or tank, and drifts to about 24 °C when stopped.
 
 ### Not verified
 
-- **HACS validation, CI and the release workflow have never run:** they need a remote.
-  The first push may need small fixes.
+- **CI is not green on GitHub yet.** On the first push Lint and hassfest passed. HACS
+  validation failed only on the missing repository topics. All three test jobs failed at
+  install: the plugin's folder is `pytest-homeassistant` in the 2026.11.0 tag and
+  `pytest-home-assistant` on dev, and CI used the dev name. With that fixed, a fresh
+  Python 3.14 venv with `homeassistant==2026.11.0` showed `mypy` lacked the PyYAML stubs
+  it gets from the container; with those added, mypy and all 1,137 tests pass there, at
+  100 % coverage. That was the first run against the release rather than dev.
+- **The release workflow has never run.**
 - **Only one real pump:** schema 23. The other 44 schemas run on synthetic data. Not
   tested live: a room sensor, cooling in operation, a third circuit, a buffer tank.
 - **Out-of-range refusal:** tested on the emulator only, deliberately (#20).

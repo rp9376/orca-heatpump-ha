@@ -34,6 +34,8 @@ release with its exact version). The `dev` channel installs both from the
 - One plugin and one import path in the container and in CI; no shim.
 - The pair always matches exactly, because both come from the same release.
 - CI clones core (depth 1) per test job, which costs some time.
+- The plugin's folder is `pytest-homeassistant` in the 2026.11.0 tag and
+  `pytest-home-assistant` on `dev`, so CI matches both.
 - Verified locally on 2026-10-31: a fresh Python 3.14 venv with
   `homeassistant==2026.11.0b1` and the plugin from the `2026.11.0b1` tag
   passes mypy and pytest (see `docs/progress.md`).

@@ -89,12 +89,14 @@ jobs:
           # the core tag that matches the Home Assistant under test.
           core="$RUNNER_TEMP/core"
           git clone --quiet --depth 1 --branch "$HA_VERSION" https://github.com/home-assistant/core.git "$core"
+          # The folder is pytest-homeassistant in 2026.11 and pytest-home-assistant on dev.
+          plugin=$(echo "$core"/packages/pytest-home*assistant)
           if [ "$HA_VERSION" = dev ]; then
-            uv pip install -e "$core" "$core/packages/pytest-home-assistant" --group ci
+            uv pip install -e "$core" "$plugin" --group ci
             # A source checkout has no built translations; the tests need them.
             (cd "$core" && python -m script.translations develop --all)
           else
-            uv pip install "homeassistant==$HA_VERSION" "$core/packages/pytest-home-assistant" --group ci
+            uv pip install "homeassistant==$HA_VERSION" "$plugin" --group ci
           fi
       - name: mypy
         run: mypy
