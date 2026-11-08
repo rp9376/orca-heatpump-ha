@@ -30,7 +30,7 @@ jobs:
             echo "manifest.json says $version, the tag is $TAG" >&2
             exit 1
           fi
-      - name: Zip the integration for HACS
+      - name: Zip the integration for manual installs
         working-directory: custom_components/orca_heatpump
         run: zip -r "$GITHUB_WORKSPACE/orca_heatpump.zip" . -x "*/__pycache__/*"
       - name: Attach it to the release

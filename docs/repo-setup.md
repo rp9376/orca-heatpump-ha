@@ -48,4 +48,5 @@ gh release create v1.0.0b1 --prerelease --title 1.0.0b1 --notes-file CHANGELOG.m
 ```
 
 The release workflow checks the tag against `manifest.json` and attaches
-`orca_heatpump.zip`, which HACS installs (`hacs.json`).
+`orca_heatpump.zip` for manual installs. The Marketplace doesn't use it: it installs
+`custom_components/orca_heatpump` from the repository (ADR 0015).

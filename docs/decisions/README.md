@@ -21,3 +21,4 @@ that the user confirms at a checkpoint. `PLAN.md` is the project's original plan
 | [0012](0012-power-limits-opt-in.md) | Power limits are an opt-in, guarded setting | Accepted 2026-11-01 |
 | [0013](0013-no-network-discovery.md) | No network discovery | Accepted 2026-11-01 |
 | [0014](0014-no-topology-overrides.md) | No topology overrides | Accepted 2026-11-07 |
+| [0015](0015-no-zip-release.md) | The Marketplace installs from the repository, not a release zip | Accepted 2026-11-08 |
